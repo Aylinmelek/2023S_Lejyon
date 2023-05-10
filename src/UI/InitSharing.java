@@ -14,12 +14,10 @@ import javax.swing.JTextArea;
 import domain.Die;
 
 public class InitSharing extends JLayeredPane {
-	Grid map = new Grid();
 	JTextArea txtInitSharing = new JTextArea();
 	JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
 	JButton btnRoll = new JButton("ROLL");
-	
 	Grid grid = new Grid();
 	Die die = new Die();
 	
@@ -43,26 +41,26 @@ public void displayDie() {
 		int dieDisplayed = die.generateNum();
 		
 		if (dieDisplayed == 1) {
-			System.out.println(dieDisplayed);
+		
 			dieLabel.setIcon(die1);
 			}
 		
 		else if (dieDisplayed == 2) {
-			System.out.println(dieDisplayed);
+	
 			dieLabel.setIcon(die2);
 		}
 		else if (dieDisplayed == 3) {
-			System.out.println(dieDisplayed);
+			//System.out.println(dieDisplayed);
 			dieLabel.setIcon(die3);
 		}
 		
 		else if (dieDisplayed == 4) {
-			System.out.println(dieDisplayed);
+			//System.out.println(dieDisplayed);
 			dieLabel.setIcon(die4);
 		}
 		
 		else if (dieDisplayed == 5) {
-			System.out.println(dieDisplayed);
+			//System.out.println(dieDisplayed);
 			dieLabel.setIcon(die5);
 		}
 		
@@ -75,9 +73,9 @@ public void displayDie() {
 	}
 	
 	public void addElements() {
-		map.addGrid();
-		add(map);
-		
+		//grid.addGrid();
+		//add(grid);
+		//grid.setVisible(true);
 		txtInitSharing.setForeground(Color.LIGHT_GRAY);
 		txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
 		txtInitSharing.setBackground(Color.DARK_GRAY);
@@ -86,7 +84,7 @@ public void displayDie() {
 		add(txtInitSharing);
     
     
-    dieLabel.setBounds(221, 359, 80, 80);
+    dieLabel.setBounds(221, 450, 80, 80);
     
     btnRoll.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
@@ -100,8 +98,8 @@ public void displayDie() {
    
     
     btnStartGame.setBackground(Color.WHITE);
-    btnStartGame.setBounds(733, 395, 117, 29);
-    btnRoll.setBounds(48, 360, 117, 56);
+    btnStartGame.setBounds(733, 495, 117, 29);
+    btnRoll.setBounds(30, 450, 117, 56);
     
     add(btnRoll);
     add(dieLabel);
