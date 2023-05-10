@@ -1,399 +1,435 @@
 package UI;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Stroke;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 import domain.Map;
 import domain.Territory;
 
+public class Grid extends JPanel implements MouseListener {
 
-public class Grid extends JPanel {
-	
-    static final int GRID_SIZE = 10;
+    private static final int ROWS = 17;
+    private static final int COLUMNS = 17;
+    private static final int CELL_SIZE = 50;
+    private static final int GRID_LINE_WIDTH = 2;
 
-    private static final Color DEFAULT_COLOR = Color.WHITE;
-    private static final Color SELECTED_COLOR = Color.gray;
-    private static final Color SELECTED = Color.red;
-    public Color[][] gridColors;
-    public JPanel[][] gridCells;
-    
-    Map gameMap = new Map();
-    
+    private Color[][] gridColors;
+    private String[][] gridText;
+    territoryCardFrame terCard = new territoryCardFrame();
+
+    static Map gameMap = new Map();
     //ArrayList enabledTerritories = new ArrayList[10][10];
     
-      int column,row=0;
+    
+    int column,row=0;
       
-	
-	
-
     public int getRow() {
  		// TODO Auto-generated method stub
  		return row;
  	}
+    
+    
     
     public int getCol() {
  		// TODO Auto-generated method stub
  		return column;
  	}
     
-    public void addGrid() {
-    	
-    	setBounds(0, 54, 873, 251);
-    	gameMap.setRowAndCol();
-        gridColors = new Color[GRID_SIZE][GRID_SIZE];
-        gridCells = new JPanel[GRID_SIZE][GRID_SIZE];
-        setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
-       // setLayout(new GridLayout(822, 263));
-        for (int i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
-          /*  JPanel cell = new JPanel();
-            cell.setBackground(DEFAULT_COLOR);
-            add(cell);*/
-        	JPanel cell = new JPanel();
-            cell.setBackground(DEFAULT_COLOR);
-            add(cell);
-            int column = i % GRID_SIZE;
-            int row = i / GRID_SIZE;
-            gridCells[column][row] = cell;
-            
-       
-        }
-        
-        // Paint the region with SELECTED_COLOR initially
-        gridColors[0][0] = SELECTED_COLOR;
-        JPanel cell = gridCells[0][0];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("1"));
-        
-       
-        cell = gridCells[0][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("2"));
-        
-        cell = gridCells[0][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("9"));
-        
-        cell = gridCells[0][3];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("3"));
-        
-        cell = gridCells[1][0];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("6"));
-        
-        cell = gridCells[1][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("7"));
-        
-        cell = gridCells[1][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("4"));
-        
-        cell = gridCells[2][0];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("5"));
-        
-        cell = gridCells[2][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("8"));
-        
-        cell = gridCells[0][4];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("4"));
-        
-        cell = gridCells[0][5];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("3"));
-        
-        cell = gridCells[1][4];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("2"));
-        
-        cell = gridCells[1][5];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("1"));
-        
-        cell = gridCells[3][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("2"));
-        
-        cell = gridCells[4][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("4"));
-        
-        cell = gridCells[3][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("1"));
-        
-        cell = gridCells[4][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("3"));
-        
-        cell = gridCells[4][3];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("7"));
-        
-        cell = gridCells[5][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("6"));
-        
-        cell = gridCells[5][3];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("5"));
-        
-        cell = gridCells[4][4];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("5"));
-        
-        cell = gridCells[5][4];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("3"));
-        
-        cell = gridCells[4][5];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("1"));
-        
-        cell = gridCells[5][5];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("2"));
-        
-        cell = gridCells[4][6];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("6"));
-        
-        cell = gridCells[5][6];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("4"));
-        
-        cell = gridCells[6][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("11"));
-        
-        cell = gridCells[6][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("1"));
-        
-        cell = gridCells[6][3];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("7"));
 
+    public Grid() {
+        gridColors = new Color[ROWS][COLUMNS];
+        gridText = new String[ROWS][COLUMNS];
         
-        cell = gridCells[7][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("10"));
-        
-        cell = gridCells[7][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("2"));
-        
-        cell = gridCells[7][3];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("3"));
-        
-        cell = gridCells[8][0];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("12"));
-        
-        cell = gridCells[8][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("4"));
-        
-        cell = gridCells[8][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("8"));
-        
-        cell = gridCells[8][3];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("9"));
-        
-        cell = gridCells[9][1];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("6"));
-        
-        cell = gridCells[9][2];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("5"));
-        
-        cell = gridCells[8][4];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("2"));
-        
-        cell = gridCells[8][5];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("4"));
-        
-        cell = gridCells[9][4];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("3"));
-        
-        cell = gridCells[9][5];
-        cell.setBackground(SELECTED_COLOR);
-        cell.setLayout(new GridLayout());
-        cell.add(new NumberPanel("1"));
-        
-       
-        
-        
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-            	
-            	    int cellWidth = getWidth() / GRID_SIZE;
-            	    int cellHeight = getHeight() / GRID_SIZE;
-
-            	    column = e.getX() / cellWidth;
-            	    row = e.getY() / cellHeight;
-            	    
-            	   /* System.out.print("row: ");
-            	    System.out.println(row);
-            	    System.out.print("col: ");
-            	    System.out.println(column);*/
-            	    
-            	    if (runningMode.building == false) {
-    	                if (gameMap.getTerritories().contains(gameMap.getTerritory(row,column))) {
-    	                	gameMap.getTerritories().remove(gameMap.getTerritory(row,column));
-            	    		gameMap.getTerritory(row,column).disable();
-            	    		
-    	                }
-    	                else {
-    	                	gameMap.getTerritories().add(gameMap.getTerritory(row,column));
-            	    		gameMap.getTerritory(row,column).enable();
-            	    		
-    	                }
-    	            
-            	    
-            	    		for (Territory item1 : gameMap.getTerritories()) {
-            	                System.out.println(item1);
-            	            } 
-            	    
-            	    	
-
-            	    if (column >= 0 && column < GRID_SIZE && row >= 0 && row < GRID_SIZE) {
-            	    	
-            	    	
-            	       // Color newColor = gridColors[column][row] == SELECTED_COLOR ? DEFAULT_COLOR : SELECTED_COLOR;
-            	    	Color newColor = gridColors[column][row] == SELECTED_COLOR ? DEFAULT_COLOR : DEFAULT_COLOR;
-            	        if (gridColors[column][row] == DEFAULT_COLOR) {
-            	    		
-            	    		
-
-            	    	}
-            	    	else if (gridColors[column][row] == SELECTED_COLOR) {
-            	    		
-            	    	}
-            	        gridColors[column][row] = newColor;
-            	        JPanel cell = (JPanel) getComponent(column + row * GRID_SIZE);
-            	        cell.setBackground(newColor);
-            	        repaint(); // repaint the panel to update the colors
-            	    }
-     
-            }
-            }    
-        });
-
-		
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        
-        int cellWidth = getWidth() / GRID_SIZE;
-        int cellHeight = getHeight() / GRID_SIZE;
-        
-     // Draw grid lines
-        g.setColor(Color.BLACK);
-        for (int i = 0; i <= GRID_SIZE; i++) {
-            int x = i * cellWidth;
-            g.drawLine(x, 0, x, getHeight());
-        }
-        for (int i = 0; i <= GRID_SIZE; i++) {
-            int y = i * cellHeight;
-            g.drawLine(0, y, getWidth(), y);
-        }
-       
-        for (int i = 0; i < GRID_SIZE; i++) {
-            for (int j = 0; j < GRID_SIZE; j++) {
-                if (gridColors[i][j] == SELECTED_COLOR) {
-                    g.setColor(SELECTED_COLOR);
-                    g.fillRect(i * cellWidth, j * cellHeight, cellWidth, cellHeight);           
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS; col++) {
+                gridColors[row][col] = Color.DARK_GRAY;
+                if (row==0 && col==0) {
+                	gridColors[row][col] = Color.yellow;
                 }
+                if (row==0 && col==1) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                if (row==0 && col==2) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                if (row==1 && col==0) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                if (row==1 && col==1) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                if (row==1 && col==2) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                if (row==2 && col==0) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                if (row==2 && col==1) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                if (row==3 && col==0) {
+                	gridColors[row][col] = Color.yellow;
+                }
+                
+                if (row==4 && col==0) {
+                	gridColors[row][col] = Color.pink;
+                }
+                if (row==4 && col==1) {
+                	gridColors[row][col] = Color.pink;
+                }
+                if (row==5 && col==0) {
+                	gridColors[row][col] = Color.pink;
+                }
+                if (row==5 && col==1) {
+                	gridColors[row][col] = Color.pink;
+                }
+                
+                if (row==1 && col==3) {
+                	gridColors[row][col] = Color.blue;
+                }
+                if (row==2 && col==3) {
+                	gridColors[row][col] = Color.blue;
+                }
+                if (row==1 && col==4) {
+                	gridColors[row][col] = Color.blue;
+                }
+                if (row==2 && col==4) {
+                	gridColors[row][col] = Color.blue;
+                }
+                if (row==3 && col==4) {
+                	gridColors[row][col] = Color.blue;
+                }
+                if (row==2 && col==5) {
+                	gridColors[row][col] = Color.blue;
+                }
+                if (row==3 && col==5) {
+                	gridColors[row][col] = Color.blue;
+                }
+                
+                if (row==4 && col==4) {
+                	gridColors[row][col] = Color.orange;
+                }
+                if (row==4 && col==5) {
+                	gridColors[row][col] = Color.orange;
+                }
+                if (row==5 && col==4) {
+                	gridColors[row][col] = Color.orange;
+                }
+                if (row==5 && col==5) {
+                	gridColors[row][col] = Color.orange;
+                }
+                if (row==6 && col==4) {
+                	gridColors[row][col] = Color.orange;
+                }
+                if (row==6 && col==5) {
+                	gridColors[row][col] = Color.orange;
+                }
+                
+                if (row==1 && col==6) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==1 && col==7) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==1 && col==8) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==1 && col==9) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==0 && col==8) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==2 && col==6) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==2 && col==7) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==2 && col==8) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==2 && col==9) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==3 && col==6) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==3 && col==7) {
+                	gridColors[row][col] = Color.green;
+                }
+                if (row==3 && col==8) {
+                	gridColors[row][col] = Color.green;
+                }
+                
+                if (row==4 && col==8) {
+                	gridColors[row][col] = Color.MAGENTA;
+                }
+                if (row==4 && col==9) {
+                	gridColors[row][col] = Color.MAGENTA;
+                }
+                if (row==5 && col==8) {
+                	gridColors[row][col] = Color.MAGENTA;
+                }
+                if (row==5 && col==9) {
+                	gridColors[row][col] = Color.MAGENTA;
+                }
+                
             }
         }
-        
-        
+        int width = COLUMNS * CELL_SIZE + GRID_LINE_WIDTH;
+        int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
+        setSize(width, height);
+
+        addMouseListener(this);
     }
-    
-    private static class NumberPanel extends JPanel {
-        private final String number;
-        
-        public NumberPanel(String number) {
-            this.number = number;
-            setBackground(SELECTED_COLOR);
+
+    public void paint(Graphics g) {
+        // Draw grid lines
+        g.setColor(Color.BLACK);
+        for (int row = 0; row <= ROWS; row++) {
+            int y = row * CELL_SIZE;
+            g.fillRect(0, y, COLUMNS * CELL_SIZE, GRID_LINE_WIDTH);
         }
-        
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.setColor(DEFAULT_COLOR);
-            g.setFont(new Font("SansSerif", Font.BOLD, 20));
-            int x = getWidth() / 2 - g.getFontMetrics().stringWidth(number) / 2;
-            int y = getHeight() / 2 + g.getFontMetrics().getAscent() / 2;
-            g.drawString(number, x, y);
+        for (int col = 0; col <= COLUMNS; col++) {
+            int x = col * CELL_SIZE;
+            g.fillRect(x, 0, GRID_LINE_WIDTH, ROWS * CELL_SIZE);
+        }
+        // Draw cells
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS; col++) {
+                g.setColor(gridColors[row][col]);
+                g.fillRect(col * CELL_SIZE + GRID_LINE_WIDTH, row * CELL_SIZE + GRID_LINE_WIDTH, CELL_SIZE - GRID_LINE_WIDTH, CELL_SIZE - GRID_LINE_WIDTH);
+                g.setColor(Color.black);
+                g.drawString("1", 20,25);
+                g.drawString("6", 70,25);
+                g.drawString("5", 120,25);
+                g.drawString("12", 420,25);
+                
+                g.drawString("2", 20,75);
+                g.drawString("7", 70,75);
+                g.drawString("8", 120,75);
+                g.drawString("2", 170,75);
+                g.drawString("4", 220,75);
+                g.drawString("11",320,75);
+                g.drawString("10",370,75);
+                g.drawString("4", 420,75);
+                g.drawString("6", 470,75);
+                
+                g.drawString("9", 20,125);
+                g.drawString("4", 70,125);
+                g.drawString("1", 170,125);
+                g.drawString("3", 220,125);
+                g.drawString("6", 270,125);
+                g.drawString("1", 320,125);
+                g.drawString("2", 370,125);
+                g.drawString("8", 420,125);
+                g.drawString("5", 470,125);
+                
+                g.drawString("3", 20,175);
+                g.drawString("7", 220,175);
+                g.drawString("5", 270,175);
+                g.drawString("7", 320,175);
+                g.drawString("3", 370,175);
+                g.drawString("9", 420,175);
+                
+                g.drawString("4", 20,225);
+                g.drawString("2", 70,225);
+                g.drawString("5", 220,225);
+                g.drawString("3", 270,225);
+                g.drawString("2", 420,225);
+                g.drawString("3", 470,225);
+                
+                g.drawString("3", 20,275);
+                g.drawString("1", 70,275);
+                g.drawString("1", 220,275);
+                g.drawString("2", 270,275);
+                g.drawString("4", 420,275);
+                g.drawString("1", 470,275);
+               
+                g.drawString("6", 220,325);
+                g.drawString("4", 270,325);
+                
+                
+            }
         }
     }
 
+    public void mouseClicked(MouseEvent e) {
+        int row = e.getY() / CELL_SIZE;
+        int col = e.getX() / CELL_SIZE;
+        gridColors[row][col] = Color.DARK_GRAY;
+        
+        
+        repaint();
+        if (runningMode.building == false) {
+            if (gameMap.getTerritories().contains(gameMap.getTerritory(row,column))) {
+            	gameMap.getTerritories().remove(gameMap.getTerritory(row,column));
+	    		gameMap.getTerritory(row,column).disable();
+	    		row = getRow();
+	    		column = getCol();
+	    		//gridCells[row][column].setBackground(Color.red);
+	    		
+            }
+            else {
+            	gameMap.getTerritories().add(gameMap.getTerritory(row,column));
+            	gameMap.setRowAndCol();
+	    		gameMap.getTerritory(row,column).enable();
+	    		
+            }
+        
+	    
+	    		for (Territory item1 : gameMap.getTerritories()) {
+	    			if (row==0 && col==0) {
+	    				System.out.println("Territory 1 is selected.");
+	    				terCard.setTerCards("Yellow 1");
+	    			}
+	    			 if (row==0 && col==1) {
+	    				 System.out.println("Territory 6 is selected.");
+	                 }
+	                 if (row==0 && col==2) {
+	                	 System.out.println("Territory 5 is selected.");
+	                 }
+	                 if (row==1 && col==0) {
+	                	 System.out.println("Territory 2 is selected.");
+	                 }
+	                 if (row==1 && col==1) {
+	                	 System.out.println("Territory 7 is selected.");
+	                 }
+	                 if (row==1 && col==2) {
+	                	 System.out.println("Territory 8 is selected.");
+	                 }
+	                 if (row==2 && col==0) {
+	                	 System.out.println("Territory 9 is selected.");
+	                 }
+	                 if (row==2 && col==1) {
+	                	 System.out.println("Territory 4 is selected.");
+	                 }
+	                 if (row==3 && col==0) {
+	                	 System.out.println("Territory 3 is selected.");
+	                 }
+	                 
+	                 if (row==4 && col==0) {
+	                	 System.out.println("Territory 4 is selected.");
+	                 }
+	                 if (row==4 && col==1) {
+	                	 System.out.println("Territory 2 is selected.");
+	                 }
+	                 if (row==5 && col==0) {
+	                	 System.out.println("Territory 3 is selected.");
+	                 }
+	                 if (row==5 && col==1) {
+	                	 System.out.println("Territory 1 is selected.");
+	                 }
+	                 
+	                 if (row==1 && col==3) {
+	                	 System.out.println("Territory 2 is selected.");
+	                 }
+	                 if (row==2 && col==3) {
+	                	 System.out.println("Territory 1 is selected.");
+	                 }
+	                 if (row==1 && col==4) {
+	                	 System.out.println("Territory 4 is selected.");
+	                 }
+	                 if (row==2 && col==4) {
+	                	 System.out.println("Territory 3 is selected.");
+	                 }
+	                 if (row==3 && col==4) {
+	                	 System.out.println("Territory 7 is selected.");
+	                	 terCard.setTerCards("Blue 7");
+	                 }
+	                 if (row==2 && col==5) {
+	                	 System.out.println("Territory 6 is selected.");
+	                 }
+	                 if (row==3 && col==5) {
+	                	 System.out.println("Territory 5 is selected.");
+	                 }
+	                 
+	                 if (row==4 && col==4) {
+	                	 System.out.println("Territory 5 is selected.");
+	                 }
+	                 if (row==4 && col==5) {
+	                	 System.out.println("Territory 3 is selected.");
+	                 }
+	                 if (row==5 && col==4) {
+	                	 System.out.println("Territory 1 is selected.");
+	                 }
+	                 if (row==5 && col==5) {
+	                	 System.out.println("Territory 2 is selected.");
+	                 }
+	                 if (row==6 && col==4) {
+	                	 System.out.println("Territory 6 is selected.");
+	                 }
+	                 if (row==6 && col==5) {
+	                	 System.out.println("Territory 4 is selected.");
+	                 }
+	                 
+	                 if (row==1 && col==6) {
+	                	 System.out.println("Territory 11 is selected.");
+	                 }
+	                 if (row==1 && col==7) {
+	                	 System.out.println("Territory 10 is selected.");
+	                 }
+	                 if (row==1 && col==8) {
+	                	 System.out.println("Territory 4 is selected.");
+	                 }
+	                 if (row==1 && col==9) {
+	                	 System.out.println("Territory 6 is selected.");
+	                 }
+	                 if (row==0 && col==8) {
+	                	 System.out.println("Territory 12 is selected.");
+	                 }
+	                 if (row==2 && col==6) {
+	                	 System.out.println("Territory 1 is selected.");
+	                 }
+	                 if (row==2 && col==7) {
+	                	 System.out.println("Territory 2 is selected.");
+	                 }
+	                 if (row==2 && col==8) {
+	                	 System.out.println("Territory 8 is selected.");
+	                 }
+	                 if (row==2 && col==9) {
+	                	 System.out.println("Territory 5 is selected.");
+	                 }
+	                 if (row==3 && col==6) {
+	                	 System.out.println("Territory 7 is selected.");
+	                 }
+	                 if (row==3 && col==7) {
+	                	 System.out.println("Territory 3 is selected.");
+	                 }
+	                 if (row==3 && col==8) {
+	                	 System.out.println("Territory 9 is selected.");
+	                 }
+	                 
+	                 if (row==4 && col==8) {
+	                	 System.out.println("Territory 2 is selected.");
+	                 }
+	                 if (row==4 && col==9) {
+	                	 System.out.println("Territory 3 is selected.");
+	                 }
+	                 if (row==5 && col==8) {
+	                	 System.out.println("Territory 4 is selected.");
+	                 }
+	                 if (row==5 && col==9) {
+	                	 System.out.println("Territory 1 is selected.");
+	                 }
+	                 
+	                //System.out.println(item1);
+	            } 
+	    
+    		//terCard.getContentPane().add(label);
+
+	    		
+}    
+    }
+
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {}
+
+
+  
 }
 
