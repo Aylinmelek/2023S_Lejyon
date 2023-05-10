@@ -13,10 +13,13 @@ import javax.swing.JPanel;
 
 public class territoryCardFrame {
 
-	JFrame territoryCardF;
+	//JFrame territoryCardF;
 
 	private JPasswordField txtPassword;
 	private JLabel loginLabel;
+	static JFrame territoryCardF = territoryCardF = new JFrame();
+	static JLabel label = new JLabel("");
+	static JLabel label2 = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +47,7 @@ public class territoryCardFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		territoryCardF = new JFrame();
+		
 		territoryCardF.getContentPane().setBackground(Color.DARK_GRAY);
 		territoryCardF.getContentPane().setLayout(null);
 		//territoryCardF.getContentPane().setLayout(null);
@@ -59,24 +62,57 @@ public class territoryCardFrame {
 		territoryCardF.getContentPane().add(txtrTerritoryCards);
 		territoryCardF.setBounds(100, 100, 657, 481);
 		
-		
-		JLabel label = new JLabel("");
+		//JLabel label = new JLabel("");
 		label.setBounds(239, 163, 96,165);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/blue7.png"));
 		label.setIcon(img);
 		
-		territoryCardF.getContentPane().add(label);
-		
-		JLabel label2 = new JLabel("");
+		//JLabel label2 = new JLabel("");
 		label2.setBounds(339, 163, 96,165);
 		ImageIcon img2 = new ImageIcon(this.getClass().getResource("/red2.png"));
 		label2.setIcon(img2);
 		
-		territoryCardF.getContentPane().add(label2);
+		//territoryCardF.getContentPane().add(label2);
 		
 		
 		
 		territoryCardF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		
+	}
+	public static void setTerCards(String territory) {
+		
+		/*if (territory=="Blue 1") {
+			territoryCardF.getContentPane().add(label);
+		}
+		if (territory=="Blue 2") {
+			territoryCardF.getContentPane().add(label);
+		}
+		if (territory=="Blue 3") {
+			territoryCardF.getContentPane().add(label);
+		}
+		if (territory=="Blue 4") {
+			territoryCardF.getContentPane().add(label);
+		}
+		if (territory=="Blue 5") {
+			territoryCardF.getContentPane().add(label);
+		}
+		if (territory=="Blue 6") {
+			territoryCardF.getContentPane().add(label);
+		}*/
+		if (territory=="Blue 7") {
+			territoryCardF.getContentPane().add(label);
+		}
+	/*	if (territory=="Yellow 1") {
+			territoryCardF.getContentPane().add(label);
+		}
+		if (territory=="Yellow 2") {
+			territoryCardF.getContentPane().add(label);
+		}*/
+		if (territory=="Red 2") {
+			territoryCardF.getContentPane().add(label2);
+		}
+		
 		
 		
 	}
