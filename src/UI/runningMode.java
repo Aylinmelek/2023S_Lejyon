@@ -600,17 +600,12 @@ public class runningMode extends JFrame{
         		
         	}
         });
-        //pauseScreen.add(btnResume);
-        
-    //    playingMode.add(dieLabel);
+
    
+        
         
     }
     
- 
-
-
-
 
     public static void main(String[] args) {
     	runningMode frame = new runningMode();
@@ -624,5 +619,7 @@ public class runningMode extends JFrame{
       //  frame.setVisible(true);
 
     
+        
+        
     }
 }
