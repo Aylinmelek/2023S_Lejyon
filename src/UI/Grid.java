@@ -28,7 +28,8 @@ public class Grid extends JPanel {
     public Color[][] gridColors;
     public JPanel[][] gridCells;
     
-    static Map gameMap = new Map();
+    Map gameMap = new Map();
+    
     //ArrayList enabledTerritories = new ArrayList[10][10];
     
       int column,row=0;
@@ -47,6 +48,9 @@ public class Grid extends JPanel {
  	}
     
     public void addGrid() {
+    	
+    	setBounds(0, 54, 873, 251);
+    	gameMap.setRowAndCol();
         gridColors = new Color[GRID_SIZE][GRID_SIZE];
         gridCells = new JPanel[GRID_SIZE][GRID_SIZE];
         setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));

@@ -12,6 +12,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
 public class BuildingMode extends JLayeredPane {
+	Grid map = new Grid();
 	JTextArea txtrGameOptions = new JTextArea();
     JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
@@ -30,6 +31,9 @@ public class BuildingMode extends JLayeredPane {
 	}
 	
 	public void addElements() {
+		map.addGrid();
+		add(map);
+		//map.setVisible(true);
 		
         txtrGameOptions.setBounds(212, 6, 453, 43);
         txtrGameOptions.setText("Game Options & Map Settings");

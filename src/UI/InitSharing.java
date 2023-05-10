@@ -14,10 +14,12 @@ import javax.swing.JTextArea;
 import domain.Die;
 
 public class InitSharing extends JLayeredPane {
+	Grid map = new Grid();
 	JTextArea txtInitSharing = new JTextArea();
 	JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
 	JButton btnRoll = new JButton("ROLL");
+	
 	Grid grid = new Grid();
 	Die die = new Die();
 	
@@ -73,9 +75,9 @@ public void displayDie() {
 	}
 	
 	public void addElements() {
-		//grid.addGrid();
-		//add(grid);
-		//grid.setVisible(true);
+		map.addGrid();
+		add(map);
+		
 		txtInitSharing.setForeground(Color.LIGHT_GRAY);
 		txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
 		txtInitSharing.setBackground(Color.DARK_GRAY);

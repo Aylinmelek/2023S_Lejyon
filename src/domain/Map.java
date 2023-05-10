@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Map {
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		setRowAndCol();
-	}
+	}*/
 	Deck deskDeck;
 	ArrayList <Territory> territories = new ArrayList<Territory>();
 	ArrayList <Continent> continents = new ArrayList<Continent>();
 	
-	static Territory[][] territoryArray=new Territory[10][10];
+	Territory[][] territoryArray=new Territory[10][10];
 	
 	
 	
@@ -41,7 +41,7 @@ public void checkReachability(Territory territory) {
 		}
  }
 
-public static void setRowAndCol() {
+public void setRowAndCol() {
 	
 	for(int i=0; i<10; i++) {
 		
