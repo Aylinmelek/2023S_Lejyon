@@ -2,12 +2,26 @@ package UI;
 
 import javax.swing.*;
 
-
+import domain.Army;
+import domain.ConKUeror;
+import domain.Continent;
 import domain.Die;
+import domain.Infantry;
+import domain.InfantryCard;
+import domain.Map;
+import domain.Player;
+import domain.Territory;
+import domain.TerritoryCard;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Random;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+
+
 
 public class runningMode extends JFrame{
     private JLayeredPane layeredPane;
@@ -608,6 +622,84 @@ public class runningMode extends JFrame{
     
 
     public static void main(String[] args) {
+    	Player player1 = new Player(); 
+    	Player player2 = new Player(); 
+    	Territory territory1 = new Territory();
+    	Territory territory2 = new Territory();
+    	territory1.getAdjacentTerritories().add(territory2);
+    	territory2.getAdjacentTerritories().add(territory1);
+    	territory1.setOwner(player1);
+    	territory2.setOwner(player2);
+    	ArrayList <Army> armyList1 = new ArrayList<Army>();
+    	Infantry infantry1 = new Infantry();
+    	armyList1.add(infantry1);
+    	armyList1.add(infantry1);
+    	armyList1.add(infantry1);
+    	player1.getTerritoryList().add(territory1);
+    	player2.getTerritoryList().add(territory2);
+    	ArrayList <Player> playerList = new ArrayList<Player>();
+    	playerList.add(player1);
+    	playerList.add(player2);
+    	Map map = new Map();
+    	map.getTerritories().add(territory1);
+    	map.getTerritories().add(territory2);
+    	InfantryCard infantryCard = new InfantryCard();
+    	player1.getDeck().getInfantryCardList().add(infantryCard);
+    	player1.getDeck().getInfantryCardList().add(infantryCard);
+    	player1.getDeck().getInfantryCardList().add(infantryCard);
+    	player1.tradeArmyCards(0);
+    	
+    	Continent continent = new Continent();
+    	Territory territory3 = new Territory();
+    	Territory territory4 = new Territory();
+    	TerritoryCard territoryCard1 = new TerritoryCard();
+    	TerritoryCard territoryCard2 = new TerritoryCard();
+    	player1.getTerritoryCardList().add(territoryCard1);
+    	player1.getTerritoryCardList().add(territoryCard2);
+    	continent.getTerritoryCardList().add(territoryCard1);
+    	continent.getTerritoryCardList().add(territoryCard2);
+    	continent.getTerritoryList().add(territory3);
+    	continent.getTerritoryList().add(territory4);
+    	player1.tradeTerritoryCards(continent);
+    	for (int i = 0; i < player1.getTerritoryList().size(); i++) {
+    		System.out.println("Player1 territoryList: ");
+    		System.out.println(player1.getTerritoryList().get(i));
+    	}
+    	for (int i = 0; i < player1.getTerritoryCardList().size(); i++) {
+    		System.out.println("Player1 territoryCardList: ");
+    		System.out.println(player1.getTerritoryCardList().get(i));
+    	}
+    	
+    	player1.placeArmy(territory4, infantry1);
+    	System.out.println("Army that is placed on Territory4: ");
+    	System.out.println(territory4.getArmyList().get(0));
+    	
+    	System.out.println("Player 1's cavalries of army: ");
+    	System.out.println(player1.getCavalryList().get(0));    	
+    	ArrayList <Army> armyList2 = new ArrayList<Army>();
+    	armyList2.add(infantry1);
+    	
+    	Map map2 = new Map();
+    	map2.getTerritories().add(territory3);
+    	map2.getTerritories().add(territory4);
+    	map2.getTerritories().add(territory1);
+    	map2.getTerritories().add(territory2);
+    	territory1.enable();
+    	territory2.enable();
+    	//territory3.enable();
+    	//territory4.enable();
+    	map2.checkReachability(territory1);
+    	map2.checkReachability(territory2);
+    	map2.checkReachability(territory3);
+    	map2.checkReachability(territory4);
+    	
+    	territory1.setArmyList(armyList1);
+    	territory2.setArmyList(armyList2);
+    	ConKUeror conkueror = new ConKUeror();
+    	Die die = new Die();
+    	conkueror.attack(player1, territory1, territory2, die);
+    	conkueror.initialSharingOfTerritory(playerList, map);
+    	
     	runningMode frame = new runningMode();
         frame.setSize(873, 600);
        // frame.setTitle("Switch LayeredPane Example");
@@ -618,8 +710,71 @@ public class runningMode extends JFrame{
       //  frame.setSize(400, 400);
       //  frame.setVisible(true);
 
-    
+        //SAVE THE MAP
+        String fileName = "output.dat";
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(map.getTerritories());
+            oos.close();
+            fos.close();
+            System.out.println("Map has been saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving the map to " + fileName);
+            e.printStackTrace();
+        }
         
+        for(int i = 0; i < map.getTerritories().size(); i++) {
+	        try {
+	            FileOutputStream fos = new FileOutputStream(fileName);
+	            ObjectOutputStream oos = new ObjectOutputStream(fos);
+	            oos.writeObject(map.getTerritories().get(i).getArmyList());
+	            oos.close();
+	            fos.close();
+	            System.out.println("ArmyList of a territory has been saved to " + fileName);
+	        } catch (IOException e) {
+	            System.out.println("Error occurred while saving the ArmyList of a territory to " + fileName);
+	            e.printStackTrace();
+	        }
+       }
         
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(playerList);
+            oos.close();
+            fos.close();
+            System.out.println("Players have been saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving the players to " + fileName);
+            e.printStackTrace();
+        }
+        
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(player1.getDeck().getInfantryCardList());
+            oos.close();
+            fos.close();
+            System.out.println("Infantry cardList of" + player1 + "have been saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving the infantry cardList of " + player1 + "to " + fileName);
+            e.printStackTrace();
+        }
+        
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(player1.getDeck());
+            oos.close();
+            fos.close();
+            System.out.println("Deck of cards of " + player1 + "have been saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving the deck of " + player1 + "to " + fileName);
+            e.printStackTrace();
+        }
     }
+    
 }
+
+
