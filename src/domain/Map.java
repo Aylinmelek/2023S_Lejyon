@@ -56,6 +56,12 @@ public void setRowAndCol() {
 	
 }
 
+public void setTerritories(ArrayList<Territory> new_territories) {
+	// TODO Auto-generated method stub
+	this.territories = new_territories;
+	
+}
+
 
 }
 

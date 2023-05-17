@@ -237,5 +237,9 @@ public class Player {
 		territory.owner.territoryList.remove(territory.owner.territoryList.indexOf(territory));
 		territory.owner = this;
 	}
+
+	
+
+	
 	
 }

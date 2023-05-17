@@ -17,11 +17,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
-impoimport com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -716,110 +717,6 @@ public class runningMode extends JFrame{
        // label.setVisible(true);
       //  frame.setSize(400, 400);
       //  frame.setVisible(true);
-
-        //SAVE THE MAP
-        String fileName = "output.dat";
-        try {
-            FileOutputStream fos = new FileOutputStream(fileName);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(map.getTerritories());
-            oos.close();
-            fos.close();
-            System.out.println("Map has been saved to " + fileName);
-        } catch (IOException e) {
-            System.out.println("Error occurred while saving the map to " + fileName);
-            e.printStackTrace();
-        }
-        
-        for(int i = 0; i < map.getTerritories().size(); i++) {
-	        try {
-	            FileOutputStream fos = new FileOutputStream(fileName);
-	            ObjectOutputStream oos = new ObjectOutputStream(fos);
-	            oos.writeObject(map.getTerritories().get(i).getArmyList());
-	            oos.close();
-	            fos.close();
-	            System.out.println("ArmyList of a territory has been saved to " + fileName);
-	        } catch (IOException e) {
-	            System.out.println("Error occurred while saving the ArmyList of a territory to " + fileName);
-	            e.printStackTrace();
-	        }
-       }
-        
-        try {
-            FileOutputStream fos = new FileOutputStream(fileName);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(playerList);
-            oos.close();
-            fos.close();
-            System.out.println("Players have been saved to " + fileName);
-        } catch (IOException e) {
-            System.out.println("Error occurred while saving the players to " + fileName);
-            e.printStackTrace();
-        }
-        
-        for(int i = 0; i < playerList.size(); i++) {   
-    		try {
-                FileOutputStream fos = new FileOutputStream(fileName);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(playerList.get(i).getDeck().getInfantryCardList());
-                oos.close();
-                fos.close();
-                System.out.println("Infantry cardList of" + playerList.get(i) + "have been saved to " + fileName);
-            } catch (IOException e) {
-                System.out.println("Error occurred while saving the infantry cardList of " + playerList.get(i) + "to " + fileName);
-                e.printStackTrace();
-            }
-    	}
-        
-        for(int i = 0; i < playerList.size(); i++) {   
-	        try {
-	            FileOutputStream fos = new FileOutputStream(fileName);
-	            ObjectOutputStream oos = new ObjectOutputStream(fos);
-	            oos.writeObject(playerList.get(i).getDeck());
-	            oos.close();
-	            fos.close();
-	            System.out.println("Deck of cards of " + playerList.get(i) + "have been saved to " + fileName);
-	        } catch (IOException e) {
-	            System.out.println("Error occurred while saving the deck of " + playerList.get(i) + "to " + fileName);
-	            e.printStackTrace();
-	        }
-        }
-    
-    
-    // Connect to MongoDB server
-    MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017"); //will change, ask TA
-    MongoClient mongoClient = new MongoClient(uri);
-
-    // Access the game database
-    MongoDatabase database = mongoClient.getDatabase("game_database");
-
-    // Access the game collection
-    MongoCollection<Document> collection = database.getCollection("game_collection");
-
-    // Create a sample game document
-    Document gameDocument = new Document("player_count", playerList.size())
-            .append("game_state", "ongoing")
-    		.append("current_map", map.getTerritories());
-    		
-    
-    	for(int i = 0; i < map.getTerritories().size(); i++) {
-    		gameDocument.append("armyList_of_a_territory" + i, map.getTerritories().get(i).getArmyList());   
-    	}
-    	for(int i = 0; i < playerList.size(); i++) {
-    		gameDocument.append("deck_of_players" + i, playerList.get(i).getDeck());   
-    	}
-    	for(int i = 0; i < playerList.size(); i++) {
-    		gameDocument.append("players'_infantry_cardList" + i, playerList.get(i).getDeck().getInfantryCardList());   
-    	}
-    		
-
-    // Insert the game document into the collection
-    collection.insertOne(gameDocument);
-    
-    // Close the MongoDB connection
-    mongoClient.close();
-
-
     
     }
     
