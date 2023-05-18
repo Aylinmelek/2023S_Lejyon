@@ -86,6 +86,14 @@ public class Player {
 		return cavalryList;
 	}
 
+	public ArrayList<Artillery> getArtilleryList() {
+		return artilleryList;
+	}
+
+	public void setArtilleryList(ArrayList<Artillery> artilleryList) {
+		this.artilleryList = artilleryList;
+	}
+
 	public void setCavalryList(ArrayList<Cavalry> cavalryList) {
 		this.cavalryList = cavalryList;
 	}

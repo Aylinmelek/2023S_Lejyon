@@ -25,6 +25,30 @@ public class Deck {
 		return infantryCardList;
 	}
 
+	public ArrayList<Card> getTerritoryCardList() {
+		return territoryCardList;
+	}
+
+	public void setTerritoryCardList(ArrayList<Card> territoryCardList) {
+		this.territoryCardList = territoryCardList;
+	}
+
+	public ArrayList<ArtilleryCard> getArtilleryCardList() {
+		return artilleryCardList;
+	}
+
+	public void setArtilleryCardList(ArrayList<ArtilleryCard> artilleryCardList) {
+		this.artilleryCardList = artilleryCardList;
+	}
+
+	public ArrayList<CavalryCard> getCavalryCardList() {
+		return cavalryCardList;
+	}
+
+	public void setCavalryCardList(ArrayList<CavalryCard> cavalryCardList) {
+		this.cavalryCardList = cavalryCardList;
+	}
+
 	public void setInfantryCardList(ArrayList<InfantryCard> infantryCardList) {
 		this.infantryCardList = infantryCardList;
 	}

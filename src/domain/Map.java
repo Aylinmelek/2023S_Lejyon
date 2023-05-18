@@ -41,6 +41,14 @@ public void checkReachability(Territory territory) {
 		}
  }
 
+public ArrayList<Continent> getContinents() {
+	return continents;
+}
+
+public void setContinents(ArrayList<Continent> continents) {
+	this.continents = continents;
+}
+
 public void setRowAndCol() {
 	
 	for(int i=0; i<10; i++) {
