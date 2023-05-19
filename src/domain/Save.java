@@ -248,6 +248,65 @@ public class Save {
 	 	}
 	}
 	
+	public void saveTheDeckIO(Deck deck) { 
+	 		try {
+	             FileOutputStream fos = new FileOutputStream(fileName);
+	             ObjectOutputStream oos = new ObjectOutputStream(fos);
+	             oos.writeObject(deck.getArtilleryCardList());
+	             oos.close();
+	             fos.close();
+	             System.out.println("Artillery cardList of" + deck + "have been saved to " + fileName);
+	         } 
+	 		
+	 		catch (IOException e) {
+	             System.out.println("Error occurred while saving the Artillery cardList of " + deck + "to " + fileName);
+	             e.printStackTrace();
+	         }
+	 		
+	 		try {
+	             FileOutputStream fos = new FileOutputStream(fileName);
+	             ObjectOutputStream oos = new ObjectOutputStream(fos);
+	             oos.writeObject(deck.getInfantryCardList());
+	             oos.close();
+	             fos.close();
+	             System.out.println("Infantry cardList of" + deck + "have been saved to " + fileName);
+	         } 
+	 		
+	 		catch (IOException e) {
+	             System.out.println("Error occurred while saving the Infantry cardList of " + deck + "to " + fileName);
+	             e.printStackTrace();
+	         }
+	 		try {
+	             FileOutputStream fos = new FileOutputStream(fileName);
+	             ObjectOutputStream oos = new ObjectOutputStream(fos);
+	             oos.writeObject(deck.getCavalryCardList());
+	             oos.close();
+	             fos.close();
+	             System.out.println("Cavalry cardList of" + deck + "have been saved to " + fileName);
+	         } 
+	 		
+	 		catch (IOException e) {
+	             System.out.println("Error occurred while saving the Cavalry cardList of " + deck + "to " + fileName);
+	             e.printStackTrace();
+	         }
+	 		try {
+	             FileOutputStream fos = new FileOutputStream(fileName);
+	             ObjectOutputStream oos = new ObjectOutputStream(fos);
+	             oos.writeObject(deck.getTerritoryCardList());
+	             oos.close();
+	             fos.close();
+	             System.out.println("Territory cardList of" + deck + "have been saved to " + fileName);
+	         } 
+	 		
+	 		catch (IOException e) {
+	             System.out.println("Error occurred while saving the Territory cardList of " + deck + "to " + fileName);
+	             e.printStackTrace();
+	         }
+	 		
+	 	
+	}
+	
+	
 	
 	public void saveTheMapDB(Map map) {
 		gameDocument.append("current_map", map.getTerritories());
@@ -327,6 +386,13 @@ public class Save {
 		for(int i = 0; i < playerList.size(); i++) {
     		gameDocument.append("deck_of_players" + i, playerList.get(i).getDeck());   
     	}
+	}
+	
+	public void saveTheDeckDB(Deck deck) { 
+    		gameDocument.append("main_infantry_cardList", deck.getInfantryCardList())
+    					.append("main_artillery_cardList", deck.getArtilleryCardList())
+    					.append("main_cavalry_cardList", deck.getCavalryCardList())
+    					.append("main_territory_cardList", deck.getTerritoryCardList());
 	}
 	
 	

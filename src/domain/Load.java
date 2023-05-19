@@ -248,6 +248,57 @@ public class Load {
 	    }
 	}
 	
+	public void loadTheDeckIO(Deck deck) {
+	        try {
+	            FileInputStream fis = new FileInputStream(fileName + "_");
+	            ObjectInputStream ois = new ObjectInputStream(fis);
+	            deck.setArtilleryCardList((ArrayList<ArtilleryCard>) ois.readObject());
+	            ois.close();
+	            fis.close();
+	            System.out.println("Artillery cardList of " + deck + " has been loaded from " + fileName);
+	        } catch (IOException | ClassNotFoundException e) {
+	            System.out.println("Error occurred while loading the artillery cardList of " + deck + " from " + fileName);
+	            e.printStackTrace();
+	        }
+	        
+	        try {
+	            FileInputStream fis = new FileInputStream(fileName + "_");
+	            ObjectInputStream ois = new ObjectInputStream(fis);
+	            deck.setInfantryCardList((ArrayList<InfantryCard>) ois.readObject());
+	            ois.close();
+	            fis.close();
+	            System.out.println("Infantry cardList of " + deck + " has been loaded from " + fileName);
+	        } catch (IOException | ClassNotFoundException e) {
+	            System.out.println("Error occurred while loading the infantry cardList of " + deck + " from " + fileName);
+	            e.printStackTrace();
+	        }
+	        
+	        try {
+	            FileInputStream fis = new FileInputStream(fileName + "_");
+	            ObjectInputStream ois = new ObjectInputStream(fis);
+	            deck.setCavalryCardList((ArrayList<CavalryCard>) ois.readObject());
+	            ois.close();
+	            fis.close();
+	            System.out.println("Cavalry cardList of " + deck + " has been loaded from " + fileName);
+	        } catch (IOException | ClassNotFoundException e) {
+	            System.out.println("Error occurred while loading the cavalry cardList of " + deck + " from " + fileName);
+	            e.printStackTrace();
+	        }
+	        
+	        try {
+	            FileInputStream fis = new FileInputStream(fileName + "_");
+	            ObjectInputStream ois = new ObjectInputStream(fis);
+	            deck.setTerritoryCardList((ArrayList<TerritoryCard>) ois.readObject());
+	            ois.close();
+	            fis.close();
+	            System.out.println("Territory cardList of " + deck + " has been loaded from " + fileName);
+	        } catch (IOException | ClassNotFoundException e) {
+	            System.out.println("Error occurred while loading the territory cardList of " + deck + " from " + fileName);
+	            e.printStackTrace();
+	        }
+	        
+	}
+	
 	public void loadThePlayersDB(ArrayList <Player> playerList){
 		for(int i = 0; i < playerList.size(); i++) {
 			 String key = "Players" + i;
@@ -270,6 +321,13 @@ public class Load {
 	    }
 	}
 	
+	public void loadTheArmyListOfTerritoriesDB(Map map) {
+		for (int i = 0; i < map.getTerritories().size(); i++) {
+	        String key = "armyList_of_a_territory" + i;
+	        map.getTerritories().get(i).setArmyList((ArrayList<Army>) gameDocument.get(key));
+	    }
+	}
+	
 	public void loadTheTerritoryListOfPlayersDB(ArrayList <Player> playerList) {
 		for (int i = 0; i < playerList.size(); i++) {
 	        String key = "players'_territory_List" + i;
@@ -284,12 +342,6 @@ public class Load {
 	    }
 	}
 	
-	public void loadTheArmyListOfTerritoriesDB(Map map) {
-		for (int i = 0; i < map.getTerritories().size(); i++) {
-	        String key = "armyList_of_a_territory" + i;
-	        map.getTerritories().get(i).setArmyList((ArrayList<Army>) gameDocument.get(key));
-	    }
-	}
 	
 	public void loadTheInfantryListOfPlayersDB(ArrayList <Player> playerList) {
 		for (int i = 0; i < playerList.size(); i++) {
@@ -339,6 +391,17 @@ public class Load {
 		        playerList.get(i).setDeck((Deck)gameDocument.get(key)); 
 		        playerDecks.add(deck); //Ask TA
 		    }
+	}
+	
+	public void loadTheTDeckDB(Deck deck) {
+	        String key1 = "main_territory_cardList";
+	        deck.setTerritoryCardList((ArrayList<Card>) gameDocument.get(key1));
+	        String key2 = "main_infantry_cardList";
+	        deck.setInfantryCardList((ArrayList<InfantryCard>) gameDocument.get(key2));
+	        String key3 = "main_cavalry_cardList";
+	        deck.setCavalryCardList((ArrayList<CavalryCard>) gameDocument.get(key3));
+	        String key4 = "main_artillery_cardList";
+	        deck.setArtilleryCardList((ArrayList<ArtilleryCard>) gameDocument.get(key4));
 	}
 
 	
