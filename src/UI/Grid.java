@@ -164,16 +164,16 @@ public class Grid extends JPanel implements MouseListener {
                 }
                 
                 if (row==4 && col==8) {
-                	gridColors[row][col] = Color.MAGENTA;
+                	gridColors[row][col] = Color.red;
                 }
                 if (row==4 && col==9) {
-                	gridColors[row][col] = Color.MAGENTA;
+                	gridColors[row][col] = Color.red;
                 }
                 if (row==5 && col==8) {
-                	gridColors[row][col] = Color.MAGENTA;
+                	gridColors[row][col] = Color.red;
                 }
                 if (row==5 && col==9) {
-                	gridColors[row][col] = Color.MAGENTA;
+                	gridColors[row][col] = Color.red;
                 }
                 
             }
@@ -280,142 +280,139 @@ public class Grid extends JPanel implements MouseListener {
             }
         
 	    
-	    		for (Territory item1 : gameMap.getTerritories()) {
+	for (Territory item1 : gameMap.getTerritories()) {
 	    			if (row==0 && col==0) {
-	    				System.out.println("Territory 1 is selected.");
 	    				terCard.setTerCards("Yellow 1");
 	    			}
 	    			 if (row==0 && col==1) {
-	    				 System.out.println("Territory 6 is selected.");
+	    				 terCard.setTerCards("Yellow 6");
 	                 }
 	                 if (row==0 && col==2) {
-	                	 System.out.println("Territory 5 is selected.");
+	                	 terCard.setTerCards("Yellow 5");
 	                 }
 	                 if (row==1 && col==0) {
-	                	 System.out.println("Territory 2 is selected.");
+	                	 terCard.setTerCards("Yellow 2");
 	                 }
 	                 if (row==1 && col==1) {
-	                	 System.out.println("Territory 7 is selected.");
+	                	 terCard.setTerCards("Yellow 7");
 	                 }
 	                 if (row==1 && col==2) {
-	                	 System.out.println("Territory 8 is selected.");
+	                	 terCard.setTerCards("Yellow 8");
 	                 }
 	                 if (row==2 && col==0) {
-	                	 System.out.println("Territory 9 is selected.");
+	                	 terCard.setTerCards("Yellow 9");
 	                 }
 	                 if (row==2 && col==1) {
-	                	 System.out.println("Territory 4 is selected.");
+	                	 terCard.setTerCards("Yellow 4");
 	                 }
 	                 if (row==3 && col==0) {
-	                	 System.out.println("Territory 3 is selected.");
+	                	 terCard.setTerCards("Yellow 3");
 	                 }
 	                 
 	                 if (row==4 && col==0) {
-	                	 System.out.println("Territory 4 is selected.");
+	                	 terCard.setTerCards("Pink 4");
 	                 }
 	                 if (row==4 && col==1) {
-	                	 System.out.println("Territory 2 is selected.");
+	                	 terCard.setTerCards("Pink 2");
 	                 }
 	                 if (row==5 && col==0) {
-	                	 System.out.println("Territory 3 is selected.");
+	                	 terCard.setTerCards("Pink 3");
 	                 }
 	                 if (row==5 && col==1) {
-	                	 System.out.println("Territory 1 is selected.");
+	                	 terCard.setTerCards("Pink 1");
 	                 }
 	                 
 	                 if (row==1 && col==3) {
-	                	 System.out.println("Territory 2 is selected.");
+	                	 terCard.setTerCards("Blue 2");
 	                 }
 	                 if (row==2 && col==3) {
-	                	 System.out.println("Territory 1 is selected.");
+	                	 terCard.setTerCards("Blue 1");
 	                 }
 	                 if (row==1 && col==4) {
-	                	 System.out.println("Territory 4 is selected.");
+	                	 terCard.setTerCards("Blue 4");
 	                 }
 	                 if (row==2 && col==4) {
-	                	 System.out.println("Territory 3 is selected.");
+	                	 terCard.setTerCards("Blue 3");
 	                 }
 	                 if (row==3 && col==4) {
-	                	 System.out.println("Territory 7 is selected.");
 	                	 terCard.setTerCards("Blue 7");
 	                 }
 	                 if (row==2 && col==5) {
-	                	 System.out.println("Territory 6 is selected.");
+	                	 terCard.setTerCards("Blue 6");
 	                 }
 	                 if (row==3 && col==5) {
-	                	 System.out.println("Territory 5 is selected.");
+	                	 terCard.setTerCards("Blue 5");
 	                 }
 	                 
 	                 if (row==4 && col==4) {
-	                	 System.out.println("Territory 5 is selected.");
+	                	 terCard.setTerCards("Orange 5");
 	                 }
 	                 if (row==4 && col==5) {
-	                	 System.out.println("Territory 3 is selected.");
+	                	 terCard.setTerCards("Orange 3");
 	                 }
 	                 if (row==5 && col==4) {
-	                	 System.out.println("Territory 1 is selected.");
+	                	 terCard.setTerCards("Orange 1");
 	                 }
 	                 if (row==5 && col==5) {
-	                	 System.out.println("Territory 2 is selected.");
+	                	 terCard.setTerCards("Orange 2");
 	                 }
 	                 if (row==6 && col==4) {
-	                	 System.out.println("Territory 6 is selected.");
+	                	 terCard.setTerCards("Orange 6");
 	                 }
 	                 if (row==6 && col==5) {
-	                	 System.out.println("Territory 4 is selected.");
+	                	 terCard.setTerCards("Orange 4");
 	                 }
 	                 
 	                 if (row==1 && col==6) {
-	                	 System.out.println("Territory 11 is selected.");
+	                	 terCard.setTerCards("Green 11");
 	                 }
 	                 if (row==1 && col==7) {
-	                	 System.out.println("Territory 10 is selected.");
+	                	 terCard.setTerCards("Green 10");
 	                 }
 	                 if (row==1 && col==8) {
-	                	 System.out.println("Territory 4 is selected.");
+	                	 terCard.setTerCards("Green 4");
 	                 }
 	                 if (row==1 && col==9) {
-	                	 System.out.println("Territory 6 is selected.");
+	                	 terCard.setTerCards("Green 6");
 	                 }
 	                 if (row==0 && col==8) {
-	                	 System.out.println("Territory 12 is selected.");
+	                	 terCard.setTerCards("Green 12");
 	                 }
 	                 if (row==2 && col==6) {
-	                	 System.out.println("Territory 1 is selected.");
+	                	 terCard.setTerCards("Green 1");
 	                 }
 	                 if (row==2 && col==7) {
-	                	 System.out.println("Territory 2 is selected.");
+	                	 terCard.setTerCards("Green 2");
 	                 }
 	                 if (row==2 && col==8) {
-	                	 System.out.println("Territory 8 is selected.");
+	                	 terCard.setTerCards("Green 8");
 	                 }
 	                 if (row==2 && col==9) {
-	                	 System.out.println("Territory 5 is selected.");
+	                	 terCard.setTerCards("Green 5");
 	                 }
 	                 if (row==3 && col==6) {
-	                	 System.out.println("Territory 7 is selected.");
+	                	 terCard.setTerCards("Green 7");
 	                 }
 	                 if (row==3 && col==7) {
-	                	 System.out.println("Territory 3 is selected.");
+	                	 terCard.setTerCards("Green 3");
 	                 }
 	                 if (row==3 && col==8) {
-	                	 System.out.println("Territory 9 is selected.");
+	                	 terCard.setTerCards("Green 9");
 	                 }
 	                 
 	                 if (row==4 && col==8) {
-	                	 System.out.println("Territory 2 is selected.");
+	                	 terCard.setTerCards("Red 2");
 	                 }
 	                 if (row==4 && col==9) {
-	                	 System.out.println("Territory 3 is selected.");
+	                	 terCard.setTerCards("Red 3");
 	                 }
 	                 if (row==5 && col==8) {
-	                	 System.out.println("Territory 4 is selected.");
+	                	 terCard.setTerCards("Red 4");
 	                 }
 	                 if (row==5 && col==9) {
-	                	 System.out.println("Territory 1 is selected.");
+	                	 terCard.setTerCards("Red 1");
 	                 }
-	                 
-	                //System.out.println(item1);
+
 	            } 
 	    
     		//terCard.getContentPane().add(label);
