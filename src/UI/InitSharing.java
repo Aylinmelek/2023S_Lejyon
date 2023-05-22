@@ -14,97 +14,104 @@ import javax.swing.JTextArea;
 import domain.Die;
 
 public class InitSharing extends JLayeredPane {
-	JTextArea txtInitSharing = new JTextArea();
-	JLabel dieLabel = new JLabel();
+    JTextArea txtInitSharing = new JTextArea();
+    JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
-	JButton btnRoll = new JButton("ROLL");
-	Grid grid = new Grid();
-	Die die = new Die();
-	
-	ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
-	ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
-	ImageIcon die3 = new ImageIcon(this.getClass().getResource("/die3.png"));
-	ImageIcon die4 = new ImageIcon(this.getClass().getResource("/die4.png"));
-	ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
-	ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
+    JButton btnRoll = new JButton("ROLL");
+    Grid grid = new Grid();
+    Die die = new Die();
+    
+    ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
+    ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
+    ImageIcon die3 = new ImageIcon(this.getClass().getResource("/die3.png"));
+    ImageIcon die4 = new ImageIcon(this.getClass().getResource("/die4.png"));
+    ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
+    ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
-	
-	public void initialize() {
-		setBackground(Color.DARK_GRAY);
+    
+    public void initialize() {
+        setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);
-       
         setLayout(null);
-	}
-	
-public void displayDie() {
-		
-		int dieDisplayed = die.generateNum();
-		
-		if (dieDisplayed == 1) {
-		
-			dieLabel.setIcon(die1);
-			}
-		
-		else if (dieDisplayed == 2) {
-	
-			dieLabel.setIcon(die2);
-		}
-		else if (dieDisplayed == 3) {
-			//System.out.println(dieDisplayed);
-			dieLabel.setIcon(die3);
-		}
-		
-		else if (dieDisplayed == 4) {
-			//System.out.println(dieDisplayed);
-			dieLabel.setIcon(die4);
-		}
-		
-		else if (dieDisplayed == 5) {
-			//System.out.println(dieDisplayed);
-			dieLabel.setIcon(die5);
-		}
-		
-		else {
-			System.out.println(dieDisplayed);
-			dieLabel.setIcon(die6);
-		}
-		
-		dieLabel.setVisible(true);
-	}
-	
-	public void addElements() {
-		//grid.addGrid();
-		//add(grid);
-		//grid.setVisible(true);
-		txtInitSharing.setForeground(Color.LIGHT_GRAY);
-		txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-		txtInitSharing.setBackground(Color.DARK_GRAY);
-		txtInitSharing.setText("Initial Sharing and Army Placement");
-		txtInitSharing.setBounds(175, 6, 489, 56);
-		add(txtInitSharing);
+    }
     
+    public void displayDie() {
+        Thread rollThread = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                int dieDisplayed = die.generateNum();
+                switch (dieDisplayed) {
+                    case 1:
+                        dieLabel.setIcon(die1);
+                        break;
+                    case 2:
+                        dieLabel.setIcon(die2);
+                        break;
+                    case 3:
+                        dieLabel.setIcon(die3);
+                        break;
+                    case 4:
+                        dieLabel.setIcon(die4);
+                        break;
+                    case 5:
+                        dieLabel.setIcon(die5);
+                        break;
+                    default:
+                        dieLabel.setIcon(die6);
+                        break;
+                }
+                try {
+                    Thread.sleep(100); // Adjust the delay as needed
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            int finalDieDisplayed = die.generateNum();
+            switch (finalDieDisplayed) {
+                case 1:
+                    dieLabel.setIcon(die1);
+                    break;
+                case 2:
+                    dieLabel.setIcon(die2);
+                    break;
+                case 3:
+                    dieLabel.setIcon(die3);
+                    break;
+                case 4:
+                    dieLabel.setIcon(die4);
+                    break;
+                case 5:
+                    dieLabel.setIcon(die5);
+                    break;
+                default:
+                    dieLabel.setIcon(die6);
+                    break;
+            }
+        });
+        rollThread.start();
+    }
     
-    dieLabel.setBounds(221, 450, 80, 80);
-    
-    btnRoll.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		displayDie();
-    	
-    		
-    		
-    	}
-    });
-    
-   
-    
-    btnStartGame.setBackground(Color.WHITE);
-    btnStartGame.setBounds(733, 495, 117, 29);
-    btnRoll.setBounds(30, 450, 117, 56);
-    
-    add(btnRoll);
-    add(dieLabel);
-    add(btnStartGame);
-    
-    
-	}
+    public void addElements() {
+        txtInitSharing.setForeground(Color.LIGHT_GRAY);
+        txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+        txtInitSharing.setBackground(Color.DARK_GRAY);
+        txtInitSharing.setText("Initial Sharing and Army Placement");
+        txtInitSharing.setBounds(175, 6, 489, 56);
+        add(txtInitSharing);
+        
+        dieLabel.setBounds(221, 450, 80, 80);
+        
+        btnRoll.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                displayDie();
+            }
+        });
+        
+        btnStartGame.setBackground(Color.WHITE);
+        btnStartGame.setBounds(733, 495, 117, 29);
+        btnRoll.setBounds(30, 450, 117, 56);
+        
+        add(btnRoll);
+        add(dieLabel);
+        add(btnStartGame);
+    }
 }
