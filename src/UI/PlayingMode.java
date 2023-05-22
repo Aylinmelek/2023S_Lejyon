@@ -13,6 +13,9 @@ public class PlayingMode extends JLayeredPane {
 	JButton btnArmy = new JButton("Army Cards");
 	JButton btnChance = new JButton("Chance Cards");
 	
+    territoryCardFrame territoryCard = new territoryCardFrame();
+
+	
 	public void initialize() {
 		setBackground(Color.DARK_GRAY);
 		
@@ -23,11 +26,11 @@ public class PlayingMode extends JLayeredPane {
 		setLayout(null);
 	}
 	
-	public void addElements() {
+	public void addElements(territoryCardFrame terCard) {
      btnTer.addActionListener(new ActionListener() {
      	public void actionPerformed(ActionEvent e) {
-     		territoryCardFrame territoryCard = new territoryCardFrame();
-     		territoryCard.territoryCardF.setVisible(true);
+     		//territoryCardFrame territoryCard = new territoryCardFrame();
+     		terCard.territoryCardF.setVisible(true);
 
      	}
      });

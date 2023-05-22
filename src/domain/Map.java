@@ -23,6 +23,8 @@ public ArrayList<Territory> getTerritories() {
 	return territories;
 }
 
+
+
 public void checkReachability(Territory territory) {
 		//it will check reachability.
 	

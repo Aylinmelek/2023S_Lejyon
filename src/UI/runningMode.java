@@ -17,19 +17,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
-
-
 
 public class runningMode extends JFrame{
     private JLayeredPane layeredPane;
@@ -628,85 +615,13 @@ public class runningMode extends JFrame{
         
     }
     
+ 
 
     public static void main(String[] args) {
-    	Player player1 = new Player(); 
-    	Player player2 = new Player(); 
-    	Territory territory1 = new Territory();
-    	Territory territory2 = new Territory();
-    	territory1.getAdjacentTerritories().add(territory2);
-    	territory2.getAdjacentTerritories().add(territory1);
-    	territory1.setOwner(player1);
-    	territory2.setOwner(player2);
-    	ArrayList <Army> armyList1 = new ArrayList<Army>();
-    	Infantry infantry1 = new Infantry();
-    	armyList1.add(infantry1);
-    	armyList1.add(infantry1);
-    	armyList1.add(infantry1);
-    	player1.getTerritoryList().add(territory1);
-    	player2.getTerritoryList().add(territory2);
-    	ArrayList <Player> playerList = new ArrayList<Player>();
-    	playerList.add(player1);
-    	playerList.add(player2);
-    	Map map = new Map();
-    	map.getTerritories().add(territory1);
-    	map.getTerritories().add(territory2);
-    	InfantryCard infantryCard = new InfantryCard();
-    	player1.getDeck().getInfantryCardList().add(infantryCard);
-    	player1.getDeck().getInfantryCardList().add(infantryCard);
-    	player1.getDeck().getInfantryCardList().add(infantryCard);
-    	player1.tradeArmyCards(0);
     	
-    	Continent continent = new Continent();
-    	Territory territory3 = new Territory();
-    	Territory territory4 = new Territory();
-    	TerritoryCard territoryCard1 = new TerritoryCard();
-    	TerritoryCard territoryCard2 = new TerritoryCard();
-    	player1.getTerritoryCardList().add(territoryCard1);
-    	player1.getTerritoryCardList().add(territoryCard2);
-    	continent.getTerritoryCardList().add(territoryCard1);
-    	continent.getTerritoryCardList().add(territoryCard2);
-    	continent.getTerritoryList().add(territory3);
-    	continent.getTerritoryList().add(territory4);
-    	player1.tradeTerritoryCards(continent);
-    	for (int i = 0; i < player1.getTerritoryList().size(); i++) {
-    		System.out.println("Player1 territoryList: ");
-    		System.out.println(player1.getTerritoryList().get(i));
-    	}
-    	for (int i = 0; i < player1.getTerritoryCardList().size(); i++) {
-    		System.out.println("Player1 territoryCardList: ");
-    		System.out.println(player1.getTerritoryCardList().get(i));
-    	}
+  
+      
     	
-    	player1.placeArmy(territory4, infantry1);
-    	System.out.println("Army that is placed on Territory4: ");
-    	System.out.println(territory4.getArmyList().get(0));
-    	
-    	System.out.println("Player 1's cavalries of army: ");
-    	System.out.println(player1.getCavalryList().get(0));    	
-    	ArrayList <Army> armyList2 = new ArrayList<Army>();
-    	armyList2.add(infantry1);
-    	
-    	Map map2 = new Map();
-    	map2.getTerritories().add(territory3);
-    	map2.getTerritories().add(territory4);
-    	map2.getTerritories().add(territory1);
-    	map2.getTerritories().add(territory2);
-    	territory1.enable();
-    	territory2.enable();
-    	//territory3.enable();
-    	//territory4.enable();
-    	map2.checkReachability(territory1);
-    	map2.checkReachability(territory2);
-    	map2.checkReachability(territory3);
-    	map2.checkReachability(territory4);
-    	
-    	territory1.setArmyList(armyList1);
-    	territory2.setArmyList(armyList2);
-    	ConKUeror conkueror = new ConKUeror();
-    	Die die = new Die();
-    	conkueror.attack(player1, territory1, territory2, die);
-    	conkueror.initialSharingOfTerritory(playerList, map);
     	
     	runningMode frame = new runningMode();
         frame.setSize(873, 600);
@@ -720,6 +635,22 @@ public class runningMode extends JFrame{
     
     }
     
+
+
+   /* public static void main(String[] args) {
+    	runningMode frame = new runningMode();
+        frame.setSize(873, 600);
+       // frame.setTitle("Switch LayeredPane Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        gridPanel_1.gameMap.setRowAndCol();
+       // label.setVisible(true);
+      //  frame.setSize(400, 400);
+      //  frame.setVisible(true);
+
+    
+        
+        
+    }*/
+
 }
-
-

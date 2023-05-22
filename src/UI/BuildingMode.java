@@ -62,7 +62,10 @@ public class BuildingMode extends JLayeredPane {
         numPlayers.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 2, 3, 4, 5, 6}));
     
         numPlayers.setMaximumRowCount(6);
-   
+        
+        
+        
+       
         numPlayers.setBackground(Color.LIGHT_GRAY);
         add(numPlayers);
        
@@ -72,6 +75,8 @@ public class BuildingMode extends JLayeredPane {
         numComp.setMaximumRowCount(6);
         numComp.setBackground(Color.LIGHT_GRAY);
         add(numComp);
+        
+        
 
         btnNext.setBounds(724, 404, 117, 29);
         add(btnNext);
@@ -88,7 +93,10 @@ public class BuildingMode extends JLayeredPane {
 		System.out.println(comp); 
 		
 		totalPlayers = Integer.parseInt(players) + Integer.parseInt(comp);
+		
+		
 	
+		
 		System.out.println(totalPlayers);
 		if (totalPlayers == 2) {
 			numOfInfantry = 40;
