@@ -41,6 +41,14 @@ public void checkReachability(Territory territory) {
 		}
  }
 
+public ArrayList<Continent> getContinents() {
+	return continents;
+}
+
+public void setContinents(ArrayList<Continent> continents) {
+	this.continents = continents;
+}
+
 public void setRowAndCol() {
 	
 	for(int i=0; i<10; i++) {
@@ -53,6 +61,12 @@ public void setRowAndCol() {
 		
 	}
 	
+	
+}
+
+public void setTerritories(ArrayList<Territory> new_territories) {
+	// TODO Auto-generated method stub
+	this.territories = new_territories;
 	
 }
 
