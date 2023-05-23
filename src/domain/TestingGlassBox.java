@@ -10,34 +10,62 @@ public class TestingGlassBox {
 		Player player2 = new Player();
 		assert player2 != null : "Player cannot be created";
 
+		Player player3 = new Player();
+		assert player3 != null : "Player cannot be created";
+		
 		Territory territory1 = new Territory();
 		assert territory1 != null : "Territory cannot be created";
 
 		Territory territory2 = new Territory();
 		assert territory2 != null : "Territory cannot be created";
 
+		Territory territory5 = new Territory();
+		assert territory5 != null : "Territory cannot be created";
+
+		Territory territory6 = new Territory();
+		assert territory6 != null : "Territory cannot be created";
+    
 		territory1.getAdjacentTerritories().add(territory2);
 		assert territory1.getAdjacentTerritories().contains(territory2) : "Territories cannot be linked";
 
 		territory2.getAdjacentTerritories().add(territory1);
 		assert territory2.getAdjacentTerritories().contains(territory1) : "Territories cannot be linked";
 
+		territory5.getAdjacentTerritories().add(territory6);
+		assert territory5.getAdjacentTerritories().contains(territory6) : "Territories cannot be linked";
+		
+    	territory6.getAdjacentTerritories().add(territory5);
+    	assert territory6.getAdjacentTerritories().contains(territory5) : "Territories cannot be linked";
+    	
 		territory1.setOwner(player1);
 		assert territory1.getOwner() == player1 : "Owner of territory cannot be set";
 
 		territory2.setOwner(player2);
 		assert territory2.getOwner() == player2 : "Owner of territory cannot be set";
 		
+		territory5.setOwner(player3);
+		assert territory5.getOwner() == player3 : "Owner of territory cannot be set";
+
+		territory6.setOwner(player3);
+		assert territory6.getOwner() == player3 : "Owner of territory cannot be set";
+		
     	ArrayList <Army> armyList1 = new ArrayList<Army>();
     	Infantry infantry1 = new Infantry();
-
-
+    	Infantry infantry2 = new Infantry();
+    	territory5.getArmyList().add(infantry2);
+    	territory5.getArmyList().add(infantry2);
+    	territory5.getArmyList().add(infantry2);
+    	
     	assert armyList1.add(infantry1) : "Infantry cannot be added to army";
     	assert armyList1.add(infantry1) : "Infantry cannot be added to army";
     	assert armyList1.add(infantry1) : "Infantry cannot be added to army";
+    	
 
     	player1.getTerritoryList().add(territory1);
     	player2.getTerritoryList().add(territory2);
+    	player3.getTerritoryList().add(territory5);
+    	player3.getTerritoryList().add(territory6);
+    	
     	ArrayList <Player> playerList = new ArrayList<Player>();
     	boolean isPlayer1Added = playerList.add(player1);
     	assert isPlayer1Added : "Player cannot join the game";
@@ -52,7 +80,7 @@ public class TestingGlassBox {
     	player1.getDeck().getInfantryCardList().add(infantryCard);
     	player1.getDeck().getInfantryCardList().add(infantryCard);
     	player1.getDeck().getInfantryCardList().add(infantryCard);
-    	player1.tradeArmyCards(0);  //Should print "Infantry Card is removed." 3 times and "Cavalry is added." once
+    	player1.tradeArmyCards(0);  
     	
     	Continent continent = new Continent();
     	Territory territory3 = new Territory();
@@ -104,5 +132,8 @@ public class TestingGlassBox {
     	Die die = new Die();
     	conkueror.attack(player1, territory1, territory2, die); //Should print player name + can attack/is attacking now/lose the attack 
     	conkueror.initialSharingOfTerritory(playerList, map);   //Should print player name + will choose a territory 2 times
+    	conkueror.fortify(player3, territory5, territory6, 2); //Should print fortified from territoryName to TerritoryName 2 times
+    	System.out.println(territory5.getArmyList().size()); //Should print 1
+    	System.out.println(territory6.getArmyList().size()); //Should print 2
     }
 }
