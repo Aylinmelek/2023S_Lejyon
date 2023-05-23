@@ -41,7 +41,7 @@ public class PlayingMode extends JLayeredPane {
      btnArmy.addActionListener(new ActionListener() {
      	public void actionPerformed(ActionEvent e) {
      		ArmyCardFrame armyCard = new ArmyCardFrame();
-     		armyCard.ArmyCardF.setVisible(true);
+     		armyCard.setVisible(true);
 
      	}
      });

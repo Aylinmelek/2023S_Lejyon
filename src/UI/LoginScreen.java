@@ -66,6 +66,7 @@ public class LoginScreen extends JLayeredPane{
         txtPassword.setBackground(Color.DARK_GRAY);
         add(txtPassword);
         
+
         password.setBounds(341, 304, 171, 30);
         password.setHorizontalAlignment(SwingConstants.LEFT);
         password.setForeground(Color.BLACK);
