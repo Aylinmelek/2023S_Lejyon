@@ -24,6 +24,8 @@ public class GameFrame extends JFrame{
 	
 	
 	private static final long serialVersionUID = 1L;
+	static boolean init = false;
+	static boolean build = false;
 	//GameFrame frame = new GameFrame();
 	
 	/*public void initialize() {
@@ -33,46 +35,49 @@ public class GameFrame extends JFrame{
 	}*/
 
 	public static void main(String[] args) {
-	    	GameFrame frame = new GameFrame();
-	    	InitSharing sharing = new InitSharing();
-	    	PlayingMode play = new PlayingMode();
-	    	HelpScreen help = new HelpScreen();
-	    	BuildingMode bmode = new BuildingMode();
-	    	LoginScreen login = new LoginScreen();
-	        frame.setSize(873, 600);
-	        System.out.println("main");
-	        frame.setBounds(0, 54, 873, 600);
-			frame.setBackground(Color.DARK_GRAY);
-			Grid grid = new Grid();
+			
+    	GameFrame frame = new GameFrame();
+    	InitSharing sharing = new InitSharing();
+    	PlayingMode play = new PlayingMode();
+    	HelpScreen help = new HelpScreen();
+    	BuildingMode bmode = new BuildingMode();
+    	LoginScreen login = new LoginScreen();
+        frame.setSize(873, 600);
+        System.out.println("main");
+        frame.setBounds(0, 54, 873, 600);
+		frame.setBackground(Color.DARK_GRAY);
+		Grid grid = new Grid();
+		
+		
 		  
 			
 			
+		
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.setLayeredPane(login);
+        login.initialize();
+        login.addElements();
+        frame.setVisible(true);
+        
+        login.btnLogin.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	
+        		bmode.initialize();
+        		bmode.addElements();
+				frame.setLayeredPane(bmode);
+				frame.revalidate();
+				grid.setVisible(true);
+				grid.setBounds(19, 69 , 850, 350);
 			
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        
-	        frame.setLayeredPane(login);
-	        login.initialize();
-	        login.addElements();
-	        frame.setVisible(true);
-	        
-	        login.btnLogin.addActionListener(new ActionListener() {
-	        	public void actionPerformed(ActionEvent e) {
-	        	
-	        		bmode.initialize();
-	        		bmode.addElements();
-					frame.setLayeredPane(bmode);
-					frame.revalidate();
-					grid.setVisible(true);
-					grid.setBounds(19, 69 , 850, 350);
+			    bmode.add(grid);
+			    build = true;
 				
-				    bmode.add(grid);
-					
-					
-				        
-	        		
-	        	}	
-	        });
-	        
+			        
+        		
+        	}	
+        });
+        
 	              
 	        login.btnHelp.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
@@ -125,6 +130,8 @@ public class GameFrame extends JFrame{
 					txtrYour.setText("You have " + bmode.armyNum() +  " Infantry.");
 					txtrYour.setBounds(350, 450, 822, 263);
 					sharing.add(txtrYour);
+					init = true;
+					build = false;
 					
 			
 					
@@ -162,6 +169,7 @@ public class GameFrame extends JFrame{
 					grid.setVisible(true);
 					grid.setBounds(19, 69 , 850, 350);
 				    play.add(grid);
+				    init = false;
 				        
 	        	}
 	        });

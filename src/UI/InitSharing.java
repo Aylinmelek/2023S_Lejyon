@@ -1,6 +1,7 @@
 package UI;
 
 import java.awt.Color;
+import UI.Grid;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +18,7 @@ import domain.Die;
 import domain.Territory;
 
 
-public class InitSharing extends JLayeredPane implements MouseListener {
+public class InitSharing extends JLayeredPane  {
     JTextArea txtInitSharing = new JTextArea();
     JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
@@ -43,7 +44,7 @@ public class InitSharing extends JLayeredPane implements MouseListener {
 		initialize();
 		displayDie();
 		addElements();
-		addMouseListener(this);
+		//addMouseListener(this);
 	}
 
 	public void initialize() {
@@ -132,12 +133,12 @@ public class InitSharing extends JLayeredPane implements MouseListener {
         add(btnStartGame);
     }
     
-    public void mouseClicked(MouseEvent e) {
+    /*public void mouseClicked(MouseEvent e) {
         int row = e.getY() / CELL_SIZE;
         int col = e.getX() / CELL_SIZE;
 
-        grid.gridColors[row][col] = Color.black;
-        repaint();
+        grid.gridColors[row][col] = Color.GRAY;
+        grid.repaint();
 
         Territory territory2 = Territory.isTerritory(row, col);
         index=territory2.getIndex();
@@ -148,30 +149,9 @@ public class InitSharing extends JLayeredPane implements MouseListener {
                     terCard.setTerritoryCard(grid.getColorName(territory2.getColor()), territory2.getText(),index,20,100);                  
                     System.out.println(index);
             }
-    }
+    }*/
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 
 }

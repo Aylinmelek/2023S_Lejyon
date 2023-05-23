@@ -34,7 +34,15 @@ public class Territory {
 	private int index;
 
  
- public Territory(String name, String text, Color color, int index) {
+ public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
+public Territory(String name, String text, Color color, int index) {
 	    this.name = name;
 	    this.text = text;
 	    this.color = color;

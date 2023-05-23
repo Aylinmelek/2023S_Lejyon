@@ -33,7 +33,9 @@ public class PlayingMode extends JLayeredPane {
      		terCard.territoryCardF.setVisible(true);
 
      	}
-     });
+     	
+     }
+     );
      btnTer.setBounds(27, 437, 118, 30);
      add(btnTer);
      
