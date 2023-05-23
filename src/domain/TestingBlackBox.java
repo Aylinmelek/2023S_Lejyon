@@ -6,20 +6,35 @@ public class TestingBlackBox {
 
 	public static void main(String[] args) {
     	Player player1 = new Player(); 
-    	Player player2 = new Player(); //Should print "Player is created" 2 times
+    	Player player2 = new Player();
+    	Player player3 = new Player(); 
+    	//Should print "Player is created" 3 times
     	Territory territory1 = new Territory();
-    	Territory territory2 = new Territory(); //Should print "Territory is created" 2 times
+    	Territory territory2 = new Territory(); 
+    	Territory territory5 = new Territory();
+    	Territory territory6 = new Territory(); //Should print "Territory is created" 4 times
     	territory1.getAdjacentTerritories().add(territory2);
-    	territory2.getAdjacentTerritories().add(territory1); //Should print "Territories are linked" 2 times
+    	territory2.getAdjacentTerritories().add(territory1);
+    	territory5.getAdjacentTerritories().add(territory6);
+    	territory6.getAdjacentTerritories().add(territory5);//Should print "Territories are linked" 2 times
     	territory1.setOwner(player1);
-    	territory2.setOwner(player2); //Should print "Owner of territory is seted" 2 times
+    	territory2.setOwner(player2);
+    	territory5.setOwner(player3);
+    	territory6.setOwner(player3); //Should print "Owner of territory is seted" 4 times
     	ArrayList <Army> armyList1 = new ArrayList<Army>();
     	Infantry infantry1 = new Infantry();
+    	Infantry infantry2 = new Infantry();
+    	player3.getTerritoryList().add(territory5);
+    	player3.getTerritoryList().add(territory6);
     	armyList1.add(infantry1);   //Should print "Infantry is added to army"
     	armyList1.add(infantry1);   //Should print "Infantry is added to army"
     	armyList1.add(infantry1);   //Should print "Infantry is added to army"
     	player1.getTerritoryList().add(territory1);
     	player2.getTerritoryList().add(territory2);
+    	territory5.getArmyList().add(infantry2);
+    	territory5.getArmyList().add(infantry2);
+    	territory5.getArmyList().add(infantry2);
+    	
     	ArrayList <Player> playerList = new ArrayList<Player>();
     	playerList.add(player1);   //Should print "Player join the game"
     	playerList.add(player2);   //Should print "Player join the game"
@@ -82,5 +97,8 @@ public class TestingBlackBox {
     	Die die = new Die();
     	conkueror.attack(player1, territory1, territory2, die); //Should print player name + can attack/is attacking now/lose the attack 
     	conkueror.initialSharingOfTerritory(playerList, map);   //Should print player name + will choose a territory 2 times
+    	conkueror.fortify(player3, territory5, territory6, 2); //Should print fortified from territoryName to TerritoryName 2 times
+    	System.out.println(territory5.getArmyList().size()); //Should print 1
+    	System.out.println(territory6.getArmyList().size()); //Should print 2
     }
 }
