@@ -62,7 +62,10 @@ public class GameFrame extends JFrame{
 	        		bmode.addElements();
 					frame.setLayeredPane(bmode);
 					frame.revalidate();
-					frame.add(grid);
+					grid.setVisible(true);
+					grid.setBounds(19, 69 , 850, 350);
+				
+				    bmode.add(grid);
 					
 					
 				        

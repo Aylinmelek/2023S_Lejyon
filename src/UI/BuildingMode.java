@@ -13,16 +13,16 @@ import javax.swing.JTextArea;
 
 public class BuildingMode extends JLayeredPane {
 	JTextArea txtrGameOptions = new JTextArea();
-    static JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
-    static JComboBox<Integer> numComp = new JComboBox<Integer>();
+    JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
+    JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();
     JButton btnNext = new JButton("Next");
     PlayingMode playingMode = new PlayingMode();
     LoginScreen loginScreen = new LoginScreen();
     InitSharing initSharing = new InitSharing();
-    static String players,comp;
-    static int numOfInfantry, totalPlayers=0;
+    String players,comp;
+    int numOfInfantry, totalPlayers=0;
 
 	public void initialize()  {
 		setBounds(0, 54, 873, 451);
@@ -42,7 +42,7 @@ public class BuildingMode extends JLayeredPane {
         txtrGameOptions.setBackground(Color.DARK_GRAY);
         add(txtrGameOptions);
         
-        txtnumPlayers.setBounds(220, 358, 217, 32);
+        txtnumPlayers.setBounds(220, 450, 217, 32);
         txtnumPlayers.setText("Number of players (2-6):");
         txtnumPlayers.setForeground(Color.LIGHT_GRAY);
         txtnumPlayers.setFont(new Font("Kokonor", Font.PLAIN, 19));
@@ -50,7 +50,7 @@ public class BuildingMode extends JLayeredPane {
         txtnumPlayers.setBackground(Color.DARK_GRAY);
         add(txtnumPlayers);
         
-        txtnumComp.setBounds(143, 388, 294, 32);
+        txtnumComp.setBounds(143, 490, 294, 32);
         txtnumComp.setText("Number of computer players (1-6):");
         txtnumComp.setForeground(Color.LIGHT_GRAY);
         txtnumComp.setFont(new Font("Kokonor", Font.PLAIN, 19));
@@ -58,7 +58,7 @@ public class BuildingMode extends JLayeredPane {
         txtnumComp.setBackground(Color.DARK_GRAY);
         add(txtnumComp);
         
-        numPlayers.setBounds(432, 361, 64, 27);
+        numPlayers.setBounds(432, 450, 64, 27);
         numPlayers.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 2, 3, 4, 5, 6}));
     
         numPlayers.setMaximumRowCount(6);
@@ -70,7 +70,7 @@ public class BuildingMode extends JLayeredPane {
         add(numPlayers);
        
 
-        numComp.setBounds(432, 391, 64, 27);
+        numComp.setBounds(432, 490, 64, 27);
         numComp.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3, 4, 5, 6}));
         numComp.setMaximumRowCount(6);
         numComp.setBackground(Color.LIGHT_GRAY);
@@ -78,12 +78,12 @@ public class BuildingMode extends JLayeredPane {
         
         
 
-        btnNext.setBounds(724, 404, 117, 29);
+        btnNext.setBounds(724, 490, 117, 29);
         add(btnNext);
         
 	}
 	
-	public static int armyNum() {  
+	public int armyNum() {  
 		
 	
 	    players = String.valueOf(numPlayers.getSelectedItem().toString());
@@ -110,10 +110,9 @@ public class BuildingMode extends JLayeredPane {
 		if (totalPlayers == 5) {
 			numOfInfantry = 25;
 		}
-		if (totalPlayers == 6) {{
+		if (totalPlayers == 6) {
 			numOfInfantry = 20;
-		}
-	
+		
 	}
 		return numOfInfantry;
 

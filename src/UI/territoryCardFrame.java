@@ -50,7 +50,7 @@ public class territoryCardFrame {
     public void setTerritoryCard(String territoryColor, String territoryName, int index, int x, int y) {
 	
         labels[index].setBounds(x, y, 96,165);
-        String imageStr = "/" + territoryColor.toLowerCase() + territoryName + ".png";   
+        String imageStr = "/territoryCards/" + territoryColor.toLowerCase() + territoryName + ".png";   
         ImageIcon img = new ImageIcon(this.getClass().getResource(imageStr));  
         labels[index].setIcon(img);
         territoryCardF.getContentPane().add(labels[index]);
