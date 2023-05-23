@@ -13,12 +13,13 @@ public class Grid extends JPanel implements MouseListener {
     private static final int COLUMNS = 17;
     private static final int CELL_SIZE = 50;
     private static final int GRID_LINE_WIDTH = 2;
-    private Color[][] gridColors;
+    Color[][] gridColors;
     private String[][] gridText;
     int index=0;  
     territoryCardFrame terCard = new territoryCardFrame();
     static Map gameMap;
     private int column, row;
+    Color  blue   = new Color(0, 0, 155);
     
     public Grid() {
         this.gridColors = new Color[ROWS][COLUMNS];
@@ -30,6 +31,9 @@ public class Grid extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
+    public Color[][] getGridColors() {
+    	return gridColors;
+    }
     private void setupUI() {
         int width = COLUMNS * CELL_SIZE + GRID_LINE_WIDTH;
         int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
@@ -39,7 +43,7 @@ public class Grid extends JPanel implements MouseListener {
     private void initializeGridAndText() {
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                this.gridColors[row][col] = Color.DARK_GRAY;
+                this.gridColors[row][col] = blue;
                 this.gridText[row][col] = "";
                 Territory territory = Territory.isTerritory(row, col);
                 if (territory != null) {
@@ -78,14 +82,13 @@ public class Grid extends JPanel implements MouseListener {
         }
     }
 
-    public void mouseClicked(MouseEvent e) {
+    /*public void mouseClicked(MouseEvent e) {
         int row = e.getY() / CELL_SIZE;
         int col = e.getX() / CELL_SIZE;
 
         gridColors[row][col] = Color.DARK_GRAY;
         repaint();
 
-        //if (!runningMode.isBuilding()) {
         Territory territory2 = Territory.isTerritory(row, col);
             index=territory2.getIndex();
             
@@ -95,8 +98,7 @@ public class Grid extends JPanel implements MouseListener {
                     terCard.setTerritoryCard(getColorName(territory2.getColor()), territory2.getText(),index,20,100);                  
                     System.out.println(index);
             }
-       // }
-    }
+    }*/
     
     
     public String getColorName(Color color) {
@@ -139,4 +141,10 @@ public class Grid extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

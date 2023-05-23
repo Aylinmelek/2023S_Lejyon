@@ -107,8 +107,9 @@ public class GameFrame extends JFrame{
 	            	}*/
 	        		
 	        		
-	        		sharing.initialize();
-	        		sharing.addElements();
+	        		//sharing.initialize();
+	        		//sharing.addElements();
+	        		
 					frame.setLayeredPane(sharing);
 					frame.revalidate();
 					
@@ -157,7 +158,6 @@ public class GameFrame extends JFrame{
 	            	
 	            	play.initialize();
 	            	play.addElements(grid.terCard);
-					frame.setLayeredPane(play);
 					frame.revalidate();
 					grid.setVisible(true);
 					grid.setBounds(19, 69 , 850, 350);

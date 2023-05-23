@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,12 +14,17 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
 import domain.Die;
+import domain.Territory;
 
-public class InitSharing extends JLayeredPane {
+
+public class InitSharing extends JLayeredPane implements MouseListener {
     JTextArea txtInitSharing = new JTextArea();
     JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
+    private static final int CELL_SIZE = 50;
+    territoryCardFrame terCard = new territoryCardFrame();
+    int index=0;  
     Grid grid = new Grid();
     Die die = new Die();
     
@@ -29,7 +36,17 @@ public class InitSharing extends JLayeredPane {
     ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
     
-    public void initialize() {
+    
+    
+    public InitSharing() {
+		super();
+		initialize();
+		displayDie();
+		addElements();
+		addMouseListener(this);
+	}
+
+	public void initialize() {
         setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);
         setLayout(null);
@@ -114,4 +131,47 @@ public class InitSharing extends JLayeredPane {
         add(dieLabel);
         add(btnStartGame);
     }
+    
+    public void mouseClicked(MouseEvent e) {
+        int row = e.getY() / CELL_SIZE;
+        int col = e.getX() / CELL_SIZE;
+
+        grid.gridColors[row][col] = Color.black;
+        repaint();
+
+        Territory territory2 = Territory.isTerritory(row, col);
+        index=territory2.getIndex();
+            
+        if (territory2 != null) {
+            		System.out.println(grid.getColorName(territory2.getColor()));   
+            		System.out.println(index);
+                    terCard.setTerritoryCard(grid.getColorName(territory2.getColor()), territory2.getText(),index,20,100);                  
+                    System.out.println(index);
+            }
+    }
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
