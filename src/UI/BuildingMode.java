@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
+import domain.ConKUeror;
 import domain.Player;
 
 public class BuildingMode extends JLayeredPane {
@@ -24,6 +25,8 @@ public class BuildingMode extends JLayeredPane {
     PlayingMode playingMode = new PlayingMode();
     LoginScreen loginScreen = new LoginScreen();
     InitSharing initSharing = new InitSharing();
+    ConKUeror conku = new ConKUeror();
+
     String players,comp;
     int numOfInfantry, totalPlayers=0;
     
@@ -34,6 +37,15 @@ public class BuildingMode extends JLayeredPane {
     ArrayList<Player> compPlayerArray = new ArrayList<Player>(); 
 
    
+
+	public BuildingMode() {
+		super();
+		initialize();
+		addElements();
+		addPlayers();
+		armyNum();
+	}
+
 
 	public void initialize()  {
 		setBounds(0, 54, 873, 451);
@@ -72,19 +84,13 @@ public class BuildingMode extends JLayeredPane {
         
         numPlayers.setBounds(432, 450, 64, 27);
         numPlayers.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 2, 3, 4, 5, 6}));
-        //aldığım player sayısı kadar for loopta player oluşturma
         numPlayers.setMaximumRowCount(6);
-        
-        
-        
-       
         numPlayers.setBackground(Color.LIGHT_GRAY);
         add(numPlayers);
        
 
         numComp.setBounds(432, 490, 64, 27);
         numComp.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3, 4, 5, 6}));
-        //aldığım comp sayısı kadar for loopta comp oluşturma
         numComp.setMaximumRowCount(6);
         numComp.setBackground(Color.LIGHT_GRAY);
         add(numComp);
@@ -100,18 +106,19 @@ public class BuildingMode extends JLayeredPane {
 		int playerNum = (int) numPlayers.getSelectedItem();
 		int compPlayerNum = (int) numComp.getSelectedItem();
 		
-		for (int i=0; i<playerNum; i++) {
-			playerArray.add(new Player());
-			
-		}
-	
-	for (int i=0; i<compPlayerNum; i++) {
-		//ai player olucak ama class ı bulamadım 
-		compPlayerArray.add(new Player());
 		
+		//farklı tipte biseyleri enabled olucaksa ai player ve normal player ayrı ayrı gorelim diye simdilik ayrı yazdım.
+		for (int i=0; i<playerNum; i++) {
+			conku.playerList.add(new Player());
 		}
-	}
+		
+		for (int i= playerNum; i<(playerNum+compPlayerNum); i++) {
+			conku.playerList.add(new Player());
+		}
 	
+	
+	}
+
 	public int armyNum() {  
 		
 	
