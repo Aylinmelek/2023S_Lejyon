@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class TestingBlackBox {
 	public static void main(String[] args) {
+
 		Player player1 = new Player();
 		Player player2 = new Player();
 		Player player3 = new Player();

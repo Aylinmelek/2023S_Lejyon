@@ -28,6 +28,18 @@ public class ConKUeror {
 		
 	}
 	
+	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
+		
+			if(territoryFrom.getArmyList().size() >= count) {
+				for(int i = 0; i < count; i++) {
+					int index = territoryFrom.getArmyList().size() - 1;
+					System.out.println(territoryFrom.getArmyList().get(index) + "is fortified from" + territoryFrom + "to" + territoryTo);
+					player.fortifying(territoryFrom, territoryTo, territoryFrom.getArmyList().get(index));
+				}
+			}
+			
+		}
+	
 	public void initialSharingOfTerritory(ArrayList<Player> playerList, Map map) {
 		boolean workUntil = true;
 		boolean allTrue = false;
