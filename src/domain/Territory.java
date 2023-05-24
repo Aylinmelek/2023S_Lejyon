@@ -107,6 +107,14 @@ public static Territory isTerritory(int row2, int col2) {
 	    return null; // Return null if no territory exists at the specified position
 }
 
+public boolean isEnabled() {
+	return isEnabled;
+}
+
+public void setEnabled(boolean isEnabled) {
+	this.isEnabled = isEnabled;
+}
+
 public Color getColor() {
 	return color;
 }

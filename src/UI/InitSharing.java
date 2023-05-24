@@ -1,9 +1,13 @@
 package UI;
 
 import java.awt.Color;
+import UI.Grid;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,14 +16,24 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
 import domain.Die;
+import domain.Territory;
 
-public class InitSharing extends JLayeredPane {
+
+public class InitSharing extends JLayeredPane  {
     JTextArea txtInitSharing = new JTextArea();
     JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
+    JButton btnSkip = new JButton("SKIP ATTACK");
+    private static final int CELL_SIZE = 50;
+    TerrCardFrame terCard = new TerrCardFrame();
+    int index=0;  
     Grid grid = new Grid();
     Die die = new Die();
+    
+    ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
+    ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
+
     
     ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
     ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
@@ -28,13 +42,22 @@ public class InitSharing extends JLayeredPane {
     ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
     ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
-    
-    public void initialize() {
+      
+    public InitSharing() {
+		super();
+		initialize();
+		displayDie();
+		addElements();
+		
+	}
+
+	public void initialize() {
         setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);
         setLayout(null);
     }
     
+	
     public void displayDie() {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
@@ -106,12 +129,16 @@ public class InitSharing extends JLayeredPane {
             }
         });
         
+        
         btnStartGame.setBackground(Color.WHITE);
         btnStartGame.setBounds(733, 495, 117, 29);
-        btnRoll.setBounds(30, 450, 117, 56);
-        
+        btnRoll.setBounds(30, 450, 117, 76);
         add(btnRoll);
         add(dieLabel);
         add(btnStartGame);
+        
     }
+    
+	
+
 }

@@ -230,8 +230,8 @@ public class runningMode extends JFrame{
         JButton btnTer = new JButton("Territory Cards");
         btnTer.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		territoryCardFrame territoryCard = new territoryCardFrame();
-        		territoryCard.territoryCardF.setVisible(true);
+        		TerrCardFrame territoryCard = new TerrCardFrame();
+        		territoryCard.setVisible(true);
 
         	}
         });
@@ -242,7 +242,7 @@ public class runningMode extends JFrame{
         btnArmy.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ArmyCardFrame armyCard = new ArmyCardFrame();
-        		armyCard.ArmyCardF.setVisible(true);
+        		armyCard.setVisible(true);
 
         	}
         });
