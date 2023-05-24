@@ -154,16 +154,15 @@ public class GameFrame extends JFrame{
             		    start=false;
             		    
            
-            		}
-            		else  {
-            		
-            			//layeredPane.add(buildingMode);
+	        		}
+	        		else {
+      			//layeredPane.add(buildingMode);
             			login.setVisible(false);
             		    bmode.setVisible(true);
             		    login.btnLogin.setVisible(false);
             		    //btnResume.setVisible(false);
             		    help.btnBack.setVisible(false);
-            		}
+	        		}
             	
             		
             		help.setVisible(false);
