@@ -37,11 +37,7 @@ public class InitSharing extends JLayeredPane  {
     ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
     ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
-    //String imageStr = "/die" + dieNum + ".png";   
-    //ImageIcon img = new ImageIcon(this.getClass().getResource(imageStr));  
-    //labels[index].setIcon(img);
-    
-    
+      
     public InitSharing() {
 		super();
 		initialize();
@@ -134,7 +130,6 @@ public class InitSharing extends JLayeredPane  {
         add(btnRoll);
         add(dieLabel);
         add(btnStartGame);
-        
         
     }
     

@@ -8,7 +8,7 @@ public class Die {
 	int faceValue;
 	private List<Die> dice = new ArrayList<>();
 	
-	public static int generateNum() {
+	public int generateNum() {
 		Random random = new Random();
 		int faceValue = random.nextInt(6);
 		return faceValue+1;

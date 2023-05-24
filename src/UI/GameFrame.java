@@ -109,6 +109,8 @@ public class GameFrame extends JFrame{
 					grid.setBounds(19, 69 , 850, 350);
 					play.add(grid);
 				    init = false;
+				    playMode = true;
+				    
 				    
 	        	}
 	        });

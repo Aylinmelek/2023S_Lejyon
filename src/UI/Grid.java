@@ -88,7 +88,7 @@ public class Grid extends JPanel implements MouseListener {
         
         if (GameFrame.init) {
         	if (gridColors[row][col] != Color.GRAY && gridColors[row][col] != blue) {
-	        gridColors[row][col] = Color.RED;
+	        gridColors[row][col] = Color.CYAN;
 	        repaint();
 	
 	        //Territory territory2 = Territory.isTerritory(row, col);
@@ -124,6 +124,20 @@ public class Grid extends JPanel implements MouseListener {
 	        }
         		
     	}
+        
+        else if (GameFrame.playMode) {
+        	gridColors[row][col] = Color.BLACK;
+        	repaint();
+        	//if (territory.getAdjacentTerritories())
+        	//secilen territory i bu arraylistte arasın eger varsa + asker sayısı uyumluysa saldır
+        	for(int i = 0; i< territory.getAdjacentTerritories().size(); i++) {
+        		if (territory.getAdjacentTerritories().contains(territoryIs)) { // && army sayısı tutuyosa
+        			
+        			
+        		}
+        	}
+        }
+        	
         
 	        
         }
