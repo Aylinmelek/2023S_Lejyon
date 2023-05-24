@@ -135,6 +135,7 @@ public class PlayingMode extends JLayeredPane {
 	     		armyCard.chanceCardF.setVisible(true);
 	     	}
 	     });
+	     
 	     btnChance.setBounds(27, 497, 118, 29);
 	     add(btnChance);
 	     

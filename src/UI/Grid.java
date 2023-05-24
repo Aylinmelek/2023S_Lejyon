@@ -133,7 +133,7 @@ public class Grid extends JPanel implements MouseListener {
 			//turnü bitir butonu
 			
 			//sectigin terr e değiştir isterritory
-			
+			 
 			//territorydeki asker sayısını goster
 			Territory territoryIs = Territory.isTerritory(row, col);
 			gridColors[row][col] = Color.BLACK;

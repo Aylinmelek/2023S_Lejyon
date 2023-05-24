@@ -52,6 +52,7 @@ public class InitSharing extends JLayeredPane  {
         setLayout(null);
     }
     
+	
     public void displayDie() {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {

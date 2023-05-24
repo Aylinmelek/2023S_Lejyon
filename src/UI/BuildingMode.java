@@ -50,6 +50,7 @@ public class BuildingMode extends JLayeredPane {
         txtnumPlayers.setBackground(Color.DARK_GRAY);
         add(txtnumPlayers);
         
+        
         txtnumComp.setBounds(143, 490, 294, 32);
         txtnumComp.setText("Number of computer players (1-6):");
         txtnumComp.setForeground(Color.LIGHT_GRAY);
