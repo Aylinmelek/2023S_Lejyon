@@ -48,7 +48,7 @@ public class ArmyCardFrame extends JFrame {
     ArrayList<JTextArea> txtArmies = new ArrayList<JTextArea>();
 	
 	JButton btnTrade = new JButton("TRADE");
-	
+	 
 	
 	public ArmyCardFrame() {
 		initializeLabels();

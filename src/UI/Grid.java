@@ -16,15 +16,17 @@ public class Grid extends JPanel implements MouseListener {
     Color[][] gridColors;
     private String[][] gridText;
     int index=0;  
-    territoryCardFrame terCard = new territoryCardFrame();
+    TerrCardFrame terCard = new TerrCardFrame();
     static Map gameMap;
-    private int column, row;
+    public int col, row;
+    Territory territory = new Territory();
+    Territory territoryIs = Territory.isTerritory(row, col);
     Color  blue   = new Color(0, 0, 155);
     
     public Grid() {
         this.gridColors = new Color[ROWS][COLUMNS];
         this.gridText = new String[ROWS][COLUMNS];
-        this.gameMap = new Map();
+        
 
         initializeGridAndText();
         setupUI();
@@ -81,23 +83,25 @@ public class Grid extends JPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-        int row = e.getY() / CELL_SIZE;
-        int col = e.getX() / CELL_SIZE;
+        row = e.getY() / CELL_SIZE;
+        col = e.getX() / CELL_SIZE;
         
         if (GameFrame.init) {
         	if (gridColors[row][col] != Color.GRAY && gridColors[row][col] != blue) {
 	        gridColors[row][col] = Color.RED;
 	        repaint();
 	
-	        Territory territory2 = Territory.isTerritory(row, col);
-	            index=territory2.getIndex();
+	        //Territory territory2 = Territory.isTerritory(row, col);
+	            //index=territory2.getIndex();
 	            
-	            if (territory2 != null) {
-	            		System.out.println(getColorName(territory2.getColor()));   
+	            if (territoryIs != null) {
+	            		System.out.println(getColorName(territoryIs.getColor()));   
 	            		System.out.println(index);
-	                    terCard.setTerritoryCard(getColorName(territory2.getColor()), territory2.getText(),index,20,100);                  
-	                    System.out.println(index);
+	                    terCard.setTerritoryCard(getColorName(territoryIs.getColor()), territoryIs.getText(),index,20,100);  
+	                    System.out.println("index" + index);
+	                    
 	            }
+	            index=territoryIs.getIndex();
 	        }
         	
         	else{
@@ -105,22 +109,22 @@ public class Grid extends JPanel implements MouseListener {
         	}
         }
         
-        else {
+        else if (GameFrame.build) {
         	if (gridColors[row][col] != blue) {
         		gridColors[row][col] = Color.GRAY;
         		
     	        repaint();
     	        
-    	        Territory ter = Territory.isTerritory(row, col);
-	            index=ter.getIndex();
-	            
-	            if (ter != null) {
-	            		ter.setEnabled(false);
+    	        //Territory ter = Territory.isTerritory(row, col);
+	            index=territoryIs.getIndex();
+	            System.out.println("index" + index);
+	            if (territoryIs != null) {
+	            	territoryIs.setEnabled(false);
 	            }
 	        }
         		
-    		}
-        	
+    	}
+        
 	        
         }
     

@@ -23,7 +23,15 @@ public class LoginScreen extends JLayeredPane{
     JTextField username = new JTextField();
     JTextField password = new JTextField();
 
+    
+    
 	
+	public LoginScreen() {
+		super();
+		initialize();
+		addElements();
+	}
+
 	//startScreen = new JPanel();
 	public void initialize()  {
 		setBounds(0, 54, 873, 451);

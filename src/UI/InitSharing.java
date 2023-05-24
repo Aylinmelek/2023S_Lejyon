@@ -23,8 +23,9 @@ public class InitSharing extends JLayeredPane  {
     JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
+    JButton btnSkip = new JButton("SKIP ATTACK");
     private static final int CELL_SIZE = 50;
-    territoryCardFrame terCard = new territoryCardFrame();
+    TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
     Grid grid = new Grid();
     Die die = new Die();
@@ -36,7 +37,9 @@ public class InitSharing extends JLayeredPane  {
     ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
     ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
-    
+    //String imageStr = "/die" + dieNum + ".png";   
+    //ImageIcon img = new ImageIcon(this.getClass().getResource(imageStr));  
+    //labels[index].setIcon(img);
     
     
     public InitSharing() {
@@ -44,7 +47,7 @@ public class InitSharing extends JLayeredPane  {
 		initialize();
 		displayDie();
 		addElements();
-		//addMouseListener(this);
+		
 	}
 
 	public void initialize() {
@@ -124,34 +127,17 @@ public class InitSharing extends JLayeredPane  {
             }
         });
         
+        
         btnStartGame.setBackground(Color.WHITE);
         btnStartGame.setBounds(733, 495, 117, 29);
-        btnRoll.setBounds(30, 450, 117, 56);
-        
+        btnRoll.setBounds(30, 450, 117, 76);
         add(btnRoll);
         add(dieLabel);
         add(btnStartGame);
+        
+        
     }
     
-    /*public void mouseClicked(MouseEvent e) {
-        int row = e.getY() / CELL_SIZE;
-        int col = e.getX() / CELL_SIZE;
-
-        grid.gridColors[row][col] = Color.GRAY;
-        grid.repaint();
-
-        Territory territory2 = Territory.isTerritory(row, col);
-        index=territory2.getIndex();
-            
-        if (territory2 != null) {
-            		System.out.println(grid.getColorName(territory2.getColor()));   
-            		System.out.println(index);
-                    terCard.setTerritoryCard(grid.getColorName(territory2.getColor()), territory2.getText(),index,20,100);                  
-                    System.out.println(index);
-            }
-    }*/
-
-	
 	
 
 }

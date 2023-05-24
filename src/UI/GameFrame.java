@@ -26,13 +26,8 @@ public class GameFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	static boolean init = false;
 	static boolean build = false;
-	//GameFrame frame = new GameFrame();
+	static boolean playMode = false;
 	
-	/*public void initialize() {
-		setSize(873, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
-	}*/
 
 	public static void main(String[] args) {
 			
@@ -42,22 +37,14 @@ public class GameFrame extends JFrame{
     	HelpScreen help = new HelpScreen();
     	BuildingMode bmode = new BuildingMode();
     	LoginScreen login = new LoginScreen();
+    	Grid grid = new Grid();
         frame.setSize(873, 600);
-        System.out.println("main");
         frame.setBounds(0, 54, 873, 600);
 		frame.setBackground(Color.DARK_GRAY);
-		Grid grid = new Grid();
 		
-		
-		  
-			
-			
-		
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame.setLayeredPane(login);
-        login.initialize();
-        login.addElements();
         frame.setVisible(true);
         
         login.btnLogin.addActionListener(new ActionListener() {
@@ -67,14 +54,11 @@ public class GameFrame extends JFrame{
         		bmode.addElements();
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
-				grid.setVisible(true);
 				grid.setBounds(19, 69 , 850, 350);
 			
 			    bmode.add(grid);
 			    build = true;
 				
-			        
-        		
         	}	
         });
         
@@ -92,37 +76,12 @@ public class GameFrame extends JFrame{
 	        bmode.btnNext.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		String action=e.getActionCommand();
-	        		/*loginScreen.setVisible(!loginScreen.isVisible());
-	            	if ("Next".equals(action)) {
-	            		
-	            		initSharing.setVisible(true);
-	            		buildingMode.setVisible(false);
-	            		
-	            		btnNext.setVisible(false);
-	            		building=true;
-	            		
-	            		
-	            		
-	            		gridPanel_1.setVisible(true);
-	            		initSharing.add(gridPanel_1);
-	                 
-	                   // dieLabel.setIcon(die1);
-	            		
-	            		
-	            	}*/
-	        		
-	        		
-	        		//sharing.initialize();
-	        		//sharing.addElements();
 	        		
 					frame.setLayeredPane(sharing);
 					frame.revalidate();
 					
-					grid.setVisible(true);
-					grid.setBounds(19, 69 , 850, 350);
 				    sharing.add(grid);
-				   // bmode.armyNum();
-				    
+				   
 				    JTextArea txtrYour = new JTextArea();
 					txtrYour.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
 					txtrYour.setForeground(Color.LIGHT_GRAY);
@@ -144,33 +103,13 @@ public class GameFrame extends JFrame{
 	        		  // Toggle the visibility of the panels
 	            	String action=e.getActionCommand();
 	            	
-	            	/*if ("Start Game".equals(action)) {
-	            		layeredPane.add(playingMode, Integer.valueOf(4));
-	            		playingMode.setVisible(true);
-	            		//startScreen.removeAll();
-	            		//btnStart.setVisible(false);
-	            		btnBack.setVisible(false);
-	            		init=true;
-	            		//playingMode.add(gridPanel);
-	            		//gridPanel.setVisible(true);
-	            		playingMode.add(gridPanel_1);
-	            		gridPanel_1.setVisible(true);
-	            		
-	         
-	            	
-	            	}
-	        	playingMode.setVisible(true);
-	        	initSharing.setVisible(false);
-	        	}*/
-	            	
-	            	play.initialize();
-	            	play.addElements(grid.terCard);
+	            	frame.setLayeredPane(play);
 					frame.revalidate();
-					grid.setVisible(true);
+					//grid.setVisible(true);
 					grid.setBounds(19, 69 , 850, 350);
-				    play.add(grid);
+					play.add(grid);
 				    init = false;
-				        
+				    
 	        	}
 	        });
 	          
@@ -244,7 +183,6 @@ public class GameFrame extends JFrame{
 	    	map2.checkReachability(territory2);
 	    	map2.checkReachability(territory3);
 	    	map2.checkReachability(territory4);
-	    	
 	    	territory1.setArmyList(armyList1);
 	    	territory2.setArmyList(armyList2);
 	    	ConKUeror conkueror = new ConKUeror();

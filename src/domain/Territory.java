@@ -50,9 +50,7 @@ public Territory(String name, String text, Color color, int index) {
 
 }
  
- public Territory() {
-
- }
+ public Territory() {}
 
 
 
