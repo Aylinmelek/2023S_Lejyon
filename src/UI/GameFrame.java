@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
@@ -22,7 +23,7 @@ import domain.TerritoryCard;
 
 public class GameFrame extends JFrame{
 	
-	
+		static boolean start;
 	private static final long serialVersionUID = 1L;
 	//GameFrame frame = new GameFrame();
 	
@@ -44,6 +45,7 @@ public class GameFrame extends JFrame{
 	        frame.setBounds(0, 54, 873, 600);
 			frame.setBackground(Color.DARK_GRAY);
 			Grid grid = new Grid();
+		
 		  
 			
 			
@@ -70,13 +72,21 @@ public class GameFrame extends JFrame{
 	        	}	
 	        });
 	        
+			
 	              
 	        login.btnHelp.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		help.initialize();
-	        		help.addElements();
-					frame.setLayeredPane(help);
-					frame.revalidate();
+	        		
+	        		if (start==false) {
+	        			help.initialize();
+	        			help.addElements();
+	        			frame.setLayeredPane(help);
+	        			help.setVisible(true);
+	        			frame.revalidate();
+	        			start=true;
+	        		}
+	        		
+	        		
 	        		
 	        	}	
 	        });
@@ -126,6 +136,47 @@ public class GameFrame extends JFrame{
 					
 		
 	        	}
+	        });
+	        
+	        help.btnBack = new JButton("Back to Game");
+	        help.btnBack.setBounds(729, 517, 128, 29);
+	        
+	        help.btnBack.setBackground(Color.DARK_GRAY);
+	        help.btnBack.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        	
+	        		if (start==true) {
+	        			System.out.println("geldi mi");
+	        			help.setVisible(false);
+    					frame.setLayeredPane(login);
+    					frame.revalidate();
+    					help.btnBack.setVisible(false);
+            		    start=false;
+            		    
+           
+            		}
+            		else  {
+            		
+            			//layeredPane.add(buildingMode);
+            			login.setVisible(false);
+            		    bmode.setVisible(true);
+            		    login.btnLogin.setVisible(false);
+            		    //btnResume.setVisible(false);
+            		    help.btnBack.setVisible(false);
+            		}
+            	
+            		
+            		help.setVisible(false);
+            		help.btnBack.setVisible(false);
+            		login.btnHelp.setVisible(true);
+            		//btnResume.setVisible(true);
+            		start=true;
+            		
+	            		
+	        		 		
+	           
+	            	
+	        	}	
 	        });
 	        
 	        sharing.btnStartGame.addActionListener(new ActionListener() {
