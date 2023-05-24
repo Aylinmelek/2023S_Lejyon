@@ -142,6 +142,7 @@ public class PlayingMode extends JLayeredPane {
 	     add(dieLabel);
 	        btnRoll.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
+	            	//kimin turnü oldugu yazsın atarken
 	                displayDie();
 	            }
 	        });
@@ -159,7 +160,7 @@ public class PlayingMode extends JLayeredPane {
 	     btnSkip.setBounds(170, 490, 107, 56);
 	     add(btnSkip);
 	     
-	     //if die diger playerdan büyükse conquer ettin/kaybettin 
+	     //if die diger playerdan büyükse conquer ettin/kaybettin JText
 	     
 	}
 

@@ -230,7 +230,7 @@ public class Player {
 		//playerPower += artilleryList.size() * 2;
 		//playerPower += cavalryList.size() * 3;
 		
-		if (playerPower >= territoryPower) {
+		if (playerPower >= territoryPower && territoryTo.adjacentTerritories.contains(territoryFrom)) {
 			System.out.println(this + " can attack.");
 			return true;
 		}

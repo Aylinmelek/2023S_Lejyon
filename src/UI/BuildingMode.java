@@ -60,7 +60,7 @@ public class BuildingMode extends JLayeredPane {
         
         numPlayers.setBounds(432, 450, 64, 27);
         numPlayers.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 2, 3, 4, 5, 6}));
-    
+        //aldığım player sayısı kadar for loopta player oluşturma
         numPlayers.setMaximumRowCount(6);
         
         
@@ -72,6 +72,7 @@ public class BuildingMode extends JLayeredPane {
 
         numComp.setBounds(432, 490, 64, 27);
         numComp.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3, 4, 5, 6}));
+        //aldığım comp sayısı kadar for loopta comp oluşturma
         numComp.setMaximumRowCount(6);
         numComp.setBackground(Color.LIGHT_GRAY);
         add(numComp);

@@ -53,6 +53,7 @@ public class TerrCardFrame extends JFrame {
         labels[index].setVisible(true);
 
     }
+   
   
 }
 
