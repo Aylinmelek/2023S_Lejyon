@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import domain.cardService.ICardServiceAdapter;
+import domain.serviceFactory.CardServiceFactory;
 
 public class WorldEventCard { //implements Rollable, Changable{
 	//implements Rollable??
@@ -12,8 +13,12 @@ public class WorldEventCard { //implements Rollable, Changable{
 	Continent continent;
 	Player player;
 	int number;
+	ICardServiceAdapter cardService;
 	
 	public int rollDie() {
+		//int faceValue = CardServiceFactory.getInstance().getCardServiceAdapter("RollDie").rollDie();
+		
+		//return faceValue;
 		Random random = new Random();
 		int faceValue = random.nextInt(6);
 		return faceValue+1;
