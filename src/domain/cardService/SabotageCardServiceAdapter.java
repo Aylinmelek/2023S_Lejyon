@@ -1,9 +1,14 @@
 package domain.cardService;
 
+import java.util.ArrayList;
+
+import domain.Continent;
+import domain.Die;
+import domain.Player;
 import domain.Territory;
 import domain.sabotageCard;
 
-public abstract class SabotageCardServiceAdapter implements ICardServiceAdapter {
+public class SabotageCardServiceAdapter implements ICardServiceAdapter {
 
 private SabotageCardService sabotageCard;
 	
@@ -14,15 +19,19 @@ private SabotageCardService sabotageCard;
 
 
 	@Override
-	public void removeArmyFromContinent(Territory territory) {
+	public void removeArmy(Territory territory, Die die, Continent continent, Player player, int number,
+			ArrayList<Player> playerList) {
 		// TODO Auto-generated method stub
-		sabotageCard.removeArmy(territory);
-	}
-	
-	public int roll() {
-		// TODO Auto-generated method stub
-		return sabotageCard.rollDie();
+		
 	}
 
+
+	@Override
+	public void addArmy(Die die, Territory territory, ArrayList<Player> playerList) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }

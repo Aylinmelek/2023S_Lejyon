@@ -32,7 +32,7 @@ boolean reachability;
  boolean isEnabled;
  boolean isTaken = false;
  ArrayList <Territory> adjacentTerritories = new ArrayList<Territory>();
- ArrayList <Army> armyList = new ArrayList<Army>();
+ public ArrayList <Army> armyList = new ArrayList<Army>();
  
  
 public ArrayList<Territory> getAdjacentTerritories() {

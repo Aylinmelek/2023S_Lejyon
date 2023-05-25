@@ -1,32 +1,35 @@
 package domain.cardService;
 
+import java.util.ArrayList;
+
+import domain.Continent;
+import domain.Die;
+import domain.Player;
 import domain.Territory;
 
-public abstract class WorldEventCardServiceAdapter implements ICardServiceAdapter {
+public class WorldEventCardServiceAdapter implements ICardServiceAdapter {
 
 private WorldEventCardService worldEventCard;
 	
 	public WorldEventCardServiceAdapter() {
 		worldEventCard = new WorldEventCardService();
-		System.out.println("Using Sabotage Card");
+		System.out.println("Using WorldEvent Card");
 	}
 
 
 	@Override
-	public void removeArmyFromContinent(Territory territory) {
+	public void removeArmy(Territory territory, Die die, Continent continent, Player player, int number, ArrayList<Player> playerList) {
 		// TODO Auto-generated method stub
-		worldEventCard.removeArmy(territory);
+		worldEventCard.worldEvent(territory, die, playerList);
 	}
 	
-	public void addArmyToContinent(Territory territory) {
+	@Override
+	public void addArmy(Die die, Territory territory, ArrayList<Player> playerList) {
 		// TODO Auto-generated method stub
-		worldEventCard.addArmy(territory);
+		worldEventCard.worldEvent(territory, die, playerList);
 	}
 	
-	public int roll() {
-		// TODO Auto-generated method stub
-		return worldEventCard.rollDie();
-	}
+	
 
 
 

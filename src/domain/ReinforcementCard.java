@@ -1,36 +1,28 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import domain.cardService.ICardServiceAdapter;
 
-public abstract class ReinforcementCard implements Rollable {
+public class ReinforcementCard{// implements Rollable{//, Changable {
 	
+
+	Die die;
 	Territory territory;
+	ArrayList<Player> playerList;
 	
-	/*public int rollDie() {
+	public int rollDie() {
 		Random random = new Random();
 		int faceValue = random.nextInt(6);
 		return faceValue + 1;
-	}*/
-	public void rollDie(ICardServiceAdapter armyService) {
-		armyService.removeArmyFromContinent(territory);
-		
 	}
-	/*public static void addArmy(Territory territory) {
-		territory.army ++;
-	}*/
-	public void addArmy(ICardServiceAdapter armyService) {
-		armyService.removeArmyFromContinent(territory);
-		
+
+	public void reinforce(ICardServiceAdapter cardService) {
+		cardService.addArmy(die, territory, playerList);
 	}
 	
-	public void Reinforce(Die die, Territory territory) {
-		int faceVal = die.generateNum();
-		for(int i = 0; i < faceVal; i++) {
-			Infantry infantry = new Infantry();
-			territory.getArmyList().add(infantry);
-			System.out.println("Infantry is added.");
-		}
-	}
+
+
+	
 }
