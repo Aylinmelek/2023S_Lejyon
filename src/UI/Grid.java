@@ -12,6 +12,7 @@ import domain.Territory;
 
 public class Grid extends JPanel implements MouseListener {
 
+
 	private static final int ROWS = 17;
 	private static final int COLUMNS = 17;
 	private static final int CELL_SIZE = 50;

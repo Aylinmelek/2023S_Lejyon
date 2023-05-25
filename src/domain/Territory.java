@@ -7,9 +7,9 @@ import java.util.List;
 import UI.Grid;
 
 public class Territory {
- int army; 
+ public int army; 
  Continent continent;
- boolean isImmune = false;
+
  private static final int ROWS = 17;
  private static final int COLUMNS = 17;
  
@@ -41,6 +41,7 @@ public class Territory {
 	    this.index = index;
 
 }
+
  
  public Territory() {
 
@@ -98,6 +99,7 @@ public void enable() {
 	 isImmune = false;
  }
 
+
 public static Territory isTerritory(int row2, int col2) {
 	    
 	    // Check if the specified position is within the bounds of the territories array
@@ -119,15 +121,7 @@ public Color getColor() {
 	return color;
 }
 
-public String getText() {
-	// TODO Auto-generated method stub
-	return text;
-}
- 
-public int getIndex() {
-	// TODO Auto-generated method stub
-	return index;
-}
+
 
  
 }

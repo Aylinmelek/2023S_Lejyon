@@ -1,6 +1,6 @@
 package domain;
 
-public  class DisasterCard extends DisasterAdapter{
+public  class DisasterCard {//extends DisasterAdapter{
 	
 	public void disaster(Continent continent, Player player, int number) {
 		int min = 100;
@@ -10,7 +10,7 @@ public  class DisasterCard extends DisasterAdapter{
 			if(continent.getTerritoryList().get(i).armyList.size() >= number) {
 				for(int j = 0; j < number; j++) {
 					int index = continent.getTerritoryList().get(i).armyList.size() -1;
-					continent.getTerritoryList().get(i).armyList.remove(index);
+					continent.getTerritoryList().get(i).armyList.remove(index);//do I need to apply removeArmy() method in here?
 				}
 			}
 		}
@@ -21,7 +21,7 @@ public  class DisasterCard extends DisasterAdapter{
                 weakestTerritory = territory;
             }
         }
-		weakestTerritory.getOwner().getTerritoryList().remove(weakestTerritory);
+		weakestTerritory.getOwner().getTerritoryList().remove(weakestTerritory);//or do I need to apply removeArmy() method in here?
 		weakestTerritory.setOwner(null);
 	}
 
