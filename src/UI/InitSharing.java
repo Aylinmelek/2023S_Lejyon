@@ -1,12 +1,9 @@
 package UI;
 
 import java.awt.Color;
-import UI.Grid;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -15,8 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
+import domain.ConKUeror;
 import domain.Die;
-import domain.Territory;
+import domain.Player;
 
 
 public class InitSharing extends JLayeredPane  {
@@ -26,6 +24,8 @@ public class InitSharing extends JLayeredPane  {
     JButton btnRoll = new JButton("ROLL");
     JButton btnSkip = new JButton("SKIP ATTACK");
     TerrCardFrame terCard = new TerrCardFrame();
+    Player player = new Player();
+    ConKUeror conku = new ConKUeror();
     int index=0;  
     Grid grid = new Grid();
     Die die = new Die();
@@ -45,8 +45,8 @@ public class InitSharing extends JLayeredPane  {
     public InitSharing() {
 		super();
 		initialize();
-		displayDie();
-		addElements();
+		//displayDie();
+		//addElements();
 		
 	}
 
@@ -57,79 +57,95 @@ public class InitSharing extends JLayeredPane  {
     }
     
 	
-    public void displayDie() {
-        Thread rollThread = new Thread(() -> {
-            for (int i = 0; i < 10; i++) {
-                int dieDisplayed = die.generateNum();
-                switch (dieDisplayed) {
-                    case 1:
-                        dieLabel.setIcon(die1);
-                        break;
-                    case 2:
-                        dieLabel.setIcon(die2);
-                        break;
-                    case 3:
-                        dieLabel.setIcon(die3);
-                        break;
-                    case 4:
-                        dieLabel.setIcon(die4);
-                        break;
-                    case 5:
-                        dieLabel.setIcon(die5);
-                        break;
-                    default:
-                        dieLabel.setIcon(die6);
-                        break;
-                }
-                try {
-                    Thread.sleep(100); // Adjust the delay as needed
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            int finalDieDisplayed = die.generateNum();
-            switch (finalDieDisplayed) {
-                case 1:
-                    dieLabel.setIcon(die1);
-                    break;
-                case 2:
-                    dieLabel.setIcon(die2);
-                    break;
-                case 3:
-                    dieLabel.setIcon(die3);
-                    break;
-                case 4:
-                    dieLabel.setIcon(die4);
-                    break;
-                case 5:
-                    dieLabel.setIcon(die5);
-                    break;
-                default:
-                    dieLabel.setIcon(die6);
-                    break;
-            }
-        });
-        rollThread.start();
+    public void displayDie(Player player) {
+    	System.out.println("index " + index);
+    	//if (conku.player_turn.size() != 0) {
+    	//	System.out.println("size not 0");
+	    	
+	    	if(conku.player_turn.get(player)) {
+	    		System.out.println("in second if");
+		        Thread rollThread = new Thread(() -> {
+		            for (int i = 0; i < 10; i++) {
+		                int dieDisplayed = die.generateNum();
+		                switch (dieDisplayed) {
+		                    case 1:
+		                        dieLabel.setIcon(die1);
+		                        break;
+		                    case 2:
+		                        dieLabel.setIcon(die2);
+		                        break;
+		                    case 3:
+		                        dieLabel.setIcon(die3);
+		                        break;
+		                    case 4:
+		                        dieLabel.setIcon(die4);
+		                        break;
+		                    case 5:
+		                        dieLabel.setIcon(die5);
+		                        break;
+		                    default:
+		                        dieLabel.setIcon(die6);
+		                        break;
+		                }
+		                try {
+		                    Thread.sleep(100); // Adjust the delay as needed
+		                } catch (InterruptedException e) {
+		                    e.printStackTrace();
+		                }
+		            }
+		            int finalDieDisplayed = die.generateNum();
+		            switch (finalDieDisplayed) {
+		                case 1:
+		                    dieLabel.setIcon(die1);
+		                    break;
+		                case 2:
+		                    dieLabel.setIcon(die2);
+		                    break;
+		                case 3:
+		                    dieLabel.setIcon(die3);
+		                    break;
+		                case 4:
+		                    dieLabel.setIcon(die4);
+		                    break;
+		                case 5:
+		                    dieLabel.setIcon(die5);
+		                    break;
+		                default:
+		                    dieLabel.setIcon(die6);
+		                    break;
+		            }
+		        });
+	        rollThread.start();
+	    	}
+    	//}
     }
      
     public void addElements() {
+    	
         txtInitSharing.setForeground(Color.LIGHT_GRAY);
         txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
         txtInitSharing.setBackground(Color.DARK_GRAY);
         txtInitSharing.setText("Initial Sharing and Army Placement");
         txtInitSharing.setBounds(175, 6, 489, 56);
         add(txtInitSharing);
-        
+        System.out.println("in add elements");
         dieLabel.setBounds(221, 450, 80, 80);
         
-        btnRoll.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                displayDie();
-                
-               
-            }
-        });
-        
+        if (conku.player_turn.size() != 0) {
+	        System.out.println("in size if " + conku.player_turn.size());
+	        Player playerKey = (Player) conku.player_turn.keySet().toArray()[index];
+	        conku.player_turn.put(playerKey, true);
+	        btnRoll.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                displayDie(playerKey);
+	                
+	               
+	            }
+	        });
+	        
+	        conku.player_turn.put(player, false);
+	        index += 1;
+        }
         
         btnStartGame.setBackground(Color.WHITE);
         btnStartGame.setBounds(733, 495, 117, 29);
@@ -139,7 +155,6 @@ public class InitSharing extends JLayeredPane  {
         add(btnStartGame);
         
     }
-    
-	
 
+	
 }

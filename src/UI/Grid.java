@@ -9,6 +9,7 @@ import javax.swing.*;
 import domain.Map;
 import domain.Player;
 import domain.Territory;
+import UI.PlayingMode;
 
 public class Grid extends JPanel implements MouseListener {
 
@@ -25,6 +26,7 @@ public class Grid extends JPanel implements MouseListener {
 	Territory territoryFrom;
 	ArrayList<Territory> terrsSelected = new ArrayList<Territory>();
 	public int col, row;
+	//PlayingMode playerTurn = new PlayingMode();
 
 	// Territory territoryIs = Territory.isTerritory(row, col);
 	Color blue = new Color(0, 0, 155);
@@ -165,10 +167,8 @@ public class Grid extends JPanel implements MouseListener {
 			return "Black";
 		} else if (color.equals(Color.BLUE)) {
 			return "Blue";
-
 		} else if (color.equals(Color.DARK_GRAY)) {
 			return "Dark Gray";
-
 		} else if (color.equals(Color.GREEN)) {
 			return "Green";
 		} else if (color.equals(Color.LIGHT_GRAY)) {
@@ -179,7 +179,6 @@ public class Grid extends JPanel implements MouseListener {
 			return "Pink";
 		} else if (color.equals(Color.RED)) {
 			return "Red";
-
 		} else if (color.equals(Color.YELLOW)) {
 			return "Yellow";
 		} else {

@@ -26,14 +26,17 @@ public class GameFrame extends JFrame {
 	static boolean start;
 	private static final long serialVersionUID = 1L;
 	static boolean init, build, playMode = false;
+	ArrayList<Boolean> playerTurn = new ArrayList<Boolean>();
+	
 
 	public static void main(String[] args) {
 
 		GameFrame frame = new GameFrame();
-		InitSharing sharing = new InitSharing();
+		//InitSharing sharing = new InitSharing();
 		PlayingMode play = new PlayingMode();
 		HelpScreen help = new HelpScreen();
 		BuildingMode bmode = new BuildingMode();
+		//InitSharing sharing = new InitSharing();
 		LoginScreen login = new LoginScreen();
 		Grid grid = new Grid();
 		frame.setSize(873, 600);
@@ -69,21 +72,21 @@ public class GameFrame extends JFrame {
 
 			}
 		});
-
+		
+		InitSharing sharing = new InitSharing();
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String action = e.getActionCommand();
-
+				sharing.addElements();
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
-
+				
 				sharing.add(grid);
 
 				JTextArea txtrYour = new JTextArea();
 				txtrYour.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
 				txtrYour.setForeground(Color.LIGHT_GRAY);
 				txtrYour.setBackground(Color.DARK_GRAY);
-				txtrYour.setText("You have " + bmode.armyNum() + " Infantry.");
+				txtrYour.setText("You have " + bmode.addPlayers() + " Infantry.");
 				txtrYour.setBounds(350, 450, 822, 263);
 				sharing.add(txtrYour);
 				init = true;
@@ -106,8 +109,9 @@ public class GameFrame extends JFrame {
 					frame.revalidate();
 					help.btnBack.setVisible(false);
 					start = false;
-
-				} else {
+				}
+				
+				else {
 					// layeredPane.add(buildingMode);
 					login.setVisible(false);
 					bmode.setVisible(true);

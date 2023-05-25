@@ -1,11 +1,13 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import UI.Grid;
 
 public class ConKUeror {
-	public ArrayList <Player> playerList = new ArrayList<Player>();
+	//public ArrayList <Player> playerList = new ArrayList<Player>();
+	public Hashtable <Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
 	Grid grid = new Grid();
 	Die die = new Die();
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {

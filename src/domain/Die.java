@@ -22,6 +22,7 @@ public class Die {
 	public void calculateHighest() {
 		
 	}
+	
 	public void getFaceValue() {
 		
 	}

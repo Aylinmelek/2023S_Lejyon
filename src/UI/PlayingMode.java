@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import domain.Die;
+import domain.Player;
+import domain.Territory;
 
 public class PlayingMode extends JLayeredPane {
 	
@@ -25,8 +27,8 @@ public class PlayingMode extends JLayeredPane {
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
  
-
-    InitSharing init = new InitSharing();
+	Player player = new Player();
+    Grid grid = new Grid();
 
 	TerrCardFrame territoryCard = new TerrCardFrame();
 	
@@ -42,6 +44,7 @@ public class PlayingMode extends JLayeredPane {
 		super();
 		initialize();
 		addElements();
+		//attack();
 	}
 	
 	
@@ -51,6 +54,7 @@ public class PlayingMode extends JLayeredPane {
 		setBounds(0, 54, 873, 451);
 		setLayout(null);
 	}
+	
 	public void displayDie() {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
@@ -112,9 +116,8 @@ public class PlayingMode extends JLayeredPane {
 	     	public void actionPerformed(ActionEvent e) {
 	     		territoryCard.setVisible(true);
 	
+	     		}
 	     	}
-	     	
-	     }
 	     );
 	     
 	     btnTer.setBounds(27, 437, 118, 30);
@@ -126,7 +129,6 @@ public class PlayingMode extends JLayeredPane {
 	     	public void actionPerformed(ActionEvent e) {
 	     		ArmyCardFrame armyCard = new ArmyCardFrame();
 	     		armyCard.setVisible(true);
-	
 	     	}
 	     });
 	     
@@ -170,5 +172,32 @@ public class PlayingMode extends JLayeredPane {
 	     //if die diger playerdan büyükse conquer ettin/kaybettin JText
 	     
 	}
+	
+	/*public void attack() {
+		Territory territoryIs = Territory.isTerritory(grid.row, grid.col);
+		Territory selectedTerr = Territory.territories[grid.row][grid.col];
+		grid.terrsSelected.add(Territory.territories[grid.row][grid.col]);
+		System.out.println(player.canAttackTerritory(grid.terrsSelected.get(0), selectedTerr));
+		// once kendi territorymi secip untill baska kendi territorye basana kadar attack territorysi secebiliyorum. 
+		if (player.getTerritoryList().contains(selectedTerr) && player.canAttackTerritory(grid.terrsSelected.get(0), selectedTerr)) {
+			grid.gridColors[grid.row][grid.col] = Color.GRAY;
+			//asker 
+			repaint();
+			System.out.println("size" + grid.terrsSelected.get(0).getAdjacentTerritories().size());
+				for (int i = 0; i<grid.terrsSelected.get(0).getAdjacentTerritories().size(); i++) {
+					if (selectedTerr == grid.terrsSelected.get(0).getAdjacentTerritories().get(i)) {
+						grid.gridColors[grid.row][grid.col] = Color.BLACK;
+						repaint();
+						//asker koy kac asker koydugunu display et
+						
+						//if kazanırsan 
+						//else terr rengi + asker sayısı vs vs 
+							
+					}
+				}
+			}
+		//rengini değiştirme 
+		
+	}*/		
 
 }
