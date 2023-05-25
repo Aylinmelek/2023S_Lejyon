@@ -27,7 +27,7 @@ public class BuildingMode extends JLayeredPane {
     InitSharing initSharing = new InitSharing();
     ConKUeror conku = new ConKUeror();
 
-    String players,comp;
+    int players,comp;
     int numOfInfantry, totalPlayers=0;
     
     
@@ -42,7 +42,7 @@ public class BuildingMode extends JLayeredPane {
 		super();
 		initialize();
 		addElements();
-		addPlayers();
+		//addPlayers();
 		armyNum();
 	}
 
@@ -102,13 +102,18 @@ public class BuildingMode extends JLayeredPane {
         
 	}
 	
-	public void addPlayers() {
+	/*public void addPlayers() {
 		int playerNum = (int) numPlayers.getSelectedItem();
 		int compPlayerNum = (int) numComp.getSelectedItem();
+		
+		System.out.println("boncuk" + playerNum);
+		//System.out.println("p" + conku.playerList.size());
+
 		
 		
 		//farklı tipte biseyleri enabled olucaksa ai player ve normal player ayrı ayrı gorelim diye simdilik ayrı yazdım.
 		for (int i=0; i<playerNum; i++) {
+			System.out.println("in loop");
 			conku.playerList.add(new Player());
 		}
 		
@@ -116,24 +121,32 @@ public class BuildingMode extends JLayeredPane {
 			conku.playerList.add(new Player());
 		}
 	
-	
-	}
+		System.out.println(conku.playerList.size());
+	}*/
 
 	public int armyNum() {  
 		
 	
-	    players = String.valueOf(numPlayers.getSelectedItem().toString());
+	    players = (int) numPlayers.getSelectedItem(); 
 		System.out.println(players); 
 		
-		comp = String.valueOf(numComp.getSelectedItem().toString());
+		comp = (int) numComp.getSelectedItem();
 		System.out.println(comp); 
 		
-		totalPlayers = Integer.parseInt(players) + Integer.parseInt(comp);
 		
 		
-	
+		for (int i=0; i<players; i++) {
+			conku.playerList.add(new Player());
+		}
 		
-		System.out.println(totalPlayers);
+		for (int i= players; i<totalPlayers; i++) {
+			conku.playerList.add(new Player());
+		}
+		
+		totalPlayers = players + comp;
+		
+		
+		
 		if (totalPlayers == 2) {
 			numOfInfantry = 40;
 		}

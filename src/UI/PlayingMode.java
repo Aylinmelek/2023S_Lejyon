@@ -18,12 +18,13 @@ public class PlayingMode extends JLayeredPane {
 	JButton btnArmy = new JButton("Army Cards");
 	JButton btnChance = new JButton("Chance Cards");
     JButton btnRoll = new JButton("ROLL DIE");
-    JButton btnSkip = new JButton("SKIP ATTACK");
+    JButton btnSkip = new JButton("SKIP/END TURN");
+    
     JLabel dieLabel = new JLabel();
     Die die = new Die();
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
-
+ 
 
     InitSharing init = new InitSharing();
 
@@ -155,14 +156,15 @@ public class PlayingMode extends JLayeredPane {
 	        
 	        btnSkip.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                
+	                //turn bitiren bisey çağrılmalı
+	            	
 	            }
 	        });
 	        
      
-	     btnRoll.setBounds(170, 430, 107, 56);
+	     btnRoll.setBounds(170, 430, 137, 56);
 	     add(btnRoll);
-	     btnSkip.setBounds(170, 490, 107, 56);
+	     btnSkip.setBounds(170, 490, 137, 56);
 	     add(btnSkip);
 	     
 	     //if die diger playerdan büyükse conquer ettin/kaybettin JText

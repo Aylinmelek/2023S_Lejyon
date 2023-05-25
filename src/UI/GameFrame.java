@@ -188,7 +188,7 @@ public class GameFrame extends JFrame {
 			System.out.println("Player1 territoryCardList: ");
 			System.out.println(player1.getTerritoryCardList().get(i));
 		}
-
+ 
 		player1.placeArmy(territory4, infantry1);
 		System.out.println("Army that is placed on Territory4: ");
 		System.out.println(territory4.getArmyList().get(0));

@@ -2,6 +2,8 @@ package UI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import domain.Map;
@@ -18,11 +20,13 @@ public class Grid extends JPanel implements MouseListener {
 	private String[][] gridText;
 	int index = 0;
 	TerrCardFrame terCard = new TerrCardFrame();
+	Player player = new Player();
 	static Map gameMap;
-	
+	Territory territoryFrom;
+	ArrayList<Territory> terrsSelected = new ArrayList<Territory>();
 	public int col, row;
-	Territory territory = new Territory();
-	//Territory territoryIs = Territory.isTerritory(row, col);
+
+	// Territory territoryIs = Territory.isTerritory(row, col);
 	Color blue = new Color(0, 0, 155);
 
 	public Grid() {
@@ -83,7 +87,7 @@ public class Grid extends JPanel implements MouseListener {
 			}
 		}
 	}
-
+	
 	public void mouseClicked(MouseEvent e) {
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
@@ -97,11 +101,10 @@ public class Grid extends JPanel implements MouseListener {
 				// index=territory2.getIndex();
 
 				if (territoryIs != null) {
-					System.out.println(getColorName(territoryIs.getColor()));
-					System.out.println(index);
+					player.territoryList.add(territoryIs);
 					terCard.setTerritoryCard(getColorName(territoryIs.getColor()), territoryIs.getText(), index, 20, 100);
-					System.out.println("index" + index);
-
+					
+//String name, String text, Color color, int index
 				}
 				index = territoryIs.getIndex();
 			}
@@ -119,40 +122,43 @@ public class Grid extends JPanel implements MouseListener {
 
 			 Territory territoryIs = Territory.isTerritory(row, col);
 				index = territoryIs.getIndex();
-				System.out.println("index" + index);
+				//System.out.println("index" + index);
 				if (territoryIs != null) {
 					territoryIs.setEnabled(false);
 				}
 			}
-
 		}
 
 		else if (GameFrame.playMode) {
 			//playerları create edip turn turn ayırmak lazım
-			
-			//turnü bitir butonu
-			
 			//sectigin terr e değiştir isterritory
-			 
 			//territorydeki asker sayısını goster
+			
 			Territory territoryIs = Territory.isTerritory(row, col);
-			gridColors[row][col] = Color.BLACK;
-			repaint();
-			
-			
-			
+			Territory selectedTerr = Territory.territories[row][col];
+			terrsSelected.add(Territory.territories[row][col]);
+			System.out.println(player.canAttackTerritory(terrsSelected.get(0), selectedTerr));
 			// once kendi territorymi secip untill baska kendi territorye basana kadar attack territorysi secebiliyorum. 
-			//if (canAttackTerritory(Territory territoryFrom, Territory territoryTo)) {
-				//rengini değiştirme 
-			}
-			//pes et butonu, eger pes edersek ölenler ölüyo kalanı duruyo.
-			
-			// if attack lost
-			// eski renk
-
+			if (player.getTerritoryList().contains(selectedTerr) && player.canAttackTerritory(terrsSelected.get(0), selectedTerr)) {
+				gridColors[row][col] = Color.GRAY;
+				//asker 
+				repaint();
+				System.out.println("size" + terrsSelected.get(0).getAdjacentTerritories().size());
+					for (int i = 0; i<terrsSelected.get(0).getAdjacentTerritories().size(); i++) {
+						if (selectedTerr == terrsSelected.get(0).getAdjacentTerritories().get(i)) {
+							gridColors[row][col] = Color.BLACK;
+							repaint();
+							//asker koy kac asker koydugunu display et
+							
+							//if kazanırsan 
+							//else terr rengi + asker sayısı vs vs 
+								
+						}
+					}
+				}		
+			//rengini değiştirme 
 		}
-
-	
+	}
 
 	public String getColorName(Color color) {
 		if (color.equals(Color.BLACK)) {
@@ -184,25 +190,21 @@ public class Grid extends JPanel implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
-	@Override
+	@Override 
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 }

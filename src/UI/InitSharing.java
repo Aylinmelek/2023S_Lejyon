@@ -25,7 +25,6 @@ public class InitSharing extends JLayeredPane  {
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
     JButton btnSkip = new JButton("SKIP ATTACK");
-    private static final int CELL_SIZE = 50;
     TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
     Grid grid = new Grid();
@@ -112,7 +111,7 @@ public class InitSharing extends JLayeredPane  {
         });
         rollThread.start();
     }
-    
+     
     public void addElements() {
         txtInitSharing.setForeground(Color.LIGHT_GRAY);
         txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
@@ -126,6 +125,8 @@ public class InitSharing extends JLayeredPane  {
         btnRoll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 displayDie();
+                
+               
             }
         });
         

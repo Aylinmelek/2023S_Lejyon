@@ -17,7 +17,7 @@ public class Territory {
  static Color[][] gridColors= new Color[ROWS][COLUMNS];
  static String[][] gridText = new String[ROWS][COLUMNS];
  
- static Territory[][] territories = {
+ public static Territory[][] territories = {
 	        { new Territory("Yellow 1", "1", Color.yellow,0), new Territory("Yellow 6", "6", Color.yellow,5), new Territory("Yellow 5", "5", Color.yellow,4), null, null, null, null, null, new Territory("Green 12", "12", Color.green,27), null },
 	        { new Territory("Yellow 2", "2", Color.yellow,1), new Territory("Yellow 7", "7", Color.yellow,6), new Territory("Yellow 8", "8", Color.yellow,7), new Territory("Blue 2", "2", Color.blue,10), new Territory("Blue 4", "4", Color.blue,12), null, new Territory("Green 11","11", Color.green,26), new Territory("Green 10", "10", Color.green,25), new Territory("Green 4", "4", Color.green,19), new Territory("Green 6", "6", Color.green,21) },
 	        { new Territory("Yellow 9", "9", Color.yellow,8), new Territory("Yellow 4", "4", Color.yellow,3), null, new Territory("Blue 1", "1", Color.blue,9), new Territory("Blue 3", "3", Color.blue,11), new Territory("Blue 6", "6", Color.blue,14), new Territory("Green 1", "1", Color.green,16), new Territory("Green 2", "2", Color.green,17), new Territory("Green 8", "8", Color.green,23), new Territory("Green 5", "5", Color.green,20) },
