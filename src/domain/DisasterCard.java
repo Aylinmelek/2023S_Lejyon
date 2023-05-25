@@ -1,29 +1,27 @@
 package domain;
 
-public  class DisasterCard {//extends DisasterAdapter{
+import java.util.ArrayList;
+
+import domain.cardService.DisasterCardServiceAdapter;
+import domain.cardService.ICardServiceAdapter;
+
+
+
+public class DisasterCard {//implements Changable {//extends DisasterAdapter{
+	//implements Changable'ı sildim çünkü onun yerine 
+	//ICardServiceAdapter interface'i ekledim.
+	//Changable ile aynı
+	Continent continent;
+	Player player;
+	int number;
+	ArrayList<Player> playerList;
 	
-	public void disaster(Continent continent, Player player, int number) {
-		int min = 100;
-		Territory weakestTerritory = new Territory();
-		
-		for(int i = 0; i < continent.getTerritoryList().size(); i++) {
-			if(continent.getTerritoryList().get(i).armyList.size() >= number) {
-				for(int j = 0; j < number; j++) {
-					int index = continent.getTerritoryList().get(i).armyList.size() -1;
-					continent.getTerritoryList().get(i).armyList.remove(index);//do I need to apply removeArmy() method in here?
-				}
-			}
-		}
-		for (Territory territory : continent.getTerritoryList()) {
-            int count = territory.getArmyList().size();
-            if (count < min) {
-                min = count;
-                weakestTerritory = territory;
-            }
-        }
-		weakestTerritory.getOwner().getTerritoryList().remove(weakestTerritory);//or do I need to apply removeArmy() method in here?
-		weakestTerritory.setOwner(null);
-	}
+	
+public void disaster(ICardServiceAdapter cardService) { //remove army olucak ismi. parametrelere bak
+	cardService.removeArmy(null, null, continent, player, number, playerList);
+}
+
+
 
 
 }
