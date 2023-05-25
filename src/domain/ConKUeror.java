@@ -26,8 +26,12 @@ public class ConKUeror {
 					player.conquerTerritory(territoryTo);
 					System.out.println(player + " conquer the territory.");
 				}
+
+			} else {
 				System.out.println("Can not attack");
 			}
+
+		} else {
 			System.out.println("Can not attack");
 		}
 
@@ -36,44 +40,49 @@ public class ConKUeror {
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 
 		if (player.getTerritoryList().contains(territoryTo) && player.getTerritoryList().contains(territoryFrom)
-				&& territoryFrom.getAdjacentTerritories(territoryTo)) {
+				&& territoryFrom.getAdjacentTerritories().contains(territoryTo)) {
 			if (territoryFrom.getArmyList().size() >= count) {
 				for (int i = 0; i < count; i++) {
 					int index = territoryFrom.getArmyList().size() - 1;
-					System.out.println(territoryFrom.getArmyList().get(index) + "is fortified from" + territoryFrom
+					System.out.println(territoryFrom.getArmyList().get(index) + "is fortified from " + territoryFrom
 							+ "to" + territoryTo);
 					player.fortifying(territoryFrom, territoryTo, territoryFrom.getArmyList().get(index));
 				}
+			} else {
+				System.out.println("Can not fortify");
 			}
+
+		} else {
 			System.out.println("Can not fortify");
 		}
-		System.out.println("Can not fortify");
+
 	}
 
 	public void initialSharingOfTerritory(ArrayList<Player> playerList, Map map) {
 		boolean workUntil = true;
 		boolean allTrue = false;
-		while (workUntil) {
-			if (!allTrue) {
-				// System.out.println(playerList.size());
-				for (int i = 0; i < playerList.size(); i++) {
-					// System.out.println(grid.getRow());
-					// playerList.get(i).chooseATerritory();
-					/* UI da seçtiği territoryi buraya parametre olarak yolluyoruz */
+		while(workUntil) {
+			if(!allTrue) {
+				//System.out.println(playerList.size());
+				for(int i = 0; i < playerList.size(); i++) {
+				//	System.out.println(grid.getRow());
+					//playerList.get(i).chooseATerritory();
+							/UI da seçtiği territoryi buraya parametre olarak yolluyoruz/ 
 					System.out.println(playerList.get(i) + " will choose a territory.");
 					map.getTerritories().get(i).isTaken = true;
 					allTrue = true;
-					for (Territory territory : map.territories) {
-						if (!territory.isTaken) {
-							allTrue = false;
-							break;
-						}
+					for (Territory territory: map.territories) {
+					    if (!territory.isTaken) {
+					        allTrue = false;
+					        break;
+					    }
 					}
 				}
-			} else {
+			}
+			else {
 				workUntil = false;
 			}
 		}
-
+		
 	}
 }
