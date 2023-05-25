@@ -41,7 +41,7 @@ public class Grid extends JPanel implements MouseListener {
             for (int col = 0; col < COLUMNS; col++) {
                 this.gridColors[row][col] = Color.DARK_GRAY;
                 this.gridText[row][col] = "";
-                Territory territory = Territory.isTerritory(row, col);
+                TerritoryUI territory = TerritoryUI.isTerritory(row, col);
                 if (territory != null) {
                     this.gridColors[row][col] = territory.getColor();
                     this.gridText[row][col] = territory.getText();
@@ -86,7 +86,7 @@ public class Grid extends JPanel implements MouseListener {
         repaint();
 
         //if (!runningMode.isBuilding()) {
-        Territory territory2 = Territory.isTerritory(row, col);
+        TerritoryUI territory2 = TerritoryUI.isTerritory(row, col);
             index=territory2.getIndex();
             
             if (territory2 != null) {
