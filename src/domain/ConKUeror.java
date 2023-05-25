@@ -9,23 +9,54 @@ public class ConKUeror {
 	Grid grid = new Grid();
 	Die die = new Die();
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
-		if (player.canAttackTerritory(territoryFrom, territoryTo) && territoryTo.adjacentTerritories.contains(territoryFrom)) {
-			System.out.println(player + " is attacking now.");
-			if(die.generateNum() > die.generateNum()) {
-				territoryTo.owner.loseTheDefend(territoryTo);
-				System.out.println(player + " lose the defend.");
+
+		if (player.getTerritoryList().contains(territoryFrom) && !player.getTerritoryList().contains(territoryTo)) {
+			if (player.canAttackTerritory(territoryFrom, territoryTo)
+					&& territoryTo.adjacentTerritories.contains(territoryFrom)) {
+				System.out.println(player + " is attacking now.");
+				if (die.generateNum() > die.generateNum()) {
+					territoryTo.owner.loseTheDefend(territoryTo);
+					System.out.println(player + " lose the defend.");
+				} else {
+					territoryFrom.owner.loseTheAttack(territoryFrom);
+					System.out.println(player + " lose the attack.");
+				}
+				if (territoryTo.armyList.size() <= 0) {
+					player.conquerTerritory(territoryTo);
+					System.out.println(player + " conquer the territory.");
+				}
+				
 			}
 			else {
-				territoryFrom.owner.loseTheAttack(territoryFrom);
-				System.out.println(player + " lose the attack.");
-			}
-			if(territoryTo.armyList.size() <= 0) {
-				player.conquerTerritory(territoryTo);
-				System.out.println(player + " conquer the territory.");
+				System.out.println("Can not attack");
 			}
 			
 		}
+		else {
+			System.out.println("Can not attack");
+		}
 		
+	}
+	
+	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
+
+		if (player.getTerritoryList().contains(territoryTo) && player.getTerritoryList().contains(territoryFrom)
+				&& territoryFrom.getAdjacentTerritories().contains(territoryTo)) {
+			if (territoryFrom.getArmyList().size() >= count) {
+				for (int i = 0; i < count; i++) {
+					int index = territoryFrom.getArmyList().size() - 1;
+					System.out.println(territoryFrom.getArmyList().get(index) + "is fortified from " + territoryFrom
+							+ "to" + territoryTo);
+					player.fortifying(territoryFrom, territoryTo, territoryFrom.getArmyList().get(index));
+				}
+			} else {
+				System.out.println("Can not fortify");
+			}
+
+		} else {
+			System.out.println("Can not fortify");
+		}
+
 	}
 	
 	public void initialSharingOfTerritory(ArrayList<Player> playerList, Map map) {

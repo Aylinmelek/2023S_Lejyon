@@ -168,6 +168,14 @@ public class Player {
 		}
 	}
 	
+	public void fortifying(Territory territoryTo, Territory territoryFrom, Army army) {
+			
+			if (territoryList.contains(territoryTo) && territoryList.contains(territoryFrom) && territoryFrom.getAdjacentTerritories().contains(territoryTo)) {
+				territoryTo.getArmyList().remove(army);
+				territoryFrom.getArmyList().add(army);
+			}
+	}
+	
 	public void loseTheAttack(Territory territory) {
 		int index = territory.armyList.size() - 1;
 		territory.armyList.remove(index);
