@@ -5,7 +5,7 @@ import java.util.Random;
 
 import domain.cardService.ICardServiceAdapter;
 
-public abstract class WorldEventCard { //implements Rollable, Changable{
+public class WorldEventCard { //implements Rollable, Changable{
 	//implements Rollable??
 	Territory territory;
 	Die die;
