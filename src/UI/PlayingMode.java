@@ -30,7 +30,7 @@ public class PlayingMode extends JLayeredPane {
 	Player player = new Player();
     Grid grid = new Grid();
 
-	TerrCardFrame territoryCard = new TerrCardFrame();
+	//TerrCardFrame territoryCard = new TerrCardFrame();
 	
 	 ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
 	    ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
@@ -114,6 +114,7 @@ public class PlayingMode extends JLayeredPane {
 		System.out.println("add elements");
 	     btnTer.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
+	     		TerrCardFrame territoryCard = new TerrCardFrame();
 	     		territoryCard.setVisible(true);
 	
 	     		}

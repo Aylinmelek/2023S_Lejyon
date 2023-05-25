@@ -100,15 +100,18 @@ public class Grid extends JPanel implements MouseListener {
 				repaint();
 
 			 Territory territoryIs = Territory.isTerritory(row, col);
-				// index=territory2.getIndex();
-
+		     index=territoryIs.getIndex();
+		     
 				if (territoryIs != null) {
 					player.territoryList.add(territoryIs);
 					terCard.setTerritoryCard(getColorName(territoryIs.getColor()), territoryIs.getText(), index, 20, 100);
+					System.out.println(getColorName(territoryIs.getColor()));
+					System.out.println(territoryIs.getText());
 					
+					System.out.println("index" + index);
 //String name, String text, Color color, int index
 				}
-				index = territoryIs.getIndex();
+				 
 			}
 
 			else {
@@ -124,7 +127,7 @@ public class Grid extends JPanel implements MouseListener {
 
 			 Territory territoryIs = Territory.isTerritory(row, col);
 				index = territoryIs.getIndex();
-				//System.out.println("index" + index);
+
 				if (territoryIs != null) {
 					territoryIs.setEnabled(false);
 				}
@@ -136,7 +139,7 @@ public class Grid extends JPanel implements MouseListener {
 			//sectigin terr e değiştir isterritory
 			//territorydeki asker sayısını goster
 			
-			Territory territoryIs = Territory.isTerritory(row, col);
+			//Territory territoryIs = Territory.isTerritory(row, col);
 			Territory selectedTerr = Territory.territories[row][col];
 			terrsSelected.add(Territory.territories[row][col]);
 			System.out.println(player.canAttackTerritory(terrsSelected.get(0), selectedTerr));

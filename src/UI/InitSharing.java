@@ -20,11 +20,12 @@ import domain.Player;
 public class InitSharing extends JLayeredPane  {
     JTextArea txtInitSharing = new JTextArea();
     JLabel dieLabel = new JLabel();
-    JButton btnStartGame = new JButton("Start Game");
+    //JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
     JButton btnSkip = new JButton("SKIP ATTACK");
     TerrCardFrame terCard = new TerrCardFrame();
     Player player = new Player();
+    BuildingMode bmode = new BuildingMode();
     ConKUeror conku = new ConKUeror();
     int index=0;  
     Grid grid = new Grid();
@@ -117,7 +118,6 @@ public class InitSharing extends JLayeredPane  {
 		        });
 	        rollThread.start();
 	    	}
-    	//}
     }
      
     public void addElements() {
@@ -131,28 +131,32 @@ public class InitSharing extends JLayeredPane  {
         System.out.println("in add elements");
         dieLabel.setBounds(221, 450, 80, 80);
         
-        if (conku.player_turn.size() != 0) {
+        System.out.println("size init  " + ""+ bmode.addPlayers());
+        if (bmode.addPlayers() != 0) {
 	        System.out.println("in size if " + conku.player_turn.size());
 	        Player playerKey = (Player) conku.player_turn.keySet().toArray()[index];
 	        conku.player_turn.put(playerKey, true);
+	        System.out.println("alooo");
 	        btnRoll.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
+	            	System.out.println(conku.player_turn.get(playerKey));
+	            	
 	                displayDie(playerKey);
 	                
-	               
+	                conku.player_turn.put(playerKey, false);
+	    	        index += 1;
+	                
 	            }
 	        });
 	        
-	        conku.player_turn.put(player, false);
-	        index += 1;
         }
         
-        btnStartGame.setBackground(Color.WHITE);
-        btnStartGame.setBounds(733, 495, 117, 29);
+        //btnStartGame.setBackground(Color.WHITE);
+        //btnStartGame.setBounds(733, 495, 117, 29);
         btnRoll.setBounds(30, 450, 117, 76);
         add(btnRoll);
         add(dieLabel);
-        add(btnStartGame);
+        
         
     }
 

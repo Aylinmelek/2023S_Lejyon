@@ -27,7 +27,7 @@ public class BuildingMode extends JLayeredPane {
     ConKUeror conku = new ConKUeror();
 
     int players,comp;
-    int numOfInfantry, totalPlayers=0;
+    int numOfInfantry, totalPlayers;
     
     
     ArrayList<Player> playerArray = new ArrayList<Player>(); 
@@ -41,7 +41,9 @@ public class BuildingMode extends JLayeredPane {
 		super();
 		initialize();
 		addElements();
-		addPlayers();
+		//getPlayerNum();
+		//addPlayers();
+		//infNum();
 		
 	}
 
@@ -102,29 +104,30 @@ public class BuildingMode extends JLayeredPane {
 	}
 	
 	
-	public int addPlayers() {  
+	public int getPlayerNum() {  
 		
 	
-	    players = (int) numPlayers.getSelectedItem(); 
-		System.out.println(players); 
-		
+	    players = (int) numPlayers.getSelectedItem(); 		
 		comp = (int) numComp.getSelectedItem();
-		System.out.println(comp); 
 		
-		
-	
-		for (int i=0; i<players; i++) {
-			System.out.println("in loop");
-			conku.player_turn.put(new Player(), false);
-		}
-		
-		for (int i= players; i<(totalPlayers); i++) {
-			conku.player_turn.put(new Player(), false);
-		}
-		System.out.println("buildmode da size" + conku.player_turn.size());
 		totalPlayers = players + comp;
 		
 		
+		
+		return totalPlayers;
+	}
+	
+	public int addPlayers() {
+		for (int i=0; i<getPlayerNum(); i++) {
+			Player player = new Player();
+			conku.player_turn.put(player, false);
+			
+		}
+		System.out.println(" bmode size " + conku.player_turn.size());
+		return conku.player_turn.size();
+	}
+		
+	public int infNum() {
 		
 		if (totalPlayers == 2) {
 			numOfInfantry = 40;

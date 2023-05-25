@@ -38,6 +38,10 @@ public class GameFrame extends JFrame {
 		BuildingMode bmode = new BuildingMode();
 		//InitSharing sharing = new InitSharing();
 		LoginScreen login = new LoginScreen();
+		JButton btnStartGame = new JButton("Start Game");
+		btnStartGame.setBackground(Color.WHITE);
+        btnStartGame.setBounds(733, 495, 117, 29);
+        frame.add(btnStartGame);
 		Grid grid = new Grid();
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
@@ -73,24 +77,27 @@ public class GameFrame extends JFrame {
 			}
 		});
 		
-		InitSharing sharing = new InitSharing();
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sharing.addElements();
-				frame.setLayeredPane(sharing);
-				frame.revalidate();
-				
-				sharing.add(grid);
-
-				JTextArea txtrYour = new JTextArea();
-				txtrYour.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-				txtrYour.setForeground(Color.LIGHT_GRAY);
-				txtrYour.setBackground(Color.DARK_GRAY);
-				txtrYour.setText("You have " + bmode.addPlayers() + " Infantry.");
-				txtrYour.setBounds(350, 450, 822, 263);
-				sharing.add(txtrYour);
+				InitSharing sharing = new InitSharing();
 				init = true;
 				build = false;
+				
+				frame.setLayeredPane(sharing);
+				frame.revalidate();
+				bmode.getPlayerNum();
+				//bmode.addPlayers();
+				sharing.add(grid);
+				sharing.addElements();
+				JTextArea txtInfNum = new JTextArea();
+				txtInfNum.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				txtInfNum.setForeground(Color.LIGHT_GRAY);
+				txtInfNum.setBackground(Color.DARK_GRAY);
+				txtInfNum.setText("You have " + bmode.infNum() + " Infantry.");
+				txtInfNum.setEditable(false);
+				txtInfNum.setBounds(350, 450, 822, 263);
+				sharing.add(txtInfNum);
+				
 
 			}
 		});
@@ -129,7 +136,7 @@ public class GameFrame extends JFrame {
 			}
 		});
 
-		sharing.btnStartGame.addActionListener(new ActionListener() {
+		btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				String action = e.getActionCommand();

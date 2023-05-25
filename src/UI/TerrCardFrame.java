@@ -14,8 +14,9 @@ public class TerrCardFrame extends JFrame {
 	
 
     public TerrCardFrame() {
+    	initializeLabels();
         initializeFrame();
-        initializeLabels();
+        
     }
     
     
@@ -24,14 +25,12 @@ public class TerrCardFrame extends JFrame {
         for (int i = 0; i < NUM_LABELS; i++) {
             labels[i] = new JLabel("");     
             add(labels[i]);
-            labels[i].setVisible(true);
         }     
     }
     
     private void initializeFrame() {
     	
         getContentPane().setBackground(Color.DARK_GRAY);
-        getContentPane().setLayout(new FlowLayout());
         JTextArea txtrTerritoryCards = new JTextArea();
         txtrTerritoryCards.setBounds(192, 20, 419, 71);
         txtrTerritoryCards.setForeground(Color.LIGHT_GRAY);
@@ -42,7 +41,11 @@ public class TerrCardFrame extends JFrame {
         getContentPane().add(txtrTerritoryCards);
         setBounds(100, 100, 657, 481);	//ekledim
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        
     }
+    
+    
     
     public void setTerritoryCard(String territoryColor, String territoryName, int index, int x, int y) {
 	
@@ -51,7 +54,6 @@ public class TerrCardFrame extends JFrame {
         ImageIcon img = new ImageIcon(this.getClass().getResource(imageStr));  
         labels[index].setIcon(img);
         getContentPane().add(labels[index]);
-        System.out.println("set func");
         labels[index].setVisible(true);
 
     }
@@ -61,5 +63,4 @@ public class TerrCardFrame extends JFrame {
 
 //You can then call setTerritoryCard() method from outside this class to set individual cards.
 //Remember to ensure that the index and x and y values are correct for each territory card.
-
 
