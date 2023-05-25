@@ -10,7 +10,7 @@ public class Player {
 	ArrayList <Artillery> artilleryList = new ArrayList<Artillery>();
 	ArrayList <Cavalry> cavalryList = new ArrayList<Cavalry>();
 	ArrayList <TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();
-	ArrayList <Territory> territoryList = new ArrayList<Territory>();
+	public ArrayList <Territory> territoryList = new ArrayList<Territory>();
 	
 	public String getName() {
 		return name;
@@ -121,6 +121,8 @@ public class Player {
 	public void setInfantryList(ArrayList<Infantry> infantryList) {
 		this.infantryList = infantryList;
 	}
+	
+	
 
 	public void tradeTerritoryCards(Continent continent) {
 		if (territoryCardList.containsAll(continent.territoryCardList)) {
