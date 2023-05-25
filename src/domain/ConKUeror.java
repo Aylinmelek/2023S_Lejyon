@@ -11,7 +11,11 @@ public class ConKUeror {
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
 		if (player.canAttackTerritory(territoryFrom, territoryTo) && territoryTo.adjacentTerritories.contains(territoryFrom)) {
 			System.out.println(player + " is attacking now.");
-			if(die.generateNum() > die.generateNum()) {
+			//if(die.generateNum() > die.generateNum()) {
+			//observer için ekledim
+			die.roll();
+			if(die.getDiceValue() > die.getDiceValue()) {
+			/////
 				territoryTo.owner.loseTheDefend(territoryTo);
 				System.out.println(player + " lose the defend.");
 			}

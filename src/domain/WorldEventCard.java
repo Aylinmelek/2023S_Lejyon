@@ -26,7 +26,11 @@ public class WorldEventCard { //implements Rollable, Changable{
 	
 
 	public void worldEvent(ICardServiceAdapter cardService, ArrayList<Player> playerList) { 
-		int faceValue = die.generateNum();
+		//observer için değiştirdim
+		die.roll();
+		int faceValue = die.getDiceValue();
+		/////////
+		//int faceValue = die.generateNum();
 		
 		if (faceValue <= 2 || faceValue == 5) { //addarmy()
 			cardService.addArmy(die, territory, playerList);

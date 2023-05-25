@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import domain.Board;
 import domain.Die;
+import domain.controller.conKUerorHandler;
 
 public class PlayingMode extends JLayeredPane {
 	
@@ -25,8 +27,14 @@ public class PlayingMode extends JLayeredPane {
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
  
-
-    InitSharing init = new InitSharing();
+    //observer için ekledim
+    Board board = new Board();
+    conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
+    
+    InitSharing initSharing = new InitSharing(conKUerorHandler);
+    ////////////
+    
+    
 
 	TerrCardFrame territoryCard = new TerrCardFrame();
 	
@@ -54,7 +62,10 @@ public class PlayingMode extends JLayeredPane {
 	public void displayDie() {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
-                int dieDisplayed = die.generateNum();
+            	//observer için ekledim
+                int dieDisplayed = board.getDiceValue();
+                //////
+                		//die.generateNum();
                 switch (dieDisplayed) {
                     case 1:
                         dieLabel.setIcon(die1);
@@ -81,7 +92,10 @@ public class PlayingMode extends JLayeredPane {
                     e.printStackTrace();
                 }
             }
-            int finalDieDisplayed = die.generateNum();
+            //observer için ekledim
+            int finalDieDisplayed = board.getDiceValue();
+            ///
+            		//die.generateNum();
             switch (finalDieDisplayed) {
                 case 1:
                     dieLabel.setIcon(die1);

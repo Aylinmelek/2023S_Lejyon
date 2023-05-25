@@ -22,6 +22,7 @@ private SabotageCardService sabotageCard;
 	public void removeArmy(Territory territory, Die die, Continent continent, Player player, int number,
 			ArrayList<Player> playerList) {
 		// TODO Auto-generated method stub
+		sabotageCard.sabotage(territory, die, continent, player, number);
 		
 	}
 

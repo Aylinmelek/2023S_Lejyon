@@ -12,8 +12,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
+import domain.Board;
 import domain.ConKUeror;
 import domain.Player;
+import domain.controller.conKUerorHandler;
 
 public class BuildingMode extends JLayeredPane {
 	JTextArea txtrGameOptions = new JTextArea();
@@ -24,7 +26,15 @@ public class BuildingMode extends JLayeredPane {
     JButton btnNext = new JButton("Next");
     PlayingMode playingMode = new PlayingMode();
     LoginScreen loginScreen = new LoginScreen();
-    InitSharing initSharing = new InitSharing();
+    
+    
+    //observer için ekledim
+    Board board = new Board();
+    conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
+    
+    InitSharing initSharing = new InitSharing(conKUerorHandler);
+    ////////////
+    
     ConKUeror conku = new ConKUeror();
 
     int players,comp;
