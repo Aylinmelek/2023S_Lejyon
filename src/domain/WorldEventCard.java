@@ -3,20 +3,36 @@ package domain;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class WorldEventCard implements Rollable, Changable{
+import domain.cardService.ICardServiceAdapter;
+
+public abstract class WorldEventCard implements Rollable, Changable{
+	Territory territory;
 	
-	public int rollDie() {
+	/*public int rollDie() {
 		Random random = new Random();
 		int faceValue = random.nextInt(6);
 		return faceValue+1;
+	}*/
+	public void rollDie(ICardServiceAdapter armyService) {
+		armyService.removeArmyFromContinent(territory);
+		
 	}
 	
-	public void addArmy(Territory territory) {
+	/*public void addArmy(Territory territory) {
 		territory.army ++;
+	}*/
+	
+	public void addArmy(ICardServiceAdapter armyService) {
+		armyService.removeArmyFromContinent(territory);
+		
 	}
 	
-	public void removeArmy(Territory territory) {
+	/*public void removeArmy(Territory territory) {
 		territory.army --;
+	}*/
+	public void removeArmy(ICardServiceAdapter armyService) {
+		armyService.removeArmyFromContinent(territory);
+		
 	}
 	public void worldEvent(Territory territory, Die die, ArrayList<Player> playerList) {
 		int faceValue = die.generateNum();

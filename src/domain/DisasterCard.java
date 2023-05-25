@@ -1,6 +1,6 @@
 package domain;
 
-public  class DisasterCard extends DisasterAdapter{
+public  class DisasterCard {//extends DisasterAdapter{
 	
 	public void disaster(Continent continent, Player player, int number) {
 		int min = 100;

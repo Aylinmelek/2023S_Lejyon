@@ -7,7 +7,7 @@ import java.util.List;
 import UI.Grid;
 
 public class Territory {
- int army; 
+ public int army; 
  Continent continent;
  boolean isImmune = false;
  private static final int ROWS = 17;
