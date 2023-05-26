@@ -53,7 +53,7 @@ public class Grid extends JPanel implements MouseListener {
 				Territory territory = Territory.isTerritory(row, col);
 				if (territory != null) {
 					this.gridColors[row][col] = territory.getColor();
-//					this.gridText[row][col] = territory.getText();
+					this.gridText[row][col] = territory.getText();
 				}
 			}
 		}
@@ -103,11 +103,11 @@ public class Grid extends JPanel implements MouseListener {
 
 				if (territoryIs != null) {
 					player.territoryList.add(territoryIs);
-//					terCard.setTerritoryCard(getColorName(territoryIs.getColor()), territoryIs.getText(), index, 20, 100);
+					terCard.setTerritoryCard(getColorName(territoryIs.getColor()), territoryIs.getText(), index, 20, 100);
 					
 //String name, String text, Color color, int index
 				}
-//				index = territoryIs.getIndex();
+				index = territoryIs.getIndex();
 			}
 
 			else {
