@@ -39,6 +39,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     int dieNumber;
     int clickCount;
     public int numPlay;
+    int max_die;
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
@@ -163,17 +164,19 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 //observer için ekledim
             	//displayDie();
                 conKUerorHandler.rollDice();
-                
-                //roll die için yeni ekledim
-                clickCount++;  // Increment the count
-                if (clickCount >= numPlay) {
-                    btnRoll.setEnabled(false);  // Disable the button
-                }
                 dieNumber = conKUerorHandler.getDieValue();
                 displayDie(dieNumber);
                 die.dice.add(dieNumber); //die values arraylist
                 board.publishBoardEvent(dieNumber);
                 System.out.println("(UI.InitSharing)You rolled: "+dieNumber);
+                //roll die için yeni ekledim
+                clickCount++;  // Increment the count
+                if (clickCount >= numPlay) {
+                    btnRoll.setEnabled(false);// Disable the button
+                    max_die = die.calculateHighest(die.dice);
+                    System.out.println(max_die);
+                }
+                
                 /////////////
                
             }

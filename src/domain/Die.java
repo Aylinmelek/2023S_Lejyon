@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -12,6 +13,7 @@ public class Die {
 	private static final int MAXVALUE=6;
 	private int dice1;
 	private int dice2;
+	public int high_index;
 	Random rand;
 	
 	
@@ -33,9 +35,27 @@ public class Die {
 	//}
 
 
-	public void calculateHighest() {
-		
+	public int calculateHighest(ArrayList<Integer> arrlist) {
+		int highest = arrlist.get(0);  // Assume first element is the highest
+
+        for(int number : arrlist) {
+            if(number > highest) {
+                highest = number;  // Update the highest number
+                setHigh_index(arrlist.indexOf(highest));
+               
+            }
+        }
+        
+		return highest;
 	}
+	public int getHigh_index() {
+		return high_index;
+	}
+
+	public void setHigh_index(int high_index) {
+		this.high_index = high_index;
+	}
+
 	public void getFaceValue() {
 		
 	}

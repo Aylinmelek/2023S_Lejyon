@@ -47,13 +47,12 @@ public class TerrCardFrame extends JFrame {
     public void setTerritoryCard(String territoryColor, String territoryName, int index, int x, int y) {
 	
         labels[index].setBounds(x, y, 96,165);
-        String imageStr = "/territoryCards/" + territoryColor.toLowerCase() + territoryName + ".png";   
+        String imageStr = "/territoryCards/" + territoryColor.toLowerCase() + territoryName + ".png";
         ImageIcon img = new ImageIcon(this.getClass().getResource(imageStr));  
         labels[index].setIcon(img);
         getContentPane().add(labels[index]);
         System.out.println("set func");
         labels[index].setVisible(true);
-
     }
    
   

@@ -6,6 +6,16 @@ public class Player {
 	String name;
 	public Deck deck = new Deck();
 	public Die die;
+	public int numOfInfantry;
+	
+	public int getNumOfInfantry() {
+		return numOfInfantry;
+	}
+
+	public void setNumOfInfantry(int numOfInfantry) {
+		this.numOfInfantry = numOfInfantry;
+	}
+
 	ArrayList <Infantry> infantryList = new ArrayList<Infantry>();
 	ArrayList <Artillery> artilleryList = new ArrayList<Artillery>();
 	ArrayList <Cavalry> cavalryList = new ArrayList<Cavalry>();

@@ -31,7 +31,7 @@ public class GameFrame extends JFrame {
 	static boolean start;
 	private static final long serialVersionUID = 1L;
 	static boolean init, build, playMode, loginMode = false;
-	
+	public static Player max_player;
 
 	public static void main(String[] args) {
 
@@ -95,22 +95,34 @@ public class GameFrame extends JFrame {
 				build = false;
 
 				int totalpeople = conKUeror.addToPlayerTurnHash(bmode);
+				
 				sharing.numPlay = totalpeople;
 				sharing.addElements();
+				
 				System.out.println("buildmode da size" + totalpeople);
 
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
 
 				sharing.add(grid);
-
-				JTextArea txtrYour = new JTextArea();
-				txtrYour.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-				txtrYour.setForeground(Color.LIGHT_GRAY);
-				txtrYour.setBackground(Color.DARK_GRAY);
-				txtrYour.setText("You have " + bmode.addPlayers() + " Infantry.");
-				txtrYour.setBounds(350, 450, 822, 263);
-				sharing.add(txtrYour);
+				bmode.addPlayers();
+				JTextArea dispInfant = new JTextArea();
+				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				dispInfant.setForeground(Color.LIGHT_GRAY);
+				dispInfant.setBackground(Color.DARK_GRAY);
+				dispInfant.setText("You have " + bmode.addPlayers() + " Infantry.");
+				dispInfant.setEditable(false);
+				for (int i=0; i<conKUeror.playerList.size(); i++ ) {
+					conKUeror.playerList.get(i).setNumOfInfantry(bmode.addPlayers());
+				}
+				
+				//max_player = conKUeror.playerList.get(conKUeror.die.high_index);
+				//System.out.println("----------------");
+				//System.out.println(conKUeror.die.high_index);
+				//System.out.println(max_player);
+				
+				dispInfant.setBounds(350, 450, 822, 263);
+				sharing.add(dispInfant);
 				
 
 			}
@@ -163,7 +175,7 @@ public class GameFrame extends JFrame {
 
 			}
 		});
-
+		/*
 		Player player1 = new Player();
 		Player player2 = new Player();
 		Territory territory1 = new Territory();
@@ -239,7 +251,7 @@ public class GameFrame extends JFrame {
 		ConKUeror conkueror = new ConKUeror();
 		Die die = new Die();
 		conkueror.attack(player1, territory1, territory2, die);
-		conkueror.initialSharingOfTerritory(playerList, map);
+		conkueror.initialSharingOfTerritory(playerList, map);*/
 
 	}
 

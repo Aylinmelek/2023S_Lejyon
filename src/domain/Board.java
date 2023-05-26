@@ -14,6 +14,7 @@ public class Board {
 	public Board() {
 		die = new Die();
 		System.out.println("geliyo mu board'a");
+		System.out.println("geliyo");
 	}
 	
 	public void rollDice() {

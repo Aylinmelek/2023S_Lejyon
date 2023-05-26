@@ -8,10 +8,13 @@ import UI.Grid;
 
 public class ConKUeror {
 
-	ArrayList<Player> playerList = new ArrayList<Player>();
+	public ArrayList<Player> playerList = new ArrayList<Player>();
+	
+	
 
 	Grid grid = new Grid();
-	Die die = new Die();
+	public Die die = new Die();
+	
 	
 	public Hashtable <Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
 
@@ -102,6 +105,8 @@ public class ConKUeror {
 	public int addToPlayerTurnHash(BuildingMode bmode) {
 		for (int i=0; i<bmode.getPlayerNum(); i++) {
 			Player player = new Player();
+			playerList.add(player);
+			//player.setNumOfInfantry();
 			player_turn.put(player, player.turn);
 				
 		}

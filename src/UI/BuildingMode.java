@@ -39,8 +39,8 @@ public class BuildingMode extends JLayeredPane {
     ConKUeror conku = new ConKUeror();
 
     int players,comp;
-    int numOfInfantry, totalPlayers=0;
-    
+    int totalPlayers=0;
+    int numOfInfant;
     
     ArrayList<Player> playerArray = new ArrayList<Player>(); 
     
@@ -53,7 +53,7 @@ public class BuildingMode extends JLayeredPane {
 		super();
 		initialize();
 		addElements();
-		addPlayers();
+		//addPlayers();
 		
 	}
 
@@ -127,7 +127,7 @@ public class BuildingMode extends JLayeredPane {
 	
 		for (int i=0; i<players; i++) {
 
-			System.out.println("in loop");
+			//System.out.println("in loop");
 			//GameFrame.player_turn.put(new Player(), false); 
 		}
 		
@@ -139,24 +139,26 @@ public class BuildingMode extends JLayeredPane {
 		totalPlayers = players + comp;
 		
 		
-		
-		if (totalPlayers == 2) {
-			numOfInfantry = 40;
+		for (int i=0; i<totalPlayers; i++) {
+			if (totalPlayers == 2) {
+				numOfInfant = 40;
+			}
+		    if (totalPlayers == 3) {
+				numOfInfant = 35;
+			}
+			if (totalPlayers == 4) {
+				numOfInfant = 30;
+			}
+			if (totalPlayers == 5) {
+				numOfInfant = 25;
+			}
+			if (totalPlayers == 6) {
+				numOfInfant = 20;
 		}
-	    if (totalPlayers == 3) {
-			numOfInfantry = 35;
-		}
-		if (totalPlayers == 4) {
-			numOfInfantry = 30;
-		}
-		if (totalPlayers == 5) {
-			numOfInfantry = 25;
-		}
-		if (totalPlayers == 6) {
-			numOfInfantry = 20;
+	
 		
 	}
-		return numOfInfantry;
+		return numOfInfant;
 
 	}
 	
