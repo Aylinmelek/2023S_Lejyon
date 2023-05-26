@@ -69,7 +69,7 @@ public class ConKUeror {
 				for(int i = 0; i < playerList.size(); i++) {
 				//	System.out.println(grid.getRow());
 					//playerList.get(i).chooseATerritory();
-							/UI da seçtiği territoryi buraya parametre olarak yolluyoruz/ 
+							//UI da seçtiği territoryi buraya parametre olarak yolluyoruz/ 
 					System.out.println(playerList.get(i) + " will choose a territory.");
 					map.getTerritories().get(i).isTaken = true;
 					allTrue = true;

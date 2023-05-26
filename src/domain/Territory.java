@@ -75,6 +75,7 @@ public void setAdjacentTerritories(ArrayList<Territory> adjacentTerritories) {
 	this.adjacentTerritories = adjacentTerritories;
 }
 int row,col=0;
+private boolean isImmune;
 
  public Player getOwner() {
 	return owner;
@@ -95,7 +96,27 @@ public void enable() {
  public void immunize() {
 	 isImmune = true;
  }
- public void deImmunize() {
+ public String getText() {
+	return text;
+}
+
+
+public void setText(String text) {
+	this.text = text;
+}
+
+
+public int getIndex() {
+	return index;
+}
+
+
+public void setIndex(int index) {
+	this.index = index;
+}
+
+
+public void deImmunize() {
 	 isImmune = false;
  }
 

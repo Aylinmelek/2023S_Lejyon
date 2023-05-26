@@ -136,11 +136,11 @@ public class BuildingMode extends JLayeredPane {
 		
 		
 		for (int i=0; i<players; i++) {
-			conku.playerList.add(new Player());
+			//conku.playerList.add(new Player());
 		}
 		
 		for (int i= players; i<totalPlayers; i++) {
-			conku.playerList.add(new Player());
+			//conku.playerList.add(new Player());
 		}
 		
 		totalPlayers = players + comp;
