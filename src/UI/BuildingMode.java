@@ -24,7 +24,6 @@ public class BuildingMode extends JLayeredPane {
     JButton btnNext = new JButton("Next");
     PlayingMode playingMode = new PlayingMode();
     LoginScreen loginScreen = new LoginScreen();
-    InitSharing initSharing = new InitSharing();
     ConKUeror conku = new ConKUeror();
 
     int players,comp;
@@ -42,8 +41,8 @@ public class BuildingMode extends JLayeredPane {
 		super();
 		initialize();
 		addElements();
-		//addPlayers();
-		armyNum();
+		addPlayers();
+		
 	}
 
 
@@ -102,29 +101,8 @@ public class BuildingMode extends JLayeredPane {
         
 	}
 	
-	/*public void addPlayers() {
-		int playerNum = (int) numPlayers.getSelectedItem();
-		int compPlayerNum = (int) numComp.getSelectedItem();
-		
-		System.out.println("boncuk" + playerNum);
-		//System.out.println("p" + conku.playerList.size());
-
-		
-		
-		//farklı tipte biseyleri enabled olucaksa ai player ve normal player ayrı ayrı gorelim diye simdilik ayrı yazdım.
-		for (int i=0; i<playerNum; i++) {
-			System.out.println("in loop");
-			conku.playerList.add(new Player());
-		}
-		
-		for (int i= playerNum; i<(playerNum+compPlayerNum); i++) {
-			conku.playerList.add(new Player());
-		}
 	
-		System.out.println(conku.playerList.size());
-	}*/
-
-	public int armyNum() {  
+	public int addPlayers() {  
 		
 	
 	    players = (int) numPlayers.getSelectedItem(); 
@@ -134,15 +112,18 @@ public class BuildingMode extends JLayeredPane {
 		System.out.println(comp); 
 		
 		
-		
+	
 		for (int i=0; i<players; i++) {
-			//conku.playerList.add(new Player());
+
+			System.out.println("in loop");
+			//conku.player_turn.put(new Player(), false); daha tanımlanmamış
 		}
 		
-		for (int i= players; i<totalPlayers; i++) {
-			//conku.playerList.add(new Player());
+		for (int i= players; i<(totalPlayers); i++) {
+			//conku.player_turn.put(new Player(), false);
+
 		}
-		
+		//System.out.println("buildmode da size" + conku.player_turn.size());
 		totalPlayers = players + comp;
 		
 		
