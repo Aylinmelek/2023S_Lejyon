@@ -7,9 +7,9 @@ import java.util.List;
 import UI.Grid;
 
 public class Territory {
- int army; 
+ public int army; 
  Continent continent;
- boolean isImmune = false;
+
  private static final int ROWS = 17;
  private static final int COLUMNS = 17;
  
@@ -17,7 +17,7 @@ public class Territory {
  static Color[][] gridColors= new Color[ROWS][COLUMNS];
  static String[][] gridText = new String[ROWS][COLUMNS];
  
- static Territory[][] territories = {
+ public static Territory[][] territories = {
 	        { new Territory("Yellow 1", "1", Color.yellow,0), new Territory("Yellow 6", "6", Color.yellow,5), new Territory("Yellow 5", "5", Color.yellow,4), null, null, null, null, null, new Territory("Green 12", "12", Color.green,27), null },
 	        { new Territory("Yellow 2", "2", Color.yellow,1), new Territory("Yellow 7", "7", Color.yellow,6), new Territory("Yellow 8", "8", Color.yellow,7), new Territory("Blue 2", "2", Color.blue,10), new Territory("Blue 4", "4", Color.blue,12), null, new Territory("Green 11","11", Color.green,26), new Territory("Green 10", "10", Color.green,25), new Territory("Green 4", "4", Color.green,19), new Territory("Green 6", "6", Color.green,21) },
 	        { new Territory("Yellow 9", "9", Color.yellow,8), new Territory("Yellow 4", "4", Color.yellow,3), null, new Territory("Blue 1", "1", Color.blue,9), new Territory("Blue 3", "3", Color.blue,11), new Territory("Blue 6", "6", Color.blue,14), new Territory("Green 1", "1", Color.green,16), new Territory("Green 2", "2", Color.green,17), new Territory("Green 8", "8", Color.green,23), new Territory("Green 5", "5", Color.green,20) },
@@ -41,6 +41,7 @@ public class Territory {
 	    this.index = index;
 
 }
+
  
  public Territory() {
 
@@ -63,7 +64,7 @@ boolean reachability;
  boolean isEnabled;
  boolean isTaken = false;
  ArrayList <Territory> adjacentTerritories = new ArrayList<Territory>();
- ArrayList <Army> armyList = new ArrayList<Army>();
+ public ArrayList <Army> armyList = new ArrayList<Army>();
  
  
 public ArrayList<Territory> getAdjacentTerritories() {
@@ -98,6 +99,7 @@ public void enable() {
 	 isImmune = false;
  }
 
+
 public static Territory isTerritory(int row2, int col2) {
 	    
 	    // Check if the specified position is within the bounds of the territories array
@@ -107,19 +109,19 @@ public static Territory isTerritory(int row2, int col2) {
 	    return null; // Return null if no territory exists at the specified position
 }
 
+public boolean isEnabled() {
+	return isEnabled;
+}
+
+public void setEnabled(boolean isEnabled) {
+	this.isEnabled = isEnabled;
+}
+
 public Color getColor() {
 	return color;
 }
 
-public String getText() {
-	// TODO Auto-generated method stub
-	return text;
-}
- 
-public int getIndex() {
-	// TODO Auto-generated method stub
-	return index;
-}
+
 
  
 }
