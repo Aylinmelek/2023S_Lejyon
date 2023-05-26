@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import UI.Grid;
 
 public class ConKUeror {
+
 	ArrayList<Player> playerList = new ArrayList<Player>();
+
 	Grid grid = new Grid();
 	Die die = new Die();
 

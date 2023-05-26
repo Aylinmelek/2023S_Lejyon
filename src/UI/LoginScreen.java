@@ -23,7 +23,15 @@ public class LoginScreen extends JLayeredPane{
     JTextField username = new JTextField();
     JTextField password = new JTextField();
 
+    
+    
 	
+	public LoginScreen() {
+		super();
+		initialize();
+		addElements();
+	}
+
 	//startScreen = new JPanel();
 	public void initialize()  {
 		setBounds(0, 54, 873, 451);
@@ -66,6 +74,7 @@ public class LoginScreen extends JLayeredPane{
         txtPassword.setBackground(Color.DARK_GRAY);
         add(txtPassword);
         
+
         password.setBounds(341, 304, 171, 30);
         password.setHorizontalAlignment(SwingConstants.LEFT);
         password.setForeground(Color.BLACK);
