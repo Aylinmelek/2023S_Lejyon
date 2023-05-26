@@ -91,8 +91,12 @@ public class GameFrame extends JFrame {
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String action = e.getActionCommand();
+				init = true;
+				build = false;
 
 				int totalpeople = conKUeror.addToPlayerTurnHash(bmode);
+				sharing.numPlay = totalpeople;
+				sharing.addElements();
 				System.out.println("buildmode da size" + totalpeople);
 
 				frame.setLayeredPane(sharing);
@@ -107,8 +111,7 @@ public class GameFrame extends JFrame {
 				txtrYour.setText("You have " + bmode.addPlayers() + " Infantry.");
 				txtrYour.setBounds(350, 450, 822, 263);
 				sharing.add(txtrYour);
-				init = true;
-				build = false;
+				
 
 			}
 		});

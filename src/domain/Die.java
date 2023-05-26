@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Die {
 	int faceValue;
-	private List<Die> dice = new ArrayList<>();
+	public ArrayList<Integer> dice = new ArrayList<>();
 	
 	//yeni ekledim
 	private static final int MAXVALUE=6;
@@ -28,9 +28,9 @@ public class Die {
 	}*/
 	
 	
-	public List<Die> getDice() {
-		return dice;
-	}
+	//public List<Die> getDice() {
+	//	return dice;
+	//}
 
 
 	public void calculateHighest() {
