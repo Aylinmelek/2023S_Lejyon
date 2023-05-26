@@ -1,15 +1,28 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class ReinforcementCard implements Rollable {
+import domain.cardService.ICardServiceAdapter;
+
+public class ReinforcementCard{// implements Rollable{//, Changable {
+	
+
+	Die die;
+	Territory territory;
+	ArrayList<Player> playerList;
 	
 	public int rollDie() {
 		Random random = new Random();
 		int faceValue = random.nextInt(6);
 		return faceValue + 1;
 	}
-	public static void addArmy(Territory territory) {
-		territory.army ++;
+
+	public void reinforce(ICardServiceAdapter cardService) {
+		cardService.addArmy(die, territory, playerList);
 	}
+	
+
+
+	
 }
