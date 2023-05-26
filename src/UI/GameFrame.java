@@ -121,7 +121,6 @@ public class GameFrame extends JFrame {
 				login.btnHelp.setVisible(true);
 				// btnResume.setVisible(true);
 				start = true;
-
 			}
 		});
 

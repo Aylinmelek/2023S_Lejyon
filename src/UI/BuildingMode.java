@@ -114,12 +114,14 @@ public class BuildingMode extends JLayeredPane {
 		
 	
 		for (int i=0; i<players; i++) {
+
 			System.out.println("in loop");
 			//conku.player_turn.put(new Player(), false); daha tanımlanmamış
 		}
 		
 		for (int i= players; i<(totalPlayers); i++) {
 			//conku.player_turn.put(new Player(), false);
+
 		}
 		//System.out.println("buildmode da size" + conku.player_turn.size());
 		totalPlayers = players + comp;
