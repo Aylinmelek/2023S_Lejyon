@@ -11,6 +11,8 @@ public class Player {
 	ArrayList <Cavalry> cavalryList = new ArrayList<Cavalry>();
 	ArrayList <TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();
 	public ArrayList <Territory> territoryList = new ArrayList<Territory>();
+	public boolean turn;
+	
 	
 	public String getName() {
 		return name;
@@ -21,6 +23,14 @@ public class Player {
 		//it will start the game. 
 	}
 	
+	public boolean isTurn() {
+		return turn;
+	}
+
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
+
 	public void winTheGame() {
 		System.out.println("Congratulations! You won the game!");
 		}

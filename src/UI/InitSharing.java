@@ -112,6 +112,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                
             }
             //observer için ekledim
             //die.roll();

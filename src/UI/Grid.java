@@ -64,6 +64,7 @@ public class Grid extends JPanel implements MouseListener {
 		drawCells(g);
 	}
 
+
 	private void drawGridLines(Graphics g) {
 		g.setColor(Color.BLACK);
 		for (int row = 0; row <= ROWS; row++) {

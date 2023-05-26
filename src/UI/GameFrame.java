@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,16 +23,20 @@ import domain.Player;
 import domain.Territory;
 import domain.TerritoryCard;
 import domain.controller.conKUerorHandler;
+import domain.ConKUeror;
+import java.util.Hashtable;
 
 public class GameFrame extends JFrame {
 
 	static boolean start;
 	private static final long serialVersionUID = 1L;
-	static boolean init, build, playMode = false;
+	static boolean init, build, playMode, loginMode = false;
+	
 
 	public static void main(String[] args) {
 
 		//observer için ekledim
+		ConKUeror conKUeror = new ConKUeror();
 		Board board = new Board();
 		conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
 		//////////
@@ -62,6 +67,7 @@ public class GameFrame extends JFrame {
 				grid.setBounds(19, 69, 850, 350);
 				bmode.add(grid);
 				build = true;
+				
 
 			}
 		});
@@ -75,6 +81,7 @@ public class GameFrame extends JFrame {
 					frame.setLayeredPane(help);
 					help.setVisible(true);
 					frame.revalidate();
+					loginMode = false;
 					start = true;
 				}
 
@@ -84,6 +91,9 @@ public class GameFrame extends JFrame {
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String action = e.getActionCommand();
+
+				int totalpeople = conKUeror.addToPlayerTurnHash(bmode);
+				System.out.println("buildmode da size" + totalpeople);
 
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
@@ -111,7 +121,6 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (start == true) {
-					System.out.println("geldi mi");
 					help.setVisible(false);
 					frame.setLayeredPane(login);
 					frame.revalidate();
@@ -145,8 +154,9 @@ public class GameFrame extends JFrame {
 				// grid.setVisible(true);
 				grid.setBounds(19, 69, 850, 350);
 				play.add(grid);
-				init = false;
 				playMode = true;
+				init = false;
+				
 
 			}
 		});

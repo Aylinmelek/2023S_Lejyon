@@ -128,7 +128,7 @@ public class BuildingMode extends JLayeredPane {
 		for (int i=0; i<players; i++) {
 
 			System.out.println("in loop");
-			//conku.player_turn.put(new Player(), false); daha tanımlanmamış
+			//GameFrame.player_turn.put(new Player(), false); 
 		}
 		
 		for (int i= players; i<(totalPlayers); i++) {
@@ -158,6 +158,17 @@ public class BuildingMode extends JLayeredPane {
 	}
 		return numOfInfantry;
 
+	}
+	
+	public int getPlayerNum() {  
+	
+	    players = (int) numPlayers.getSelectedItem(); 		
+		comp = (int) numComp.getSelectedItem();
+		totalPlayers = players + comp;
+		
+		
+		
+		return totalPlayers;
 	}
 
 }

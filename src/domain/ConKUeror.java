@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
+import UI.BuildingMode;
 import UI.Grid;
 
 public class ConKUeror {
@@ -10,6 +12,8 @@ public class ConKUeror {
 
 	Grid grid = new Grid();
 	Die die = new Die();
+	
+	public Hashtable <Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
 
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
 
@@ -93,5 +97,14 @@ public class ConKUeror {
 			}
 		}
 
+	}
+	
+	public int addToPlayerTurnHash(BuildingMode bmode) {
+		for (int i=0; i<bmode.getPlayerNum(); i++) {
+			Player player = new Player();
+			player_turn.put(player, player.turn);
+				
+		}
+		return player_turn.size();
 	}
 }
