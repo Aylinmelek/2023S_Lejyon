@@ -19,7 +19,11 @@ public class SabotageCardService {
 	}
 	
 	public static void sabotage(Territory territory, Die die, Continent continent, Player player, int number) {
-		int faceVal = die.generateNum();
+		//observer için değiştirdim
+		die.roll();
+		int faceVal = die.getDiceValue();
+		////////////
+		//int faceVal = die.generateNum();
 		for(int i = 0; i < faceVal; i++) {
 			int index = territory.getArmyList().size() - 1;
 			territory.getArmyList().remove(index);
