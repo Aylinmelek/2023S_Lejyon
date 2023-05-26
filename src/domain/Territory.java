@@ -7,9 +7,9 @@ import java.util.List;
 import UI.Grid;
 
 public class Territory {
- public int army; 
+ int army; 
  Continent continent;
-
+ private boolean isImmune = false;
  private static final int ROWS = 17;
  private static final int COLUMNS = 17;
  
@@ -41,7 +41,6 @@ public class Territory {
 	    this.index = index;
 
 }
-
  
  public Territory() {
 
@@ -64,7 +63,7 @@ boolean reachability;
  boolean isEnabled;
  boolean isTaken = false;
  ArrayList <Territory> adjacentTerritories = new ArrayList<Territory>();
- public ArrayList <Army> armyList = new ArrayList<Army>();
+ ArrayList <Army> armyList = new ArrayList<Army>();
  
  
 public ArrayList<Territory> getAdjacentTerritories() {
@@ -95,10 +94,17 @@ public void enable() {
  public void immunize() {
 	 isImmune = true;
  }
- public void deImmunize() {
+ public void setText(String text) {
+	this.text = text;
+}
+
+public void setIndex(int index) {
+	this.index = index;
+}
+
+public void deImmunize() {
 	 isImmune = false;
  }
-
 
 public static Territory isTerritory(int row2, int col2) {
 	    
@@ -121,7 +127,15 @@ public Color getColor() {
 	return color;
 }
 
-
+public String getText() {
+	// TODO Auto-generated method stub
+	return text;
+}
+ 
+public int getIndex() {
+	// TODO Auto-generated method stub
+	return index;
+}
 
  
 }
