@@ -16,7 +16,11 @@ public class ReinforcementCardService {
 	}
 	
 	public void reinforce(Die die, Territory territory) {
-		int faceVal = die.generateNum();
+		//observer için değiştirdim
+		die.roll();
+		int faceVal = die.getDiceValue();
+		////////////
+		//int faceVal = die.generateNum();
 		for(int i = 0; i < faceVal; i++) {
 			Infantry infantry = new Infantry();
 			territory.getArmyList().add(infantry);

@@ -17,7 +17,11 @@ public class WorldEventCardService {
 		territory = new Territory();
 	}
 	public void worldEvent(Territory territory, Die die, ArrayList<Player> playerList) {
-		int faceValue = die.generateNum();
+		//observer için değiştirdim
+		die.roll();
+		int faceValue = die.getDiceValue();
+		////////
+		//int faceValue = die.generateNum();
 		
 		if (faceValue <= 2 || faceValue == 5) { //addarmy()
 			for(int i = 0; i < playerList.size(); i++) {

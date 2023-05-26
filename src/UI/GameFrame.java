@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 import domain.Army;
+import domain.Board;
 import domain.ConKUeror;
 import domain.Continent;
 import domain.Die;
@@ -20,6 +21,7 @@ import domain.Map;
 import domain.Player;
 import domain.Territory;
 import domain.TerritoryCard;
+import domain.controller.conKUerorHandler;
 
 public class GameFrame extends JFrame {
 
@@ -29,8 +31,17 @@ public class GameFrame extends JFrame {
 
 	public static void main(String[] args) {
 
+		//observer için ekledim
+		Board board = new Board();
+		conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
+		//////////
+		
 		GameFrame frame = new GameFrame();
-		InitSharing sharing = new InitSharing();
+		
+		//observer için ekledim
+		InitSharing sharing = new InitSharing(conKUerorHandler);
+		//////////
+	
 		PlayingMode play = new PlayingMode();
 		HelpScreen help = new HelpScreen();
 		BuildingMode bmode = new BuildingMode();

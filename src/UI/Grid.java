@@ -122,7 +122,7 @@ public class Grid extends JPanel implements MouseListener {
 				repaint();
 
 			 Territory territoryIs = Territory.isTerritory(row, col);
-				index = territoryIs.getIndex();
+//				index = territoryIs.getIndex();
 				//System.out.println("index" + index);
 				if (territoryIs != null) {
 					territoryIs.setEnabled(false);
