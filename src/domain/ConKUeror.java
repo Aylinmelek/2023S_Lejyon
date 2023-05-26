@@ -37,11 +37,11 @@ public class ConKUeror {
 				}
 
 			} else {
-				System.out.println("Can not attack");
+				System.out.println("Player doesn't own TerritoryFrom or it is not adjacent to TerritoryTo");
 			}
 
 		} else {
-			System.out.println("Can not attack");
+			System.out.println("There is a power imbalance between Territories");
 		}
 
 	}
@@ -58,11 +58,12 @@ public class ConKUeror {
 					player.fortifying(territoryFrom, territoryTo, territoryFrom.getArmyList().get(index));
 				}
 			} else {
-				System.out.println("Can not fortify");
+				System.out.println(
+						"Player doesn't own TerritoryTo or TerritoryFrom or it is not adjacent to TerritoryTo");
 			}
 
 		} else {
-			System.out.println("Can not fortify");
+			System.out.println("The territory has not this much army");
 		}
 
 	}
@@ -70,28 +71,27 @@ public class ConKUeror {
 	public void initialSharingOfTerritory(ArrayList<Player> playerList, Map map) {
 		boolean workUntil = true;
 		boolean allTrue = false;
-		while(workUntil) {
-			if(!allTrue) {
-				//System.out.println(playerList.size());
-				for(int i = 0; i < playerList.size(); i++) {
-				//	System.out.println(grid.getRow());
-					//playerList.get(i).chooseATerritory();
-							/UI da seçtiği territoryi buraya parametre olarak yolluyoruz/ 
+		while (workUntil) {
+			if (!allTrue) {
+				// System.out.println(playerList.size());
+				for (int i = 0; i < playerList.size(); i++) {
+					// System.out.println(grid.getRow());
+					// playerList.get(i).chooseATerritory();
+					// UI da seçtiği territoryi buraya parametre olarak yolluyoruz/
 					System.out.println(playerList.get(i) + " will choose a territory.");
 					map.getTerritories().get(i).isTaken = true;
 					allTrue = true;
-					for (Territory territory: map.territories) {
-					    if (!territory.isTaken) {
-					        allTrue = false;
-					        break;
-					    }
+					for (Territory territory : map.territories) {
+						if (!territory.isTaken) {
+							allTrue = false;
+							break;
+						}
 					}
 				}
-			}
-			else {
+			} else {
 				workUntil = false;
 			}
 		}
-		
+
 	}
 }

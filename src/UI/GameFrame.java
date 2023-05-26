@@ -94,7 +94,7 @@ public class GameFrame extends JFrame {
 				txtrYour.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
 				txtrYour.setForeground(Color.LIGHT_GRAY);
 				txtrYour.setBackground(Color.DARK_GRAY);
-				txtrYour.setText("You have " + bmode.armyNum() + " Infantry.");
+				txtrYour.setText("You have " + bmode.addPlayers() + " Infantry.");
 				txtrYour.setBounds(350, 450, 822, 263);
 				sharing.add(txtrYour);
 				init = true;
@@ -132,7 +132,6 @@ public class GameFrame extends JFrame {
 				login.btnHelp.setVisible(true);
 				// btnResume.setVisible(true);
 				start = true;
-
 			}
 		});
 
