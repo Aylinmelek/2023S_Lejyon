@@ -21,6 +21,7 @@ public class PlayingMode extends JLayeredPane {
     JButton btnSkip = new JButton("SKIP/END TURN");
     
     JLabel dieLabel = new JLabel();
+    
     Die die = new Die();
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
@@ -120,6 +121,7 @@ public class PlayingMode extends JLayeredPane {
 	     btnTer.setBounds(27, 437, 118, 30);
 	     add(btnTer);
 	     System.out.println("added button territory");
+	     
      
      
 	     btnArmy.addActionListener(new ActionListener() {
