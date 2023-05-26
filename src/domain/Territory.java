@@ -74,7 +74,7 @@ public void setAdjacentTerritories(ArrayList<Territory> adjacentTerritories) {
 	this.adjacentTerritories = adjacentTerritories;
 }
 int row,col=0;
-private boolean isImmune;
+
 
  public Player getOwner() {
 	return owner;
@@ -138,16 +138,6 @@ public void setEnabled(boolean isEnabled) {
 
 public Color getColor() {
 	return color;
-}
-
-public String getText() {
-	// TODO Auto-generated method stub
-	return text;
-}
- 
-public int getIndex() {
-	// TODO Auto-generated method stub
-	return index;
 }
 
  
