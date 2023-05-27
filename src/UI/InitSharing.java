@@ -23,7 +23,7 @@ import domain.Die;
 import domain.Player;
 import domain.Territory;
 
-import domain.controller.conKUerorHandler;
+import domain.controller.ConKUerorHandler;
 
 
 
@@ -59,11 +59,11 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
     //observer için ekledim
-    private conKUerorHandler conKUerorHandler;
+    private ConKUerorHandler conKUerorHandler;
 	public Board board;
 	//////////
       
-    public InitSharing(conKUerorHandler conKUerorHandler) {
+    public InitSharing(ConKUerorHandler conKUerorHandler) {
     	super();
 		initialize();
 		displayDie(0);

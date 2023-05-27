@@ -22,7 +22,7 @@ import domain.Map;
 import domain.Player;
 import domain.Territory;
 import domain.TerritoryCard;
-import domain.controller.conKUerorHandler;
+import domain.controller.ConKUerorHandler;
 import domain.ConKUeror;
 import java.util.Hashtable;
 
@@ -38,7 +38,7 @@ public class GameFrame extends JFrame {
 		//observer için ekledim
 		//ConKUeror conKUeror = new ConKUeror();
 		Board board = new Board();
-		conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
+		ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
 		//////////
 		
 		GameFrame frame = new GameFrame();

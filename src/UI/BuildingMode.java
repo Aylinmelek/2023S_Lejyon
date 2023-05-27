@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import domain.Board;
 import domain.ConKUeror;
 import domain.Player;
-import domain.controller.conKUerorHandler;
+import domain.controller.ConKUerorHandler;
 
 public class BuildingMode extends JLayeredPane {
 	JTextArea txtrGameOptions = new JTextArea();
@@ -30,13 +30,13 @@ public class BuildingMode extends JLayeredPane {
     
     
     //observer için ekledim
-    Board board = new Board();
-    conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
+   // Board board = new Board();
+    //ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
     
-    InitSharing initSharing = new InitSharing(conKUerorHandler);
+    //InitSharing initSharing = new InitSharing(conKUerorHandler);
     ////////////
     
-    ConKUeror conku = new ConKUeror();
+    //ConKUeror conku = new ConKUeror();
 
     int players,comp;
     int totalPlayers=0;

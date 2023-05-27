@@ -6,11 +6,11 @@ import javax.swing.JLabel;
 import domain.Board;
 import domain.Die;
 
-public class conKUerorHandler {
+public class ConKUerorHandler {
 	
 private Board board;
 	
-	public conKUerorHandler(Board board) {
+	public ConKUerorHandler(Board board) {
 		this.board = board;
 	}
 	

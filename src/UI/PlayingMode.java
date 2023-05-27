@@ -12,7 +12,7 @@ import javax.swing.JLayeredPane;
 
 import domain.Board;
 import domain.Die;
-import domain.controller.conKUerorHandler;
+import domain.controller.ConKUerorHandler;
 
 public class PlayingMode extends JLayeredPane {
 	
@@ -29,10 +29,10 @@ public class PlayingMode extends JLayeredPane {
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
  
     //observer için ekledim
-    Board board = new Board();
-    conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
+    Board board_play = new Board();
+    //ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
     
-    InitSharing initSharing = new InitSharing(conKUerorHandler);
+    //InitSharing initSharing = new InitSharing(conKUerorHandler);
     ////////////
     
     
@@ -64,7 +64,7 @@ public class PlayingMode extends JLayeredPane {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
             	//observer için ekledim
-                int dieDisplayed = board.getDiceValue();
+                int dieDisplayed = board_play.getDiceValue();
                 //////
                 		//die.generateNum();
                 switch (dieDisplayed) {
@@ -94,7 +94,7 @@ public class PlayingMode extends JLayeredPane {
                 }
             }
             //observer için ekledim
-            int finalDieDisplayed = board.getDiceValue();
+            int finalDieDisplayed = board_play.getDiceValue();
             ///
             		//die.generateNum();
             switch (finalDieDisplayed) {
