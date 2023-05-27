@@ -24,9 +24,8 @@ public class BuildingMode extends JLayeredPane {
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();
     JButton btnNext = new JButton("Next");
-    PlayingMode playingMode = new PlayingMode();
-    LoginScreen loginScreen = new LoginScreen();
-
+    
+    Grid grid = new Grid();
     
     
     //observer için ekledim
@@ -59,6 +58,7 @@ public class BuildingMode extends JLayeredPane {
 
 
 	public void initialize()  {
+		
 		setBounds(0, 54, 873, 451);
 	    setBackground(Color.DARK_GRAY);
 	    

@@ -35,7 +35,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     JButton btnSkip = new JButton("SKIP ATTACK");
     TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
-    Grid grid = new Grid();
+    
     Die die = new Die();
     int dieDisplayed,finalDieDisplayed;
     int dieNumber;
@@ -84,6 +84,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 	public void initialize() {
         setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);
+        //add(grid);
         setLayout(null);
     }
     
@@ -185,6 +186,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     System.out.println("highest die val: " + max_die);
                     System.out.println("player_list high index: " + ind);
                     System.out.println("highest die rolling player: " + max_player);
+                    max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
                     
                 }
                 

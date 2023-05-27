@@ -52,7 +52,7 @@ public class PlayingMode extends JLayeredPane {
 	public PlayingMode() {
 		super();
 		initialize();
-		addElements();
+		//addElements();
 	}
 	
 	
@@ -60,6 +60,7 @@ public class PlayingMode extends JLayeredPane {
 	public void initialize() {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
+		
 		setLayout(null);
 	}
 	public void displayDie() {
@@ -125,7 +126,7 @@ public class PlayingMode extends JLayeredPane {
     }
     
 	public void addElements() {
-		System.out.println("add elements");
+		
 	     btnTer.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
 	     		territoryCard.setVisible(true);

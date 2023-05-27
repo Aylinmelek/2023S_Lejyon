@@ -31,6 +31,7 @@ public class Grid extends JPanel implements MouseListener {
 	Color blue = new Color(0, 0, 155);
 
 	public Grid() {
+		
 		this.gridColors = new Color[ROWS][COLUMNS];
 		this.gridText = new String[ROWS][COLUMNS];
 

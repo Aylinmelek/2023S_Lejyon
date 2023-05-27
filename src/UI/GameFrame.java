@@ -167,7 +167,7 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				String action = e.getActionCommand();
-
+				play.addElements();
 				frame.setLayeredPane(play);
 				frame.revalidate();
 				// grid.setVisible(true);
