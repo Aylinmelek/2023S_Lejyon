@@ -27,9 +27,11 @@ public class PlayingMode extends JLayeredPane {
     Die die = new Die();
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
+    int dieDisplayed,finalDieDisplayed;
+    int dieNumber;
  
     //observer için ekledim
-    Board board_play = new Board();
+    //Board board_play = new Board();
     //ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
     
     //InitSharing initSharing = new InitSharing(conKUerorHandler);
@@ -64,7 +66,8 @@ public class PlayingMode extends JLayeredPane {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
             	//observer için ekledim
-                int dieDisplayed = board_play.getDiceValue();
+            	die.roll();
+                dieDisplayed = die.getDiceValue();
                 //////
                 		//die.generateNum();
                 switch (dieDisplayed) {
@@ -94,7 +97,7 @@ public class PlayingMode extends JLayeredPane {
                 }
             }
             //observer için ekledim
-            int finalDieDisplayed = board_play.getDiceValue();
+            finalDieDisplayed = dieNumber;
             ///
             		//die.generateNum();
             switch (finalDieDisplayed) {
