@@ -118,10 +118,10 @@ public class BuildingMode extends JLayeredPane {
 		
 	
 	    players = (int) numPlayers.getSelectedItem(); 
-		System.out.println(players); 
+		//System.out.println(players); 
 		
 		comp = (int) numComp.getSelectedItem();
-		System.out.println(comp); 
+		//System.out.println(comp); 
 		
 		
 	

@@ -31,12 +31,12 @@ public class GameFrame extends JFrame {
 	static boolean start;
 	private static final long serialVersionUID = 1L;
 	static boolean init, build, playMode, loginMode = false;
-	public static Player max_player;
+	
 
 	public static void main(String[] args) {
 
 		//observer için ekledim
-		ConKUeror conKUeror = new ConKUeror();
+		//ConKUeror conKUeror = new ConKUeror();
 		Board board = new Board();
 		conKUerorHandler conKUerorHandler = new conKUerorHandler(board);
 		//////////
@@ -94,7 +94,7 @@ public class GameFrame extends JFrame {
 				init = true;
 				build = false;
 
-				int totalpeople = conKUeror.addToPlayerTurnHash(bmode);
+				int totalpeople = sharing.conKUeror.addToPlayerTurnHash(bmode);
 				
 				sharing.numPlay = totalpeople;
 				sharing.addElements();
@@ -112,15 +112,19 @@ public class GameFrame extends JFrame {
 				dispInfant.setBackground(Color.DARK_GRAY);
 				dispInfant.setText("You have " + bmode.addPlayers() + " Infantry.");
 				dispInfant.setEditable(false);
-				for (int i=0; i<conKUeror.playerList.size(); i++ ) {
-					conKUeror.playerList.get(i).setNumOfInfantry(bmode.addPlayers());
+				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
+					sharing.conKUeror.playerList.get(i).setNumOfInfantry(bmode.addPlayers());
 				}
+				/*
+				if (!sharing.btnRoll.isEnabled()){
+					max_player = conKUeror.playerList.get(conKUeror.die.getHigh_index());
+					System.out.println("----------------");
+					System.out.println(conKUeror.die.high_index);
+					System.out.println(max_player);
+				}*/
 				
-				//max_player = conKUeror.playerList.get(conKUeror.die.high_index);
-				//System.out.println("----------------");
-				//System.out.println(conKUeror.die.high_index);
+				//max_player = sharing.conKUeror.playerList.get(sharing.getInd());
 				//System.out.println(max_player);
-				
 				dispInfant.setBounds(350, 450, 822, 263);
 				sharing.add(dispInfant);
 				
@@ -169,8 +173,7 @@ public class GameFrame extends JFrame {
 				// grid.setVisible(true);
 				grid.setBounds(19, 69, 850, 350);
 				play.add(grid);
-				playMode = true;
-				init = false;
+				
 				
 
 			}

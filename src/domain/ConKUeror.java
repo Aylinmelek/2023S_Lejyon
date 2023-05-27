@@ -106,6 +106,7 @@ public class ConKUeror {
 		for (int i=0; i<bmode.getPlayerNum(); i++) {
 			Player player = new Player();
 			playerList.add(player);
+			System.out.println(player);
 			//player.setNumOfInfantry();
 			player_turn.put(player, player.turn);
 				

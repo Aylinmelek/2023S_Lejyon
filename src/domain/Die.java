@@ -13,7 +13,8 @@ public class Die {
 	private static final int MAXVALUE=6;
 	private int dice1;
 	private int dice2;
-	public int high_index;
+	//public int high_index;
+	
 	Random rand;
 	
 	
@@ -41,20 +42,29 @@ public class Die {
         for(int number : arrlist) {
             if(number > highest) {
                 highest = number;  // Update the highest number
-                setHigh_index(arrlist.indexOf(highest));
+                
                
             }
         }
         
 		return highest;
 	}
-	public int getHigh_index() {
+	
+	
+	public int calcHighIndex(ArrayList<Integer> arrlist) {
+		int highest = arrlist.get(0);  // Assume first element is the highest
+		int high_index = 0;
+        for(int number : arrlist) {
+            if(number > highest) {
+                highest = number;  // Update the highest number
+                high_index = (arrlist.indexOf(highest));
+               
+            }
+        }
+        
 		return high_index;
 	}
 
-	public void setHigh_index(int high_index) {
-		this.high_index = high_index;
-	}
 
 	public void getFaceValue() {
 		

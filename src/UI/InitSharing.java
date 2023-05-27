@@ -18,7 +18,9 @@ import javax.swing.JTextArea;
 
 import domain.Board;
 import domain.BoardListener;
+import domain.ConKUeror;
 import domain.Die;
+import domain.Player;
 import domain.Territory;
 
 import domain.controller.conKUerorHandler;
@@ -40,6 +42,10 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     int clickCount;
     public int numPlay;
     int max_die;
+    int ind;
+    public boolean isButton;
+    ConKUeror conKUeror = new ConKUeror();
+    public Player max_player;
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
@@ -54,7 +60,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 
     //observer için ekledim
     private conKUerorHandler conKUerorHandler;
-	private Board board;
+	public Board board;
 	//////////
       
     public InitSharing(conKUerorHandler conKUerorHandler) {
@@ -174,7 +180,12 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 if (clickCount >= numPlay) {
                     btnRoll.setEnabled(false);// Disable the button
                     max_die = die.calculateHighest(die.dice);
-                    System.out.println(max_die);
+                    ind = die.calcHighIndex(die.dice);
+                    max_player = conKUeror.playerList.get(ind);
+                    System.out.println("highest die val: " + max_die);
+                    System.out.println("player_list high index: " + ind);
+                    System.out.println("highest die rolling player: " + max_player);
+                    
                 }
                 
                 /////////////
@@ -191,6 +202,14 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         add(btnStartGame);
         
     }
+
+	public int getInd() {
+		return ind;
+	}
+
+	public void setInd(int ind) {
+		this.ind = ind;
+	}
 
 	@Override
 	public void onBoardEvent(String msg) {
