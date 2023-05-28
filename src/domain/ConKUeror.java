@@ -5,6 +5,7 @@ import java.util.Hashtable;
 
 import UI.BuildingMode;
 import UI.Grid;
+import UI.LoginScreen;
 
 public class ConKUeror {
 
@@ -102,8 +103,8 @@ public class ConKUeror {
 
 	}
 	
-	public int addToPlayerTurnHash(BuildingMode bmode) {
-		for (int i=0; i<bmode.getPlayerNum(); i++) {
+	public int addToPlayerTurnHash(LoginScreen loginScreen) {
+		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
 			Player player = new Player();
 			playerList.add(player);
 			System.out.println(player);

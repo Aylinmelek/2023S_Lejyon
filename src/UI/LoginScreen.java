@@ -31,6 +31,7 @@ public class LoginScreen extends JLayeredPane{
     JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();
+    JPanel playersPanel = new JPanel();
 
     int players,comp;
     int totalPlayers=0;
@@ -101,7 +102,7 @@ public class LoginScreen extends JLayeredPane{
         numComp.setBackground(Color.LIGHT_GRAY);
         add(numComp);
         
-        txtUsername.setBounds(360, 350, 163, 23);
+        txtUsername.setBounds(660, 350, 163, 23);
         txtUsername.setText("Enter Username");
         txtUsername.setForeground(Color.LIGHT_GRAY);
         txtUsername.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
@@ -110,7 +111,7 @@ public class LoginScreen extends JLayeredPane{
         add(txtUsername);
         
         
-        username.setBounds(341, 374, 171, 30);
+        username.setBounds(641, 374, 171, 30);
         username.setHorizontalAlignment(SwingConstants.LEFT);
         username.setForeground(Color.BLACK);
         username.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
@@ -118,7 +119,7 @@ public class LoginScreen extends JLayeredPane{
         username.setBackground(Color.WHITE);
         add(username);
         
-        txtPassword.setBounds(360, 430, 163, 23);
+        txtPassword.setBounds(660, 430, 163, 23);
         txtPassword.setText("Enter Password");
         txtPassword.setForeground(Color.LIGHT_GRAY);
         txtPassword.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
@@ -127,7 +128,7 @@ public class LoginScreen extends JLayeredPane{
         add(txtPassword);
         
 
-        password.setBounds(341, 454, 171, 30);
+        password.setBounds(641, 454, 171, 30);
         password.setHorizontalAlignment(SwingConstants.LEFT);
         password.setForeground(Color.BLACK);
         password.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
@@ -135,53 +136,22 @@ public class LoginScreen extends JLayeredPane{
         password.setBackground(Color.WHITE);
         add(password);
         
-        btnLogin.setBounds(373, 518, 100, 30);
+        btnLogin.setBounds(673, 518, 100, 30);
         btnLogin.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnLogin);
-        /*btnLogin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Toggle the visibility of the panels
-            	String action=e.getActionCommand();
-            	startScreen.setVisible(!startScreen.isVisible());
-            	if ("Start".equals(action)) {
-            		layeredPane.add(buildingMode, Integer.valueOf(1));
-            		buildingMode.setVisible(true);
-            		startScreen.setVisible(false);
-            		//startScreen.removeAll();
-            		//btnStart.setVisible(false);
-            		btnBack.setVisible(false);
-            		start=true;
-            		btnLogin.setVisible(false);
-            		//gridPanel.setVisible(true);
-            		gridPanel_1.setVisible(true);
-         
-            	
-            	} 
-            }
-        });*/
-	
-    
+        
+        btnHelp.setBounds(729, 13, 117, 29);
+        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
         add(btnHelp);
         
-       /* btnHelp.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		 
-        		String action=e.getActionCommand();
-            	//startScreen.setVisible(false);
-            	if ("Help".equals(action)) {
-            		
-            		//layeredPane.add(helpScreen);
-            		helpScreen.setVisible(true);
-            		btnHelp.setVisible(false);
-            		btnStart.setVisible(false);
-            		btnBack.setVisible(true);
-            		System.out.println("hata");
-            	}
-            	
-        	}
-        });*/
-        btnHelp.setBounds(729, 13, 117, 29);
-        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));         
+        playersPanel.setBounds(623, 118, 200, 200);
+		playersPanel.setBackground(Color.WHITE);
+		//add(playersPanel);
+		
+		txtnumPlayers.getText();
+		
+		
+        
     }
 	
 	public int getPlayerNum() {  
@@ -189,8 +159,6 @@ public class LoginScreen extends JLayeredPane{
 	    players = (int) numPlayers.getSelectedItem(); 		
 		comp = (int) numComp.getSelectedItem();
 		totalPlayers = players + comp;
-		
-		
 		return totalPlayers;
 	}
 	
