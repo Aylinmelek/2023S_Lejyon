@@ -180,6 +180,7 @@ public class GameFrame extends JFrame {
 			     	}
 			     	
 			     }
+			
 			     );
 				play.btnTer.setBounds(27, 437, 118, 30);
 			    play.add(play.btnTer);

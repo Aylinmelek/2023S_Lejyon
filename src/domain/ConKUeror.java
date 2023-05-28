@@ -9,7 +9,7 @@ import UI.LoginScreen;
 
 public class ConKUeror {
 
-	public ArrayList<Player> playerList = new ArrayList<Player>();
+	public ArrayList<Player> playerList = new ArrayList<Player>(); 
 	
 	
 

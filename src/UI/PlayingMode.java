@@ -170,6 +170,7 @@ public class PlayingMode extends JLayeredPane {
 	            public void actionPerformed(ActionEvent e) {
 	            	//kimin turnü oldugu yazsın atarken
 	                displayDie();
+	                
 	            }
 	        });
 	        

@@ -125,7 +125,7 @@ public class Grid extends JPanel implements MouseListener {
 					
 				}
 				index = terr.getIndex();
-			}
+			} 
 
 			else {
 				System.out.println("choose again.");

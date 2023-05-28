@@ -22,6 +22,7 @@ public class Die {
 	public Die() {
 		rand = new Random();
 	}
+	
 	///////////////
 	
 	/*public int generateNum() {

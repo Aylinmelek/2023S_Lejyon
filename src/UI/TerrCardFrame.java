@@ -55,6 +55,7 @@ public class TerrCardFrame extends JFrame {
         getContentPane().revalidate();
         getContentPane().repaint();
         
+        
     }
    
   
