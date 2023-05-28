@@ -138,6 +138,7 @@ public class Territory {
 
 	public void setLink(Territory territory) {
 		this.getAdjacentTerritories().add(territory);
+		territory.getAdjacentTerritories().add(this);
 	}
 
 }
