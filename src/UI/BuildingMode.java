@@ -21,10 +21,10 @@ import domain.controller.ConKUerorHandler;
 
 public class BuildingMode extends JLayeredPane{
 	JTextArea txtrGameOptions = new JTextArea();
-    JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
+    /*JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
-    JTextArea txtnumComp = new JTextArea();
+    JTextArea txtnumComp = new JTextArea();*/
     JButton btnNext = new JButton("Next");
     
     Grid grid = new Grid();
@@ -40,7 +40,7 @@ public class BuildingMode extends JLayeredPane{
     
     //ConKUeror conku = new ConKUeror();
 
-    int players,comp;
+    /*int players,comp;
     int totalPlayers=0;
     int numOfInfant;
     
@@ -49,7 +49,7 @@ public class BuildingMode extends JLayeredPane{
     //ai player olucak class ı ? 
     ArrayList<Player> compPlayerArray = new ArrayList<Player>(); 
 
-   
+   */
     
 
 	public BuildingMode() {
@@ -83,7 +83,7 @@ public class BuildingMode extends JLayeredPane{
         txtrGameOptions.setBackground(Color.DARK_GRAY);
         add(txtrGameOptions);
         
-        txtnumPlayers.setBounds(220, 450, 217, 32);
+       /* txtnumPlayers.setBounds(220, 450, 217, 32);
         txtnumPlayers.setText("Number of players (2-6):");
         txtnumPlayers.setForeground(Color.LIGHT_GRAY);
         txtnumPlayers.setFont(new Font("Kokonor", Font.PLAIN, 19));
@@ -111,7 +111,7 @@ public class BuildingMode extends JLayeredPane{
         numComp.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3, 4, 5, 6}));
         numComp.setMaximumRowCount(6);
         numComp.setBackground(Color.LIGHT_GRAY);
-        add(numComp);
+        add(numComp);*/
         
         
 
@@ -119,7 +119,7 @@ public class BuildingMode extends JLayeredPane{
         add(btnNext);
         
 	}
-	
+	/*
 
 	public int getPlayerNum() {  
 	
@@ -156,7 +156,7 @@ public class BuildingMode extends JLayeredPane{
 			return numOfInfant;
 	
 		}
-	
+	*/
 	/*public void mouseClicked(MouseEvent e) {
 		
 		row = e.getY() / Grid.CELL_SIZE;

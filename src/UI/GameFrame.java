@@ -64,6 +64,7 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
+				int totalpeople = sharing.conKUeror.addToPlayerTurnHash(login);
 				
 				//bmode.add(grid);
 				build = true;
@@ -99,12 +100,12 @@ public class GameFrame extends JFrame {
 				init = true;
 				build = false;
 
-				int totalpeople = sharing.conKUeror.addToPlayerTurnHash(bmode);
 				
-				sharing.numPlay = totalpeople;
+				
+				sharing.numPlay = login.getPlayerNum();
 				sharing.addElements();
 				
-				System.out.println("buildmode da size" + totalpeople);
+				//System.out.println("buildmode da size" + totalpeople);
 
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
@@ -115,10 +116,10 @@ public class GameFrame extends JFrame {
 				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
 				dispInfant.setForeground(Color.LIGHT_GRAY);
 				dispInfant.setBackground(Color.DARK_GRAY);
-				dispInfant.setText("You have " + bmode.addPlayers(bmode.getPlayerNum()) + " Infantry.");
+				dispInfant.setText("You have " + login.addPlayers(login.getPlayerNum()) + " Infantry.");
 				dispInfant.setEditable(false);
 				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
-					sharing.conKUeror.playerList.get(i).setNumOfInfantry(bmode.addPlayers(bmode.getPlayerNum()));
+					sharing.conKUeror.playerList.get(i).setNumOfInfantry(login.addPlayers(login.getPlayerNum()));
 				}
 				/*
 				if (!sharing.btnRoll.isEnabled()){
