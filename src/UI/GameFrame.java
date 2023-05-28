@@ -173,6 +173,17 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				String action = e.getActionCommand();
+				play.btnTer.addActionListener(new ActionListener() {
+			     	public void actionPerformed(ActionEvent e) {
+			     		bmode.grid.terCard.setVisible(true);
+			
+			     	}
+			     	
+			     }
+			
+			     );
+				play.btnTer.setBounds(27, 437, 118, 30);
+			    play.add(play.btnTer);
 				play.addElements();
 				frame.setLayeredPane(play);
 				frame.revalidate();

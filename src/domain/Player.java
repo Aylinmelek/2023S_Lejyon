@@ -232,6 +232,7 @@ public class Player {
 		else if(artilleryList.size() >= 1 ) {
 			artilleryList.remove(-1);
 		} */
+		
 	}
 
 

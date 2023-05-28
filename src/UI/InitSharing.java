@@ -197,7 +197,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                     }
                     
-                    
+              
                     
                     
                 }
@@ -213,7 +213,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         btnRoll.setBounds(30, 450, 117, 76);
         add(btnRoll);
         add(dieLabel);
-        add(btnStartGame);
+        add(btnStartGame); 
         
     }
 

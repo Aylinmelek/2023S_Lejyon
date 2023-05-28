@@ -27,7 +27,7 @@ public class BuildingMode extends JLayeredPane{
     JTextArea txtnumComp = new JTextArea();*/
     JButton btnNext = new JButton("Next");
     
-    Grid grid = new Grid();
+    Grid grid = new Grid(); 
     int row = grid.row;
 	int col = grid.col;
     
