@@ -18,7 +18,7 @@ public class AI {
             while (!findNotTakenTer(terIndex)) {
                 terIndex = generateNum(map.getTerritories().size());
             }
-            playerAI.chooseATerritory(map.getTerritory(terIndex, terIndex));
+            playerAI.chooseATerritory(map.getTerritories().get(terIndex));
 
         }
     }
@@ -69,7 +69,7 @@ public class AI {
                 fromIndex = generateNum(playerAI.getTerritoryList().size());
                 destIndex = generateNum(playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().size());
             }
-            int armyCount = generateNum(dplayerAI.getTerritoryList().get(fromIndex).getArmyList().size());
+            int armyCount = generateNum(playerAI.getTerritoryList().get(fromIndex).getArmyList().size());
             conkueror.fortify(playerAI, playerAI.getTerritoryList().get(fromIndex),
                     playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().get(destIndex), armyCount);
         }
