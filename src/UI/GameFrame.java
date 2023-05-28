@@ -51,7 +51,7 @@ public class GameFrame extends JFrame {
 		HelpScreen help = new HelpScreen();
 		BuildingMode bmode = new BuildingMode();
 		LoginScreen login = new LoginScreen();
-		Grid grid = new Grid();
+		//Grid grid = new Grid();
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
 		frame.setBackground(Color.DARK_GRAY);
@@ -64,8 +64,8 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
-				grid.setBounds(19, 69, 850, 350);
-				bmode.add(grid);
+				
+				//bmode.add(grid);
 				build = true;
 				
 
@@ -87,7 +87,12 @@ public class GameFrame extends JFrame {
 
 			}
 		});
-
+		/*bmode.btnNext.setEnabled(false);
+		if (bmode.addPlayers(bmode.getPlayerNum()) >= 20 && bmode.addPlayers(bmode.getPlayerNum()) <= 40) {
+			bmode.btnNext.setEnabled(true);
+			bmode.addPlayers(bmode.getPlayerNum());
+			
+		}*/
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String action = e.getActionCommand();
@@ -104,16 +109,16 @@ public class GameFrame extends JFrame {
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
 
-				sharing.add(grid);
-				bmode.addPlayers();
+				sharing.add(bmode.grid);
+				//bmode.addPlayers(bmode.getPlayerNum());
 				JTextArea dispInfant = new JTextArea();
 				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
 				dispInfant.setForeground(Color.LIGHT_GRAY);
 				dispInfant.setBackground(Color.DARK_GRAY);
-				dispInfant.setText("You have " + bmode.addPlayers() + " Infantry.");
+				dispInfant.setText("You have " + bmode.addPlayers(bmode.getPlayerNum()) + " Infantry.");
 				dispInfant.setEditable(false);
 				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
-					sharing.conKUeror.playerList.get(i).setNumOfInfantry(bmode.addPlayers());
+					sharing.conKUeror.playerList.get(i).setNumOfInfantry(bmode.addPlayers(bmode.getPlayerNum()));
 				}
 				/*
 				if (!sharing.btnRoll.isEnabled()){
@@ -171,8 +176,8 @@ public class GameFrame extends JFrame {
 				frame.setLayeredPane(play);
 				frame.revalidate();
 				// grid.setVisible(true);
-				grid.setBounds(19, 69, 850, 350);
-				play.add(grid);
+				//grid.setBounds(19, 69, 850, 350);
+				play.add(bmode.grid);
 				
 				
 

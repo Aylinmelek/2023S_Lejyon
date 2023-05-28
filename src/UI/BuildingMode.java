@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -17,7 +19,7 @@ import domain.ConKUeror;
 import domain.Player;
 import domain.controller.ConKUerorHandler;
 
-public class BuildingMode extends JLayeredPane {
+public class BuildingMode extends JLayeredPane{
 	JTextArea txtrGameOptions = new JTextArea();
     JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
@@ -26,7 +28,8 @@ public class BuildingMode extends JLayeredPane {
     JButton btnNext = new JButton("Next");
     
     Grid grid = new Grid();
-    
+    int row = grid.row;
+	int col = grid.col;
     
     //observer için ekledim
    // Board board = new Board();
@@ -47,12 +50,14 @@ public class BuildingMode extends JLayeredPane {
     ArrayList<Player> compPlayerArray = new ArrayList<Player>(); 
 
    
+    
 
 	public BuildingMode() {
 		super();
 		initialize();
 		addElements();
-		//addPlayers();
+		//grid.addMouseListener(this);
+	
 		
 	}
 
@@ -61,8 +66,10 @@ public class BuildingMode extends JLayeredPane {
 		
 		setBounds(0, 54, 873, 451);
 	    setBackground(Color.DARK_GRAY);
-	    
 	    setLayout(null);
+	    grid.setBounds(19, 69, 850, 350);
+	    add(grid);
+		grid.setVisible(true);
 	}
 	
 	
@@ -113,55 +120,7 @@ public class BuildingMode extends JLayeredPane {
         
 	}
 	
-	
-	public int addPlayers() {  
-		
-	
-	    players = (int) numPlayers.getSelectedItem(); 
-		//System.out.println(players); 
-		
-		comp = (int) numComp.getSelectedItem();
-		//System.out.println(comp); 
-		
-		
-	
-		for (int i=0; i<players; i++) {
 
-			//System.out.println("in loop");
-			//GameFrame.player_turn.put(new Player(), false); 
-		}
-		
-		for (int i= players; i<(totalPlayers); i++) {
-			//conku.player_turn.put(new Player(), false);
-
-		}
-		//System.out.println("buildmode da size" + conku.player_turn.size());
-		totalPlayers = players + comp;
-		
-		
-		for (int i=0; i<totalPlayers; i++) {
-			if (totalPlayers == 2) {
-				numOfInfant = 40;
-			}
-		    if (totalPlayers == 3) {
-				numOfInfant = 35;
-			}
-			if (totalPlayers == 4) {
-				numOfInfant = 30;
-			}
-			if (totalPlayers == 5) {
-				numOfInfant = 25;
-			}
-			if (totalPlayers == 6) {
-				numOfInfant = 20;
-		}
-	
-		
-	}
-		return numOfInfant;
-
-	}
-	
 	public int getPlayerNum() {  
 	
 	    players = (int) numPlayers.getSelectedItem(); 		
@@ -169,8 +128,56 @@ public class BuildingMode extends JLayeredPane {
 		totalPlayers = players + comp;
 		
 		
-		
 		return totalPlayers;
 	}
+	
+	public int addPlayers(int total) {  
+			for (int i=0; i<total; i++) {
+				if (total == 2) {
+					numOfInfant = 40;
+				}
+				else if (total == 3) {
+					numOfInfant = 35;
+				}
+				else if (total == 4) {
+					numOfInfant = 30;
+				}
+				else if (total == 5) {
+					numOfInfant = 25;
+				}
+				else if (total == 6) {
+					numOfInfant = 20;
+				}
+				else {
+					numOfInfant = -1;
+					System.out.println("choose again");
+				}
+		}
+			return numOfInfant;
+	
+		}
+	
+	/*public void mouseClicked(MouseEvent e) {
+		
+		row = e.getY() / Grid.CELL_SIZE;
+		col = e.getX() / Grid.CELL_SIZE;
+		// if (GameFrame.build) {
+		System.out.println(row + col);
+		if (grid.gridColors[row][col] != grid.blue) {
+			grid.gridColors[row][col] = Color.GRAY;
+			repaint();
+			//index = territoryIs.getIndex();
+			//System.out.println("index" + index);
+			/*if (terr != null) {
+				terr.setEnabled(false);
+			}*/
+		//}
+	//}
+		
+		
 
+
+
+	
+	
 }

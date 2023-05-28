@@ -166,10 +166,8 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         
         btnRoll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //displayDie();
                 
                 //observer için ekledim
-            	//displayDie();
                 conKUerorHandler.rollDice();
                 dieNumber = conKUerorHandler.getDieValue();
                 displayDie(dieNumber);
@@ -186,7 +184,21 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     System.out.println("highest die val: " + max_die);
                     System.out.println("player_list high index: " + ind);
                     System.out.println("highest die rolling player: " + max_player);
-                    max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
+                    //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
+                    ArrayList<Player> players = conKUeror.playerList;
+                   
+                  
+                    
+                    for (int i = ind; i<players.size(); i++) {
+                    	
+                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                    }
+                    for (int i = 0; i<ind; i++) {
+                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                    }
+                    
+                    
+                    
                     
                 }
                 
