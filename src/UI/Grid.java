@@ -121,6 +121,8 @@ public class Grid extends JPanel implements MouseListener {
 				if (terr != null) {
 					player.territoryList.add(terr);
 					terCard.setTerritoryCard(getColorName(terr.getColor()), terr.getText(), index, 20, 100);
+					//terCard.setVisible(true);
+					
 				}
 				index = terr.getIndex();
 			}

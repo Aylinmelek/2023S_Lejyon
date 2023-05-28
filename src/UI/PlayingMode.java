@@ -39,7 +39,7 @@ public class PlayingMode extends JLayeredPane {
     
     
 
-	TerrCardFrame territoryCard = new TerrCardFrame();
+	//TerrCardFrame territoryCard = 
 	
 	 ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
 	    ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
@@ -126,7 +126,7 @@ public class PlayingMode extends JLayeredPane {
     }
     
 	public void addElements() {
-		
+		/*
 	     btnTer.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
 	     		territoryCard.setVisible(true);
@@ -134,10 +134,10 @@ public class PlayingMode extends JLayeredPane {
 	     	}
 	     	
 	     }
-	     );
+	     );*/
 	     
-	     btnTer.setBounds(27, 437, 118, 30);
-	     add(btnTer);
+	     //btnTer.setBounds(27, 437, 118, 30); added to gameframe for cards to be visible
+	     //add(btnTer);
 	     System.out.println("added button territory");
 	     
      
