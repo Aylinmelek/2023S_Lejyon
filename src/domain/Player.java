@@ -17,10 +17,10 @@ public class Player {
 		this.numOfInfantry = numOfInfantry;
 	}
 
-	ArrayList <Infantry> infantryList = new ArrayList<Infantry>();
-	ArrayList <Artillery> artilleryList = new ArrayList<Artillery>();
-	ArrayList <Cavalry> cavalryList = new ArrayList<Cavalry>();
-	ArrayList <TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();
+	public ArrayList <Infantry> infantryList = new ArrayList<Infantry>();
+	public ArrayList <Artillery> artilleryList = new ArrayList<Artillery>();
+	public ArrayList <Cavalry> cavalryList = new ArrayList<Cavalry>();
+	public ArrayList <TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();
 	public ArrayList <Territory> territoryList = new ArrayList<Territory>();
 	public boolean turn;
 	

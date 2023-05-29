@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import domain.Infantry;
 import domain.Map;
 import domain.Player;
 import domain.Territory;
@@ -20,6 +21,8 @@ public class Grid extends JPanel implements MouseListener {
 	public Color[][] gridColors;
 	private String[][] gridText;
 	int index = 0;
+
+
 	TerrCardFrame terCard = new TerrCardFrame();
 	public Territory selectedTer;
 	//Player player = new Player();
@@ -106,6 +109,14 @@ public class Grid extends JPanel implements MouseListener {
 		return terr;
 	}
 	
+	public Territory getSelectedTer() {
+		return selectedTer;
+	}
+
+	public void setSelectedTer(Territory selectedTer) {
+		this.selectedTer = selectedTer;
+	}
+
 	public void mouseClicked(MouseEvent e) {
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
@@ -133,7 +144,55 @@ public class Grid extends JPanel implements MouseListener {
 				
 				repaint();
 				callTerr(selectedTer);
-				index = selectedTer.getIndex();}
+				index = selectedTer.getIndex();
+				
+				
+                //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
+				
+				if(!GameFrame.sharing.getButton().isEnabled()) {
+				ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
+                
+                
+                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                	Infantry inf = new Infantry();
+                	players.get(GameFrame.sharing.ind).chooseATerritory(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()));
+                	players.get(GameFrame.sharing.ind).placeArmy(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()), inf);
+                	
+                	System.out.println(players.get(GameFrame.sharing.ind).getTerritoryList().get(0));
+                	System.out.println("-------");
+                    System.out.println(GameFrame.bmode.grid.getSelectedTer());
+                	//players.get(i).chooseATerritory(null)
+                    if (GameFrame.sharing.ind==GameFrame.sharing.temp) {
+                    	GameFrame.sharing.ind=0;
+                    }
+                    else {
+                    GameFrame.sharing.ind++;
+                    }
+                    System.out.println(players.get(GameFrame.sharing.ind).getInfantryList().size());
+                    
+                
+                
+                /*
+                for (int i = 0; i<ind; i++) {
+                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                	Infantry inf2 = new Infantry();
+                	players.get(i).chooseATerritory(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()));
+                	
+                	players.get(i).placeArmy(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()), inf2);
+                    
+                    System.out.println(players.get(i).getTerritoryList().get(0));
+                    System.out.println("-------");
+                    System.out.println(GameFrame.bmode.grid.getSelectedTer());
+                }*/
+                
+                
+				}
+			
+			
+			
+			
+			
+			}
 				
 				/*if (terr != null) {
 					

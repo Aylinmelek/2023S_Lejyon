@@ -114,4 +114,14 @@ public class ConKUeror {
 		}
 		return player_turn.size();
 	}
+	
+	public void addToList(int num) {
+		for (int j=0; j<playerList.size(); j++) {
+			Infantry inf = new Infantry();
+			for (int i=0; i<num; i++) {
+				playerList.get(j).getInfantryList().add(inf);
+			}
+		}
+		
+	}
 }

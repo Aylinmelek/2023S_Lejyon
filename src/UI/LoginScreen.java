@@ -184,9 +184,12 @@ public class LoginScreen extends JLayeredPane{
 					System.out.println("choose again");
 				}
 		}
+			
+			
 			return numOfInfant;
 	
 		}
+	
 	
 	
 }

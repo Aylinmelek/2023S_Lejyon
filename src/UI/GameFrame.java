@@ -132,38 +132,13 @@ public class GameFrame extends JFrame {
 				
 				//max_player = sharing.conKUeror.playerList.get(sharing.getInd());
 				//System.out.println(max_player);
-				if (sharing.dieRoll==false) {
-					sharing.btnRoll.setEnabled(false);// Disable the button
-                    sharing.max_die = sharing.die.calculateHighest(sharing.die.dice);
-                    sharing.ind = sharing.die.calcHighIndex(sharing.die.dice);
-                    sharing.max_player = sharing.conKUeror.playerList.get(sharing.ind);
-                    System.out.println("highest die val: " + sharing.max_die);
-                    System.out.println("player_list high index: " + sharing.ind);
-                    System.out.println("highest die rolling player: " + sharing.max_player);
-                    //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
-                    ArrayList<Player> players = sharing.conKUeror.playerList;
-                   
-                  
-                    
-                    for (int i = sharing.ind; i<players.size(); i++) {
-                    	Infantry inf = new Infantry();
-                    	players.get(i).chooseATerritory(bmode.grid.selectedTer);
-                    	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                    	players.get(i).placeArmy(bmode.grid.selectedTer, inf);
-                    	System.out.println(players.get(i).territoryList.get(0));
-                    	//players.get(i).chooseATerritory(null)
-                    }
-                    for (int i = 0; i<sharing.ind; i++) {
-                    	Infantry inf2 = new Infantry();
-                    	players.get(i).chooseATerritory(bmode.grid.selectedTer);
-                    	players.get(i).placeArmy(bmode.grid.selectedTer, inf2);
-                    	System.out.println(players.get(i).territoryList.get(0));
-                    }
-				}
+				
+				
 				
 				
 				dispInfant.setBounds(350, 450, 822, 263);
 				sharing.add(dispInfant);
+				sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
 				
 
 			}
