@@ -35,6 +35,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     JButton btnSkip = new JButton("SKIP ATTACK");
     TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
+    public boolean init = false;
     
     Die die = new Die();
     int dieDisplayed,finalDieDisplayed;
@@ -46,6 +47,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     public boolean isButton;
     ConKUeror conKUeror = new ConKUeror();
     public Player max_player;
+    public boolean dieRoll = true;
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
@@ -67,6 +69,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     	super();
 		initialize();
 		displayDie(0);
+		
 		//addElements();
 		
 		//observer için ekledim
@@ -164,6 +167,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         
         dieLabel.setBounds(221, 450, 80, 80);
         
+        /*
         btnRoll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
@@ -177,35 +181,14 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 //roll die için yeni ekledim
                 clickCount++;  // Increment the count
                 if (clickCount >= numPlay) {
-                    btnRoll.setEnabled(false);// Disable the button
-                    max_die = die.calculateHighest(die.dice);
-                    ind = die.calcHighIndex(die.dice);
-                    max_player = conKUeror.playerList.get(ind);
-                    System.out.println("highest die val: " + max_die);
-                    System.out.println("player_list high index: " + ind);
-                    System.out.println("highest die rolling player: " + max_player);
-                    //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
-                    ArrayList<Player> players = conKUeror.playerList;
-                   
-                  
-                    
-                    for (int i = ind; i<players.size(); i++) {
-                    	
-                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                    }
-                    for (int i = 0; i<ind; i++) {
-                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                    }
-                    
-              
-                    
-                    
+                    dieRoll = false;
+                    btnRoll.setEnabled(false);
                 }
                 
                 /////////////
                
             }
-        });
+        });*/
         
         
         btnStartGame.setBackground(Color.WHITE);

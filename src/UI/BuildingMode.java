@@ -26,7 +26,7 @@ public class BuildingMode extends JLayeredPane{
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();*/
     JButton btnNext = new JButton("Next");
-    
+    public boolean build = false;
     Grid grid = new Grid(); 
     int row = grid.row;
 	int col = grid.col;

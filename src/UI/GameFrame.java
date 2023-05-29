@@ -30,27 +30,28 @@ public class GameFrame extends JFrame {
 
 	static boolean start;
 	private static final long serialVersionUID = 1L;
-	static boolean init, build, playMode, loginMode = false;
-	
+	public static Board board = new Board();
+	public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+	//static boolean init, build, playMode, loginMode = false;
+	public static InitSharing sharing = new InitSharing(conKUerorHandler);
+	//////////
+
+	public static PlayingMode play = new PlayingMode();
+	public static HelpScreen help = new HelpScreen();
+	public static BuildingMode bmode = new BuildingMode();
+	public static LoginScreen login = new LoginScreen();
 
 	public static void main(String[] args) {
 
 		//observer için ekledim
 		//ConKUeror conKUeror = new ConKUeror();
-		Board board = new Board();
-		ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+		
 		//////////
 		
 		GameFrame frame = new GameFrame();
 		
 		//observer için ekledim
-		InitSharing sharing = new InitSharing(conKUerorHandler);
-		//////////
-	
-		PlayingMode play = new PlayingMode();
-		HelpScreen help = new HelpScreen();
-		BuildingMode bmode = new BuildingMode();
-		LoginScreen login = new LoginScreen();
+		
 		//Grid grid = new Grid();
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
@@ -67,7 +68,7 @@ public class GameFrame extends JFrame {
 				int totalpeople = sharing.conKUeror.addToPlayerTurnHash(login);
 				
 				//bmode.add(grid);
-				build = true;
+				bmode.build = true;
 				
 
 			}
@@ -82,7 +83,7 @@ public class GameFrame extends JFrame {
 					frame.setLayeredPane(help);
 					help.setVisible(true);
 					frame.revalidate();
-					loginMode = false;
+					login.loginMode = false;
 					start = true;
 				}
 
@@ -97,8 +98,8 @@ public class GameFrame extends JFrame {
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String action = e.getActionCommand();
-				init = true;
-				build = false;
+				sharing.init = true;
+				bmode.build = false;
 
 				
 				
@@ -131,6 +132,36 @@ public class GameFrame extends JFrame {
 				
 				//max_player = sharing.conKUeror.playerList.get(sharing.getInd());
 				//System.out.println(max_player);
+				if (sharing.dieRoll==false) {
+					sharing.btnRoll.setEnabled(false);// Disable the button
+                    sharing.max_die = sharing.die.calculateHighest(sharing.die.dice);
+                    sharing.ind = sharing.die.calcHighIndex(sharing.die.dice);
+                    sharing.max_player = sharing.conKUeror.playerList.get(sharing.ind);
+                    System.out.println("highest die val: " + sharing.max_die);
+                    System.out.println("player_list high index: " + sharing.ind);
+                    System.out.println("highest die rolling player: " + sharing.max_player);
+                    //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
+                    ArrayList<Player> players = sharing.conKUeror.playerList;
+                   
+                  
+                    
+                    for (int i = sharing.ind; i<players.size(); i++) {
+                    	Infantry inf = new Infantry();
+                    	players.get(i).chooseATerritory(bmode.grid.selectedTer);
+                    	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                    	players.get(i).placeArmy(bmode.grid.selectedTer, inf);
+                    	System.out.println(players.get(i).territoryList.get(0));
+                    	//players.get(i).chooseATerritory(null)
+                    }
+                    for (int i = 0; i<sharing.ind; i++) {
+                    	Infantry inf2 = new Infantry();
+                    	players.get(i).chooseATerritory(bmode.grid.selectedTer);
+                    	players.get(i).placeArmy(bmode.grid.selectedTer, inf2);
+                    	System.out.println(players.get(i).territoryList.get(0));
+                    }
+				}
+				
+				
 				dispInfant.setBounds(350, 450, 822, 263);
 				sharing.add(dispInfant);
 				

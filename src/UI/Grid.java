@@ -21,7 +21,8 @@ public class Grid extends JPanel implements MouseListener {
 	private String[][] gridText;
 	int index = 0;
 	TerrCardFrame terCard = new TerrCardFrame();
-	Player player = new Player();
+	public Territory selectedTer;
+	//Player player = new Player();
 	
 	Territory territoryFrom;
 	ArrayList<Territory> terrsSelected = new ArrayList<Territory>();
@@ -91,25 +92,39 @@ public class Grid extends JPanel implements MouseListener {
 		}
 	}
 	
+	public Territory callTerr(Territory terr) {
+		if (terr != null) {
+			
+			
+			terCard.setTerritoryCard(getColorName(terr.getColor()), terr.getText(), index, 20, 100);
+			//terCard.setVisible(true);
+			
+		}
+		
+	
+
+		return terr;
+	}
+	
 	public void mouseClicked(MouseEvent e) {
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
 		//System.out.println(row + col);
-		Territory terr = Territory.isTerritory(row, col);
+		selectedTer = Territory.isTerritory(row, col);
 		
-		 if (GameFrame.build) {
+		 if (GameFrame.bmode.build) {
 			if (gridColors[row][col] != blue) {
 				gridColors[row][col] = Color.GRAY;
 				repaint();
 				//index = territoryIs.getIndex();
 				//System.out.println("index" + index);
-				if (terr != null) {
-					terr.setEnabled(false);
+				if (selectedTer != null) {
+					selectedTer.setEnabled(false);
 				}
 			}
 		}
 
-		  if (GameFrame.init) {
+		  if (GameFrame.sharing.init) {
 			 
 			 
 			 
@@ -117,16 +132,19 @@ public class Grid extends JPanel implements MouseListener {
 				gridColors[row][col] = Color.CYAN;
 				
 				repaint();
-
-				if (terr != null) {
-					player.territoryList.add(terr);
+				callTerr(selectedTer);
+				index = selectedTer.getIndex();}
+				
+				/*if (terr != null) {
+					
+					
 					terCard.setTerritoryCard(getColorName(terr.getColor()), terr.getText(), index, 20, 100);
 					//terCard.setVisible(true);
 					
 				}
 				index = terr.getIndex();
-			} 
-
+			} */
+		  
 			else {
 				System.out.println("choose again.");
 			}
@@ -134,12 +152,12 @@ public class Grid extends JPanel implements MouseListener {
 
 		
 
-		else if (GameFrame.playMode) {
+		else if (GameFrame.play.playMode) {
 			//playerları create edip turn turn ayırmak lazım
 			//sectigin terr e değiştir isterritory
 			//territorydeki asker sayısını goster
 			
-			
+			/*
 			Territory selectedTerr = Territory.territories[row][col];
 			terrsSelected.add(Territory.territories[row][col]);
 			System.out.println(player.canAttackTerritory(terrsSelected.get(0), selectedTerr));
@@ -161,7 +179,7 @@ public class Grid extends JPanel implements MouseListener {
 						}
 					}
 				}		
-			//rengini değiştirme 
+			//rengini değiştirme*/
 		}
 		
 	}

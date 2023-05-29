@@ -32,7 +32,7 @@ public class LoginScreen extends JLayeredPane{
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();
     JPanel playersPanel = new JPanel();
-
+    public boolean loginMode = false;
     int players,comp;
     int totalPlayers=0;
     int numOfInfant;

@@ -23,6 +23,7 @@ public class PlayingMode extends JLayeredPane {
     JButton btnSkip = new JButton("SKIP/END TURN");
     
     JLabel dieLabel = new JLabel();
+    public boolean playMode = false;
     
     Die die = new Die();
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
