@@ -40,7 +40,6 @@ class FortifyTest {
 
         ConKUeror conkueror = new ConKUeror();
 
-    	 
     	 conkueror.fortify(player1, territory2, territory1, 2); // If army count of a territory is = 0, the code will not work.
     	 System.out.println(territory1.getArmyList().size());
     	 int output = territory1.getArmyList().size();

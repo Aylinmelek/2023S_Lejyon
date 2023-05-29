@@ -150,6 +150,7 @@ public class Grid extends JPanel implements MouseListener {
                 //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
 				
 				if(!GameFrame.sharing.getButton().isEnabled()) {
+					
 				ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
                 
                 

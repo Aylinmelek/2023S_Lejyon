@@ -9,6 +9,7 @@ import UI.LoginScreen;
 
 public class ConKUeror {
 
+
 	public ArrayList<Player> playerList = new ArrayList<Player>(); 
 	
 	
@@ -54,6 +55,7 @@ public class ConKUeror {
 
 	}
 
+
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 
 		if (player.getTerritoryList().contains(territoryTo) && player.getTerritoryList().contains(territoryFrom)
@@ -66,6 +68,7 @@ public class ConKUeror {
 					player.fortifying(territoryFrom, territoryTo, territoryFrom.getArmyList().get(index));
 				}
 			} else {
+
 				System.out.println(
 						"Player doesn't own TerritoryTo or TerritoryFrom or it is not adjacent to TerritoryTo");
 			}
