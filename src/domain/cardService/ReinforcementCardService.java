@@ -2,6 +2,8 @@ package domain.cardService;
 
 import java.util.Random;
 
+import domain.Die;
+import domain.Infantry;
 import domain.Territory;
 
 public class ReinforcementCardService {
@@ -13,14 +15,20 @@ public class ReinforcementCardService {
 		territory = new Territory();
 	}
 	
-	public void addArmy(Territory territory) {
-		territory.army ++;
+	public void reinforce(Die die, Territory territory) {
+		//observer için değiştirdim
+		die.roll();
+		int faceVal = die.getDiceValue();
+		////////////
+		//int faceVal = die.generateNum();
+		for(int i = 0; i < faceVal; i++) {
+			Infantry infantry = new Infantry();
+			territory.getArmyList().add(infantry);
+			System.out.println("Infantry is added.");
+		}
+		
 	}
 	
-	public int rollDie() {
-		Random random = new Random();
-		int faceValue = random.nextInt(6);
-		return faceValue + 1;
-	}
+
 	
 }

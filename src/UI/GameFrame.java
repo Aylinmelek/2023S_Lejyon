@@ -5,12 +5,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 import domain.Army;
+import domain.Board;
 import domain.ConKUeror;
 import domain.Continent;
 import domain.Die;
@@ -20,22 +22,37 @@ import domain.Map;
 import domain.Player;
 import domain.Territory;
 import domain.TerritoryCard;
+import domain.controller.ConKUerorHandler;
+import domain.ConKUeror;
+import java.util.Hashtable;
 
 public class GameFrame extends JFrame {
 
 	static boolean start;
 	private static final long serialVersionUID = 1L;
-	static boolean init, build, playMode = false;
+	public static Board board = new Board();
+	public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+	//static boolean init, build, playMode, loginMode = false;
+	public static InitSharing sharing = new InitSharing(conKUerorHandler);
+	//////////
+
+	public static PlayingMode play = new PlayingMode();
+	public static HelpScreen help = new HelpScreen();
+	public static BuildingMode bmode = new BuildingMode();
+	public static LoginScreen login = new LoginScreen();
 
 	public static void main(String[] args) {
 
+		//observer için ekledim
+		//ConKUeror conKUeror = new ConKUeror();
+		
+		//////////
+		
 		GameFrame frame = new GameFrame();
-		InitSharing sharing = new InitSharing();
-		PlayingMode play = new PlayingMode();
-		HelpScreen help = new HelpScreen();
-		BuildingMode bmode = new BuildingMode();
-		LoginScreen login = new LoginScreen();
-		Grid grid = new Grid();
+		
+		//observer için ekledim
+		
+		//Grid grid = new Grid();
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
 		frame.setBackground(Color.DARK_GRAY);
@@ -48,9 +65,11 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
-				grid.setBounds(19, 69, 850, 350);
-				bmode.add(grid);
-				build = true;
+				int totalpeople = sharing.conKUeror.addToPlayerTurnHash(login);
+				
+				//bmode.add(grid);
+				bmode.build = true;
+				
 
 			}
 		});
@@ -64,30 +83,63 @@ public class GameFrame extends JFrame {
 					frame.setLayeredPane(help);
 					help.setVisible(true);
 					frame.revalidate();
+					login.loginMode = false;
 					start = true;
 				}
 
 			}
 		});
-
+		/*bmode.btnNext.setEnabled(false);
+		if (bmode.addPlayers(bmode.getPlayerNum()) >= 20 && bmode.addPlayers(bmode.getPlayerNum()) <= 40) {
+			bmode.btnNext.setEnabled(true);
+			bmode.addPlayers(bmode.getPlayerNum());
+			
+		}*/
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String action = e.getActionCommand();
+				sharing.init = true;
+				bmode.build = false;
+
+				
+				
+				sharing.numPlay = login.getPlayerNum();
+				sharing.addElements();
+				
+				//System.out.println("buildmode da size" + totalpeople);
 
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
 
-				sharing.add(grid);
-
-				JTextArea txtrYour = new JTextArea();
-				txtrYour.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-				txtrYour.setForeground(Color.LIGHT_GRAY);
-				txtrYour.setBackground(Color.DARK_GRAY);
-				txtrYour.setText("You have " + bmode.armyNum() + " Infantry.");
-				txtrYour.setBounds(350, 450, 822, 263);
-				sharing.add(txtrYour);
-				init = true;
-				build = false;
+				sharing.add(bmode.grid);
+				//bmode.addPlayers(bmode.getPlayerNum());
+				JTextArea dispInfant = new JTextArea();
+				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				dispInfant.setForeground(Color.LIGHT_GRAY);
+				dispInfant.setBackground(Color.DARK_GRAY);
+				dispInfant.setText("You have " + login.addPlayers(login.getPlayerNum()) + " Infantry.");
+				dispInfant.setEditable(false);
+				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
+					sharing.conKUeror.playerList.get(i).setNumOfInfantry(login.addPlayers(login.getPlayerNum()));
+				}
+				/*
+				if (!sharing.btnRoll.isEnabled()){
+					max_player = conKUeror.playerList.get(conKUeror.die.getHigh_index());
+					System.out.println("----------------");
+					System.out.println(conKUeror.die.high_index);
+					System.out.println(max_player);
+				}*/
+				
+				//max_player = sharing.conKUeror.playerList.get(sharing.getInd());
+				//System.out.println(max_player);
+				
+				
+				
+				
+				dispInfant.setBounds(350, 450, 822, 263);
+				sharing.add(dispInfant);
+				sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
+				
 
 			}
 		});
@@ -100,7 +152,6 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (start == true) {
-					System.out.println("geldi mi");
 					help.setVisible(false);
 					frame.setLayeredPane(login);
 					frame.revalidate();
@@ -121,7 +172,6 @@ public class GameFrame extends JFrame {
 				login.btnHelp.setVisible(true);
 				// btnResume.setVisible(true);
 				start = true;
-
 			}
 		});
 
@@ -129,18 +179,29 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				String action = e.getActionCommand();
-
+				play.btnTer.addActionListener(new ActionListener() {
+			     	public void actionPerformed(ActionEvent e) {
+			     		bmode.grid.terCard.setVisible(true);
+			
+			     	}
+			     	
+			     }
+			
+			     );
+				play.btnTer.setBounds(27, 437, 118, 30);
+			    play.add(play.btnTer);
+				play.addElements();
 				frame.setLayeredPane(play);
 				frame.revalidate();
 				// grid.setVisible(true);
-				grid.setBounds(19, 69, 850, 350);
-				play.add(grid);
-				init = false;
-				playMode = true;
+				//grid.setBounds(19, 69, 850, 350);
+				play.add(bmode.grid);
+				
+				
 
 			}
 		});
-
+		/*
 		Player player1 = new Player();
 		Player player2 = new Player();
 		Territory territory1 = new Territory();
@@ -216,7 +277,7 @@ public class GameFrame extends JFrame {
 		ConKUeror conkueror = new ConKUeror();
 		Die die = new Die();
 		conkueror.attack(player1, territory1, territory2, die);
-		conkueror.initialSharingOfTerritory(playerList, map);
+		conkueror.initialSharingOfTerritory(playerList, map);*/
 
 	}
 

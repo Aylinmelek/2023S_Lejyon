@@ -22,7 +22,7 @@ public class TerrCardFrame extends JFrame {
     private void initializeLabels() {
     	
         for (int i = 0; i < NUM_LABELS; i++) {
-            labels[i] = new JLabel("");     
+            labels[i] = new JLabel();     
             add(labels[i]);
             labels[i].setVisible(true);
         }     
@@ -47,13 +47,15 @@ public class TerrCardFrame extends JFrame {
     public void setTerritoryCard(String territoryColor, String territoryName, int index, int x, int y) {
 	
         labels[index].setBounds(x, y, 96,165);
-        String imageStr = "/territoryCards/" + territoryColor.toLowerCase() + territoryName + ".png";   
-        ImageIcon img = new ImageIcon(this.getClass().getResource(imageStr));  
+        String imageStr = "/territoryCards/" + territoryColor.toLowerCase() + territoryName + ".png";
+        ImageIcon img = new ImageIcon(getClass().getResource(imageStr));
         labels[index].setIcon(img);
-        getContentPane().add(labels[index]);
-        System.out.println("set func");
         labels[index].setVisible(true);
-
+        getContentPane().add(labels[index]);
+        getContentPane().revalidate();
+        getContentPane().repaint();
+        
+        
     }
    
   

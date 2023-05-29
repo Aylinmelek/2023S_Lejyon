@@ -4,54 +4,42 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import domain.cardService.ICardServiceAdapter;
+import domain.serviceFactory.CardServiceFactory;
 
-public abstract class WorldEventCard implements Rollable, Changable{
+public class WorldEventCard { //implements Rollable, Changable{
+	//implements Rollable??
 	Territory territory;
+	Die die;
+	Continent continent;
+	Player player;
+	int number;
+	ICardServiceAdapter cardService;
 	
-	/*public int rollDie() {
+	public int rollDie() {
+		//int faceValue = CardServiceFactory.getInstance().getCardServiceAdapter("RollDie").rollDie();
+		
+		//return faceValue;
 		Random random = new Random();
 		int faceValue = random.nextInt(6);
 		return faceValue+1;
-	}*/
-	public void rollDie(ICardServiceAdapter armyService) {
-		armyService.removeArmyFromContinent(territory);
-		
 	}
 	
-	/*public void addArmy(Territory territory) {
-		territory.army ++;
-	}*/
-	
-	public void addArmy(ICardServiceAdapter armyService) {
-		armyService.removeArmyFromContinent(territory);
+
+	public void worldEvent(ICardServiceAdapter cardService, ArrayList<Player> playerList) { 
+		//observer için değiştirdim
+		die.roll();
+		int faceValue = die.getDiceValue();
+		/////////
+		//int faceValue = die.generateNum();
 		
-	}
-	
-	/*public void removeArmy(Territory territory) {
-		territory.army --;
-	}*/
-	public void removeArmy(ICardServiceAdapter armyService) {
-		armyService.removeArmyFromContinent(territory);
-		
-	}
-	public void worldEvent(Territory territory, Die die, ArrayList<Player> playerList) {
-		int faceValue = die.generateNum();
-		if (faceValue <= 2 || faceValue == 5) {
-			for(int i = 0; i < playerList.size(); i++) {
-				Infantry infantry = new Infantry();
-				playerList.get(i).getTerritoryList().get(0).getArmyList().add(infantry);
-				playerList.get(i).getTerritoryList().get(0).getArmyList().add(infantry);
-				playerList.get(i).getTerritoryList().get(0).getArmyList().add(infantry);
-			}
+		if (faceValue <= 2 || faceValue == 5) { //addarmy()
+			cardService.addArmy(die, territory, playerList);
+			
 		}
 		
-		if ((faceValue <= 4) && (faceValue > 2)|| faceValue == 6) {
-			for(int i = 0; i < playerList.size(); i++) {
-				int index = playerList.get(i).getTerritoryList().get(0).getArmyList().size() - 1;
-				playerList.get(i).getTerritoryList().get(0).getArmyList().remove(index);
-				playerList.get(i).getTerritoryList().get(0).getArmyList().remove(index - 1);
-				playerList.get(i).getTerritoryList().get(0).getArmyList().remove(index - 2);
-			}
+		if ((faceValue <= 4) && (faceValue > 2)|| faceValue == 6) {//Removearmy()
+			cardService.removeArmy(territory, die, continent, player, number, playerList);
+			
 		}
 	}
 

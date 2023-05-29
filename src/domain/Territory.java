@@ -9,14 +9,7 @@ import UI.Grid;
 public class Territory {
 
  int army; 
- public boolean isImmune() {
-	return isImmune;
-}
-
-public void setImmune(boolean isImmune) {
-	this.isImmune = isImmune;
-}
-Continent continent;
+ Continent continent;
  private boolean isImmune = false;
  private static final int ROWS = 17;
  private static final int COLUMNS = 17;
