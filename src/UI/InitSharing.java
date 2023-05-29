@@ -28,7 +28,6 @@ public class InitSharing extends JLayeredPane {
     ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
     ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
-    
     public void initialize() {
         setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);

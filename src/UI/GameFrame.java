@@ -77,7 +77,6 @@ public class GameFrame extends JFrame{
 	        		help.addElements();
 					frame.setLayeredPane(help);
 					frame.revalidate();
-	        		
 	        	}	
 	        });
 	        
