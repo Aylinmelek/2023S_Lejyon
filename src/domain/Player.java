@@ -190,7 +190,7 @@ public class Player {
 			if (army == "Infantry" && infantryList.size() >= 1) {
 				int index = infantryList.size() - 1;
 				infantryList.remove(index);
-				System.out.println("geliyo mu");
+				//System.out.println("geliyo mu");
 				Army inf1 = new Infantry();
 				territory.armyList.add(inf1);
 			}

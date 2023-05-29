@@ -80,8 +80,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 	    ShowDie showDie = new ShowDie(board);
 	    //////////
 		
-		
-		
+	
 		
 	}
 
@@ -157,20 +156,19 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         });
         rollThread.start();
     }
-     
-    public int ind(int max_die, int temp) {
+    /*
+    public int getInd(int max_die, int temp) {
     	
         max_player = conKUeror.playerList.get(ind);
-        System.out.println("highest die val: " + max_die);
-        System.out.println("player_list high index: " + ind);
-        System.out.println("highest die rolling player: " + max_player);
+        
         
         return ind;
-    }
+    }*/
     
     public int getTemp() {
     	return temp;
     }
+    
     public int getMaxDie() {
     	return max_die;
     }
@@ -198,18 +196,16 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 clickCount++;  // Increment the count
                 if (clickCount >= numPlay) {
                     // Disable the button
-                   /* max_die = die.calculateHighest(die.dice);
-                    ind = die.calcHighIndex(die.dice);
+                    max_die = die.calculateHighest(die.dice);
+                    setInd(die.calcHighIndex(die.dice));
                     temp = ind;
+                    
                     max_player = conKUeror.playerList.get(ind);
                     System.out.println("highest die val: " + max_die);
                     System.out.println("player_list high index: " + ind);
-                    System.out.println("highest die rolling player: " + max_player);*/
+                    System.out.println("highest die rolling player: " + max_player);
                     //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
-                	max_die = die.calculateHighest(die.dice);
-                    ind = die.calcHighIndex(die.dice);
-                    temp = ind;
-                	ind(max_die, temp);
+                	
                     btnRoll.setEnabled(false);
                     
                    
