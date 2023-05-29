@@ -6,11 +6,25 @@ public class Player {
 	String name;
 	public Deck deck = new Deck();
 	public Die die;
-	ArrayList<Infantry> infantryList = new ArrayList<Infantry>();
-	ArrayList<Artillery> artilleryList = new ArrayList<Artillery>();
-	ArrayList<Cavalry> cavalryList = new ArrayList<Cavalry>();
-	ArrayList<TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();
-	public ArrayList<Territory> territoryList = new ArrayList<Territory>();
+
+	public int numOfInfantry;
+	
+	public int getNumOfInfantry() {
+		return numOfInfantry;
+	}
+
+	public void setNumOfInfantry(int numOfInfantry) {
+		this.numOfInfantry = numOfInfantry;
+	}
+
+	ArrayList <Infantry> infantryList = new ArrayList<Infantry>();
+	ArrayList <Artillery> artilleryList = new ArrayList<Artillery>();
+	ArrayList <Cavalry> cavalryList = new ArrayList<Cavalry>();
+	ArrayList <TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();
+	public ArrayList <Territory> territoryList = new ArrayList<Territory>();
+	public boolean turn;
+	
+	
 
 	public String getName() {
 		return name;
@@ -20,6 +34,16 @@ public class Player {
 		Map map;
 		// it will start the game.
 	}
+
+ 
+	public boolean isTurn() {
+		return turn;
+	}
+
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
+
 
 	public void winTheGame() {
 		System.out.println("Congratulations! You won the game!");
@@ -203,19 +227,21 @@ public class Player {
 	public void loseTheDefend(Territory territory) {
 		int index = territory.armyList.size() - 1;
 		territory.armyList.remove(index);
-		/*
-		 * if(infantryList.size() >= 1 ) {
-		 * infantryList.remove(-1);
-		 * }
-		 * 
-		 * else if(cavalryList.size() >= 1 ) {
-		 * cavalryList.remove(-1);
-		 * }
-		 * 
-		 * else if(artilleryList.size() >= 1 ) {
-		 * artilleryList.remove(-1);
-		 * }
-		 */
+
+
+		/* if(infantryList.size() >= 1 ) {
+			infantryList.remove(-1);
+		}
+		
+		else if(cavalryList.size() >= 1 ) {
+			cavalryList.remove(-1);
+		}
+		
+		else if(artilleryList.size() >= 1 ) {
+			artilleryList.remove(-1);
+		} */
+		
+
 	}
 
 	public ArrayList<Territory> getTerritoryList() {

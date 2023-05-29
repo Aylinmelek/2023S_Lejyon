@@ -13,13 +13,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
+import domain.Board;
+import domain.BoardListener;
+import domain.ConKUeror;
 import domain.Die;
+import domain.Player;
 import domain.Territory;
 
+import domain.controller.ConKUerorHandler;
 
-public class InitSharing extends JLayeredPane  {
+
+
+public class InitSharing extends JLayeredPane  implements BoardListener{
     JTextArea txtInitSharing = new JTextArea();
     JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
@@ -27,8 +35,17 @@ public class InitSharing extends JLayeredPane  {
     JButton btnSkip = new JButton("SKIP ATTACK");
     TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
-    Grid grid = new Grid();
+    
     Die die = new Die();
+    int dieDisplayed,finalDieDisplayed;
+    int dieNumber;
+    int clickCount;
+    public int numPlay;
+    int max_die;
+    int ind;
+    public boolean isButton;
+    ConKUeror conKUeror = new ConKUeror();
+    public Player max_player;
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
@@ -41,26 +58,45 @@ public class InitSharing extends JLayeredPane  {
     ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
     ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
 
+    //observer için ekledim
+    private ConKUerorHandler conKUerorHandler;
+	public Board board;
+	//////////
       
-    public InitSharing() {
-		super();
+    public InitSharing(ConKUerorHandler conKUerorHandler) {
+    	super();
 		initialize();
-		displayDie();
-		addElements();
+		displayDie(0);
+		//addElements();
+		
+		//observer için ekledim
+    	this.conKUerorHandler = conKUerorHandler;
+	    board = conKUerorHandler.getBoard();
+	    board.addBoardListener(this);
+	    ShowDie showDie = new ShowDie(board);
+	    //////////
+		
+		
+		
 		
 	}
 
 	public void initialize() {
         setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);
+        //add(grid);
         setLayout(null);
     }
     
 	
-    public void displayDie() {
+    public void displayDie(int dieNumber) {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
-                int dieDisplayed = die.generateNum();
+            	//observer için ekledim
+            	 die.roll();
+                 dieDisplayed = die.getDiceValue();
+                ///		
+                		//die.generateNum();
                 switch (dieDisplayed) {
                     case 1:
                         dieLabel.setIcon(die1);
@@ -86,8 +122,14 @@ public class InitSharing extends JLayeredPane  {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                
             }
-            int finalDieDisplayed = die.generateNum();
+            //observer için ekledim
+            //die.roll();
+            finalDieDisplayed = dieNumber;
+            
+            //
+            		//die.generateNum();
             switch (finalDieDisplayed) {
                 case 1:
                     dieLabel.setIcon(die1);
@@ -124,8 +166,43 @@ public class InitSharing extends JLayeredPane  {
         
         btnRoll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                displayDie();
                 
+                //observer için ekledim
+                conKUerorHandler.rollDice();
+                dieNumber = conKUerorHandler.getDieValue();
+                displayDie(dieNumber);
+                die.dice.add(dieNumber); //die values arraylist
+                board.publishBoardEvent(dieNumber);
+                System.out.println("(UI.InitSharing)You rolled: "+dieNumber);
+                //roll die için yeni ekledim
+                clickCount++;  // Increment the count
+                if (clickCount >= numPlay) {
+                    btnRoll.setEnabled(false);// Disable the button
+                    max_die = die.calculateHighest(die.dice);
+                    ind = die.calcHighIndex(die.dice);
+                    max_player = conKUeror.playerList.get(ind);
+                    System.out.println("highest die val: " + max_die);
+                    System.out.println("player_list high index: " + ind);
+                    System.out.println("highest die rolling player: " + max_player);
+                    //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
+                    ArrayList<Player> players = conKUeror.playerList;
+                   
+                  
+                    
+                    for (int i = ind; i<players.size(); i++) {
+                    	
+                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                    }
+                    for (int i = 0; i<ind; i++) {
+                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                    }
+                    
+              
+                    
+                    
+                }
+                
+                /////////////
                
             }
         });
@@ -136,9 +213,26 @@ public class InitSharing extends JLayeredPane  {
         btnRoll.setBounds(30, 450, 117, 76);
         add(btnRoll);
         add(dieLabel);
-        add(btnStartGame);
+        add(btnStartGame); 
         
     }
+
+	public int getInd() {
+		return ind;
+	}
+
+	public void setInd(int ind) {
+		this.ind = ind;
+	}
+
+	@Override
+	public void onBoardEvent(String msg) {
+		// TODO Auto-generated method stub
+		//JOptionPane.showMessageDialog(InitSharing.this, msg);
+		
+	}
+	
+	
     
 	
 

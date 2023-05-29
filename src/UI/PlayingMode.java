@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import domain.Board;
 import domain.Die;
+import domain.controller.ConKUerorHandler;
 
 public class PlayingMode extends JLayeredPane {
 	
@@ -21,14 +23,23 @@ public class PlayingMode extends JLayeredPane {
     JButton btnSkip = new JButton("SKIP/END TURN");
     
     JLabel dieLabel = new JLabel();
+    
     Die die = new Die();
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
+    int dieDisplayed,finalDieDisplayed;
+    int dieNumber;
  
+    //observer için ekledim
+    //Board board_play = new Board();
+    //ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+    
+    //InitSharing initSharing = new InitSharing(conKUerorHandler);
+    ////////////
+    
+    
 
-    InitSharing init = new InitSharing();
-
-	TerrCardFrame territoryCard = new TerrCardFrame();
+	//TerrCardFrame territoryCard = 
 	
 	 ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
 	    ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
@@ -41,7 +52,7 @@ public class PlayingMode extends JLayeredPane {
 	public PlayingMode() {
 		super();
 		initialize();
-		addElements();
+		//addElements();
 	}
 	
 	
@@ -49,12 +60,17 @@ public class PlayingMode extends JLayeredPane {
 	public void initialize() {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
+		
 		setLayout(null);
 	}
 	public void displayDie() {
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
-                int dieDisplayed = die.generateNum();
+            	//observer için ekledim
+            	die.roll();
+                dieDisplayed = die.getDiceValue();
+                //////
+                		//die.generateNum();
                 switch (dieDisplayed) {
                     case 1:
                         dieLabel.setIcon(die1);
@@ -81,7 +97,10 @@ public class PlayingMode extends JLayeredPane {
                     e.printStackTrace();
                 }
             }
-            int finalDieDisplayed = die.generateNum();
+            //observer için ekledim
+            finalDieDisplayed = dieNumber;
+            ///
+            		//die.generateNum();
             switch (finalDieDisplayed) {
                 case 1:
                     dieLabel.setIcon(die1);
@@ -107,7 +126,7 @@ public class PlayingMode extends JLayeredPane {
     }
     
 	public void addElements() {
-		System.out.println("add elements");
+		/*
 	     btnTer.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
 	     		territoryCard.setVisible(true);
@@ -115,11 +134,12 @@ public class PlayingMode extends JLayeredPane {
 	     	}
 	     	
 	     }
-	     );
+	     );*/
 	     
-	     btnTer.setBounds(27, 437, 118, 30);
-	     add(btnTer);
+	     //btnTer.setBounds(27, 437, 118, 30); added to gameframe for cards to be visible
+	     //add(btnTer);
 	     System.out.println("added button territory");
+	     
      
      
 	     btnArmy.addActionListener(new ActionListener() {
@@ -150,6 +170,7 @@ public class PlayingMode extends JLayeredPane {
 	            public void actionPerformed(ActionEvent e) {
 	            	//kimin turnü oldugu yazsın atarken
 	                displayDie();
+	                
 	            }
 	        });
 	        

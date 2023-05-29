@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -12,46 +14,62 @@ import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
+import domain.Board;
 import domain.ConKUeror;
 import domain.Player;
+import domain.controller.ConKUerorHandler;
 
-public class BuildingMode extends JLayeredPane {
+public class BuildingMode extends JLayeredPane{
 	JTextArea txtrGameOptions = new JTextArea();
-    JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
+    /*JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
-    JTextArea txtnumComp = new JTextArea();
+    JTextArea txtnumComp = new JTextArea();*/
     JButton btnNext = new JButton("Next");
-    PlayingMode playingMode = new PlayingMode();
-    LoginScreen loginScreen = new LoginScreen();
-    InitSharing initSharing = new InitSharing();
-    ConKUeror conku = new ConKUeror();
-
-    int players,comp;
-    int numOfInfantry, totalPlayers=0;
     
+    Grid grid = new Grid(); 
+    int row = grid.row;
+	int col = grid.col;
+    
+    //observer için ekledim
+   // Board board = new Board();
+    //ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+    
+    //InitSharing initSharing = new InitSharing(conKUerorHandler);
+    ////////////
+    
+    //ConKUeror conku = new ConKUeror();
+
+    /*int players,comp;
+    int totalPlayers=0;
+    int numOfInfant;
     
     ArrayList<Player> playerArray = new ArrayList<Player>(); 
     
     //ai player olucak class ı ? 
     ArrayList<Player> compPlayerArray = new ArrayList<Player>(); 
 
-   
+   */
+    
 
 	public BuildingMode() {
 		super();
 		initialize();
 		addElements();
-		//addPlayers();
-		armyNum();
+		//grid.addMouseListener(this);
+	
+		
 	}
 
 
 	public void initialize()  {
+		
 		setBounds(0, 54, 873, 451);
 	    setBackground(Color.DARK_GRAY);
-	    
 	    setLayout(null);
+	    grid.setBounds(19, 69, 850, 350);
+	    add(grid);
+		grid.setVisible(true);
 	}
 	
 	
@@ -65,7 +83,7 @@ public class BuildingMode extends JLayeredPane {
         txtrGameOptions.setBackground(Color.DARK_GRAY);
         add(txtrGameOptions);
         
-        txtnumPlayers.setBounds(220, 450, 217, 32);
+       /* txtnumPlayers.setBounds(220, 450, 217, 32);
         txtnumPlayers.setText("Number of players (2-6):");
         txtnumPlayers.setForeground(Color.LIGHT_GRAY);
         txtnumPlayers.setFont(new Font("Kokonor", Font.PLAIN, 19));
@@ -93,7 +111,7 @@ public class BuildingMode extends JLayeredPane {
         numComp.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3, 4, 5, 6}));
         numComp.setMaximumRowCount(6);
         numComp.setBackground(Color.LIGHT_GRAY);
-        add(numComp);
+        add(numComp);*/
         
         
 
@@ -101,70 +119,65 @@ public class BuildingMode extends JLayeredPane {
         add(btnNext);
         
 	}
-	
-	/*public void addPlayers() {
-		int playerNum = (int) numPlayers.getSelectedItem();
-		int compPlayerNum = (int) numComp.getSelectedItem();
-		
-		System.out.println("boncuk" + playerNum);
-		//System.out.println("p" + conku.playerList.size());
+	/*
 
-		
-		
-		//farklı tipte biseyleri enabled olucaksa ai player ve normal player ayrı ayrı gorelim diye simdilik ayrı yazdım.
-		for (int i=0; i<playerNum; i++) {
-			System.out.println("in loop");
-			conku.playerList.add(new Player());
-		}
-		
-		for (int i= playerNum; i<(playerNum+compPlayerNum); i++) {
-			conku.playerList.add(new Player());
-		}
+	public int getPlayerNum() {  
 	
-		System.out.println(conku.playerList.size());
-	}*/
-
-	public int armyNum() {  
-		
-	
-	    players = (int) numPlayers.getSelectedItem(); 
-		System.out.println(players); 
-		
+	    players = (int) numPlayers.getSelectedItem(); 		
 		comp = (int) numComp.getSelectedItem();
-		System.out.println(comp); 
-		
-		
-		
-		for (int i=0; i<players; i++) {
-			conku.playerList.add(new Player());
-		}
-		
-		for (int i= players; i<totalPlayers; i++) {
-			conku.playerList.add(new Player());
-		}
-		
 		totalPlayers = players + comp;
 		
 		
-		
-		if (totalPlayers == 2) {
-			numOfInfantry = 40;
-		}
-	    if (totalPlayers == 3) {
-			numOfInfantry = 35;
-		}
-		if (totalPlayers == 4) {
-			numOfInfantry = 30;
-		}
-		if (totalPlayers == 5) {
-			numOfInfantry = 25;
-		}
-		if (totalPlayers == 6) {
-			numOfInfantry = 20;
-		
+		return totalPlayers;
 	}
-		return numOfInfantry;
+	
+	public int addPlayers(int total) {  
+			for (int i=0; i<total; i++) {
+				if (total == 2) {
+					numOfInfant = 40;
+				}
+				else if (total == 3) {
+					numOfInfant = 35;
+				}
+				else if (total == 4) {
+					numOfInfant = 30;
+				}
+				else if (total == 5) {
+					numOfInfant = 25;
+				}
+				else if (total == 6) {
+					numOfInfant = 20;
+				}
+				else {
+					numOfInfant = -1;
+					System.out.println("choose again");
+				}
+		}
+			return numOfInfant;
+	
+		}
+	*/
+	/*public void mouseClicked(MouseEvent e) {
+		
+		row = e.getY() / Grid.CELL_SIZE;
+		col = e.getX() / Grid.CELL_SIZE;
+		// if (GameFrame.build) {
+		System.out.println(row + col);
+		if (grid.gridColors[row][col] != grid.blue) {
+			grid.gridColors[row][col] = Color.GRAY;
+			repaint();
+			//index = territoryIs.getIndex();
+			//System.out.println("index" + index);
+			/*if (terr != null) {
+				terr.setEnabled(false);
+			}*/
+		//}
+	//}
+		
+		
 
-	}
 
+
+	
+	
 }

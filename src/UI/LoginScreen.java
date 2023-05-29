@@ -4,14 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+
+import domain.Player;
 
 public class LoginScreen extends JLayeredPane{
 	//BuildingMode bMode = new BuildingMode();
@@ -22,7 +27,22 @@ public class LoginScreen extends JLayeredPane{
     JButton btnHelp = new JButton("Help");
     JTextField username = new JTextField();
     JTextField password = new JTextField();
+    JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
+    JComboBox<Integer> numComp = new JComboBox<Integer>();
+    JTextArea txtnumPlayers = new JTextArea();
+    JTextArea txtnumComp = new JTextArea();
+    JPanel playersPanel = new JPanel();
 
+    int players,comp;
+    int totalPlayers=0;
+    int numOfInfant;
+    
+    ArrayList<Player> playerArray = new ArrayList<Player>(); 
+    
+    //ai player olucak class ı ? 
+    ArrayList<Player> compPlayerArray = new ArrayList<Player>(); 
+
+   
     
     
 	
@@ -44,92 +64,129 @@ public class LoginScreen extends JLayeredPane{
 	public void addElements() {
         
 		txtTitle.setEditable(false);
-		txtTitle.setBounds(320, 21, 271, 83);
+		txtTitle.setBounds(240, 21, 371, 83);
 		txtTitle.setForeground(Color.LIGHT_GRAY);
 		txtTitle.setBackground(Color.DARK_GRAY);
-		txtTitle.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 49));
+		txtTitle.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 65));
 		txtTitle.setText("ConKUeror  ");
         add(txtTitle);
         
-        txtUsername.setBounds(374, 219, 103, 23);
+        
+        txtnumPlayers.setBounds(220, 190, 217, 32);
+        txtnumPlayers.setText("Number of players (2-6):");
+        txtnumPlayers.setForeground(Color.LIGHT_GRAY);
+        txtnumPlayers.setFont(new Font("Kokonor", Font.ITALIC, 19));
+        txtnumPlayers.setEditable(false);
+        txtnumPlayers.setBackground(Color.DARK_GRAY);
+        add(txtnumPlayers);
+        
+        
+        txtnumComp.setBounds(143, 230, 294, 32);
+        txtnumComp.setText("Number of computer players (1-6):");
+        txtnumComp.setForeground(Color.LIGHT_GRAY);
+        txtnumComp.setFont(new Font("Kokonor", Font.ITALIC, 19));
+        txtnumComp.setEditable(false);
+        txtnumComp.setBackground(Color.DARK_GRAY);
+        add(txtnumComp);
+        
+        numPlayers.setBounds(432, 190, 64, 27);
+        numPlayers.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 2, 3, 4, 5, 6}));
+        numPlayers.setMaximumRowCount(6);
+        numPlayers.setBackground(Color.LIGHT_GRAY);
+        add(numPlayers);
+       
+
+        numComp.setBounds(432, 230, 64, 27);
+        numComp.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3, 4, 5, 6}));
+        numComp.setMaximumRowCount(6);
+        numComp.setBackground(Color.LIGHT_GRAY);
+        add(numComp);
+        
+        txtUsername.setBounds(660, 350, 163, 23);
         txtUsername.setText("Enter Username");
         txtUsername.setForeground(Color.LIGHT_GRAY);
+        txtUsername.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
         txtUsername.setEditable(false);
         txtUsername.setBackground(Color.DARK_GRAY);
         add(txtUsername);
         
         
-        username.setBounds(341, 244, 171, 30);
+        username.setBounds(641, 374, 171, 30);
         username.setHorizontalAlignment(SwingConstants.LEFT);
         username.setForeground(Color.BLACK);
-        username.setFont(new Font("Chalkboard", Font.BOLD | Font.ITALIC, 20));
+        username.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
         username.setColumns(10);
         username.setBackground(Color.WHITE);
         add(username);
         
-        txtPassword.setBounds(374, 280, 103, 23);
+        txtPassword.setBounds(660, 430, 163, 23);
         txtPassword.setText("Enter Password");
         txtPassword.setForeground(Color.LIGHT_GRAY);
+        txtPassword.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
         txtPassword.setEditable(false);
         txtPassword.setBackground(Color.DARK_GRAY);
         add(txtPassword);
         
 
-        password.setBounds(341, 304, 171, 30);
+        password.setBounds(641, 454, 171, 30);
         password.setHorizontalAlignment(SwingConstants.LEFT);
         password.setForeground(Color.BLACK);
-        password.setFont(new Font("Chalkboard", Font.BOLD | Font.ITALIC, 20));
+        password.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
         password.setColumns(10);
         password.setBackground(Color.WHITE);
         add(password);
         
-        btnLogin.setBounds(373, 518, 100, 30);
+        btnLogin.setBounds(673, 518, 100, 30);
         btnLogin.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnLogin);
-        /*btnLogin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Toggle the visibility of the panels
-            	String action=e.getActionCommand();
-            	startScreen.setVisible(!startScreen.isVisible());
-            	if ("Start".equals(action)) {
-            		layeredPane.add(buildingMode, Integer.valueOf(1));
-            		buildingMode.setVisible(true);
-            		startScreen.setVisible(false);
-            		//startScreen.removeAll();
-            		//btnStart.setVisible(false);
-            		btnBack.setVisible(false);
-            		start=true;
-            		btnLogin.setVisible(false);
-            		//gridPanel.setVisible(true);
-            		gridPanel_1.setVisible(true);
-         
-            	
-            	} 
-            }
-        });*/
-	
-    
+        
+        btnHelp.setBounds(729, 13, 117, 29);
+        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
         add(btnHelp);
         
-       /* btnHelp.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		 
-        		String action=e.getActionCommand();
-            	//startScreen.setVisible(false);
-            	if ("Help".equals(action)) {
-            		
-            		//layeredPane.add(helpScreen);
-            		helpScreen.setVisible(true);
-            		btnHelp.setVisible(false);
-            		btnStart.setVisible(false);
-            		btnBack.setVisible(true);
-            		System.out.println("hata");
-            	}
-            	
-        	}
-        });*/
-        btnHelp.setBounds(729, 13, 117, 29);
-        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));         
+        playersPanel.setBounds(623, 118, 200, 200);
+		playersPanel.setBackground(Color.WHITE);
+		//add(playersPanel);
+		
+		txtnumPlayers.getText();
+		
+		
+        
     }
+	
+	public int getPlayerNum() {  
+		
+	    players = (int) numPlayers.getSelectedItem(); 		
+		comp = (int) numComp.getSelectedItem();
+		totalPlayers = players + comp;
+		return totalPlayers;
+	}
+	
+	public int addPlayers(int total) {  
+			for (int i=0; i<total; i++) {
+				if (total == 2) {
+					numOfInfant = 40;
+				}
+				else if (total == 3) {
+					numOfInfant = 35;
+				}
+				else if (total == 4) {
+					numOfInfant = 30;
+				}
+				else if (total == 5) {
+					numOfInfant = 25;
+				}
+				else if (total == 6) {
+					numOfInfant = 20;
+				}
+				else {
+					numOfInfant = -1;
+					System.out.println("choose again");
+				}
+		}
+			return numOfInfant;
+	
+		}
+	
 	
 }

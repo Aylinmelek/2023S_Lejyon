@@ -13,16 +13,16 @@ import domain.Territory;
 public class Grid extends JPanel implements MouseListener {
 
 
-	private static final int ROWS = 17;
-	private static final int COLUMNS = 17;
-	private static final int CELL_SIZE = 50;
-	private static final int GRID_LINE_WIDTH = 2;
-	Color[][] gridColors;
+	public static final int ROWS = 17;
+	public static final int COLUMNS = 17;
+	public static final int CELL_SIZE = 50;
+	public static final int GRID_LINE_WIDTH = 2;
+	public Color[][] gridColors;
 	private String[][] gridText;
 	int index = 0;
 	TerrCardFrame terCard = new TerrCardFrame();
 	Player player = new Player();
-	static Map gameMap;
+	
 	Territory territoryFrom;
 	ArrayList<Territory> terrsSelected = new ArrayList<Territory>();
 	public int col, row;
@@ -31,6 +31,7 @@ public class Grid extends JPanel implements MouseListener {
 	Color blue = new Color(0, 0, 155);
 
 	public Grid() {
+		
 		this.gridColors = new Color[ROWS][COLUMNS];
 		this.gridText = new String[ROWS][COLUMNS];
 
@@ -64,6 +65,7 @@ public class Grid extends JPanel implements MouseListener {
 		drawCells(g);
 	}
 
+
 	private void drawGridLines(Graphics g) {
 		g.setColor(Color.BLACK);
 		for (int row = 0; row <= ROWS; row++) {
@@ -92,50 +94,52 @@ public class Grid extends JPanel implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
+		//System.out.println(row + col);
+		Territory terr = Territory.isTerritory(row, col);
+		
+		 if (GameFrame.build) {
+			if (gridColors[row][col] != blue) {
+				gridColors[row][col] = Color.GRAY;
+				repaint();
+				//index = territoryIs.getIndex();
+				//System.out.println("index" + index);
+				if (terr != null) {
+					terr.setEnabled(false);
+				}
+			}
+		}
 
-		if (GameFrame.init) {
+		  if (GameFrame.init) {
+			 
+			 
+			 
 			if (gridColors[row][col] != Color.GRAY && gridColors[row][col] != blue) {
 				gridColors[row][col] = Color.CYAN;
+				
 				repaint();
 
-			 Territory territoryIs = Territory.isTerritory(row, col);
-				// index=territory2.getIndex();
-
-				if (territoryIs != null) {
-					player.territoryList.add(territoryIs);
-					terCard.setTerritoryCard(getColorName(territoryIs.getColor()), territoryIs.getText(), index, 20, 100);
+				if (terr != null) {
+					player.territoryList.add(terr);
+					terCard.setTerritoryCard(getColorName(terr.getColor()), terr.getText(), index, 20, 100);
+					//terCard.setVisible(true);
 					
-//String name, String text, Color color, int index
 				}
-				index = territoryIs.getIndex();
-			}
+				index = terr.getIndex();
+			} 
 
 			else {
 				System.out.println("choose again.");
 			}
 		}
 
-		else if (GameFrame.build) {
-			if (gridColors[row][col] != blue) {
-				gridColors[row][col] = Color.GRAY;
-
-				repaint();
-
-			 Territory territoryIs = Territory.isTerritory(row, col);
-				index = territoryIs.getIndex();
-				//System.out.println("index" + index);
-				if (territoryIs != null) {
-					territoryIs.setEnabled(false);
-				}
-			}
-		}
+		
 
 		else if (GameFrame.playMode) {
 			//playerları create edip turn turn ayırmak lazım
 			//sectigin terr e değiştir isterritory
 			//territorydeki asker sayısını goster
 			
-			Territory territoryIs = Territory.isTerritory(row, col);
+			
 			Territory selectedTerr = Territory.territories[row][col];
 			terrsSelected.add(Territory.territories[row][col]);
 			System.out.println(player.canAttackTerritory(terrsSelected.get(0), selectedTerr));
@@ -159,6 +163,7 @@ public class Grid extends JPanel implements MouseListener {
 				}		
 			//rengini değiştirme 
 		}
+		
 	}
 
 	public String getColorName(Color color) {
