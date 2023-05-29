@@ -7,9 +7,17 @@ import java.util.List;
 import UI.Grid;
 
 public class Territory {
- public int army; 
- Continent continent;
 
+ int army; 
+ public boolean isImmune() {
+	return isImmune;
+}
+
+public void setImmune(boolean isImmune) {
+	this.isImmune = isImmune;
+}
+Continent continent;
+ private boolean isImmune = false;
  private static final int ROWS = 17;
  private static final int COLUMNS = 17;
  
@@ -28,10 +36,12 @@ public class Territory {
 	        { null, null, null, null, new Territory("Orange 6", "6", Color.orange,38), new Territory("Orange 4", "4", Color.orange,36), null, null, null, null },
 	    };
  
+
 	private String name;
 	private String text;
 	private Color color;
 	private int index;
+
 
  
  public Territory(String name, String text, Color color, int index) {
@@ -41,7 +51,6 @@ public class Territory {
 	    this.index = index;
 
 }
-
  
  public Territory() {
 
@@ -76,6 +85,7 @@ public void setAdjacentTerritories(ArrayList<Territory> adjacentTerritories) {
 }
 int row,col=0;
 
+
  public Player getOwner() {
 	return owner;
 }
@@ -95,10 +105,29 @@ public void enable() {
  public void immunize() {
 	 isImmune = true;
  }
- public void deImmunize() {
+
+ public String getText() {
+	return text;
+}
+
+
+public void setText(String text) {
+	this.text = text;
+}
+
+
+public int getIndex() {
+	return index;
+}
+
+
+public void setIndex(int index) {
+	this.index = index;
+}
+
+public void deImmunize() {
 	 isImmune = false;
  }
-
 
 public static Territory isTerritory(int row2, int col2) {
 	    
@@ -121,7 +150,10 @@ public Color getColor() {
 	return color;
 }
 
-
-
+  public void setLink(Territory territory) {
+		this.getAdjacentTerritories().add(territory);
+		territory.getAdjacentTerritories().add(this);
+	}
  
+
 }
