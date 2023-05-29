@@ -34,7 +34,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
     JButton btnSkip = new JButton("SKIP ATTACK");
-    TerrCardFrame terCard = new TerrCardFrame();
+    //TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
     int temp;
     public boolean init = false;

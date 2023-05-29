@@ -6,6 +6,7 @@ public class Player {
 	String name;
 	public Deck deck = new Deck();
 	public Die die;
+	public static Army inf1 = new Infantry();
 
 	public int numOfInfantry;
 	
@@ -190,9 +191,8 @@ public class Player {
 			if (army == "Infantry" && infantryList.size() >= 1) {
 				int index = infantryList.size() - 1;
 				infantryList.remove(index);
-				//System.out.println("geliyo mu");
-				Army inf1 = new Infantry();
-				territory.armyList.add(inf1);
+				
+				territory.getArmyList().add(inf1);
 			}
 		}
 	}

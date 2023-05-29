@@ -22,6 +22,7 @@ public class Grid extends JPanel implements MouseListener {
 	private String[][] gridText;
 	int index = 0;
 	private boolean indFlag = true;
+	private boolean infFlag;
 	
 	public boolean isIndFlag() {
 		return indFlag;
@@ -105,8 +106,8 @@ public class Grid extends JPanel implements MouseListener {
 			}
 		}
 	}
-	
-	public Territory callTerr(Territory terr) {
+	/*
+	public void callTerr(Territory terr) {
 		if (terr != null) {
 			
 			
@@ -118,7 +119,7 @@ public class Grid extends JPanel implements MouseListener {
 	
 
 		return terr;
-	}
+	}*/
 	
 	public Territory getSelectedTer() {
 		return selectedTer;
@@ -129,6 +130,7 @@ public class Grid extends JPanel implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
+		infFlag = true;
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
 		//System.out.println(row + col);
@@ -154,7 +156,14 @@ public class Grid extends JPanel implements MouseListener {
 				gridColors[row][col] = Color.CYAN;
 				
 				repaint();
-				callTerr(selectedTer);
+				//callTerr(selectedTer);
+				if (selectedTer != null) {
+					
+					
+					terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index, 20, 100);
+					//terCard.setVisible(true);
+					
+				}
 				index = selectedTer.getIndex();
 				
 				
@@ -171,14 +180,16 @@ public class Grid extends JPanel implements MouseListener {
                 
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
-                	players.get(playerIndex).chooseATerritory(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()));
-                	players.get(playerIndex).placeArmy(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()), "Infantry");
+                	players.get(playerIndex).chooseATerritory(selectedTer);
+                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
                 	
-                	System.out.println(players.get(playerIndex).getTerritoryList().get(0));
-                	System.out.println("-------");
-                    System.out.println(GameFrame.bmode.grid.getSelectedTer());
+                	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
+                	System.out.println(players.get(playerIndex));
+                	
+                    System.out.println(selectedTer);
                 	//players.get(i).chooseATerritory(null)
-                    
+                    System.out.println(players.get(playerIndex).getInfantryList().size());
+                    System.out.println(selectedTer.getArmyList().size());//aynı territory çağrıldığında size değişmiyor, ancak 4 player yani totalde 4 army eklendiğinde size 1 artıyor
                     
                     
                     if (playerIndex==(players.size()-1)) {
@@ -187,14 +198,23 @@ public class Grid extends JPanel implements MouseListener {
                     	playerIndex=0;
                     }
                     else {
-                    	System.out.println("else stat");
+                    	
                     	System.out.println("playerIndex: "+ playerIndex);
                     	playerIndex++;
                     	
                     }
+                    System.out.println("-------");
                     //System.out.println("playerIndex: "+ playerIndex);
+                    for(int i=0; i<players.size(); i++) {
+                    	if(players.get(i).getInfantryList().size()!=0) {
+                    		infFlag = false;
+                    	}
+                    }
+                    if(infFlag) {
+                    	//burada shuffle çağrılacak
+                    }
 
-                    //System.out.println(players.get(playerIndex).getInfantryList().size());
+                    
                     
                     //System.out.println("player: "+ players.get(playerIndex));
                     

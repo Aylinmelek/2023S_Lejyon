@@ -163,7 +163,7 @@ public class LoginScreen extends JLayeredPane{
 	}
 	
 	public int addPlayers(int total) {  
-			for (int i=0; i<total; i++) {
+			
 				if (total == 2) {
 					numOfInfant = 40;
 				}
@@ -183,7 +183,7 @@ public class LoginScreen extends JLayeredPane{
 					numOfInfant = -1;
 					System.out.println("choose again");
 				}
-		}
+		
 			
 			
 			return numOfInfant;
