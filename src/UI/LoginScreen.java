@@ -23,7 +23,7 @@ public class LoginScreen extends JLayeredPane{
 	JTextArea txtTitle = new JTextArea();
     JTextArea txtUsername = new JTextArea();
     JButton btnLogin = new JButton("Login");
-    JTextArea txtPassword = new JTextArea();
+    JTextArea txtPassword = new JTextArea(); 
     JButton btnHelp = new JButton("Help");
     JTextField username = new JTextField();
     JTextField password = new JTextField();
