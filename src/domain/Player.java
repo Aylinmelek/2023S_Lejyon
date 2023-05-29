@@ -174,21 +174,25 @@ public class Player {
 		}
 	}
 
-	public void placeArmy(Territory territory, Army army) {
+	public void placeArmy(Territory territory, String army) {
 		if (territoryList.contains(territory)) {
-			territory.armyList.add(army);
+			//territory.armyList.add(army);
+			
 
-			if (army.type == "Cavalry" && cavalryList.size() >= 1) {
+			if (army == "Cavalry" && cavalryList.size() >= 1) {
 				int index = cavalryList.size() - 1;
 				cavalryList.remove(index);
 			}
-			if (army.type == "Artillery" && artilleryList.size() >= 1) {
+			if (army == "Artillery" && artilleryList.size() >= 1) {
 				int index = artilleryList.size() - 1;
 				artilleryList.remove(index);
 			}
-			if (army.type == "Infantry" && infantryList.size() >= 1) {
+			if (army == "Infantry" && infantryList.size() >= 1) {
 				int index = infantryList.size() - 1;
 				infantryList.remove(index);
+				System.out.println("geliyo mu");
+				Army inf1 = new Infantry();
+				territory.armyList.add(inf1);
 			}
 		}
 	}

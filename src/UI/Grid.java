@@ -21,6 +21,8 @@ public class Grid extends JPanel implements MouseListener {
 	public Color[][] gridColors;
 	private String[][] gridText;
 	int index = 0;
+	
+	int playerIndex=0;
 
 
 	TerrCardFrame terCard = new TerrCardFrame();
@@ -155,21 +157,32 @@ public class Grid extends JPanel implements MouseListener {
                 
                 
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                	Infantry inf = new Infantry();
+                	//Infantry inf = new Infantry();
                 	players.get(GameFrame.sharing.ind).chooseATerritory(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()));
-                	players.get(GameFrame.sharing.ind).placeArmy(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()), inf);
+                	players.get(GameFrame.sharing.ind).placeArmy(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()), "Infantry");
                 	
                 	System.out.println(players.get(GameFrame.sharing.ind).getTerritoryList().get(0));
                 	System.out.println("-------");
                     System.out.println(GameFrame.bmode.grid.getSelectedTer());
                 	//players.get(i).chooseATerritory(null)
-                    if (GameFrame.sharing.ind==GameFrame.sharing.temp) {
-                    	GameFrame.sharing.ind=0;
+                    
+                    playerIndex=GameFrame.sharing.ind(GameFrame.sharing.getMaxDie(),GameFrame.sharing.getTemp());
+                    
+                    if (playerIndex==players.size()) {
+                    		//GameFrame.sharing.getTemp()) {
+                    	System.out.println("if e geliyo mu");
+                    	playerIndex=0;
                     }
                     else {
-                    GameFrame.sharing.ind++;
+                    	System.out.println("else e geliyo mu");
+                    	playerIndex=playerIndex+1;
+                    	System.out.println("playerIndex: "+ playerIndex);
                     }
-                    System.out.println(players.get(GameFrame.sharing.ind).getInfantryList().size());
+                    //System.out.println("playerIndex: "+ playerIndex);
+
+                    System.out.println(players.get(playerIndex).getInfantryList().size());
+                    
+                    System.out.println("player: "+ players.get(playerIndex));
                     
                 
                 
