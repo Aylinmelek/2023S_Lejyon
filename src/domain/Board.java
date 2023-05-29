@@ -13,7 +13,7 @@ public class Board {
 	
 	public Board() {
 		die = new Die();
-		System.out.println("geliyo mu board'a");
+		System.out.println("board created");
 		System.out.println("-----------------");
 	}
 	
@@ -32,8 +32,10 @@ public class Board {
 	}
 	
 	
-	public void publishBoardEvent(int dieNum) {
+	public String publishBoardEvent(int dieNum) {
 		 System.out.println("(domain.Board)You rolled: " + dieNum);
+		 String num = Integer.toString(dieNum);
+		 return num;
 		/*for(BoardListener l: listeners)
 			l.onBoardEvent(String.format("You rolled %d: ",
 					dieNum));//, (dieNum > 7)?"You Win":"I Win"));*/
