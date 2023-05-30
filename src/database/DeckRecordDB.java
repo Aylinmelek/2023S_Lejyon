@@ -1,7 +1,13 @@
 
-package domain;
+package database;
 
 import UI.*;
+import domain.AdapterRecord;
+import domain.ArtilleryCard;
+import domain.Card;
+import domain.CavalryCard;
+import domain.Deck;
+import domain.InfantryCard;
 
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;

@@ -1,10 +1,13 @@
-package domain;
+package database;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import UI.*;
+import domain.Deck;
+import domain.Map;
+import domain.Player;
 
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;

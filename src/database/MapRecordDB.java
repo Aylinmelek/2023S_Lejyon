@@ -1,6 +1,11 @@
-package domain;
+package database;
 
 import UI.*;
+import domain.AdapterRecord;
+import domain.Army;
+import domain.Map;
+import domain.Player;
+import domain.Territory;
 
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;

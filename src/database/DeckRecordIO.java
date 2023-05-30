@@ -1,4 +1,4 @@
-package domain;
+package database;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import domain.Army;
+import domain.Deck;
+import domain.InfantryCard;
+import domain.Recordable;
 
 
 public class DeckRecordIO implements Recordable{

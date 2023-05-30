@@ -1,4 +1,4 @@
-package domain;
+package database;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,6 +6,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import domain.Army;
+import domain.Continent;
+import domain.Infantry;
+import domain.InfantryCard;
+import domain.Map;
+import domain.Player;
+import domain.Recordable;
+import domain.Territory;
+import domain.TerritoryCard;
 
 public class MapRecordIO implements Recordable{
 	String fileName = "output_map.dat";
