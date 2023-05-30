@@ -20,6 +20,7 @@ public class GamePlay {
         Map enabledMap = new Map();
         Die die = new Die();
         Random rand;
+        Deck deck = new Deck();
 
         
         // Player and AI count input is taken
@@ -83,6 +84,9 @@ public class GamePlay {
 
         //First Player fortify army to one of his/her another territory
         conkueror.fortify(conkueror.playerList.get(0),enabledMap.getTerritories().get(0), enabledMap.getTerritories().get(4),2);
+
+        //First Player take random chance card
+        deck.giveChanceCard(conkueror.playerList.get(0));
 
          //First Player attack to another player
         conkueror.attack(conkueror.playerList.get(0), enabledMap.getTerritories().get(4), enabledMap.getTerritories().get(3), die);
