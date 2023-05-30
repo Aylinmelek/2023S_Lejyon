@@ -98,7 +98,10 @@ public class DieTestingBlackBox {
         String expectedIcon = "die4.png"; // Expected icon file name for die number 4
 
         // Call the displayDie() method
+        System.out.println("DisplayDie: "+dieNumber);
         initSharing.displayDie(dieNumber);
+        System.out.println("DisplayDie: "+dieNumber);
+
 
 
      // Obtain the current displayed icon
