@@ -18,7 +18,6 @@ public class ConKUeror {
 	public Die die = new Die();
 	
 	
-	public Hashtable <Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
 
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
 
@@ -106,16 +105,13 @@ public class ConKUeror {
 
 	}
 	
-	public int addToPlayerTurnHash(LoginScreen loginScreen) {
+	public int addToPlayerList(LoginScreen loginScreen) {
 		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
 			Player player = new Player();
 			playerList.add(player);
 			System.out.println(player);
-			//player.setNumOfInfantry();
-			player_turn.put(player, player.turn);
-				
 		}
-		return player_turn.size();
+		return playerList.size();
 	}
 	
 	public void addToList(int num) {

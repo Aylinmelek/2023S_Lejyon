@@ -30,6 +30,10 @@ public class Player {
 	public String getName() {
 		return name;
 	}
+	
+	public void setName(String name) {
+		this.name=name;
+	}
 
 	public void playTheGame() {
 		Map map;
@@ -46,9 +50,7 @@ public class Player {
 	}
 
 
-	public void setName(String name) {
-		this.name=name;
-	}
+	
 	public void winTheGame() {
 		System.out.println("Congratulations! You won the game!");
 	}

@@ -40,18 +40,11 @@ public class GameFrame extends JFrame {
 	public static HelpScreen help = new HelpScreen();
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
+	public static ArrayList<String> tempPlayer = new ArrayList<String>();
 
 	public static void main(String[] args) {
 
-		//observer için ekledim
-		//ConKUeror conKUeror = new ConKUeror();
-		
-		//////////
-		
 		GameFrame frame = new GameFrame();
-		
-		//observer için ekledim
-		
 		
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
@@ -62,13 +55,27 @@ public class GameFrame extends JFrame {
 		frame.setVisible(true);
 		
 		
+		
 		login.btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
-				int totalpeople = sharing.conKUeror.addToPlayerTurnHash(login);
+				int totalPeople = sharing.conKUeror.addToPlayerList(login);
+				tempPlayer = login.addNamesToArrayList();
+				System.out.println("total people" + totalPeople);
 				
-				//bmode.add(grid);
+				for(int i =0;i<totalPeople; i++) {
+					System.out.println(sharing.conKUeror.playerList.get(i));
+				}
+				
+				for (int i =0;i<totalPeople;i++) {
+					sharing.conKUeror.playerList.get(i).setName(tempPlayer.get(i));
+				}
+				for(int i =0;i<totalPeople; i++) {
+					
+					System.out.println("player names" + sharing.conKUeror.playerList.get(i).getName()); 
+				}
+		
 				bmode.build = true;
 				
 				JTextArea dispInfant = new JTextArea();
@@ -130,28 +137,16 @@ public class GameFrame extends JFrame {
 				
 				sharing.numPlay = login.getPlayerNum();
 				sharing.addElements();
-				
-				//System.out.println("buildmode da size" + totalpeople);
-
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
 
 				sharing.add(bmode.grid);
-				//bmode.addPlayers(bmode.getPlayerNum());
+		
 				
 				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
 					sharing.conKUeror.playerList.get(i).setNumOfInfantry(login.addPlayers(login.getPlayerNum()));
 				}
-				/*
-				if (!sharing.btnRoll.isEnabled()){
-					max_player = conKUeror.playerList.get(conKUeror.die.getHigh_index());
-					System.out.println("----------------");
-					System.out.println(conKUeror.die.high_index);
-					System.out.println(max_player);
-				}*/
 				
-				//max_player = sharing.conKUeror.playerList.get(sharing.getInd());
-				//System.out.println(max_player);
 				sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
 				
 

@@ -186,11 +186,13 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         txtInitSharing.setBounds(175, 6, 489, 56);
         add(txtInitSharing);
         
-        
+        txtFirstPlayer.setText("Roll die! Highest roll starts the game!");
         txtFirstPlayer.setForeground(Color.LIGHT_GRAY);
-        txtFirstPlayer.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 15));
+        txtFirstPlayer.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
         txtFirstPlayer.setBackground(Color.DARK_GRAY);
         txtFirstPlayer.setEditable(false);
+        txtFirstPlayer.setBounds(320, 475, 389, 76);
+        add(txtFirstPlayer);
         
         dieLabel.setBounds(221, 450, 80, 80);
         
@@ -220,8 +222,8 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     
                     
                     txtFirstPlayer.setText("Highest die rolled by: "+max_player.getName()+"\n It's your turn!!");
-                    txtFirstPlayer.setBounds(320, 475, 389, 56);
-                    add(txtFirstPlayer);
+                    
+                    
                     
                 	
                     btnRoll.setEnabled(false);

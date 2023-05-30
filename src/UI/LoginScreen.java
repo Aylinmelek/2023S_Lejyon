@@ -45,15 +45,11 @@ public class LoginScreen extends JLayeredPane{
     int totalPlayers=0;
     int numOfInfant;
     int index = 0;
+    int counter = 0; 
     
-    ArrayList<Player> playerArray = new ArrayList<Player>(); 
+    ArrayList<String> playerArray = new ArrayList<String>(); 
     
-    //ai player olucak class ı ? 
-    ArrayList<Player> compPlayerArray = new ArrayList<Player>(); 
-
-   
-    
-    
+  
 	
 	public LoginScreen() {
 		super();
@@ -163,20 +159,21 @@ public class LoginScreen extends JLayeredPane{
         
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
             	if (!username.getText().equals("")) {
-            		initializeLabels()[index].setText(username.getText());
+            		if (counter < getPlayerNum()) {
+            		getNameLabels()[index].setText(username.getText());
             		nameLabels[index].setBackground(Color.DARK_GRAY);
             		nameLabels[index].setForeground(Color.WHITE);
-	            	//nameLabels[index].setEditable(false);
-	            	//playersPanel.add(panelUsername);
+	            	
 	            	playersPanel.add(nameLabels[index]);
-	            	GameFrame.sharing.conKUeror.playerList.get(index).setName(username.getText());;
 	            	index++;
 	            	
 	            	username.setText("");
 	            	password.setText("");
+	            	counter += 1;
 	            	
-	            	
+            		}
 	            	
 	            	
             	}
@@ -228,8 +225,6 @@ public class LoginScreen extends JLayeredPane{
 	    players = (int) numPlayers.getSelectedItem(); 		
 		comp = (int) numComp.getSelectedItem();
 		totalPlayers = players + comp;
-		
-		
 		return totalPlayers;
 	}
 	
@@ -261,17 +256,28 @@ public class LoginScreen extends JLayeredPane{
 	
 		}
 	
-private JLabel[] initializeLabels() {
-    	
-        for (int i = 0; i< getPlayerNum(); i++) {
+private void initializeLabels() {
+    	for (int i = 0; i< 6; i++) {
         	nameLabels[i] = new JLabel();     
             add(nameLabels[i]);
+            
             //labels[i].setVisible(true);
         }
         
-        return nameLabels;
     }
+
+private JLabel[] getNameLabels() {
+	return nameLabels;
+}
 	
 	
+public ArrayList<String> addNamesToArrayList() {
+	int playerNum = getPlayerNum();
+	for (int i = 0; i< playerNum; i++) {
+		playerArray.add(getNameLabels()[i].getText());
+		
+	}
+	return playerArray;
+}
 	
 }
