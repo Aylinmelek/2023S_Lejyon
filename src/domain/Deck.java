@@ -33,7 +33,7 @@ public class Deck {
 
 	// public void takeCard() {
 	public void giveChanceCard(Player player) {
-		int givenCard = rand.nextInt(5) + 1;
+		int givenCard = rand.nextInt(5);
 		if (givenCard == 0) {
 			DiplomaticImmunityCard dipImCard = new DiplomaticImmunityCard();
 			player.getDeck().getdipImmunityCardList().add(dipImCard);
@@ -60,6 +60,21 @@ public class Deck {
 		}
 
 	}
+
+	public void giveArmyCard(Player player) {
+		int givenCard = rand.nextInt(2);
+		if (givenCard == 0) {
+			InfantryCard infantryCard = new InfantryCard();
+			player.getDeck().getInfantryCardList().add(infantryCard);
+		}
+		if (givenCard == 1) {
+			CavalryCard cavalryCard = new CavalryCard();
+			player.getDeck().getCavalryCardList().add(cavalryCard);
+		}
+		if (givenCard == 2) {
+			ArtilleryCard artilleryCard = new ArtilleryCard();
+			player.getDeck().getArtilleryCardList().add(artilleryCard);
+		}
 
 	public ArrayList<DiplomaticImmunityCard> getdipImmunityCardList() {
 		return this.dipImmunityCardList;

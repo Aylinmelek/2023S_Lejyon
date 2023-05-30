@@ -87,6 +87,7 @@ public class GamePlay {
 
         //First Player take random chance card
         deck.giveChanceCard(conkueror.playerList.get(0));
+        deck.giveArmyCard(conkueror.playerList.get(0));
 
          //First Player attack to another player
         conkueror.attack(conkueror.playerList.get(0), enabledMap.getTerritories().get(4), enabledMap.getTerritories().get(3), die);
