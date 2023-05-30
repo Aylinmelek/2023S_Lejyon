@@ -170,10 +170,14 @@ public class LoginScreen extends JLayeredPane{
 	            	//nameLabels[index].setEditable(false);
 	            	//playersPanel.add(panelUsername);
 	            	playersPanel.add(nameLabels[index]);
+	            	GameFrame.sharing.conKUeror.playerList.get(index).setName(username.getText());;
 	            	index++;
 	            	
 	            	username.setText("");
 	            	password.setText("");
+	            	
+	            	
+	            	
 	            	
             	}
             }

@@ -46,6 +46,9 @@ public class Player {
 	}
 
 
+	public void setName(String name) {
+		this.name=name;
+	}
 	public void winTheGame() {
 		System.out.println("Congratulations! You won the game!");
 	}

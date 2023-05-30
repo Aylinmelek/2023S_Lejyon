@@ -78,8 +78,18 @@ public class GameFrame extends JFrame {
 				dispInfant.setText("Every Player has " + login.addPlayers(login.getPlayerNum()) + " Infantry.");
 				dispInfant.setEditable(false);
 				
-				dispInfant.setBounds(250, 450, 822, 263);
+				dispInfant.setBounds(150, 430, 822, 50);
 				bmode.add(dispInfant);
+				
+				 JTextArea txtdisable = new JTextArea();
+				 txtdisable.setBounds(150, 490, 822, 50);
+			     txtdisable.setText("Choose the territories you want to disable");
+			     txtdisable.setForeground(Color.LIGHT_GRAY);
+			     txtdisable.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+			     txtdisable.setEditable(false);
+			     txtdisable.setBackground(Color.DARK_GRAY);
+			     bmode.add(txtdisable);
+			        
 				
 
 			}
