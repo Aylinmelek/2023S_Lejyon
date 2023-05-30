@@ -9,15 +9,65 @@ import UI.LoginScreen;
 
 public class ConKUeror {
 
-
-	public ArrayList<Player> playerList = new ArrayList<Player>(); 
-	
-	
+	public ArrayList<Player> playerList = new ArrayList<Player>();
+	public ArrayList<Territory> terList = new ArrayList<Territory>();
 
 	Grid grid = new Grid();
 	public Die die = new Die();
+
+	public Hashtable<Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
+
+	public void createPlayer(int playerCount, int AICount) {
+		for (int i = 0; i < playerCount; i++) {
+			Player player = new Player();
+			playerList.add(player);
+		}
+		for (int j = 0; j < AICount; j++) {
+			AI ai = new AI();
+			playerList.add(ai.playerAI);
+		}
+	}
 	
+	public void createMainDeck(int count, Deck deck) {
+		for (int i = 0; i < count; i++) {
+			DisasterCard disasterCard= new DisasterCard();
+			DiplomaticImmunityCard diplomaticImmunity = new DiplomaticImmunityCard();
+			sabotageCard sabotage = new sabotageCard();
+			SpyCard spyCard = new SpyCard();
+			WorldEventCard worldEventCard = new WorldEventCard();
+			ReinforcementCard reinforcementCard = new ReinforcementCard();
+			
+			deck.getdipImmunityCardList().add(diplomaticImmunity);
+			deck.getDisasterCardList().add(disasterCard);
+			deck.getReinforcementCardList().add(reinforcementCard);
+			deck.getsabotageCardList().add(sabotage);
+			deck.getSpyCardList().add(spyCard);
+			deck.getWorldEventCardList().add(worldEventCard);
+			
+		}
+	}
+
+	public void setAdjacent(Map map) {
+		for (int i = 0; i < map.getTerritories().size(); i++) {
+			for (int j = 0; j < map.getTerritories().size(); j++) {
+				map.getTerritories().get(i).getAdjacentTerritories().add(map.getTerritories().get(j));
+				
+			}
+		}
+	}
 	
+
+	public void turnPass(int index) {
+		playerList.get(index).turn = false;
+		playerList.get((index + 1) % playerList.size()).turn = true;
+	}
+
+	public void createTerritory(int terCount) {
+		for (int i = 0; i < terCount; i++) {
+			Territory terr = new Territory();
+			terList.add(terr);
+		}
+	}
 
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
 
@@ -26,12 +76,11 @@ public class ConKUeror {
 					&& territoryTo.adjacentTerritories.contains(territoryFrom)) {
 				System.out.println(player + " is attacking now.");
 
-				//if (die.generateNum() > die.generateNum()) {
-				//observer için değiştirdim
+				// if (die.generateNum() > die.generateNum()) {
+				// observer için değiştirdim
 				die.roll();
 				if (die.getDiceValue() > die.getDiceValue()) {
-				/////////
-				
+					/////////
 
 					territoryTo.owner.loseTheDefend(territoryTo);
 					System.out.println(player + " lose the defend.");
@@ -53,7 +102,6 @@ public class ConKUeror {
 		}
 
 	}
-
 
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 
@@ -104,23 +152,25 @@ public class ConKUeror {
 		}
 
 	}
+
 	
 	public int addToPlayerList(LoginScreen loginScreen) {
 		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
 			Player player = new Player();
 			playerList.add(player);
 			System.out.println(player);
+
 		}
 		return playerList.size();
 	}
-	
+
 	public void addToList(int num) {
-		for (int j=0; j<playerList.size(); j++) {
+		for (int j = 0; j < playerList.size(); j++) {
 			Infantry inf = new Infantry();
-			for (int i=0; i<num; i++) {
+			for (int i = 0; i < num; i++) {
 				playerList.get(j).getInfantryList().add(inf);
 			}
 		}
-		
+
 	}
 }

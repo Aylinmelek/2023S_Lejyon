@@ -1,12 +1,16 @@
 package domain;
 
+
+import java.io.Serializable;
 import java.awt.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import UI.Grid;
 
-public class Territory {
+
+public class Territory implements Serializable{
 
  int army; 
  Continent continent;
@@ -63,7 +67,7 @@ boolean reachability;
  int count;
  Player owner;
  String territoryName; 
- boolean isEnabled;
+ boolean isEnabled = true;
  boolean isTaken = false;
  ArrayList <Territory> adjacentTerritories = new ArrayList<Territory>();
  ArrayList <Army> armyList = new ArrayList<Army>();

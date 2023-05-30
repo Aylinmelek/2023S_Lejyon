@@ -1,12 +1,14 @@
 package domain;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 import domain.cardService.ICardServiceAdapter;
 import domain.serviceFactory.CardServiceFactory;
 
-public class WorldEventCard { //implements Rollable, Changable{
+public class WorldEventCard implements Rollable, Changable, Serializable{ 
 	//implements Rollable??
 	Territory territory;
 	Die die;
@@ -14,6 +16,7 @@ public class WorldEventCard { //implements Rollable, Changable{
 	Player player;
 	int number;
 	ICardServiceAdapter cardService;
+
 	
 	public int rollDie() {
 		//int faceValue = CardServiceFactory.getInstance().getCardServiceAdapter("RollDie").rollDie();
