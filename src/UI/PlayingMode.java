@@ -1,6 +1,7 @@
 package UI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
-import domain.Board;
+
 import domain.Die;
-import domain.controller.ConKUerorHandler;
+
 
 public class PlayingMode extends JLayeredPane {
 	
@@ -25,10 +26,11 @@ public class PlayingMode extends JLayeredPane {
     JButton btnPickChance = new JButton("Pick a Chance Card");
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
     JTextArea txtCard = new JTextArea();
-
+   
     
     JLabel dieLabel = new JLabel();
     public boolean playMode = false;
+   
     
     Die die = new Die();
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
@@ -158,8 +160,11 @@ public class PlayingMode extends JLayeredPane {
 	     
 	     btnChance.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
-	     		ChanceCardFrame armyCard = new ChanceCardFrame();
-	     		armyCard.chanceCardF.setVisible(true);
+	     		ChanceCardFrame chanceCard = new ChanceCardFrame();
+	     		chanceCard.setVisible(true);
+	     		chanceCard.addLabels();
+	     		
+	     		
 	     	}
 	     });
 	     

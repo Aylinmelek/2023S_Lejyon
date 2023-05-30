@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -32,7 +33,8 @@ public class LoginScreen extends JLayeredPane{
     JButton btnHelp = new JButton("Help");
     JTextField username = new JTextField();
     JTextField password = new JTextField();
-    JTextArea panelUsername = new JTextArea();
+    //JTextArea panelUsername = new JTextArea();
+    JLabel[] nameLabels = new JLabel[6];
     JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
@@ -42,6 +44,7 @@ public class LoginScreen extends JLayeredPane{
     int players,comp;
     int totalPlayers=0;
     int numOfInfant;
+    int index = 0;
     
     ArrayList<Player> playerArray = new ArrayList<Player>(); 
     
@@ -55,7 +58,10 @@ public class LoginScreen extends JLayeredPane{
 	public LoginScreen() {
 		super();
 		initialize();
+		
 		addElements();
+		initializeLabels();
+		addLoginBtn();
 		passwordAst();
 	}
 
@@ -143,22 +149,29 @@ public class LoginScreen extends JLayeredPane{
         password.setBackground(Color.WHITE);
         add(password);
         
+	}
+	
+	public void addLoginBtn() {
+        
         btnLogin.setBounds(673, 250, 100, 30);
         //btnLogin.setEnabled(false);
         btnLogin.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnLogin);
         
         
-    	panelUsername.setBackground(Color.DARK_GRAY);
-        panelUsername.setForeground(Color.WHITE);
+    	
         
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	if (!username.getText().equals("")) {
-	            	panelUsername.setText(username.getText());
-	            	panelUsername.setEditable(false);
-	            	playersPanel.add(panelUsername);
-            		
+            		initializeLabels()[index].setText(username.getText());
+            		nameLabels[index].setBackground(Color.DARK_GRAY);
+            		nameLabels[index].setForeground(Color.WHITE);
+	            	//nameLabels[index].setEditable(false);
+	            	//playersPanel.add(panelUsername);
+	            	playersPanel.add(nameLabels[index]);
+	            	index++;
+	            	
 	            	username.setText("");
 	            	password.setText("");
 	            	
@@ -211,6 +224,8 @@ public class LoginScreen extends JLayeredPane{
 	    players = (int) numPlayers.getSelectedItem(); 		
 		comp = (int) numComp.getSelectedItem();
 		totalPlayers = players + comp;
+		
+		
 		return totalPlayers;
 	}
 	
@@ -241,6 +256,17 @@ public class LoginScreen extends JLayeredPane{
 			return numOfInfant;
 	
 		}
+	
+private JLabel[] initializeLabels() {
+    	
+        for (int i = 0; i< getPlayerNum(); i++) {
+        	nameLabels[i] = new JLabel();     
+            add(nameLabels[i]);
+            //labels[i].setVisible(true);
+        }
+        
+        return nameLabels;
+    }
 	
 	
 	
