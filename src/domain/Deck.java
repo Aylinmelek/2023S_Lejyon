@@ -1,9 +1,10 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Deck {
+public class Deck implements Serializable{
 	ArrayList <Card> deskDeck = new ArrayList<Card>();
 	ArrayList <Card> chanceCardList = new ArrayList<Card>();
 	ArrayList <Card> territoryCardList = new ArrayList<Card>();

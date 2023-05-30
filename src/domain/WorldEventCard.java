@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class WorldEventCard implements Rollable, Changable{
+public class WorldEventCard implements Rollable, Changable, Serializable{ 
 	
 	public int rollDie() {
 		Random random = new Random();

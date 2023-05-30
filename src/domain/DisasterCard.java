@@ -1,6 +1,8 @@
 package domain;
 
-public  class DisasterCard extends DisasterAdapter{
+import java.io.Serializable;
+
+public  class DisasterCard extends DisasterAdapter implements Serializable{
 	
 
 

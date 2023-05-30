@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Serializable{
 	String name;
 	public Deck deck = new Deck();
 	public Die die;

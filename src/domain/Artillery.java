@@ -1,6 +1,8 @@
 package domain;
 
-public class Artillery implements Army{
+import java.io.Serializable;
+
+public class Artillery implements Army, Serializable{
 	Territory territory;
 	Player owner;
 	boolean inPlayer;

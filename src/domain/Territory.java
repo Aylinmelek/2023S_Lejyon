@@ -1,10 +1,11 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import UI.Grid;
 
-public class Territory {
+public class Territory implements Serializable{
  int army; 
  Continent continent;
  boolean isImmune = false;
