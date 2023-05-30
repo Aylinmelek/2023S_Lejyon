@@ -69,7 +69,6 @@ public class GameFrame extends JFrame {
 				JTextArea txtPlayerNames = new JTextArea();
 				//txtPlayerNames.setBounds(212, 6, 453, 43);
 				StringBuilder playerNamesBuilder = new StringBuilder();
-				
 				for(int i =0;i<totalPeople; i++) {
 					System.out.println(sharing.conKUeror.playerList.get(i));
 				}

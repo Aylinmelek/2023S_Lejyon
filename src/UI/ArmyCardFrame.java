@@ -128,7 +128,6 @@ public class ArmyCardFrame extends JFrame {
         
         btnTrade.addActionListener(new ActionListener() {
                public void actionPerformed(ActionEvent e) {
-                   //System.out.println(tradeArtlry);
              //System.out.println(tradeInfntry2); 
 
                }

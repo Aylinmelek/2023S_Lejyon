@@ -24,8 +24,6 @@ public class ChanceCardFrame extends JFrame{
  JLabel[] cardLabels = new JLabel[MAX_CHANCE_CARDS];
   int labelIndex;
  
- 
- 
  public ChanceCardFrame() {
   initialize();
   addPanel();
