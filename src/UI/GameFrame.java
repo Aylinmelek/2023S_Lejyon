@@ -52,7 +52,7 @@ public class GameFrame extends JFrame {
 		
 		//observer için ekledim
 		
-		//Grid grid = new Grid();
+		
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
 		frame.setBackground(Color.DARK_GRAY);
@@ -60,8 +60,9 @@ public class GameFrame extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayeredPane(login);
 		frame.setVisible(true);
-
-		login.btnLogin.addActionListener(new ActionListener() {
+		
+		
+		login.btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
@@ -69,6 +70,16 @@ public class GameFrame extends JFrame {
 				
 				//bmode.add(grid);
 				bmode.build = true;
+				
+				JTextArea dispInfant = new JTextArea();
+				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				dispInfant.setForeground(Color.LIGHT_GRAY);
+				dispInfant.setBackground(Color.DARK_GRAY);
+				dispInfant.setText("Every Player has " + login.addPlayers(login.getPlayerNum()) + " Infantry.");
+				dispInfant.setEditable(false);
+				
+				dispInfant.setBounds(250, 450, 822, 263);
+				bmode.add(dispInfant);
 				
 
 			}
@@ -85,7 +96,11 @@ public class GameFrame extends JFrame {
 					frame.revalidate();
 					login.loginMode = false;
 					start = true;
+					
+				
 				}
+				
+				
 
 			}
 		});
@@ -113,12 +128,7 @@ public class GameFrame extends JFrame {
 
 				sharing.add(bmode.grid);
 				//bmode.addPlayers(bmode.getPlayerNum());
-				JTextArea dispInfant = new JTextArea();
-				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-				dispInfant.setForeground(Color.LIGHT_GRAY);
-				dispInfant.setBackground(Color.DARK_GRAY);
-				dispInfant.setText("You have " + login.addPlayers(login.getPlayerNum()) + " Infantry.");
-				dispInfant.setEditable(false);
+				
 				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
 					sharing.conKUeror.playerList.get(i).setNumOfInfantry(login.addPlayers(login.getPlayerNum()));
 				}
@@ -132,12 +142,6 @@ public class GameFrame extends JFrame {
 				
 				//max_player = sharing.conKUeror.playerList.get(sharing.getInd());
 				//System.out.println(max_player);
-				
-				
-				
-				
-				dispInfant.setBounds(350, 450, 822, 263);
-				sharing.add(dispInfant);
 				sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
 				
 
