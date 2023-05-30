@@ -30,6 +30,7 @@ import domain.controller.ConKUerorHandler;
 
 public class InitSharing extends JLayeredPane  implements BoardListener{
     JTextArea txtInitSharing = new JTextArea();
+    JTextArea txtFirstPlayer = new JTextArea();
     JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
@@ -172,6 +173,11 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     public int getMaxDie() {
     	return max_die;
     }
+    
+    public Player getMaxPlayer() {
+    	return max_player;
+    }
+    
     public void addElements() {
         txtInitSharing.setForeground(Color.LIGHT_GRAY);
         txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
@@ -179,6 +185,14 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         txtInitSharing.setText("Initial Sharing and Army Placement");
         txtInitSharing.setBounds(175, 6, 489, 56);
         add(txtInitSharing);
+        
+        txtFirstPlayer.setText("Roll die! Highest roll starts the game!");
+        txtFirstPlayer.setForeground(Color.LIGHT_GRAY);
+        txtFirstPlayer.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
+        txtFirstPlayer.setBackground(Color.DARK_GRAY);
+        txtFirstPlayer.setEditable(false);
+        txtFirstPlayer.setBounds(320, 475, 389, 76);
+        add(txtFirstPlayer);
         
         dieLabel.setBounds(221, 450, 80, 80);
         
@@ -205,6 +219,12 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     System.out.println("player_list high index: " + ind);
                     System.out.println("highest die rolling player: " + max_player);
                     //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
+                    
+                    
+                    txtFirstPlayer.setText("Highest die rolled by: "+max_player.getName()+"\n It's your turn!!");
+                    
+                    
+                    
                 	
                     btnRoll.setEnabled(false);
                     

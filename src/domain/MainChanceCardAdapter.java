@@ -10,7 +10,7 @@ public class MainChanceCardAdapter {
 	public static void main(String[] args) {
 		
 		ICardServiceAdapter cardService;
-		String cardType = "DisasterCard";
+		String cardType = "ReinforcementCard";
 		
 		if (cardType == "DisasterCard") {
 			cardService = new DisasterCardServiceAdapter();

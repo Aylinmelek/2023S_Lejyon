@@ -56,6 +56,7 @@ public class ConKUeror {
 		}
 	}
 	
+
 	public void turnPass(int index) {
 		playerList.get(index).turn = false;
 		playerList.get((index + 1) % playerList.size()).turn = true;
@@ -152,16 +153,15 @@ public class ConKUeror {
 
 	}
 
-	public int addToPlayerTurnHash(LoginScreen loginScreen) {
-		for (int i = 0; i < loginScreen.getPlayerNum(); i++) {
+	
+	public int addToPlayerList(LoginScreen loginScreen) {
+		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
 			Player player = new Player();
 			playerList.add(player);
 			System.out.println(player);
-			// player.setNumOfInfantry();
-			player_turn.put(player, player.turn);
 
 		}
-		return player_turn.size();
+		return playerList.size();
 	}
 
 	public void addToList(int num) {
