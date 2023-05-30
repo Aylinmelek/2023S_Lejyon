@@ -28,6 +28,11 @@ public class ConKUeror {
 		}
 	}
 
+	public void turnPass(int index) {
+		playerList.get(index).turn = false;
+		playerList.get((index + 1) % playerList.size()).turn = true;
+	}
+
 	public void createTerritory(int terCount) {
 		for (int i = 0; i < terCount; i++) {
 			Territory terr = new Territory();

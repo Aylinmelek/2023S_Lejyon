@@ -92,6 +92,8 @@ public class GamePlay {
          //First Player attack to another player
         conkueror.attack(conkueror.playerList.get(0), enabledMap.getTerritories().get(4), enabledMap.getTerritories().get(3), die);
 
+        conkueror.turnPass(0);
+        
         
     }
 }

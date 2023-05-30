@@ -13,7 +13,7 @@ public class Deck {
 	ArrayList<SpyCard> spyCardList = new ArrayList<SpyCard>();
 	ArrayList<WorldEventCard> worldEventCardList = new ArrayList<WorldEventCard>();
 	ArrayList<DisasterCard> disasterCardList = new ArrayList<DisasterCard>();
-	ArrayList<Card> territoryCardList = new ArrayList<Card>();
+	ArrayList<TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();
 	ArrayList<Card> armyCardList = new ArrayList<Card>();
 	ArrayList<InfantryCard> infantryCardList = new ArrayList<InfantryCard>();
 	ArrayList<ArtilleryCard> artilleryCardList = new ArrayList<ArtilleryCard>();
@@ -75,6 +75,12 @@ public class Deck {
 			ArtilleryCard artilleryCard = new ArtilleryCard();
 			player.getDeck().getArtilleryCardList().add(artilleryCard);
 		}
+	}
+
+	public void giveTerritoryCard(Player player) {
+		int givenCard = rand.nextInt(2);
+
+	}
 
 	public ArrayList<DiplomaticImmunityCard> getdipImmunityCardList() {
 		return this.dipImmunityCardList;
