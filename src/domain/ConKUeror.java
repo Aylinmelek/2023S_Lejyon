@@ -9,16 +9,31 @@ import UI.LoginScreen;
 
 public class ConKUeror {
 
-
-	public ArrayList<Player> playerList = new ArrayList<Player>(); 
-	
-	
+	public ArrayList<Player> playerList = new ArrayList<Player>();
+	public ArrayList<Territory> terList = new ArrayList<Territory>();
 
 	Grid grid = new Grid();
 	public Die die = new Die();
-	
-	
-	public Hashtable <Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
+
+	public Hashtable<Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
+
+	public void createPlayer(int playerCount, int AICount) {
+		for (int i = 0; i < playerCount; i++) {
+			Player player = new Player();
+			playerList.add(player);
+		}
+		for (int j = 0; j < AICount; j++) {
+			AI ai = new AI();
+			playerList.add(ai.playerAI);
+		}
+	}
+
+	public void createTerritory(int terCount) {
+		for (int i = 0; i < terCount; i++) {
+			Territory terr = new Territory();
+			terList.add(terr);
+		}
+	}
 
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
 
@@ -27,12 +42,11 @@ public class ConKUeror {
 					&& territoryTo.adjacentTerritories.contains(territoryFrom)) {
 				System.out.println(player + " is attacking now.");
 
-				//if (die.generateNum() > die.generateNum()) {
-				//observer için değiştirdim
+				// if (die.generateNum() > die.generateNum()) {
+				// observer için değiştirdim
 				die.roll();
 				if (die.getDiceValue() > die.getDiceValue()) {
-				/////////
-				
+					/////////
 
 					territoryTo.owner.loseTheDefend(territoryTo);
 					System.out.println(player + " lose the defend.");
@@ -54,7 +68,6 @@ public class ConKUeror {
 		}
 
 	}
-
 
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 
@@ -105,26 +118,26 @@ public class ConKUeror {
 		}
 
 	}
-	
+
 	public int addToPlayerTurnHash(LoginScreen loginScreen) {
-		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
+		for (int i = 0; i < loginScreen.getPlayerNum(); i++) {
 			Player player = new Player();
 			playerList.add(player);
 			System.out.println(player);
-			//player.setNumOfInfantry();
+			// player.setNumOfInfantry();
 			player_turn.put(player, player.turn);
-				
+
 		}
 		return player_turn.size();
 	}
-	
+
 	public void addToList(int num) {
-		for (int j=0; j<playerList.size(); j++) {
+		for (int j = 0; j < playerList.size(); j++) {
 			Infantry inf = new Infantry();
-			for (int i=0; i<num; i++) {
+			for (int i = 0; i < num; i++) {
 				playerList.get(j).getInfantryList().add(inf);
 			}
 		}
-		
+
 	}
 }
