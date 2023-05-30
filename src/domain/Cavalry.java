@@ -1,6 +1,8 @@
 package domain;
 
-public class Cavalry implements Army{
+import java.io.Serializable;
+
+public class Cavalry implements Army, Serializable {
 	Territory territory;
 	Player owner;
 	boolean inPlayer;

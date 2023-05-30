@@ -1,12 +1,16 @@
 package domain;
 
+
+import java.io.Serializable;
 import java.awt.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import UI.Grid;
 
-public class Territory {
+
+public class Territory implements Serializable{
 
  int army; 
  Continent continent;

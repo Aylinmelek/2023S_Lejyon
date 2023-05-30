@@ -1,10 +1,12 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Deck {
+
+public class Deck implements Serializable{
 	ArrayList<Card> deskDeck = new ArrayList<Card>();
 	ArrayList<Card> chanceCardList = new ArrayList<Card>();
 	ArrayList<DiplomaticImmunityCard> dipImmunityCardList = new ArrayList<DiplomaticImmunityCard>();
@@ -19,6 +21,7 @@ public class Deck {
 	ArrayList<ArtilleryCard> artilleryCardList = new ArrayList<ArtilleryCard>();
 	ArrayList<CavalryCard> cavalryCardList = new ArrayList<CavalryCard>();
 	Random rand;
+
 
 	public void shuffle() {
 		Collections.shuffle(deskDeck);
