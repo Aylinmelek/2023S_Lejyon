@@ -21,12 +21,13 @@ import domain.controller.ConKUerorHandler;
 
 public class BuildingMode extends JLayeredPane{
 	JTextArea txtrGameOptions = new JTextArea();
+	//JTextArea txtdisable = new JTextArea();
     /*JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();*/
     JButton btnNext = new JButton("Next");
-    
+    public boolean build = false;
     Grid grid = new Grid(); 
     int row = grid.row;
 	int col = grid.col;
@@ -82,6 +83,9 @@ public class BuildingMode extends JLayeredPane{
         txtrGameOptions.setEditable(false);
         txtrGameOptions.setBackground(Color.DARK_GRAY);
         add(txtrGameOptions);
+        
+        
+  
         
        /* txtnumPlayers.setBounds(220, 450, 217, 32);
         txtnumPlayers.setText("Number of players (2-6):");

@@ -6,50 +6,59 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 import domain.Player;
 
 public class LoginScreen extends JLayeredPane{
-	//BuildingMode bMode = new BuildingMode();
 	JTextArea txtTitle = new JTextArea();
     JTextArea txtUsername = new JTextArea();
     JButton btnLogin = new JButton("Login");
-    JTextArea txtPassword = new JTextArea();
+    JButton btnStart = new JButton("Start Game");
+    JTextArea txtPassword = new JTextArea(); 
     JButton btnHelp = new JButton("Help");
     JTextField username = new JTextField();
     JTextField password = new JTextField();
+    //JTextArea panelUsername = new JTextArea();
+    JLabel[] nameLabels = new JLabel[6];
     JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();
     JPanel playersPanel = new JPanel();
-
+    public boolean loginMode = false;
     int players,comp;
     int totalPlayers=0;
     int numOfInfant;
+    int index = 0;
+    int counter = 0; 
     
-    ArrayList<Player> playerArray = new ArrayList<Player>(); 
+    ArrayList<String> playerArray = new ArrayList<String>(); 
     
-    //ai player olucak class ı ? 
-    ArrayList<Player> compPlayerArray = new ArrayList<Player>(); 
-
-   
-    
-    
+  
 	
 	public LoginScreen() {
 		super();
 		initialize();
+		
 		addElements();
+		initializeLabels();
+		addLoginBtn();
+		passwordAst();
 	}
 
 	//startScreen = new JPanel();
@@ -102,7 +111,7 @@ public class LoginScreen extends JLayeredPane{
         numComp.setBackground(Color.LIGHT_GRAY);
         add(numComp);
         
-        txtUsername.setBounds(660, 350, 163, 23);
+        txtUsername.setBounds(660, 100, 163, 23);
         txtUsername.setText("Enter Username");
         txtUsername.setForeground(Color.LIGHT_GRAY);
         txtUsername.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
@@ -111,7 +120,7 @@ public class LoginScreen extends JLayeredPane{
         add(txtUsername);
         
         
-        username.setBounds(641, 374, 171, 30);
+        username.setBounds(641, 124, 171, 30);
         username.setHorizontalAlignment(SwingConstants.LEFT);
         username.setForeground(Color.BLACK);
         username.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
@@ -119,7 +128,7 @@ public class LoginScreen extends JLayeredPane{
         username.setBackground(Color.WHITE);
         add(username);
         
-        txtPassword.setBounds(660, 430, 163, 23);
+        txtPassword.setBounds(660, 180, 163, 23);
         txtPassword.setText("Enter Password");
         txtPassword.setForeground(Color.LIGHT_GRAY);
         txtPassword.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 16));
@@ -128,7 +137,7 @@ public class LoginScreen extends JLayeredPane{
         add(txtPassword);
         
 
-        password.setBounds(641, 454, 171, 30);
+        password.setBounds(641, 204, 171, 30);
         password.setHorizontalAlignment(SwingConstants.LEFT);
         password.setForeground(Color.BLACK);
         password.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
@@ -136,23 +145,80 @@ public class LoginScreen extends JLayeredPane{
         password.setBackground(Color.WHITE);
         add(password);
         
-        btnLogin.setBounds(673, 518, 100, 30);
+	}
+	
+	public void addLoginBtn() {
+        
+        btnLogin.setBounds(673, 250, 100, 30);
+        //btnLogin.setEnabled(false);
         btnLogin.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnLogin);
+        
+        
+    	
+        
+        btnLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+            	if (!username.getText().equals("")) {
+            		if (counter < getPlayerNum()) {
+            		getNameLabels()[index].setText(username.getText());
+            		nameLabels[index].setBackground(Color.DARK_GRAY);
+            		nameLabels[index].setForeground(Color.WHITE);
+	            	
+	            	playersPanel.add(nameLabels[index]);
+	            	index++;
+	            	
+	            	username.setText("");
+	            	password.setText("");
+	            	counter += 1;
+	            	
+            		}
+	            	
+	            	
+            	}
+            }
+        });
+        
+        btnStart.setBounds(663, 508, 130, 50);
+        btnStart.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+        add(btnStart);
         
         btnHelp.setBounds(729, 13, 117, 29);
         btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
         add(btnHelp);
         
-        playersPanel.setBounds(623, 118, 200, 200);
-		playersPanel.setBackground(Color.WHITE);
-		//add(playersPanel);
-		
-		txtnumPlayers.getText();
-		
-		
         
+        playersPanel.setBounds(653, 290, 200, 200);
+		playersPanel.setBackground(Color.DARK_GRAY);
+		playersPanel.setLayout(new BoxLayout(playersPanel, BoxLayout.Y_AXIS));
+		add(playersPanel);
+	   
     }
+	
+	
+	public void passwordAst() {
+		
+        ((AbstractDocument) password.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                StringBuilder stringBuilder = new StringBuilder(string.length());
+                for (int i = 0; i < string.length(); i++) {
+                    stringBuilder.append("*");
+                }
+                super.insertString(fb, offset, stringBuilder.toString(), attr);
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                StringBuilder stringBuilder = new StringBuilder(text.length());
+                for (int i = 0; i < text.length(); i++) {
+                    stringBuilder.append("*");
+                }
+                super.replace(fb, offset, length, stringBuilder.toString(), attrs);
+            }
+        });
+	}
 	
 	public int getPlayerNum() {  
 		
@@ -163,7 +229,7 @@ public class LoginScreen extends JLayeredPane{
 	}
 	
 	public int addPlayers(int total) {  
-			for (int i=0; i<total; i++) {
+			
 				if (total == 2) {
 					numOfInfant = 40;
 				}
@@ -183,10 +249,35 @@ public class LoginScreen extends JLayeredPane{
 					numOfInfant = -1;
 					System.out.println("choose again");
 				}
-		}
+		
+			
+			
 			return numOfInfant;
 	
 		}
 	
+private void initializeLabels() {
+    	for (int i = 0; i< 6; i++) {
+        	nameLabels[i] = new JLabel();     
+            add(nameLabels[i]);
+            
+            //labels[i].setVisible(true);
+        }
+        
+    }
+
+private JLabel[] getNameLabels() {
+	return nameLabels;
+}
+	
+	
+public ArrayList<String> addNamesToArrayList() {
+	int playerNum = getPlayerNum();
+	for (int i = 0; i< playerNum; i++) {
+		playerArray.add(getNameLabels()[i].getText());
+		
+	}
+	return playerArray;
+}
 	
 }

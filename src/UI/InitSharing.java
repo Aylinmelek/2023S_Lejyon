@@ -21,6 +21,7 @@ import domain.Board;
 import domain.BoardListener;
 import domain.ConKUeror;
 import domain.Die;
+import domain.Infantry;
 import domain.Player;
 import domain.Territory;
 
@@ -30,12 +31,15 @@ import domain.controller.ConKUerorHandler;
 
 public class InitSharing extends JLayeredPane  implements BoardListener{
     JTextArea txtInitSharing = new JTextArea();
+    JTextArea txtFirstPlayer = new JTextArea();
     JLabel dieLabel = new JLabel();
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
     JButton btnSkip = new JButton("SKIP ATTACK");
-    TerrCardFrame terCard = new TerrCardFrame();
+    //TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
+    int temp;
+    public boolean init = false;
     
     Die die = new Die();
     int dieDisplayed,finalDieDisplayed;
@@ -47,14 +51,14 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     public boolean isButton;
     ConKUeror conKUeror = new ConKUeror();
     public Player max_player;
+
     static Icon currentIcon;
-    
+
     public boolean dieRoll = true;
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
-
-    
+   
     ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
     ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
     ImageIcon die3 = new ImageIcon(this.getClass().getResource("/die3.png"));
@@ -71,6 +75,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     	super();
 		initialize();
 		displayDie(0);
+		
 		//addElements();
 		
 		//observer için ekledim
@@ -80,8 +85,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 	    ShowDie showDie = new ShowDie(board);
 	    //////////
 		
-		
-		
+	
 		
 	}
 
@@ -188,7 +192,27 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         String dieNum=Integer.toString(dieNumber);
         return dieNum;
     }
-     
+    /*
+    public int getInd(int max_die, int temp) {
+    	
+        max_player = conKUeror.playerList.get(ind);
+        
+        
+        return ind;
+    }*/
+    
+    public int getTemp() {
+    	return temp;
+    }
+    
+    public int getMaxDie() {
+    	return max_die;
+    }
+    
+    public Player getMaxPlayer() {
+    	return max_player;
+    }
+    
     public void addElements() {
         txtInitSharing.setForeground(Color.LIGHT_GRAY);
         txtInitSharing.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
@@ -196,6 +220,14 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         txtInitSharing.setText("Initial Sharing and Army Placement");
         txtInitSharing.setBounds(175, 6, 489, 56);
         add(txtInitSharing);
+        
+        txtFirstPlayer.setText("Roll die! Highest roll starts the game!");
+        txtFirstPlayer.setForeground(Color.LIGHT_GRAY);
+        txtFirstPlayer.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
+        txtFirstPlayer.setBackground(Color.DARK_GRAY);
+        txtFirstPlayer.setEditable(false);
+        txtFirstPlayer.setBounds(320, 475, 389, 76);
+        add(txtFirstPlayer);
         
         dieLabel.setBounds(221, 450, 80, 80);
         
@@ -213,25 +245,26 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 //roll die için yeni ekledim
                 clickCount++;  // Increment the count
                 if (clickCount >= numPlay) {
-                    btnRoll.setEnabled(false);// Disable the button
+                    // Disable the button
                     max_die = die.calculateHighest(die.dice);
-                    ind = die.calcHighIndex(die.dice);
+                    setInd(die.calcHighIndex(die.dice));
+                    temp = ind;
+                    
                     max_player = conKUeror.playerList.get(ind);
                     System.out.println("highest die val: " + max_die);
                     System.out.println("player_list high index: " + ind);
                     System.out.println("highest die rolling player: " + max_player);
                     //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
-                    ArrayList<Player> players = conKUeror.playerList;
-                   
-                  
                     
-                    for (int i = ind; i<players.size(); i++) {
-                    	
-                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                    }
-                    for (int i = 0; i<ind; i++) {
-                    	players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                    }
+                    
+                    txtFirstPlayer.setText("Highest die rolled by: "+max_player.getName()+"\n It's your turn!!");
+                    
+                    
+                    
+                	
+                    btnRoll.setEnabled(false);
+                    
+                   
                     
               
                     
@@ -251,6 +284,10 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         add(dieLabel);
         add(btnStartGame); 
         
+    }
+    
+    public JButton getButton() {
+        return btnRoll;
     }
 
 	public int getInd() {

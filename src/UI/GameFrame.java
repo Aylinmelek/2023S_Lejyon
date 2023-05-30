@@ -9,6 +9,7 @@ import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import domain.Army;
@@ -30,28 +31,22 @@ public class GameFrame extends JFrame {
 
 	static boolean start;
 	private static final long serialVersionUID = 1L;
-	static boolean init, build, playMode, loginMode = false;
-	
+	public static Board board = new Board();
+	public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+	//static boolean init, build, playMode, loginMode = false;
+	public static InitSharing sharing = new InitSharing(conKUerorHandler);
+	//////////
+
+	public static PlayingMode play = new PlayingMode();
+	public static HelpScreen help = new HelpScreen();
+	public static BuildingMode bmode = new BuildingMode();
+	public static LoginScreen login = new LoginScreen();
+	public static ArrayList<String> tempPlayer = new ArrayList<String>();
 
 	public static void main(String[] args) {
 
-		//observer için ekledim
-		//ConKUeror conKUeror = new ConKUeror();
-		Board board = new Board();
-		ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-		//////////
-		
 		GameFrame frame = new GameFrame();
 		
-		//observer için ekledim
-		InitSharing sharing = new InitSharing(conKUerorHandler);
-		//////////
-	
-		PlayingMode play = new PlayingMode();
-		HelpScreen help = new HelpScreen();
-		BuildingMode bmode = new BuildingMode();
-		LoginScreen login = new LoginScreen();
-		//Grid grid = new Grid();
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
 		frame.setBackground(Color.DARK_GRAY);
@@ -59,15 +54,66 @@ public class GameFrame extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayeredPane(login);
 		frame.setVisible(true);
-
-		login.btnLogin.addActionListener(new ActionListener() {
+		
+		
+		
+		login.btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
-				int totalpeople = sharing.conKUeror.addToPlayerTurnHash(login);
+				int totalPeople = sharing.conKUeror.addToPlayerList(login);
+				tempPlayer = login.addNamesToArrayList();
+				System.out.println("total people" + totalPeople);
 				
-				//bmode.add(grid);
-				build = true;
+				JPanel playerNames = new JPanel();
+				JTextArea txtPlayerNames = new JTextArea();
+				//txtPlayerNames.setBounds(212, 6, 453, 43);
+				StringBuilder playerNamesBuilder = new StringBuilder();
+				for(int i =0;i<totalPeople; i++) {
+					System.out.println(sharing.conKUeror.playerList.get(i));
+				}
+				
+				for (int i =0;i<totalPeople;i++) {
+					sharing.conKUeror.playerList.get(i).setName(tempPlayer.get(i));
+					playerNamesBuilder.append(tempPlayer.get(i)).append("      ");
+					
+				}
+				
+				
+				txtPlayerNames.setText(playerNamesBuilder.toString());
+				txtPlayerNames.setForeground(Color.LIGHT_GRAY);
+				txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				txtPlayerNames.setEditable(false);
+				txtPlayerNames.setBackground(Color.DARK_GRAY);
+				txtPlayerNames.setBounds(70, 6, 780, 43);
+				play.add(txtPlayerNames);
+
+				for(int i =0;i<totalPeople; i++) {
+					
+					System.out.println("player names" + sharing.conKUeror.playerList.get(i).getName()); 
+				}
+		
+				bmode.build = true;
+				
+				JTextArea dispInfant = new JTextArea();
+				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				dispInfant.setForeground(Color.LIGHT_GRAY);
+				dispInfant.setBackground(Color.DARK_GRAY);
+				dispInfant.setText("Every Player has " + login.addPlayers(login.getPlayerNum()) + " Infantry.");
+				dispInfant.setEditable(false);
+				
+				dispInfant.setBounds(150, 430, 822, 50);
+				bmode.add(dispInfant);
+				
+				 JTextArea txtdisable = new JTextArea();
+				 txtdisable.setBounds(150, 490, 822, 50);
+			     txtdisable.setText("Choose the territories you want to disable");
+			     txtdisable.setForeground(Color.LIGHT_GRAY);
+			     txtdisable.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+			     txtdisable.setEditable(false);
+			     txtdisable.setBackground(Color.DARK_GRAY);
+			     bmode.add(txtdisable);
+			        
 				
 
 			}
@@ -82,9 +128,13 @@ public class GameFrame extends JFrame {
 					frame.setLayeredPane(help);
 					help.setVisible(true);
 					frame.revalidate();
-					loginMode = false;
+					login.loginMode = false;
 					start = true;
+					
+				
 				}
+				
+				
 
 			}
 		});
@@ -97,44 +147,25 @@ public class GameFrame extends JFrame {
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String action = e.getActionCommand();
-				init = true;
-				build = false;
+				sharing.init = true;
+				bmode.build = false;
 
 				
 				
 				sharing.numPlay = login.getPlayerNum();
 				sharing.addElements();
-				
-				//System.out.println("buildmode da size" + totalpeople);
-
 				frame.setLayeredPane(sharing);
 				frame.revalidate();
 
 				sharing.add(bmode.grid);
-				//bmode.addPlayers(bmode.getPlayerNum());
-				JTextArea dispInfant = new JTextArea();
-				dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-				dispInfant.setForeground(Color.LIGHT_GRAY);
-				dispInfant.setBackground(Color.DARK_GRAY);
-				dispInfant.setText("You have " + login.addPlayers(login.getPlayerNum()) + " Infantry.");
-				dispInfant.setEditable(false);
+		
+				
 				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
 					sharing.conKUeror.playerList.get(i).setNumOfInfantry(login.addPlayers(login.getPlayerNum()));
 				}
-				/*
-				if (!sharing.btnRoll.isEnabled()){
-					max_player = conKUeror.playerList.get(conKUeror.die.getHigh_index());
-					System.out.println("----------------");
-					System.out.println(conKUeror.die.high_index);
-					System.out.println(max_player);
-				}*/
 				
-				//max_player = sharing.conKUeror.playerList.get(sharing.getInd());
-				//System.out.println(max_player);
-				dispInfant.setBounds(350, 450, 822, 263);
-				sharing.add(dispInfant);
+				sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
 				
-
 			}
 		});
 

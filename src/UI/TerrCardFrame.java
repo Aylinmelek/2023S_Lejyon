@@ -24,7 +24,7 @@ public class TerrCardFrame extends JFrame {
         for (int i = 0; i < NUM_LABELS; i++) {
             labels[i] = new JLabel();     
             add(labels[i]);
-            labels[i].setVisible(true);
+            //labels[i].setVisible(true);
         }     
     }
     
@@ -54,7 +54,6 @@ public class TerrCardFrame extends JFrame {
         getContentPane().add(labels[index]);
         getContentPane().revalidate();
         getContentPane().repaint();
-        
         
     }
    

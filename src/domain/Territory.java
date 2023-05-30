@@ -1,12 +1,17 @@
 package domain;
 
+
+import java.io.Serializable;
 import java.awt.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import UI.Grid;
 
-public class Territory {
+
+public class Territory implements Serializable{
+
  int army; 
  Continent continent;
  private boolean isImmune = false;
@@ -28,10 +33,12 @@ public class Territory {
 	        { null, null, null, null, new Territory("Orange 6", "6", Color.orange,38), new Territory("Orange 4", "4", Color.orange,36), null, null, null, null },
 	    };
  
+
 	private String name;
 	private String text;
 	private Color color;
 	private int index;
+
 
  
  public Territory(String name, String text, Color color, int index) {
@@ -60,7 +67,7 @@ boolean reachability;
  int count;
  Player owner;
  String territoryName; 
- boolean isEnabled;
+ boolean isEnabled = true;
  boolean isTaken = false;
  ArrayList <Territory> adjacentTerritories = new ArrayList<Territory>();
  ArrayList <Army> armyList = new ArrayList<Army>();
@@ -140,5 +147,10 @@ public Color getColor() {
 	return color;
 }
 
+  public void setLink(Territory territory) {
+		this.getAdjacentTerritories().add(territory);
+		territory.getAdjacentTerritories().add(this);
+	}
  
+
 }
