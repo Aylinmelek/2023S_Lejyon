@@ -49,6 +49,8 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     public Player max_player;
     static Icon currentIcon;
     
+    public boolean dieRoll = true;
+    
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
 
