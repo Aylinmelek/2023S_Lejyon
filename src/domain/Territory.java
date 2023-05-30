@@ -63,7 +63,7 @@ boolean reachability;
  int count;
  Player owner;
  String territoryName; 
- boolean isEnabled;
+ boolean isEnabled = true;
  boolean isTaken = false;
  ArrayList <Territory> adjacentTerritories = new ArrayList<Territory>();
  ArrayList <Army> armyList = new ArrayList<Army>();
