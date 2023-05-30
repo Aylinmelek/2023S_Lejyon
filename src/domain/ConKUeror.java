@@ -27,7 +27,35 @@ public class ConKUeror {
 			playerList.add(ai.playerAI);
 		}
 	}
+	
+	public void createMainDeck(int count, Deck deck) {
+		for (int i = 0; i < count; i++) {
+			DisasterCard disasterCard= new DisasterCard();
+			DiplomaticImmunityCard diplomaticImmunity = new DiplomaticImmunityCard();
+			sabotageCard sabotage = new sabotageCard();
+			SpyCard spyCard = new SpyCard();
+			WorldEventCard worldEventCard = new WorldEventCard();
+			ReinforcementCard reinforcementCard = new ReinforcementCard();
+			
+			deck.getdipImmunityCardList().add(diplomaticImmunity);
+			deck.getDisasterCardList().add(disasterCard);
+			deck.getReinforcementCardList().add(reinforcementCard);
+			deck.getsabotageCardList().add(sabotage);
+			deck.getSpyCardList().add(spyCard);
+			deck.getWorldEventCardList().add(worldEventCard);
+			
+		}
+	}
 
+	public void setAdjacent(Map map) {
+		for (int i = 0; i < map.getTerritories().size(); i++) {
+			for (int j = 0; j < map.getTerritories().size(); j++) {
+				map.getTerritories().get(i).getAdjacentTerritories().add(map.getTerritories().get(j));
+				
+			}
+		}
+	}
+	
 	public void turnPass(int index) {
 		playerList.get(index).turn = false;
 		playerList.get((index + 1) % playerList.size()).turn = true;

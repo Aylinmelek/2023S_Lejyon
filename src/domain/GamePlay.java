@@ -15,7 +15,7 @@ public class GamePlay {
         // Controller class is created
         ConKUeror conkueror = new ConKUeror();
         ArrayList<Integer> dieValues = new ArrayList<Integer>();
-        ArrayList<Integer> dieValues = new ArrayList<Integer>();
+        ArrayList<Integer> dieValues2 = new ArrayList<Integer>();
         Map wholeMap = new Map();
         Map enabledMap = new Map();
         Die die = new Die();
@@ -26,14 +26,17 @@ public class GamePlay {
         // Player and AI count input is taken
         conkueror.createPlayer(2, 2);
         conkueror.createTerritory(30);
+        System.out.println("Should print 30:");
+        System.out.println(conkueror.terList.size());
 
         //Players disable some territories
         conkueror.terList.get(5).disable();
         conkueror.terList.get(15).disable();
         conkueror.terList.get(25).disable();
-
+       
+        
         //Map and enabled map is created
-        for(int a = 0; a < conkueror.terList.size() a++)
+        for(int a = 0; a < conkueror.terList.size(); a++)
         {
             if(conkueror.terList.get(a).isEnabled)
             {
@@ -41,11 +44,13 @@ public class GamePlay {
             }
         }
 
+        conkueror.setAdjacent(wholeMap);
+        
         for(int b = 0; b < wholeMap.getTerritories().size(); b++)
         {
             wholeMap.checkReachability(wholeMap.getTerritories().get(b));
         }
-
+        
         for(int c = 0; c < wholeMap.getTerritories().size(); c++)
         {
             if(wholeMap.getTerritories().get(c).isEnabled)
@@ -54,8 +59,26 @@ public class GamePlay {
             }
         }
 
-
-
+        System.out.println("Should print 27:");
+        System.out.println(wholeMap.getTerritories().size());
+        System.out.println("Should print 27:");
+        System.out.println(enabledMap.getTerritories().size());
+        //main deck is created.
+        conkueror.createMainDeck(5, deck);
+        System.out.println("Should print 5:");
+        System.out.println(deck.getdipImmunityCardList().size());
+        System.out.println("Should print 5:");
+        System.out.println(deck.getDisasterCardList().size());
+        System.out.println("Should print 5:");
+        System.out.println(deck.getReinforcementCardList().size());
+        System.out.println("Should print 5:");
+        System.out.println(deck.getsabotageCardList().size());
+        System.out.println("Should print 5:");
+        System.out.println(deck.getSpyCardList().size());
+        System.out.println("Should print 5:");
+        System.out.println(deck.getWorldEventCardList().size());
+        
+        
         
 
         // Each player roll a die
