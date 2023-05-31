@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -42,7 +43,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     
     Die die = new Die();
     int dieDisplayed,finalDieDisplayed;
-    int dieNumber;
+    static int dieNumber;
     int clickCount;
     public int numPlay;
     int max_die;
@@ -50,6 +51,9 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     public boolean isButton;
     ConKUeror conKUeror = new ConKUeror();
     public Player max_player;
+
+    static Icon currentIcon;
+
     public boolean dieRoll = true;
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
@@ -93,34 +97,42 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     }
     
 	
-    public void displayDie(int dieNumber) {
+    public String displayDie(int dieNumber) {
+    	System.out.println("dieNumber: "+ dieNumber);
         Thread rollThread = new Thread(() -> {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 13; i++) {
             	//observer için ekledim
-            	 die.roll();
-                 dieDisplayed = die.getDiceValue();
+            	dieDisplayed=dieNumber;
+            	//die.getDiceValue();
                 ///		
                 		//die.generateNum();
                 switch (dieDisplayed) {
                     case 1:
+                    	currentIcon = die1; //DieTesting de hangi Icon print edildiğini görmek için ekledim
                         dieLabel.setIcon(die1);
                         break;
                     case 2:
+                    	currentIcon = die2;
                         dieLabel.setIcon(die2);
                         break;
                     case 3:
+                    	currentIcon = die3;
                         dieLabel.setIcon(die3);
                         break;
                     case 4:
+                    	currentIcon = die4;
                         dieLabel.setIcon(die4);
                         break;
                     case 5:
+                    	currentIcon = die5;
                         dieLabel.setIcon(die5);
                         break;
                     default:
+                    	currentIcon = die6;
                         dieLabel.setIcon(die6);
                         break;
                 }
+
                 try {
                     Thread.sleep(100); // Adjust the delay as needed
                 } catch (InterruptedException e) {
@@ -128,34 +140,51 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 }
                 
             }
+            //burası yukarıda yapılanın aynısı değil mi? Burası silinince de çalışıyor.
             //observer için ekledim
-            //die.roll();
-            finalDieDisplayed = dieNumber;
-            
+           /* finalDieDisplayed = dieNumber;
             //
-            		//die.generateNum();
             switch (finalDieDisplayed) {
+            
                 case 1:
+                	currentIcon = die1;
                     dieLabel.setIcon(die1);
                     break;
                 case 2:
+                	currentIcon = die2;
                     dieLabel.setIcon(die2);
                     break;
                 case 3:
+                	currentIcon = die3;
                     dieLabel.setIcon(die3);
                     break;
                 case 4:
+                	currentIcon = die4;
                     dieLabel.setIcon(die4);
                     break;
                 case 5:
+                	currentIcon = die5;
                     dieLabel.setIcon(die5);
                     break;
                 default:
+                	currentIcon = die6;
                     dieLabel.setIcon(die6);
                     break;
             }
+            try { //üstteki try catch'in aynısı, buraya eklemeyince 2. switch lere gelmediğini fark ettim
+            	//sorun olursa silinebilir.
+                Thread.sleep(100); // Adjust the delay as needed
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
+            
+
         });
+       
         rollThread.start();
+        //DieTesting için ekledim
+        String dieNum=Integer.toString(dieNumber);
+        return dieNum;
     }
     /*
     public int getInd(int max_die, int temp) {
@@ -202,10 +231,11 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 //observer için ekledim
                 conKUerorHandler.rollDice();
                 dieNumber = conKUerorHandler.getDieValue();
+                System.out.println("(UI.InitSharing)You rolled1: "+getDie());
                 displayDie(dieNumber);
                 die.dice.add(dieNumber); //die values arraylist
                 board.publishBoardEvent(dieNumber);
-                System.out.println("(UI.InitSharing)You rolled: "+dieNumber);
+                //System.out.println("(UI.InitSharing)You rolled2: "+dieNumber);
                 //roll die için yeni ekledim
                 clickCount++;  // Increment the count
                 if (clickCount >= numPlay) {
@@ -218,10 +248,12 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     System.out.println("highest die val: " + max_die);
                     System.out.println("player_list high index: " + ind);
                     System.out.println("highest die rolling player: " + max_player);
+                    
                     //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
                     
                     
                     txtFirstPlayer.setText("Highest die rolled by: "+max_player.getName()+"\n It's your turn!!");
+                    
                     
                     
                     
@@ -269,6 +301,12 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 		
 	}
 	
+	public int getDie() {
+		return dieNumber;
+	}
+	public Icon getCurrentIcon() {
+	    return currentIcon;
+	}
 	
     
 	

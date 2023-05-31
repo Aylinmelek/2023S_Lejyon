@@ -1,5 +1,7 @@
 package domain;
 
-public class CavalryCard implements ArmyCard {
+import java.io.Serializable;
+
+public class CavalryCard implements ArmyCard, Serializable{
 	
 }

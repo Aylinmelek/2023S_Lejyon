@@ -1,7 +1,9 @@
 package domain;
 
-public class DiplomaticImmunityCard {
+import java.io.Serializable;
+
+public class DiplomaticImmunityCard implements Serializable{
 	public void immunizeTerritory(Territory territory) {
-		territory.setImmune(true);
+		territory.immunize();
 	}
 }

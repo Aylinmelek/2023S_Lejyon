@@ -9,6 +9,7 @@ import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import domain.Army;
@@ -41,6 +42,7 @@ public class GameFrame extends JFrame {
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
 	public static ArrayList<String> tempPlayer = new ArrayList<String>();
+	public static int playerIndex;
 
 	public static void main(String[] args) {
 
@@ -64,13 +66,29 @@ public class GameFrame extends JFrame {
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
 				
+				JPanel playerNames = new JPanel();
+				JTextArea txtPlayerNames = new JTextArea();
+				//txtPlayerNames.setBounds(212, 6, 453, 43);
+				StringBuilder playerNamesBuilder = new StringBuilder();
 				for(int i =0;i<totalPeople; i++) {
 					System.out.println(sharing.conKUeror.playerList.get(i));
 				}
 				
 				for (int i =0;i<totalPeople;i++) {
 					sharing.conKUeror.playerList.get(i).setName(tempPlayer.get(i));
+					playerNamesBuilder.append(tempPlayer.get(i)).append("      ");
+					
 				}
+				
+				
+				txtPlayerNames.setText(playerNamesBuilder.toString());
+				txtPlayerNames.setForeground(Color.LIGHT_GRAY);
+				txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				txtPlayerNames.setEditable(false);
+				txtPlayerNames.setBackground(Color.DARK_GRAY);
+				txtPlayerNames.setBounds(70, 6, 780, 43);
+				play.add(txtPlayerNames);
+
 				for(int i =0;i<totalPeople; i++) {
 					
 					System.out.println("player names" + sharing.conKUeror.playerList.get(i).getName()); 
@@ -149,7 +167,6 @@ public class GameFrame extends JFrame {
 				
 				sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
 				
-
 			}
 		});
 
@@ -205,7 +222,8 @@ public class GameFrame extends JFrame {
 				// grid.setVisible(true);
 				//grid.setBounds(19, 69, 850, 350);
 				play.add(bmode.grid);
-				
+				GameFrame.play.txtPlayerTurn.setText("It is " +sharing.max_player.getName() +"'s turn!!");
+				playerIndex = GameFrame.bmode.grid.playerIndex;
 				
 
 			}

@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Continent {
+public class Continent implements Serializable{
 	int territoryCount;
 	Territory[] territorylist;
 	ArrayList <TerritoryCard> territoryCardList = new ArrayList<TerritoryCard>();

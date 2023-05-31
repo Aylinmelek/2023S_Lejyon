@@ -1,4 +1,4 @@
-package domain;
+package database;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,6 +7,20 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import UI.*;
+import domain.Army;
+import domain.Artillery;
+import domain.ArtilleryCard;
+import domain.Card;
+import domain.Cavalry;
+import domain.CavalryCard;
+import domain.Continent;
+import domain.Deck;
+import domain.Infantry;
+import domain.InfantryCard;
+import domain.Map;
+import domain.Player;
+import domain.Territory;
+import domain.TerritoryCard;
 
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
