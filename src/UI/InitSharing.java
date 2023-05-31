@@ -110,32 +110,26 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     case 1:
                     	currentIcon = die1; //DieTesting de hangi Icon print edildiğini görmek için ekledim
                         dieLabel.setIcon(die1);
-                        System.out.println("Initsharing de currentIcon: "+ currentIcon);
                         break;
                     case 2:
                     	currentIcon = die2;
                         dieLabel.setIcon(die2);
-                        System.out.println("Initsharing de currentIcon: "+ currentIcon);
                         break;
                     case 3:
                     	currentIcon = die3;
                         dieLabel.setIcon(die3);
-                        System.out.println("Initsharing de currentIcon: "+ currentIcon);
                         break;
                     case 4:
                     	currentIcon = die4;
                         dieLabel.setIcon(die4);
-                        System.out.println("Initsharing de currentIcon: "+ currentIcon);
                         break;
                     case 5:
                     	currentIcon = die5;
                         dieLabel.setIcon(die5);
-                        System.out.println("Initsharing de currentIcon: "+ currentIcon);
                         break;
                     default:
                     	currentIcon = die6;
                         dieLabel.setIcon(die6);
-                        System.out.println("Initsharing de currentIcon: "+ currentIcon);
                         break;
                 }
 
