@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 
 
 import domain.Die;
+import domain.Player;
 
 
 public class PlayingMode extends JLayeredPane {
@@ -26,7 +27,10 @@ public class PlayingMode extends JLayeredPane {
     JButton btnPickChance = new JButton("Pick a Chance Card");
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
     JTextArea txtCard = new JTextArea();
-   
+    JTextArea txtPlayerTurn = new JTextArea();
+    int indexOfPlayer=GameFrame.playerIndex;
+
+    private boolean indFlag = true;
     
     JLabel dieLabel = new JLabel();
     public boolean playMode = false;
@@ -56,7 +60,7 @@ public class PlayingMode extends JLayeredPane {
 	 ImageIcon die5 = new ImageIcon(this.getClass().getResource("/die5.png"));
 	 ImageIcon die6 = new ImageIcon(this.getClass().getResource("/die6.png"));
     
-	
+
 	public PlayingMode() {
 		super();
 		initialize();
@@ -181,10 +185,30 @@ public class PlayingMode extends JLayeredPane {
 	            }
 	        });
 	        
-	        
 	        btnSkip.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                //turn bitiren bisey çağrılmalı
+	            	
+	            			
+	            	ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
+	            	//indexOfPlayer=GameFrame.playerIndex;
+					GameFrame.bmode.grid.setIndFlag(false);
+	            	
+					System.out.println("turn bunda: "+ players.get(indexOfPlayer).getName());
+	            	GameFrame.play.txtPlayerTurn.setText("It is " + players.get(indexOfPlayer).getName()+ "'s turn!!");
+	            	
+	            	System.out.println("players size: "+ players.size());
+	            	if (indexOfPlayer==(players.size()-1)) {
+                		//GameFrame.sharing.getTemp()) {
+	                	System.out.println("playersList finished");
+	                	indexOfPlayer=0;
+	            	}
+	            	else {
+	            		indexOfPlayer++;
+	                	System.out.println("playerIndex: "+ indexOfPlayer);
+	                	
+                	
+	            	}
 	            	
 	            }
 	        });
@@ -205,6 +229,14 @@ public class PlayingMode extends JLayeredPane {
 	     txtCard.setForeground(Color.WHITE);
 	     txtCard.setEditable(false);
 	     add(txtCard);
+	     
+	     txtPlayerTurn.setBounds(600, 450, 200, 36);
+	     txtPlayerTurn.setBackground(Color.DARK_GRAY);
+	     txtPlayerTurn.setForeground(Color.WHITE);
+	     txtPlayerTurn.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
+	     txtPlayerTurn.setEditable(false);
+	     txtPlayerTurn.setText("It is... turn!!");
+	     add(txtPlayerTurn);
 	     
 
 	     btnPickChance.addActionListener(new ActionListener() {

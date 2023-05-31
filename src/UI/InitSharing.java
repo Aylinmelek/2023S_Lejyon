@@ -248,10 +248,12 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     System.out.println("highest die val: " + max_die);
                     System.out.println("player_list high index: " + ind);
                     System.out.println("highest die rolling player: " + max_player);
+                    
                     //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
                     
                     
                     txtFirstPlayer.setText("Highest die rolled by: "+max_player.getName()+"\n It's your turn!!");
+                    
                     
                     
                     

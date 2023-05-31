@@ -42,6 +42,7 @@ public class GameFrame extends JFrame {
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
 	public static ArrayList<String> tempPlayer = new ArrayList<String>();
+	public static int playerIndex;
 
 	public static void main(String[] args) {
 
@@ -221,7 +222,8 @@ public class GameFrame extends JFrame {
 				// grid.setVisible(true);
 				//grid.setBounds(19, 69, 850, 350);
 				play.add(bmode.grid);
-				
+				GameFrame.play.txtPlayerTurn.setText("It is " +sharing.max_player.getName() +"'s turn!!");
+				playerIndex = GameFrame.bmode.grid.playerIndex;
 				
 
 			}
