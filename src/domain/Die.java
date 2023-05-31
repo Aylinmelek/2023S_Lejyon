@@ -81,5 +81,9 @@ public class Die {
 		return dice1;
 		//return dice1+dice2;
 	}
+	
+	public void setDiceValue(int i) {
+		this.dice1 = i;
+	}
 	///////////
 }

@@ -79,7 +79,10 @@ public class ConKUeror {
 				// if (die.generateNum() > die.generateNum()) {
 				// observer için değiştirdim
 				die.roll();
-				if (die.getDiceValue() > die.getDiceValue()) {
+				int firstRoll = die.getDiceValue();
+				die.roll();
+				int secondRoll = die.getDiceValue();
+				if (firstRoll > secondRoll) {
 					/////////
 
 					territoryTo.owner.loseTheDefend(territoryTo);
@@ -94,14 +97,16 @@ public class ConKUeror {
 				}
 
 			} else {
-				System.out.println("Player doesn't own TerritoryFrom or it is not adjacent to TerritoryTo");
+				System.out.println("There is a power imbalance between Territories");
 			}
 
 		} else {
-			System.out.println("There is a power imbalance between Territories");
+			System.out.println("Player doesn't own TerritoryFrom or it is not adjacent to TerritoryTo or owns TerritoryTo.");
+	
 		}
 
 	}
+
 
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 

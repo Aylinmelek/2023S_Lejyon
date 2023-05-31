@@ -153,7 +153,7 @@ public class Player implements Serializable{
 	}
 
 	public void tradeTerritoryCards(Continent continent) {
-		if (territoryCardList.containsAll(continent.territoryCardList)) {
+		if (continent != null && territoryCardList.containsAll(continent.territoryCardList)) {
 			for (int i = 0; i < territoryCardList.size(); i++) {
 				for (int j = 0; j < continent.territoryCardList.size(); j++) {
 					if (territoryCardList.get(i).equals(continent.territoryCardList.get(j))) {
@@ -167,7 +167,12 @@ public class Player implements Serializable{
 						break;
 					}
 				}
-				territoryList.add(continent.territoryList.get(j));
+				if(!this.getTerritoryList().contains(continent.territoryList.get(j))){
+					continent.territoryList.get(j).getOwner().getTerritoryList().remove(continent.territoryList.get(j));
+					territoryList.add(continent.territoryList.get(j));
+					continent.territoryList.get(j).setOwner(this);
+				}
+				
 			}
 		}
 	}
