@@ -45,7 +45,7 @@ public class MapRecordDB implements AdapterRecord {
             e.printStackTrace();
         }
     }
-    
+   
     public void loadTheMapDB(Map map) {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
