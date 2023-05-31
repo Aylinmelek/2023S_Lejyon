@@ -17,6 +17,14 @@ public class ConKUeror {
 
 	public Hashtable<Player, Boolean> player_turn = new Hashtable<Player, Boolean>();
 
+	
+	public void createInfantry(int number, Player player) {
+		for (int i = 0; i < number; i++) {
+			Infantry infantry = new Infantry();
+			player.getInfantryList().add(infantry);
+		}
+	}
+	
 	public void createPlayer(int playerCount, int AICount) {
 		for (int i = 0; i < playerCount; i++) {
 			Player player = new Player();
@@ -28,7 +36,7 @@ public class ConKUeror {
 		}
 	}
 	
-	public void createMainDeck(int count, Deck deck) {
+	public void createMainDeck(int count, int armyCard, Deck deck) {
 		for (int i = 0; i < count; i++) {
 			DisasterCard disasterCard= new DisasterCard();
 			DiplomaticImmunityCard diplomaticImmunity = new DiplomaticImmunityCard();
@@ -43,8 +51,17 @@ public class ConKUeror {
 			deck.getsabotageCardList().add(sabotage);
 			deck.getSpyCardList().add(spyCard);
 			deck.getWorldEventCardList().add(worldEventCard);
-			
 		}
+		for(int a = 0; a < armyCard; a ++) {
+			InfantryCard infantryCard = new InfantryCard();
+			ArtilleryCard artilleryCard = new ArtilleryCard();
+			CavalryCard cavalryCard = new CavalryCard();
+			deck.getInfantryCardList().add(infantryCard);
+			deck.getArtilleryCardList().add(artilleryCard);
+			deck.getCavalryCardList().add(cavalryCard);
+		}
+		
+		
 	}
 
 	public void setAdjacent(Map map) {
@@ -56,7 +73,6 @@ public class ConKUeror {
 		}
 	}
 	
-
 	public void turnPass(int index) {
 		playerList.get(index).turn = false;
 		playerList.get((index + 1) % playerList.size()).turn = true;
@@ -79,7 +95,10 @@ public class ConKUeror {
 				// if (die.generateNum() > die.generateNum()) {
 				// observer için değiştirdim
 				die.roll();
-				if (die.getDiceValue() > die.getDiceValue()) {
+				int firstRoll = die.getDiceValue();
+				die.roll();
+				int secondRoll = die.getDiceValue();
+				if (firstRoll > secondRoll) {
 					/////////
 
 					territoryTo.owner.loseTheDefend(territoryTo);
@@ -94,11 +113,12 @@ public class ConKUeror {
 				}
 
 			} else {
-				System.out.println("Player doesn't own TerritoryFrom or it is not adjacent to TerritoryTo");
+				System.out.println("There is a power imbalance between Territories");
 			}
 
 		} else {
-			System.out.println("There is a power imbalance between Territories");
+			System.out.println("Player doesn't own TerritoryFrom or it is not adjacent to TerritoryTo or owns TerritoryTo.");
+	
 		}
 
 	}
@@ -153,15 +173,16 @@ public class ConKUeror {
 
 	}
 
-	
-	public int addToPlayerList(LoginScreen loginScreen) {
-		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
+	public int addToPlayerTurnHash(LoginScreen loginScreen) {
+		for (int i = 0; i < loginScreen.getPlayerNum(); i++) {
 			Player player = new Player();
 			playerList.add(player);
 			System.out.println(player);
+			// player.setNumOfInfantry();
+			player_turn.put(player, player.turn);
 
 		}
-		return playerList.size();
+		return player_turn.size();
 	}
 
 	public void addToList(int num) {

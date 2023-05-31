@@ -5,7 +5,15 @@ import java.util.ArrayList;
 public class Player {
 	String name;
 	public Deck deck = new Deck();
-	public Die die;
+	public Die getDie() {
+		return die;
+	}
+
+	public void setDie(Die die) {
+		this.die = die;
+	}
+
+	public Die die = new Die();
 	public static Army inf1 = new Infantry();
 	public Integer firstRoll;
 	public int numOfInfantry;
@@ -31,10 +39,6 @@ public class Player {
 
 	public String getName() {
 		return name;
-	}
-	
-	public void setName(String name) {
-		this.name=name;
 	}
 
 	public void playTheGame() {
@@ -277,7 +281,7 @@ public class Player {
 		// playerPower += artilleryList.size() * 2;
 		// playerPower += cavalryList.size() * 3;
 
-		if (playerPower >= territoryPower) {
+		if (playerPower >= territoryPower && playerPower > 1) {
 			System.out.println(this + " can attack.");
 			return true;
 		} else {
