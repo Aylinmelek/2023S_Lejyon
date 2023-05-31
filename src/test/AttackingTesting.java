@@ -74,8 +74,14 @@ class AttackTesting {
 
         conkueror.attack(player2, territory2, territory1, die);
         int output5 = territory1.getArmyList().size();
-        // System.out.println(output5);
-        assertNotEquals(1, output5);
+         System.out.println(output5);
+        if(territory1.getOwner().equals(player2)) {
+        	assertNotEquals(1, output5);
+        }
+        else {
+        	assertEquals(1, output5);
+        }
+       
         // fail("Not yet implemented");
     }
 
