@@ -49,7 +49,11 @@ public class Territory implements Serializable{
 
 }
  
- public Territory() {
+ public void setColor(Color color) {
+	this.color = color;
+}
+
+public Territory() {
 
  }
 
@@ -120,6 +124,14 @@ public int getIndex() {
 
 public void setIndex(int index) {
 	this.index = index;
+}
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
 }
 
 public void deImmunize() {

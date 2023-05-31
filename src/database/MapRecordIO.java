@@ -34,9 +34,6 @@ public class MapRecordIO implements Recordable{
 	}
 	
 
-	
-
-	
 	public Map loadTheMapIO() {
 		 try {
 		        FileInputStream fis = new FileInputStream(fileName);

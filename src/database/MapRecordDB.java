@@ -1,79 +1,113 @@
 package database;
 
 import UI.*;
+
 import domain.AdapterRecord;
 import domain.Army;
+import domain.Continent;
 import domain.Map;
 import domain.Player;
 import domain.Territory;
 
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-
+import java.awt.Color;
+import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-import org.bson.Document;
-
-public class MapRecordDB implements AdapterRecord{
-	
-	MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017"); //will change, ask TA
-	MongoClient mongoClient = new MongoClient(uri);
-
-	// Access the game database
-	MongoDatabase database = mongoClient.getDatabase("game_database");
-
-	// Access the game collection
-	MongoCollection<Document> collection = database.getCollection("game_collection");
-	
-	// Create a sample game document
-    Document gameDocument = new Document();
-	    
-	public void saveTheMapDB(Map map) {
-		gameDocument.append("current_map", map.getTerritories());
-	}
-	
-	public void saveTheContinentsDB(Map map) {
-		gameDocument.append("current_contients", map.getContinents());
-	}
-	
-	public void saveTheArmyListOfTerritoriesDB(Map map) {
-		for(int i = 0; i < map.getTerritories().size(); i++) {
-    		gameDocument.append("armyList_of_a_territory" + i, map.getTerritories().get(i).getArmyList());   
-    	}
-	}
-	
-	public void saveTheOwnersTerritoriesDB(Map map) {
-		for(int i = 0; i < map.getTerritories().size(); i++) {
-    		gameDocument.append("owner_of_a_territory" + i, map.getTerritories().get(i).getOwner());   
-    	}
-	}
-	
-	public void loadTheMapDB(Map map) {
-		 map.setTerritories((ArrayList<Territory>) gameDocument.get("current_map"));
-	}
-	
-	public void loadTheContinentsDB(Map map) {
-		 map.setTerritories((ArrayList<Territory>) gameDocument.get("current_contients"));
-	}
-	
-	public void loadTheOwnersOfTerritoriesDB(Map map) {
-		for (int i = 0; i < map.getTerritories().size(); i++) {
-	        String key = "owner_of_a_territory" + i;
-	        map.getTerritories().get(i).setOwner((Player) gameDocument.get(key));
-	    }
-	}
-	
-	public void loadTheArmyListOfTerritoriesDB(Map map) {
-		for (int i = 0; i < map.getTerritories().size(); i++) {
-	        String key = "armyList_of_a_territory" + i;
-	        map.getTerritories().get(i).setArmyList((ArrayList<Army>) gameDocument.get(key));
-	    }
-	
-	// Insert the game document into the collection
-    collection.insertOne(gameDocument);
+public class MapRecordDB implements AdapterRecord {
     
-    // Close the MongoDB connection
-    mongoClient.close();
+    String url = "jdbc:sqlserver://localhost:1433;database=lejyon2023;integratedSecurity=true";
+    String user = "root";
+    String password = "Zeynepaydin20";
 
+    public void saveTheMapDB(Map map) {
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement stmt = connection.createStatement();
+
+            for (Territory territory : map.getTerritories()) {
+                String SQL = "INSERT INTO Territories(name, armyList, owner) VALUES (?, ?, ?)";
+
+                PreparedStatement pstmt = connection.prepareStatement(SQL);
+
+                // This assumes that the Territory class has getName(), getArmyList() and getOwner() methods
+                pstmt.setString(1, territory.getName());
+                pstmt.setString(2, territory.getArmyList().toString()); // This assumes that armyList can be represented as a string. Usually, this would be a foreign key to an Armies table
+                pstmt.setString(3, territory.getOwner().toString()); // This assumes that owner can be represented as a string. Usually, this would be a foreign key to a Players table
+
+                pstmt.executeUpdate();
+            }
+
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void loadTheMapDB(Map map) {
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement stmt = connection.createStatement();
+
+            String SQL = "SELECT * FROM Territories";
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            ArrayList<Territory> territories = new ArrayList<>();
+            while (rs.next()) {
+                Territory territory = new Territory();
+                territory.setName(rs.getString("territory_name"));
+                territory.setColor(Color.decode(rs.getString("territory_color")));  // assuming the color is stored as a hex string
+                territory.setIndex(rs.getInt("territory_index"));
+                territories.add(territory);
+            }
+
+            map.setTerritories(territories);
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void saveTheContinentsDB(Map map) {
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO Continents (continent_name) VALUES (?)");
+
+            for (Continent continent : map.getContinents()) {
+                //pstmt.setString(1, continent.getText());
+                pstmt.executeUpdate();
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadTheContinentsDB(Map map) {
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement stmt = connection.createStatement();
+
+            String SQL = "SELECT * FROM Continents";
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            ArrayList<Continent> continents = new ArrayList<>();
+            while (rs.next()) {
+                Continent continent = new Continent();
+                continents.add(continent);
+            }
+
+            map.setContinents(continents);
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Other methods...
 }
