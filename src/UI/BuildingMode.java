@@ -15,7 +15,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
 import domain.Board;
-import domain.ConKUeror;
 import domain.Player;
 import domain.controller.ConKUerorHandler;
 

@@ -3,10 +3,14 @@ package domain;
 import java.util.ArrayList;
 
 import UI.LoginScreen;
+import domain.controller.ConKUerorHandler;
 
 public class Player {
 	String name;
 	public Deck deck = new Deck();
+
+	
+	
 	
 	
 	public Die getDie() {
@@ -21,6 +25,10 @@ public class Player {
 	public static Army inf1 = new Infantry();
 	public Integer firstRoll;
 	public int numOfInfantry;
+	
+	public void setPlayerName(String name) {
+		this.name=name;
+	}
 
 	public int getNumOfInfantry() {
 		return numOfInfantry;
@@ -300,12 +308,11 @@ public class Player {
 		territory.owner = this;
 	}
 	
-	public int addToPlayerList(LoginScreen loginScreen) {			
-		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
-		Player player = new Player();
-		playerList.add(player);
-		System.out.println(player);
-
+	public int addToPlayerList(ArrayList<Player> playerList, int totalPlayerNum) {			
+		for (int i=0; i<totalPlayerNum; i++) {
+			Player player = new Player();
+			playerList.add(player);
+			System.out.println(player);
 		}
 		return playerList.size();
 	}

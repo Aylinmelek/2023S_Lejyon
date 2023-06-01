@@ -1,5 +1,7 @@
 package domain.controller;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -19,11 +21,14 @@ public class ConKUerorHandler {
 
 	
 	
-private Board board;
+//private Board board;
+public static Board board = new Board();
+private static Board mainBoard;
+
+public ConKUerorHandler() {
+	this.mainBoard=board;
+}
 	
-	public ConKUerorHandler(Board board) {
-		this.board = board;
-	}
 	
 	
 	public void rollDice() {
@@ -55,12 +60,19 @@ private Board board;
 		board.createInfantry(number,player);
 	}
 	
-	public void createPlayer(int playerCount, int AICount) {
-		board.createPlayer(playerCount,AICount);
+	public ArrayList<Player> createPlayer(int playerCount, int AICount) {
+		return board.createPlayer(playerCount,AICount);
+	}
+	public ArrayList<String> createPlayerName(int playerCount) {
+		return board.createPlayerName(playerCount);
 	}
 	
 	public void createMainDeck(int count, int armyCard, Deck deck) {
 		board.createMainDeck(count, armyCard, deck);
+	}
+	
+	public void setPlayerName(String name) {
+		board.setPlayerName(name);
 	}
 
 	/*public void setAdjacent(Map map) {
@@ -91,8 +103,8 @@ private Board board;
 		board.fortify(player, territoryFrom, territoryTo, count);
 
 	}
-	public int addToPlayerList(LoginScreen loginScreen) {
-		board.addToPlayerList(loginScreen);
+	public int addToPlayerList(ArrayList<Player> playerList, int totalPlayerNum) {
+		return board.addToPlayerList(playerList,totalPlayerNum);
 		  /*for (int i=0; i<loginScreen.getPlayerNum(); i++) {
 		   Player player = new Player();
 		   playerList.add(player);
@@ -100,18 +112,19 @@ private Board board;
 
 		  }
 		  return playerList.size();*/
-		 }
+	}
 
-		 public void addToList(int num) {
-		  for (int j = 0; j < playerList.size(); j++) {
-		   Infantry inf = new Infantry();
-		   for (int i = 0; i < num; i++) {
-		    playerList.get(j).getInfantryList().add(inf);
+	
+	/*public void addToList(int num) {
+		for (int j = 0; j < playerList.size(); j++) {
+			Infantry inf = new Infantry();
+		    for (int i = 0; i < num; i++) {
+		    	playerList.get(j).getInfantryList().add(inf);
 		   }
-		  }
-
-		 }
 		}
+
+	}*/
+		
 	
 
 

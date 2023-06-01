@@ -13,7 +13,6 @@ import javax.swing.JTextArea;
 
 import domain.Army;
 import domain.Board;
-import domain.ConKUeror;
 import domain.Continent;
 import domain.Die;
 import domain.Infantry;
@@ -23,28 +22,34 @@ import domain.Player;
 import domain.Territory;
 import domain.TerritoryCard;
 import domain.controller.ConKUerorHandler;
-import domain.ConKUeror;
 import java.util.Hashtable;
+
 
 public class GameFrame extends JFrame {
 
 	static boolean start;
 	private static final long serialVersionUID = 1L;
-	public static Board board = new Board();
-	public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+	//public static Board board = new Board();
+	//public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
 	//static boolean init, build, playMode, loginMode = false;
-	public static InitSharing sharing = new InitSharing(conKUerorHandler);
+	public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+
+	public static InitSharing sharing = new InitSharing();
 	//////////
 
 	public static PlayingMode play = new PlayingMode();
 	public static HelpScreen help = new HelpScreen();
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
-	//public static ArrayList<String> tempPlayer = new ArrayList<String>();
+	public static ArrayList<String> tempPlayer = new ArrayList<String>();
+	
+	public static ArrayList<Player> playerArray = new ArrayList<Player>();
+	public static ArrayList<String> playerName = new ArrayList<String>();
 
 	public static void main(String[] args) {
 
 		GameFrame frame = new GameFrame();
+	
 		
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
@@ -58,25 +63,28 @@ public class GameFrame extends JFrame {
 		
 		login.btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				login.startButtonActionPerformed(e,frame,bmode,board,sharing );
-				/*frame.setLayeredPane(bmode);
+				frame.setLayeredPane(bmode);
 				frame.revalidate();
-				//int totalPeople = sharing.conKUeror.addToPlayerList(login);
-				//int totalPeople = sharing.conKUerorHandler
-				int totalPeople = board.createPlayer(login.getRealPlayer(), login.getCompPlayer()).size();
+				System.out.println("real: "+ login.getRealPlayer()+"comp: " +login.getCompPlayer());
+				
+				playerArray = conKUerorHandler.createPlayer(login.getRealPlayer(), login.getCompPlayer());
+				
+				playerName = conKUerorHandler.createPlayerName(login.getPlayerNum());
+				System.out.println("playerArraysize: "+playerArray.size());
+				int totalPeople = login.getPlayerNum();
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
 				
 				for(int i =0;i<totalPeople; i++) {
-					System.out.println(sharing.conKUeror.playerList.get(i));
+					System.out.println(playerArray.get(i));
+					conKUerorHandler.getBoard().createInfantry(login.addPlayers(totalPeople),playerArray.get(i));
 				}
 				
-				for (int i =0;i<totalPeople;i++) {
-					sharing.conKUeror.playerList.get(i).setName(tempPlayer.get(i));
+				for (int i =0;i<totalPeople;i++) {				
+		            playerName.set(i, tempPlayer.get(i));
 				}
-				for(int i =0;i<totalPeople; i++) {
-					
-					System.out.println("player names" + sharing.conKUeror.playerList.get(i).getName()); 
+				for(int i =0;i<totalPeople; i++) {			
+					System.out.println("player names" + playerName.get(i));
 				}
 		
 				bmode.build = true;
@@ -99,7 +107,7 @@ public class GameFrame extends JFrame {
 			     txtdisable.setEditable(false);
 			     txtdisable.setBackground(Color.DARK_GRAY);
 			     bmode.add(txtdisable);
-			        */
+			        
 				
 
 			}
@@ -146,11 +154,12 @@ public class GameFrame extends JFrame {
 				sharing.add(bmode.grid);
 		
 				
-				for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
+				/*for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
 					sharing.conKUeror.playerList.get(i).setNumOfInfantry(login.addPlayers(login.getPlayerNum()));
-				}
+				}*/
 				
-				sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
+				
+				//sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
 				
 
 			}

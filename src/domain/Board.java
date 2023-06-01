@@ -57,6 +57,9 @@ public class Board {
 	public ArrayList<Player> createPlayer(int playerCount, int AICount) {
 		return playerCreator.createPlayer(playerCount,AICount);
 	}
+	public ArrayList<String> createPlayerName(int playerCount) {
+		return playerCreator.createPlayerName(playerCount);
+	}
 	public void createMainDeck(int count, int armyCard, Deck deck) {
 		mainDeckCreator.createMainDeck(count, armyCard, deck);
 	}
@@ -79,10 +82,14 @@ public class Board {
 
 	}
 	
-	/*public int addToPlayerList(LoginScreen loginScreen, PlayerList playerList) {
+	public void setPlayerName(String name) {
+		player.setPlayerName(name);
+	}
+	
+	public int addToPlayerList(ArrayList<Player> playerList, int totalPlayerNum) {
 		
-		player.addToPlayerList(loginScreen);
-		
+		return player.addToPlayerList(playerList,totalPlayerNum);
+	}	
 		  /*for (int i=0; i<loginScreen.getPlayerNum(); i++) {
 		   Player player = new Player();
 		   playerList.add(player);

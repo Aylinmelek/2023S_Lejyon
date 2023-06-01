@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class GameActions {
     public ArrayList<Player> playerList = new ArrayList<Player>();
 	public ArrayList<Territory> terList = new ArrayList<Territory>();
