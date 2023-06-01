@@ -20,10 +20,12 @@ import domain.Territory;
 public class ConKUerorHandler {
 
 	
-	
-//private Board board;
-public static Board board = new Board();
-private static Board mainBoard;
+
+private Board board;
+private static Board board2; // database saving için tanımladım
+private static ConKUerorHandler instance;
+
+
 
 public ConKUerorHandler() {
 	this.mainBoard=board;
@@ -129,6 +131,13 @@ public ConKUerorHandler() {
 
 
 
+	
+	public static ConKUerorHandler getInstance() {
+		if (instance == null)
+			board2 = new Board();
+			instance = new ConKUerorHandler(board2);
+		return instance;
+	}
 	
 
 

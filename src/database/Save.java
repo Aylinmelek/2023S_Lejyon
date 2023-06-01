@@ -18,13 +18,13 @@ public class Save {
 	String fileName = "output.dat";
 	
 	MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017"); //will change, ask TA
-	MongoClient mongoClient = new MongoClient(uri);
+	//MongoClient mongoClient = new MongoClient(uri);
 
 	// Access the game database
-	MongoDatabase database = mongoClient.getDatabase("game_database");
+	//MongoDatabase database = mongoClient.getDatabase("game_database");
 
 	// Access the game collection
-	MongoCollection<Document> collection = database.getCollection("game_collection");
+	//MongoCollection<Document> collection = database.getCollection("game_collection");
 	
 	// Create a sample game document
     Document gameDocument = new Document();
@@ -401,10 +401,10 @@ public class Save {
 	
 	
 	// Insert the game document into the collection
-    collection.insertOne(gameDocument);
+    //collection.insertOne(gameDocument);
     
     // Close the MongoDB connection
-    mongoClient.close();
+    //mongoClient.close();
 
 	
 }
