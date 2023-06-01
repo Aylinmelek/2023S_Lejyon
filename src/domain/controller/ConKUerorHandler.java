@@ -43,15 +43,15 @@ private Board board;
 	public GameActions gameActions = new GameActions();
 	
 	public void createInfantry(int number, Player player) {
-		infCreator.createInfantry(number,Player);
+		board.createInfantry(number,Player);
 	}
 	
 	public void createPlayer(int playerCount, int AICount) {
-		playerCreator.createPlayer(playerCount,AICount);
+		board.createPlayer(playerCount,AICount);
 	}
 	
 	public void createMainDeck(int count, int armyCard, Deck deck) {
-		mainDeckCreator.createMainDeck(count, armyCard, deck);
+		board.createMainDeck(count, armyCard, deck);
 	}
 
 	/*public void setAdjacent(Map map) {
@@ -64,22 +64,22 @@ private Board board;
 	}*/
 	
 	public void turnPass(int index) {
-		gameActions.turnPass(index);
+		board.turnPass(index);
 	}
 
 	public void createTerritory(int terCount) {
-		gameActions.createTerritory(terCount);
+		board.createTerritory(terCount);
 	}
 
 	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
 
-		gameActions.attack(player, territoryFrom, territoryTo, die);
+		board.attack(player, territoryFrom, territoryTo, die);
 
 	}
 
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 
-		gameActions.fortify(player, territoryFrom, territoryTo, count);
+		board.fortify(player, territoryFrom, territoryTo, count);
 
 	}
 	
