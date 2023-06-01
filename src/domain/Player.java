@@ -3,13 +3,35 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player implements Serializable{
+
+import UI.LoginScreen;
+import domain.controller.ConKUerorHandler;
+
+public class Player {
+
 	String name;
 	public Deck deck = new Deck();
-	public Die die;
+
+	
+	
+	
+	
+	public Die getDie() {
+		return die;
+	}
+
+	public void setDie(Die die) {
+		this.die = die;
+	}
+
+	public Die die = new Die();
 	public static Army inf1 = new Infantry();
 	public Integer firstRoll;
 	public int numOfInfantry;
+	
+	public void setPlayerName(String name) {
+		this.name=name;
+	}
 
 	public int getNumOfInfantry() {
 		return numOfInfantry;
@@ -32,10 +54,6 @@ public class Player implements Serializable{
 
 	public String getName() {
 		return name;
-	}
-	
-	public void setName(String name) {
-		this.name=name;
 	}
 
 	public void playTheGame() {
@@ -278,7 +296,7 @@ public class Player implements Serializable{
 		// playerPower += artilleryList.size() * 2;
 		// playerPower += cavalryList.size() * 3;
 
-		if (playerPower >= territoryPower) {
+		if (playerPower >= territoryPower && playerPower > 1) {
 			System.out.println(this + " can attack.");
 			return true;
 		} else {
@@ -291,6 +309,15 @@ public class Player implements Serializable{
 		territoryList.add(territory);
 		territory.owner.territoryList.remove(territory.owner.territoryList.indexOf(territory));
 		territory.owner = this;
+	}
+	
+	public int addToPlayerList(ArrayList<Player> playerList, int totalPlayerNum) {			
+		for (int i=0; i<totalPlayerNum; i++) {
+			Player player = new Player();
+			playerList.add(player);
+			System.out.println(player);
+		}
+		return playerList.size();
 	}
 
 }

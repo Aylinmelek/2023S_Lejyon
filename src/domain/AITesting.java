@@ -27,7 +27,18 @@ public class AITesting {
 	AI1.turn = true;
 	AI1.initialShare = true;
 	AI1.chooseTer();
+	System.out.println("Should print 1: ");
 	System.out.println(AI1.playerAI.getTerritoryList().size());
+	System.out.println("One of them should be player and others null : ");
+	System.out.println(territory1.owner);
+	System.out.println(territory2.owner);
+	System.out.println(territory5.owner);
+	System.out.println(territory6.owner);
+	
+	AI1.chooseTer();
+	System.out.println("Should print 2: ");
+	System.out.println(AI1.playerAI.getTerritoryList().size());
+	System.out.println("Two of them should be player and others null : ");
 	System.out.println(territory1.owner);
 	System.out.println(territory2.owner);
 	System.out.println(territory5.owner);
@@ -41,13 +52,13 @@ public class AITesting {
 	territory1.setOwner(AI1.playerAI);
 	AI1.playerAI.getTerritoryList().add(territory2);
 	territory2.setOwner(AI1.playerAI);
-	System.out.println("\n" + territory1.owner + "\n");
+	//System.out.println("\n" + territory1.owner + "\n");
 	
 	AI1.initialShare = false;
 	//AI1.attackAI(); 
 	
 	AI1.fortifyAI();
-	System.out.println(territory2.getArmyList().size());
+	//System.out.println(territory2.getArmyList().size());
 	
 	
 	

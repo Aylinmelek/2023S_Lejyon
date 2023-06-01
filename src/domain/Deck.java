@@ -20,7 +20,7 @@ public class Deck implements Serializable{
 	ArrayList<InfantryCard> infantryCardList = new ArrayList<InfantryCard>();
 	ArrayList<ArtilleryCard> artilleryCardList = new ArrayList<ArtilleryCard>();
 	ArrayList<CavalryCard> cavalryCardList = new ArrayList<CavalryCard>();
-	Random rand;
+	Random rand = new Random();
 
 
 	public void shuffle() {
