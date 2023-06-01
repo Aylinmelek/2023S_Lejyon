@@ -1,14 +1,17 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Random;
+
 
 import domain.cardService.ICardServiceAdapter;
 
 
-public class sabotageCard { //implements Rollable {//, Changable {
+public class sabotageCard implements Rollable, Serializable{ //implements Rollable {//, Changable {
 	//implements rollable ??
 	Territory territory;
 	Die die;
+
 	
 	public int rollDie() {
 		Random random = new Random();

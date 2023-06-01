@@ -1,11 +1,14 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
 
 import UI.LoginScreen;
 import domain.controller.ConKUerorHandler;
 
 public class Player {
+
 	String name;
 	public Deck deck = new Deck();
 

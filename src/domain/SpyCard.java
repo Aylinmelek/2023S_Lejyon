@@ -1,6 +1,8 @@
 package domain;
 
-public class SpyCard {
+
+import java.io.Serializable;
+public class SpyCard implements Serializable{
 	public static void spyOn(Territory territory, Player player, int option) {
 		if (option == 0) {
 			int armyCardCount = player.getDeck().getArtilleryCardList().size() + player.getDeck().getCavalryCardList().size() + player.getDeck().getInfantryCardList().size();
@@ -11,5 +13,6 @@ public class SpyCard {
 		else {
 			System.out.println("Territory has " + territory.getArmyList().size() + " armies.");
 		}
+
 	}
 }

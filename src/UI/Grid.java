@@ -23,7 +23,8 @@ public class Grid extends JPanel implements MouseListener {
 	int index = 0;
 	private boolean indFlag = true;
 	private boolean infFlag;
-	
+    JTextArea txtPlayerTurn = new JTextArea();
+    
 	public boolean isIndFlag() {
 		return indFlag;
 	}
@@ -175,17 +176,22 @@ public class Grid extends JPanel implements MouseListener {
 						setIndFlag(false);
 					}
 					
+
 				//ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
 					System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
 					ArrayList<Player> players = GameFrame.playerArray;
-					
+
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
                 	players.get(playerIndex).chooseATerritory(selectedTer);
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
                 	
                 	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
-                	System.out.println(players.get(playerIndex));
+                	System.out.println(players.get(playerIndex).getName());
+                	
+           	        
+           	     	//GameFrame.play.add(txtPlayerTurn);
+           	     
                 	
                     System.out.println(selectedTer);
                 	//players.get(i).chooseATerritory(null)

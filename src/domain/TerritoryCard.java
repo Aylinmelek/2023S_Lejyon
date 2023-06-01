@@ -1,6 +1,8 @@
 package domain;
 
-public class TerritoryCard {
+import java.io.Serializable;
+
+public class TerritoryCard implements Serializable{
 	String continent;
 	Territory territory;
 	boolean inPlayer;

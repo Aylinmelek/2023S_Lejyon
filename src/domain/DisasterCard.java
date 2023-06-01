@@ -1,13 +1,14 @@
 package domain;
 
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.io.Serializable;
 import domain.cardService.DisasterCardServiceAdapter;
 import domain.cardService.ICardServiceAdapter;
 
 
 
-public class DisasterCard {//implements Changable {//extends DisasterAdapter{
+public class DisasterCard extends DisasterAdapter implements Serializable{
 	//implements Changable'ı sildim çünkü onun yerine 
 	//ICardServiceAdapter interface'i ekledim.
 	//Changable ile aynı
@@ -15,6 +16,7 @@ public class DisasterCard {//implements Changable {//extends DisasterAdapter{
 	Player player;
 	int number;
 	ArrayList<Player> playerList;
+
 	
 	
 public void disaster(ICardServiceAdapter cardService) { //remove army olucak ismi. parametrelere bak
