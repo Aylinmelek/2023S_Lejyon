@@ -9,7 +9,6 @@ import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import domain.Army;
@@ -43,11 +42,9 @@ public class GameFrame extends JFrame {
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
 	public static ArrayList<String> tempPlayer = new ArrayList<String>();
-
 	
 	public static ArrayList<Player> playerArray = new ArrayList<Player>();
 	public static ArrayList<String> playerName = new ArrayList<String>();
-
 
 	public static void main(String[] args) {
 
@@ -78,22 +75,16 @@ public class GameFrame extends JFrame {
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
 				
-				JPanel playerNames = new JPanel();
-				JTextArea txtPlayerNames = new JTextArea();
-				//txtPlayerNames.setBounds(212, 6, 453, 43);
-				StringBuilder playerNamesBuilder = new StringBuilder();
 				for(int i =0;i<totalPeople; i++) {
 					System.out.println(playerArray.get(i));
 					conKUerorHandler.getBoard().createInfantry(login.addPlayers(totalPeople),playerArray.get(i));
 				}
 				
-
 				for (int i =0;i<totalPeople;i++) {				
 		            playerName.set(i, tempPlayer.get(i));
 				}
 				for(int i =0;i<totalPeople; i++) {			
 					System.out.println("player names" + playerName.get(i));
-
 				}
 		
 				bmode.build = true;
@@ -170,6 +161,7 @@ public class GameFrame extends JFrame {
 				
 				//sharing.conKUeror.addToList(login.addPlayers(login.getPlayerNum()));
 				
+
 			}
 		});
 
@@ -225,8 +217,7 @@ public class GameFrame extends JFrame {
 				// grid.setVisible(true);
 				//grid.setBounds(19, 69, 850, 350);
 				play.add(bmode.grid);
-				GameFrame.play.txtPlayerTurn.setText("It is " +sharing.max_player.getName() +"'s turn!!");
-				playerIndex = GameFrame.bmode.grid.playerIndex;
+				
 				
 
 			}

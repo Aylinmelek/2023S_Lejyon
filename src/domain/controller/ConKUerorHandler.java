@@ -21,11 +21,11 @@ public class ConKUerorHandler {
 
 	
 
-private Board board;
-private static Board board2; // database saving için tanımladım
+//private Board board;
 private static ConKUerorHandler instance;
 
-
+public static Board board = new Board();
+private static Board mainBoard;
 
 public ConKUerorHandler() {
 	this.mainBoard=board;
@@ -134,8 +134,7 @@ public ConKUerorHandler() {
 	
 	public static ConKUerorHandler getInstance() {
 		if (instance == null)
-			board2 = new Board();
-			instance = new ConKUerorHandler(board2);
+			instance = new ConKUerorHandler();
 		return instance;
 	}
 	

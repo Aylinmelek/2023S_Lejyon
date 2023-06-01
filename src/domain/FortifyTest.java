@@ -1,5 +1,5 @@
 package domain;
-
+/*
 public class FortifyTest {
     public static void main(String[] args) {
         Player player1 = new Player();
@@ -44,4 +44,4 @@ public class FortifyTest {
         conkueror.fortify(player1, territory1, territory2, 2); // Working Test Case
 
     }
-}
+}*/
