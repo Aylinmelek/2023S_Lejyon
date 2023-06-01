@@ -31,6 +31,7 @@ public class BuildingMode extends JLayeredPane{
     Grid grid = new Grid(); 
     int row = grid.row;
 	int col = grid.col;
+	JButton btnHelp = new JButton("Help");
     
     //observer için ekledim
    // Board board = new Board();
@@ -121,6 +122,11 @@ public class BuildingMode extends JLayeredPane{
 
         btnNext.setBounds(724, 490, 117, 29);
         add(btnNext);
+        
+        btnHelp.setBounds(729, 13, 117, 29);
+        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+        add(btnHelp);
+        
         
 	}
 	/*

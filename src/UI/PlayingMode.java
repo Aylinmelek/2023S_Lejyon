@@ -31,6 +31,7 @@ public class PlayingMode extends JLayeredPane {
     int indexOfPlayer=GameFrame.playerIndex;
 
     private boolean indFlag = true;
+    JButton btnHelp = new JButton("Help");
     
     JLabel dieLabel = new JLabel();
     public boolean playMode = false;
@@ -238,7 +239,10 @@ public class PlayingMode extends JLayeredPane {
 	     txtPlayerTurn.setText("It is... turn!!");
 	     add(txtPlayerTurn);
 	     
-
+	     btnHelp.setBounds(25, 530, 117, 29);
+	     btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+	     add(btnHelp);
+	        
 	     btnPickChance.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                txtCard.setText(".... card picked");

@@ -53,7 +53,8 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     public Player max_player;
 
     static Icon currentIcon;
-
+    JButton btnHelp = new JButton("Help");
+    
     public boolean dieRoll = true;
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
@@ -280,6 +281,9 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         add(dieLabel);
         add(btnStartGame); 
         
+        btnHelp.setBounds(729, 13, 117, 29);
+        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+        add(btnHelp);
     }
     
     public JButton getButton() {
