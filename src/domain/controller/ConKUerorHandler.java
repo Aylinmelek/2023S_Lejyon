@@ -9,6 +9,8 @@ import domain.Die;
 public class ConKUerorHandler {
 	
 private Board board;
+private static Board board2; // database saving için tanımladım
+private static ConKUerorHandler instance;
 	
 	public ConKUerorHandler(Board board) {
 		this.board = board;
@@ -32,6 +34,13 @@ private Board board;
 	
 	public int getDieValue() {
 		return board.getDiceValue();
+	}
+	
+	public static ConKUerorHandler getInstance() {
+		if (instance == null)
+			board2 = new Board();
+			instance = new ConKUerorHandler(board2);
+		return instance;
 	}
 	
 
