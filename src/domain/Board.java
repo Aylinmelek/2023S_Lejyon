@@ -17,6 +17,7 @@ public class Board {
 	
 	public Board() {
 		die = new Die();
+		infCreator = new InfantryCreator();//yeni
 		System.out.println("geliyo mu board'a");
 		System.out.println("-----------------");
 	}
@@ -26,6 +27,8 @@ public class Board {
 		//publishBoardEvent();
 		
 	}
+	
+
 	
 	public int getDiceValue() {
 		return die.getDiceValue();
