@@ -176,10 +176,11 @@ public class Grid extends JPanel implements MouseListener {
 						setIndFlag(false);
 					}
 					
-				    ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
-					
-					//players = GameFrame.sharing.conKUeror.playerList;
-                
+
+				//ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
+					System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
+					ArrayList<Player> players = GameFrame.playerArray;
+
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
                 	players.get(playerIndex).chooseATerritory(selectedTer);
