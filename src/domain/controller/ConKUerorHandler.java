@@ -4,7 +4,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import domain.Board;
+import domain.Deck;
 import domain.Die;
+import domain.GameActions;
+import domain.InfantryCreator;
+import domain.MainDeckCreator;
+import domain.Player;
+import domain.PlayerCreator;
+import domain.Territory;
 
 public class ConKUerorHandler {
 
@@ -37,13 +44,14 @@ private Board board;
 	}
 
 	//New Part
-	public InfantryCreator infCreator = new InfantryCreator();
+	
 	public PlayerCreator playerCreator = new PlayerCreator();
 	public MainDeckCreator mainDeckCreator = new MainDeckCreator();
 	public GameActions gameActions = new GameActions();
 	
 	public void createInfantry(int number, Player player) {
-		infCreator.createInfantry(number,Player);
+		//infCreator.createInfantry(number,player);
+		board.infCreator(number, player);//yeni
 	}
 	
 	public void createPlayer(int playerCount, int AICount) {

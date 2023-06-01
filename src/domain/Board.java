@@ -10,9 +10,11 @@ public class Board {
 	
 	private Die die;
 	int dieValue;
+	public InfantryCreator infCreator;//yeni
 	
 	public Board() {
 		die = new Die();
+		infCreator = new InfantryCreator();//yeni
 		System.out.println("geliyo mu board'a");
 		System.out.println("-----------------");
 	}
@@ -21,6 +23,13 @@ public class Board {
 		die.roll();
 		//publishBoardEvent();
 		
+	}
+	
+	public void infCreator(int number, Player player) {//yeni
+		
+	
+			infCreator.createInfantry(number,player);//yeni
+			
 	}
 	
 	public int getDiceValue() {
