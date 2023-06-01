@@ -21,6 +21,7 @@ public class MapRecordDB implements AdapterRecord {
     String user = "root";
     String password = "Zeynepaydin20";
 
+    
     public void saveTheMapDB(Map map) {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
