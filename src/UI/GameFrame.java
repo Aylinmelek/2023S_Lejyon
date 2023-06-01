@@ -40,7 +40,7 @@ public class GameFrame extends JFrame {
 	public static HelpScreen help = new HelpScreen();
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
-	public static ArrayList<String> tempPlayer = new ArrayList<String>();
+	//public static ArrayList<String> tempPlayer = new ArrayList<String>();
 
 	public static void main(String[] args) {
 
@@ -58,9 +58,12 @@ public class GameFrame extends JFrame {
 		
 		login.btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setLayeredPane(bmode);
+				login.startButtonActionPerformed(e,frame,bmode,board,sharing );
+				/*frame.setLayeredPane(bmode);
 				frame.revalidate();
-				int totalPeople = sharing.conKUeror.addToPlayerList(login);
+				//int totalPeople = sharing.conKUeror.addToPlayerList(login);
+				//int totalPeople = sharing.conKUerorHandler
+				int totalPeople = board.createPlayer(login.getRealPlayer(), login.getCompPlayer()).size();
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
 				
@@ -96,7 +99,7 @@ public class GameFrame extends JFrame {
 			     txtdisable.setEditable(false);
 			     txtdisable.setBackground(Color.DARK_GRAY);
 			     bmode.add(txtdisable);
-			        
+			        */
 				
 
 			}

@@ -2,9 +2,13 @@ package domain;
 
 import java.util.ArrayList;
 
+import UI.LoginScreen;
+
 public class Player {
 	String name;
 	public Deck deck = new Deck();
+	
+	
 	public Die getDie() {
 		return die;
 	}
@@ -294,6 +298,16 @@ public class Player {
 		territoryList.add(territory);
 		territory.owner.territoryList.remove(territory.owner.territoryList.indexOf(territory));
 		territory.owner = this;
+	}
+	
+	public int addToPlayerList(LoginScreen loginScreen) {			
+		for (int i=0; i<loginScreen.getPlayerNum(); i++) {
+		Player player = new Player();
+		playerList.add(player);
+		System.out.println(player);
+
+		}
+		return playerList.size();
 	}
 
 }

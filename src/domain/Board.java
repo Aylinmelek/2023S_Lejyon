@@ -3,6 +3,8 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import UI.LoginScreen;
+
 
 public class Board {
 	
@@ -14,6 +16,8 @@ public class Board {
 	public PlayerCreator playerCreator = new PlayerCreator();
 	public MainDeckCreator mainDeckCreator = new MainDeckCreator();
 	public GameActions gameActions = new GameActions();
+	public Player player = new Player();
+	public ArrayList<Player> playerList = new ArrayList<Player>();
 	
 	public Board() {
 		die = new Die();
@@ -47,11 +51,11 @@ public class Board {
 		
 	}
 	public void createInfantry(int number, Player player) {
-		infCreator.createInfantry(number,Player);
+		infCreator.createInfantry(number,player);
 	}
 
-	public void createPlayer(int playerCount, int AICount) {
-		playerCreator.createPlayer(playerCount,AICount);
+	public ArrayList<Player> createPlayer(int playerCount, int AICount) {
+		return playerCreator.createPlayer(playerCount,AICount);
 	}
 	public void createMainDeck(int count, int armyCard, Deck deck) {
 		mainDeckCreator.createMainDeck(count, armyCard, deck);
@@ -75,6 +79,18 @@ public class Board {
 
 	}
 	
+	/*public int addToPlayerList(LoginScreen loginScreen, PlayerList playerList) {
+		
+		player.addToPlayerList(loginScreen);
+		
+		  /*for (int i=0; i<loginScreen.getPlayerNum(); i++) {
+		   Player player = new Player();
+		   playerList.add(player);
+		   System.out.println(player);
+
+		  }
+		  return playerList.size();*/
+		 //}
 	
-    
+
 }

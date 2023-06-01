@@ -3,10 +3,12 @@ package domain.controller;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import UI.LoginScreen;
 import domain.Board;
 import domain.Deck;
 import domain.Die;
 import domain.GameActions;
+import domain.Infantry;
 import domain.InfantryCreator;
 import domain.MainDeckCreator;
 import domain.Player;
@@ -50,7 +52,7 @@ private Board board;
 	public GameActions gameActions = new GameActions();
 	
 	public void createInfantry(int number, Player player) {
-		board.createInfantry(number,Player);
+		board.createInfantry(number,player);
 	}
 	
 	public void createPlayer(int playerCount, int AICount) {
@@ -89,6 +91,31 @@ private Board board;
 		board.fortify(player, territoryFrom, territoryTo, count);
 
 	}
+	public int addToPlayerList(LoginScreen loginScreen) {
+		board.addToPlayerList(loginScreen);
+		  /*for (int i=0; i<loginScreen.getPlayerNum(); i++) {
+		   Player player = new Player();
+		   playerList.add(player);
+		   System.out.println(player);
+
+		  }
+		  return playerList.size();*/
+		 }
+
+		 public void addToList(int num) {
+		  for (int j = 0; j < playerList.size(); j++) {
+		   Infantry inf = new Infantry();
+		   for (int i = 0; i < num; i++) {
+		    playerList.get(j).getInfantryList().add(inf);
+		   }
+		  }
+
+		 }
+		}
+	
+
+
+
 	
 
 

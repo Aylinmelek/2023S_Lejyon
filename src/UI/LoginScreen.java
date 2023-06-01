@@ -22,6 +22,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
+import domain.Board;
 import domain.Player;
 
 public class LoginScreen extends JLayeredPane{
@@ -48,7 +49,7 @@ public class LoginScreen extends JLayeredPane{
     int counter = 0; 
     
     ArrayList<String> playerArray = new ArrayList<String>(); 
-    
+    public static ArrayList<String> tempPlayer = new ArrayList<String>();
   
 	
 	public LoginScreen() {
@@ -173,6 +174,8 @@ public class LoginScreen extends JLayeredPane{
 	            	password.setText("");
 	            	counter += 1;
 	            	
+	            	
+	            	
             		}
 	            	
 	            	
@@ -183,6 +186,8 @@ public class LoginScreen extends JLayeredPane{
         btnStart.setBounds(663, 508, 130, 50);
         btnStart.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnStart);
+        
+
         
         btnHelp.setBounds(729, 13, 117, 29);
         btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
@@ -226,6 +231,22 @@ public class LoginScreen extends JLayeredPane{
 		comp = (int) numComp.getSelectedItem();
 		totalPlayers = players + comp;
 		return totalPlayers;
+	}
+	
+	public int getCompPlayer() {  
+		
+	    	
+		comp = (int) numComp.getSelectedItem();
+		
+		return comp;
+	}
+	
+	public int getRealPlayer() {  
+		
+	    players = (int) numPlayers.getSelectedItem(); 		
+		
+		
+		return players;
 	}
 	
 	public int addPlayers(int total) {  
@@ -279,5 +300,47 @@ public ArrayList<String> addNamesToArrayList() {
 	}
 	return playerArray;
 }
+	public void startButtonActionPerformed(ActionEvent e, GameFrame frame, BuildingMode bmode, Board board, InitSharing sharing ) {
+	    frame.setLayeredPane(bmode);
+	    frame.revalidate();
+	
+	    int totalPeople = board.createPlayer(getRealPlayer(), getCompPlayer()).size();
+	    tempPlayer = addNamesToArrayList();
+	    System.out.println("total people" + totalPeople);
+	
+	    for (int i = 0; i < totalPeople; i++) {
+	        System.out.println(sharing.conKUeror.playerList.get(i));
+	    }
+	
+	    for (int i = 0; i < totalPeople; i++) {
+	        sharing.conKUeror.playerList.get(i).setName(tempPlayer.get(i));
+	    }
+	    
+	    for (int i = 0; i < totalPeople; i++) {
+	        System.out.println("player names" + sharing.conKUeror.playerList.get(i).getName()); 
+	    }
+	
+	    bmode.build = true;
+	
+	    JTextArea dispInfant = new JTextArea();
+	    dispInfant.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+	    dispInfant.setForeground(Color.LIGHT_GRAY);
+	    dispInfant.setBackground(Color.DARK_GRAY);
+	    dispInfant.setText("Every Player has " + addPlayers(getPlayerNum()) + " Infantry.");
+	    dispInfant.setEditable(false);
+	
+	    dispInfant.setBounds(150, 430, 822, 50);
+	    bmode.add(dispInfant);
+	
+	    JTextArea txtdisable = new JTextArea();
+	    txtdisable.setBounds(150, 490, 822, 50);
+	    txtdisable.setText("Choose the territories you want to disable");
+	    txtdisable.setForeground(Color.LIGHT_GRAY);
+	    txtdisable.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+	    txtdisable.setEditable(false);
+	    txtdisable.setBackground(Color.DARK_GRAY);
+	    bmode.add(txtdisable);
+	}
+
 	
 }
