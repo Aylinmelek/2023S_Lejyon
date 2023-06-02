@@ -24,8 +24,8 @@ public class DieTestingBlackBox {
         // Create necessary objects
         Die die = new Die();
         Board board = new Board();
-        ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-        InitSharing initSharing = new InitSharing(conKUerorHandler);
+        ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+        InitSharing initSharing = new InitSharing();
        
     
         // Test case 1: Roll the die and verify if the value is within the valid range
@@ -38,8 +38,8 @@ public class DieTestingBlackBox {
         // Create necessary objects
         Die die = new Die();
         Board board = new Board();
-        ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-        InitSharing initSharing = new InitSharing(conKUerorHandler);
+        ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+        InitSharing initSharing = new InitSharing();
        
         // Test case 2: Verify if UI and domain can communicate by checking if the die value is displayed correctly in InitSharing
         conKUerorHandler.rollDice();
@@ -54,8 +54,8 @@ public class DieTestingBlackBox {
         // Create necessary objects
         Die die = new Die();
         Board board = new Board();
-        ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-        InitSharing initSharing = new InitSharing(conKUerorHandler);
+        ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+        InitSharing initSharing = new InitSharing();
        
         
         // Test case 3: Verify if the die value is added to the list of dice in the Die class
@@ -70,8 +70,8 @@ public class DieTestingBlackBox {
         // Create necessary objects
         Die die = new Die();
         Board board = new Board();
-        ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-        InitSharing initSharing = new InitSharing(conKUerorHandler);
+        ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+        InitSharing initSharing = new InitSharing();
         
         // Test case 4: Verify if the board publishes the board event correctly by checking if the die value is printed
         conKUerorHandler.rollDice();
@@ -86,8 +86,8 @@ public class DieTestingBlackBox {
         // Create necessary objects
         Die die = new Die();
         Board board = new Board();
-        ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-        InitSharing initSharing = new InitSharing(conKUerorHandler);  
+        ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+        InitSharing initSharing = new InitSharing();  
         int finalDieDisplayed;
         
         // Test case 5: Verify if the correct die icon is displayed based on the dieNumber
@@ -97,11 +97,12 @@ public class DieTestingBlackBox {
         String expectedIcon = "die4.png"; // Expected icon file name for die number 4
 
         // Call the displayDie() method
-        initSharing.displayDie(dieNumber);
+        //initSharing.displayDie(dieNumber);
 
 
 
      // Obtain the current displayed icon
+        initSharing.displayDie(dieNumber);
         String actualIcon = initSharing.displayDie(dieNumber).toString();
         
         String lastPart = actualIcon.substring(actualIcon.lastIndexOf("/") + 1);

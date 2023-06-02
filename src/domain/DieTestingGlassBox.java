@@ -12,7 +12,7 @@ public class DieTestingGlassBox {
     public void TestListOfDice() {
         // Create necessary objects
     	Board board = new Board();
-        ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+        ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
         Die die = new Die();
        
         // Test case: Verify if the die value is added to the list of dice in the Die class
@@ -28,7 +28,7 @@ public class DieTestingGlassBox {
         public void TestBoardPrint() {
             // Create necessary objects
         	Board board = new Board();
-            ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
+            ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
             
             // Test case (Glass Box): Verify if the board publishes the board event correctly by checking if the die value is printed
             for (int dieNumber = 1; dieNumber <= 6; dieNumber++) {
@@ -48,8 +48,8 @@ public class DieTestingGlassBox {
             // Create necessary objects
             Die die = new Die();
             Board board = new Board();
-            ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-            InitSharing initSharing = new InitSharing(conKUerorHandler);
+            ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+            InitSharing initSharing = new InitSharing();
             
             // Test case (Glass Box): Roll the die and verify if the value is within the valid range
             for (int i = 0; i < 100; i++) {
@@ -69,15 +69,15 @@ public class DieTestingGlassBox {
                 // Create necessary objects
                 Die die = new Die();
                 Board board = new Board();
-                ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-                InitSharing initSharing = new InitSharing(conKUerorHandler);
+                ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+                InitSharing initSharing = new InitSharing();
                
                 // Test case (Glass Box): Verify if UI and domain can communicate by checking if the die value is displayed correctly in InitSharing
                 for (int dieNumber = 1; dieNumber <= 6; dieNumber++) {
                     conKUerorHandler.rollDice();
                     int actualDieNumber = conKUerorHandler.getDieValue();
                     String expectedDisplay = Integer.toString(actualDieNumber); //InitSharing
-                    String actualDisplay = Integer.toString(board.getDiceValue()); //Board
+                    String actualDisplay = Integer.toString(conKUerorHandler.getDieValue()); //Board
                     
                     // Verify that the die value is displayed correctly in InitSharing
                     Assert.assertEquals("Die value should be displayed correctly in InitSharing", expectedDisplay, actualDisplay);
@@ -89,8 +89,8 @@ public class DieTestingGlassBox {
                     // Create necessary objects
                     Die die = new Die();
                     Board board = new Board();
-                    ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-                    InitSharing initSharing = new InitSharing(conKUerorHandler);  
+                    ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
+                    InitSharing initSharing = new InitSharing();  
                     
                     // Test case (Glass Box): Verify if the correct die icon is displayed based on the dieNumber
                     // Roll the die with different values and check the displayed icon
