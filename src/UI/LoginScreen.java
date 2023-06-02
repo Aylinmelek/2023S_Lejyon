@@ -22,6 +22,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
+import domain.Board;
 import domain.Player;
 
 public class LoginScreen extends JLayeredPane{
@@ -48,7 +49,7 @@ public class LoginScreen extends JLayeredPane{
     int counter = 0; 
     
     ArrayList<String> playerArray = new ArrayList<String>(); 
-    
+    public static ArrayList<String> tempPlayer = new ArrayList<String>();
   
 	
 	public LoginScreen() {
@@ -173,6 +174,8 @@ public class LoginScreen extends JLayeredPane{
 	            	password.setText("");
 	            	counter += 1;
 	            	
+	            	
+	            	
             		}
 	            	
 	            	
@@ -183,6 +186,8 @@ public class LoginScreen extends JLayeredPane{
         btnStart.setBounds(663, 508, 130, 50);
         btnStart.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnStart);
+        
+
         
         btnHelp.setBounds(729, 13, 117, 29);
         btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
@@ -226,6 +231,22 @@ public class LoginScreen extends JLayeredPane{
 		comp = (int) numComp.getSelectedItem();
 		totalPlayers = players + comp;
 		return totalPlayers;
+	}
+	
+	public int getCompPlayer() {  
+		
+	    	
+		comp = (int) numComp.getSelectedItem();
+		
+		return comp;
+	}
+	
+	public int getRealPlayer() {  
+		
+	    players = (int) numPlayers.getSelectedItem(); 		
+		
+		
+		return players;
 	}
 	
 	public int addPlayers(int total) {  
@@ -279,5 +300,7 @@ public ArrayList<String> addNamesToArrayList() {
 	}
 	return playerArray;
 }
+
+
 	
 }

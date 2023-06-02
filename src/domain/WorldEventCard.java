@@ -46,4 +46,18 @@ public class WorldEventCard implements Rollable, Changable, Serializable{
 		}
 	}
 
+
+	@Override
+	public void addArmy(Territory territory) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void removeArmy(Territory territory) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

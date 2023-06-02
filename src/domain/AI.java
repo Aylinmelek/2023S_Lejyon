@@ -5,11 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import domain.controller.ConKUerorHandler;
+
 public class AI {
     Player playerAI = new Player();
     Map map = new Map(); // Burası ana map ile değiştirilecek
     boolean turn, initialShare, fortifyable;
-    ConKUeror conkueror = new ConKUeror(); // Burası ana conKueror ile bağlanacak
+    //Board board = new Board(); //conkuerorhandler a board vermem gerekliydi o yüzden yeni board initialize ettim ama yanlış olabilir anlamadım
+    ConKUerorHandler conKUerorHandler = new ConKUerorHandler(); // Burası ana conKueror ile bağlanacak
     Die die = new Die();
 
     public void chooseTer() {
@@ -32,7 +35,7 @@ public class AI {
                 fromIndex = generateNum(playerAI.getTerritoryList().size());
                 destIndex = generateNum(playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().size());
             }
-            conkueror.attack(playerAI, playerAI.getTerritoryList().get(fromIndex),
+            conKUerorHandler.attack(playerAI, playerAI.getTerritoryList().get(fromIndex),
                     playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().get(destIndex), die); // Burası
                                                                                                               // da
                                                                                                               // bağlanacak
@@ -70,7 +73,7 @@ public class AI {
                 destIndex = generateNum(playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().size());
             }
             int armyCount = generateNum(playerAI.getTerritoryList().get(fromIndex).getArmyList().size());
-            conkueror.fortify(playerAI, playerAI.getTerritoryList().get(fromIndex),
+            conKUerorHandler.fortify(playerAI, playerAI.getTerritoryList().get(fromIndex),
                     playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().get(destIndex), armyCount);
         }
     }
