@@ -110,7 +110,6 @@ public class DieTestingGlassBox {
                         Assert.assertEquals("Die icon should match the expected icon for the given die number", expectedIcon, lastPart);
                     }
                 }
-            
 
 
         

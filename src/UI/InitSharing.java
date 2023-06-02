@@ -133,7 +133,6 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                         dieLabel.setIcon(die6);
                         break;
                 }
-
                 try {
                     Thread.sleep(100); // Adjust the delay as needed
                 } catch (InterruptedException e) {

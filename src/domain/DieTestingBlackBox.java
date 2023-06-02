@@ -110,7 +110,6 @@ public class DieTestingBlackBox {
         Assert.assertTrue("Die icon should match the expected icon for the given die number", expectedIcon.equals(lastPart));
     }
 
-    
     private String iconToString(Icon icon) {
         if (icon != null) {
             return icon.toString();
