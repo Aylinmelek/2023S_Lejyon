@@ -98,7 +98,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     }
     
 	
-    public String displayDie(int dieNumber) {
+    public Icon displayDie(int dieNumber) {
     	System.out.println("dieNumber: "+ dieNumber);
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 13; i++) {
@@ -185,7 +185,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         rollThread.start();
         //DieTesting için ekledim
         String dieNum=Integer.toString(dieNumber);
-        return dieNum;
+        return currentIcon;
     }
     /*
     public int getInd(int max_die, int temp) {

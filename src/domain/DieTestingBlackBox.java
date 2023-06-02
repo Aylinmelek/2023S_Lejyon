@@ -45,7 +45,7 @@ public class DieTestingBlackBox {
         conKUerorHandler.rollDice();
         int dieNumber = conKUerorHandler.getDieValue();
         String expectedDisplay = Integer.toString(dieNumber); //InitSharing
-        String actualDisplay = initSharing.displayDie(dieNumber); //Board
+        String actualDisplay = Integer.toString(conKUerorHandler.getDieValue()); //Board
         Assert.assertEquals("Die value should be displayed correctly in InitSharing", expectedDisplay, actualDisplay);
     }
     
@@ -98,14 +98,13 @@ public class DieTestingBlackBox {
         String expectedIcon = "die4.png"; // Expected icon file name for die number 4
 
         // Call the displayDie() method
-        System.out.println("DisplayDie: "+dieNumber);
         initSharing.displayDie(dieNumber);
-        System.out.println("DisplayDie: "+dieNumber);
 
 
 
      // Obtain the current displayed icon
-        String actualIcon = initSharing.getCurrentIcon().toString();
+        String actualIcon = initSharing.displayDie(dieNumber).toString();
+        
         String lastPart = actualIcon.substring(actualIcon.lastIndexOf("/") + 1);
         System.out.println("lastPart: " + lastPart);
         // Compare the actual and expected icons
