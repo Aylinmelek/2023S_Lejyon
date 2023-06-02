@@ -83,7 +83,6 @@ public class DieTestingGlassBox {
                     Assert.assertEquals("Die value should be displayed correctly in InitSharing", expectedDisplay, actualDisplay);
                 }
             }
-       
                 
                 @Test
                 public void testDisplayDieIcon_GlassBox() {

@@ -90,7 +90,6 @@ public class DieTestingBlackBox {
         InitSharing initSharing = new InitSharing(conKUerorHandler);  
         int finalDieDisplayed;
         
-
         // Test case 5: Verify if the correct die icon is displayed based on the dieNumber
         // Roll the die with a specific value
         int dieNumber = 4;
