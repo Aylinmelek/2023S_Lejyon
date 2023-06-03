@@ -78,7 +78,7 @@ public class Player {
 	}
 
 	public void tradeArmyCards(int i) {
-		if (i == 0 && deck.infantryCardList.size() == 3) {
+		if (i == 0 && deck.infantryCardList.size() >= 3) {
 			for (int j = 0; j <= 2; j++) {
 				int index = deck.infantryCardList.size() - 1;
 				deck.infantryCardList.remove(index);
@@ -87,42 +87,46 @@ public class Player {
 			cavalryList.add(new Cavalry());
 			System.out.println("Cavalry is added.");
 		}
-		if (i == 1 && deck.infantryCardList.size() == 2 && deck.cavalryCardList.size() == 1) {
+		if (i == 1 && deck.infantryCardList.size() >= 2 && deck.cavalryCardList.size() >= 1) {
 			for (int j = 0; j <= 1; j++) {
 				int index = deck.infantryCardList.size() - 1;
 				deck.infantryCardList.remove(index);
+				System.out.println("Infantry Card is removed.");
 			}
 			int index = deck.cavalryCardList.size() - 1;
 			deck.cavalryCardList.remove(index);
 			cavalryList.add(new Cavalry());
 			cavalryList.add(new Cavalry());
 		}
-		if (i == 2 && deck.infantryCardList.size() == 2 && deck.artilleryCardList.size() == 1) {
+		if (i == 2 && deck.infantryCardList.size() >= 2 && deck.artilleryCardList.size() >= 1) {
 			for (int j = 0; j <= 1; j++) {
 				int index = deck.infantryCardList.size() - 1;
 				deck.infantryCardList.remove(index);
+				System.out.println("Infantry Card is removed.");
 			}
 			int index = deck.artilleryCardList.size() - 1;
 			deck.artilleryCardList.remove(index);
 			artilleryList.add(new Artillery());
 			artilleryList.add(new Artillery());
 		}
-		if (i == 3 && deck.infantryCardList.size() == 1 && deck.cavalryCardList.size() == 2) {
+		if (i == 3 && deck.infantryCardList.size() >= 1 && deck.cavalryCardList.size() >= 2) {
 			int index = deck.infantryCardList.size() - 1;
 			deck.infantryCardList.remove(index);
 			for (int j = 0; j <= 1; j++) {
 				int index2 = deck.cavalryCardList.size() - 1;
 				deck.cavalryCardList.remove(index2);
+				System.out.println("Infantry Card is removed.");
 			}
 			cavalryList.add(new Cavalry());
 			artilleryList.add(new Artillery());
 		}
-		if (i == 4 && deck.artilleryCardList.size() == 1 && deck.cavalryCardList.size() == 2) {
+		if (i == 4 && deck.artilleryCardList.size() >= 1 && deck.cavalryCardList.size() >= 2) {
 			int index = deck.artilleryCardList.size() - 1;
 			deck.artilleryCardList.remove(index);
 			for (int j = 0; j <= 1; j++) {
 				int index3 = deck.cavalryCardList.size() - 1;
 				deck.cavalryCardList.remove(index3);
+				System.out.println("Infantry Card is removed.");
 			}
 			artilleryList.add(new Artillery());
 			artilleryList.add(new Artillery());

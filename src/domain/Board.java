@@ -12,6 +12,7 @@ public class Board {
 	
 	private Die die;
 	int dieValue;
+	public Deck deck = new Deck();
 	public InfantryCreator infCreator = new InfantryCreator();
 	public PlayerCreator playerCreator = new PlayerCreator();
 	public MainDeckCreator mainDeckCreator = new MainDeckCreator();
@@ -24,7 +25,7 @@ public class Board {
 
 		infCreator = new InfantryCreator();//yeni
 		System.out.println("geliyo mu board'a");
-
+		
 		System.out.println("-----------------");
 	}
 	
@@ -78,6 +79,10 @@ public class Board {
 
 		gameActions.attack(player, territoryFrom, territoryTo, die);
 
+	}
+	public void giveArmyCard(Player player)
+	{
+		deck.giveArmyCard(player);
 	}
 
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
