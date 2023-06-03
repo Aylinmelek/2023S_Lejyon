@@ -38,6 +38,7 @@ public class LoginScreen extends JLayeredPane{
     JLabel[] nameLabels = new JLabel[6];
     JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
+    
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();
     JPanel playersPanel = new JPanel();

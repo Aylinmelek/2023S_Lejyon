@@ -6,14 +6,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
 
 import domain.Die;
+import domain.controller.ConKUerorHandler;
 
 
 public class PlayingMode extends JLayeredPane {
@@ -25,11 +28,16 @@ public class PlayingMode extends JLayeredPane {
     JButton btnSkip = new JButton("SKIP/END TURN");
     JButton btnPickChance = new JButton("Pick a Chance Card");
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
+    JButton btnAttack = new JButton("Attack");
+    JButton btnFortify = new JButton("Fortify");
     JTextArea txtCard = new JTextArea();
-   
+    JComboBox<Integer> numFortify = new JComboBox<Integer> ();
+    
+    public boolean isAttack;
     
     JLabel dieLabel = new JLabel();
     public boolean playMode = false;
+    public ConKUerorHandler handler = new ConKUerorHandler();
    
     
     Die die = new Die();
@@ -146,6 +154,12 @@ public class PlayingMode extends JLayeredPane {
 	     
 	     //btnTer.setBounds(27, 437, 118, 30); added to gameframe for cards to be visible
 	     //add(btnTer);
+		numFortify.setBounds(800, 467, 64, 27);
+		numFortify.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3, 4, 5, 6}));
+		numFortify.setMaximumRowCount(6);
+		numFortify.setBackground(Color.LIGHT_GRAY);
+		
+        add(numFortify);
 	     btnArmy.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
 	     		ArmyCardFrame armyCard = new ArmyCardFrame();
@@ -156,7 +170,40 @@ public class PlayingMode extends JLayeredPane {
 	     
 	     btnArmy.setBounds(27, 467, 118, 29);
 	     add(btnArmy);
+	     btnAttack.setBounds(460, 430, 137, 36);
+	     add(btnAttack);
+	     btnFortify.setBounds(600, 430, 137, 36);
+	     add(btnFortify);
 	     
+	    
+	     GameFrame.play.btnAttack.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		
+					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
+				     {
+						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, GameFrame.play.die);
+			     		
+						GameFrame.bmode.grid.territorySource = null;
+						GameFrame.bmode.grid.territoryTo = null;
+						numFortify.setEnabled(false);
+				     }
+		     	}
+		     });
+	     GameFrame.play.btnFortify.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		
+					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
+				     {
+						handler.getBoard().fortify(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo,(int) numFortify.getSelectedItem());
+			     		
+						GameFrame.bmode.grid.territorySource = null;
+						GameFrame.bmode.grid.territoryTo = null;
+						numFortify.setEnabled(false);
+				     }
+		     	}
+		     });
+	     
+
 	     
 	     btnChance.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {

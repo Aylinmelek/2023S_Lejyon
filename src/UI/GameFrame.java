@@ -200,9 +200,11 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				String action = e.getActionCommand();
+				play.numFortify.setEnabled(false);
 				play.btnTer.addActionListener(new ActionListener() {
 			     	public void actionPerformed(ActionEvent e) {
 			     		bmode.grid.terCard.setVisible(true);
+			     		
 			
 			     	}
 			     	
@@ -217,7 +219,9 @@ public class GameFrame extends JFrame {
 				// grid.setVisible(true);
 				//grid.setBounds(19, 69, 850, 350);
 				play.add(bmode.grid);
-				
+				sharing.init = false;
+				play.playMode = true;
+				System.out.println(play.playMode);
 				
 
 			}
