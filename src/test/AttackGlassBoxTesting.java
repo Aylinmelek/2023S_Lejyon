@@ -7,7 +7,13 @@ import org.junit.jupiter.api.Test;
 import domain.*;
 
 class AttackGlassBoxTesting {
-
+	//Specification:
+	//@Requires: Attacker should owns territoryFrom and shouldn't owns territoryTo
+	//territoryFrom and territoryTo should be linked, and the territoryFrom should be equal or more powerful than territoryTo
+	//@Modifies: territoryFrom's armyList, territoryTo's armyList, and territoryTo's owner
+	//@Effects: If player won the attack, territoryTo's armyList would be decreased by 1.
+	//If player lose the attack, territoryFrom's armyList would be decreased by 2
+	//If territoryTo's armyList is equal to 0 after the attack, player conquer the territoryTo
 	Die die = new Die();
     GameActions conkueror = new GameActions();
     Player player1 = new Player();
@@ -23,7 +29,7 @@ class AttackGlassBoxTesting {
 
     @Test
     void sameTerritories() {
-        // Test1 if TerritoryTo is equal to TerritoryFrom.
+        // Test1 if TerritoryTo is equal to TerritoryFrom then player can not attack, this test checks it.
 
         territory1.getAdjacentTerritories().add(territory2);
         territory2.getAdjacentTerritories().add(territory1);
@@ -58,8 +64,8 @@ class AttackGlassBoxTesting {
 
     @Test
     void attackThemselves() {
-        // Test2 if TerritoryFrom's owner is not player and TerritoryTo's owner is
-        // player.
+        // Test2 if TerritoryFrom's owner is not attacker or TerritoryTo's owner is attacker, this test checks it.
+    	
 
         territory1.getAdjacentTerritories().add(territory2);
         territory2.getAdjacentTerritories().add(territory1);
@@ -97,7 +103,7 @@ class AttackGlassBoxTesting {
 
     @Test
     void notAdjacent() {
-        // Test3 if TerritoryTo and TerritoryFrom are not adjacents.
+        // Test3 if TerritoryTo and TerritoryFrom are not adjacents, or linked, attacker can not attack. This test checks it.
 
         territory1.getAdjacentTerritories().add(territory2);
         territory2.getAdjacentTerritories().add(territory1);
@@ -139,7 +145,7 @@ class AttackGlassBoxTesting {
 
     @Test
     void insufficientPower() {
-        // Test4 if TerritoryFrom's power is not greater than TerritoryTo.
+        // Test4 if TerritoryFrom's power is not greater than territoryTo or same as territoryTo. This test checks it.
 
         territory1.getAdjacentTerritories().add(territory2);
         territory2.getAdjacentTerritories().add(territory1);
@@ -186,7 +192,7 @@ class AttackGlassBoxTesting {
 
     @Test
     void workingTestCase() {
-        // Test5 default.
+        // Test5 It is working test case.
 
         territory1.getAdjacentTerritories().add(territory2);
         territory2.getAdjacentTerritories().add(territory1);
