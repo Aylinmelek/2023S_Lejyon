@@ -182,10 +182,13 @@ public class PlayingMode extends JLayeredPane {
 					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
 				     {
 						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, GameFrame.play.die);
-			     		
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+						repaint();
 						GameFrame.bmode.grid.territorySource = null;
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
+						
 				     }
 		     	}
 		     });
@@ -195,7 +198,9 @@ public class PlayingMode extends JLayeredPane {
 					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
 				     {
 						handler.getBoard().fortify(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo,(int) numFortify.getSelectedItem());
-			     		
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+						repaint();
 						GameFrame.bmode.grid.territorySource = null;
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);

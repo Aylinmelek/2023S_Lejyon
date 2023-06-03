@@ -27,6 +27,7 @@ public class Grid extends JPanel implements MouseListener {
 	//public PlayingMode playMode = new PlayingMode();
 	public boolean isAttack = false;
 	public Territory territoryTo, territorySource;
+	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
 	
 	
@@ -50,6 +51,8 @@ public class Grid extends JPanel implements MouseListener {
 	public int col, row;
 
 	// Territory territoryIs = Territory.isTerritory(row, col);
+	Color firstChosen = new Color(171,200,116);
+	Color secondChosen = new Color(111,130,80);
 	Color blue = new Color(0, 0, 155);
 
 	public Grid() {
@@ -298,10 +301,18 @@ public class Grid extends JPanel implements MouseListener {
 			
 				if(territorySource == null)
 				{
+					gridColors[row][col] = firstChosen;
+					firstChosenRow = row;
+					firstChosenColumn = col;
+					repaint();
 					territorySource = Territory.isTerritory(row, col);
 					System.out.println("territorySource :"+territorySource);
 				}
 				else {
+					gridColors[row][col] = secondChosen;
+					secondChosenRow = row;
+					secondChosenColumn = col;
+					repaint();
 					territoryTo = Territory.isTerritory(row, col);
 					System.out.println("territoryTo :"+territoryTo);
 					territorySource.setLink(territoryTo);
