@@ -9,10 +9,10 @@ import domain.controller.ConKUerorHandler;
 
 public class AI {
     Player playerAI = new Player();
-    Map map = new Map(); // Burası ana map ile değiştirilecek
+    Map map = new Map();
     boolean turn, initialShare, fortifyable;
-    //Board board = new Board(); //conkuerorhandler a board vermem gerekliydi o yüzden yeni board initialize ettim ama yanlış olabilir anlamadım
-    ConKUerorHandler conKUerorHandler = new ConKUerorHandler(); // Burası ana conKueror ile bağlanacak
+   
+    ConKUerorHandler conKUerorHandler = new ConKUerorHandler(); 
     Die die = new Die();
 
     public void chooseTer() {
@@ -57,14 +57,14 @@ public class AI {
         }
     }
 
-    public void fortifyAI() {
+    public void fortifyAI(boolean forceFortify, int armyCounter) {
         int isTime = generateNum(2);
         if (isTime == 1) {
             fortifyable = true;
         } else {
             fortifyable = false;
         }
-        if (turn && fortifyable) {
+        if ((turn && fortifyable) || forceFortify) {
             int fromIndex = generateNum(playerAI.getTerritoryList().size());
             int destIndex = generateNum(playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().size());
             while (!playerAI.getTerritoryList()
@@ -74,9 +74,41 @@ public class AI {
             }
             int armyCount = generateNum(playerAI.getTerritoryList().get(fromIndex).getArmyList().size());
             conKUerorHandler.fortify(playerAI, playerAI.getTerritoryList().get(fromIndex),
-                    playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().get(destIndex), armyCount);
+                    playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().get(destIndex), armyCounter);
         }
     }
+    public Player getPlayerAI() {
+		return playerAI;
+	}
+
+	public void setPlayerAI(Player playerAI) {
+		this.playerAI = playerAI;
+	}
+
+	public boolean isTurn() {
+		return turn;
+	}
+
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
+
+	public boolean isInitialShare() {
+		return initialShare;
+	}
+
+	public void setInitialShare(boolean initialShare) {
+		this.initialShare = initialShare;
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
 
     /*
      * Territory terTo, terFrom;
