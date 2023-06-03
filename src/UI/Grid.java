@@ -87,6 +87,29 @@ public class Grid extends JPanel implements MouseListener {
 					this.gridColors[row][col] = territory.getColor();
 					this.gridText[row][col] = territory.getText();
 				}
+				//Set Link Implementation to Map
+				if(row > 1 && Territory.isTerritory(row-1, col) != null  && Territory.isTerritory(row, col) != null)
+				{
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row-1, col));
+					Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
+				}
+				if(col > 1 && Territory.isTerritory(row, col-1) != null  && Territory.isTerritory(row, col) != null)
+				{
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col-1));
+					Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
+				}
+				
+				if(Territory.isTerritory(row+1, col) != null && Territory.isTerritory(row, col) != null)
+				{
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row+1, col));
+					Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
+				}
+				if(Territory.isTerritory(row, col+1) != null  && Territory.isTerritory(row, col) != null)
+				{
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col+1));
+					Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
+				}
+				
 			}
 		}
 	}
@@ -337,7 +360,7 @@ public class Grid extends JPanel implements MouseListener {
 				repaint();
 				territoryTo = Territory.isTerritory(row, col);
 				System.out.println("territoryTo :"+territoryTo);
-				territorySource.setLink(territoryTo);
+				//territorySource.setLink(territoryTo);
 				GameFrame.play.numFortify.setEnabled(true);
 				
 			}

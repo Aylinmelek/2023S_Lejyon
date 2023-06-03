@@ -51,11 +51,11 @@ public class GameActions {
 				}
 
 			} else {
-				System.out.println("There is a power imbalance between Territories");
+				System.out.println("There is a power imbalance between Territories or they are notLinked");
 			}
 
 		} else {
-			System.out.println("Player doesn't own TerritoryFrom or it is not adjacent to TerritoryTo or owns TerritoryTo.");
+			System.out.println("Player doesn't own TerritoryFrom or owns TerritoryTo.");
 	
 		}
 
