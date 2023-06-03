@@ -252,11 +252,14 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
 
         conkueror.attack(player1, territory1, territory2, die);
+        conkueror.attack(player1, territory1, territory2, die);
 
        
-
+        
         boolean range = territory1.getArmyList().size() + territory2.getArmyList().size() >= 4
                 && territory1.getArmyList().size() + territory2.getArmyList().size() <= 6;
+        System.out.println(territory1.getArmyList().size() + territory2.getArmyList().size());
+        System.out.println("range:" + range);
         assertEquals(true, range);
     }
     @Test
