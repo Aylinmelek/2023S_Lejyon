@@ -26,7 +26,9 @@ public class MainDeckCreator {
 			deck.getInfantryCardList().add(infantryCard);
 			deck.getArtilleryCardList().add(artilleryCard);
 			deck.getCavalryCardList().add(cavalryCard);
+
 			System.out.println("burasý calýsti");
+
 		}
 		
 		

@@ -50,7 +50,7 @@ public class GameFrame extends JFrame {
 	static int counter=0;
 	static int counter2=0;
 	public static void main(String[] args) {
-
+		
 		GameFrame frame = new GameFrame();
 	
 		
@@ -240,6 +240,7 @@ public class GameFrame extends JFrame {
 				play.btnTer.addActionListener(new ActionListener() {
 			     	public void actionPerformed(ActionEvent e) {
 			     		bmode.grid.terCard.setVisible(true);
+			     		
 			
 			     	}
 			     	
@@ -255,7 +256,8 @@ public class GameFrame extends JFrame {
 				//grid.setBounds(19, 69, 850, 350);
 				play.add(bmode.grid);
 				sharing.init = false;
-				 play.sort(playerArray);						
+
+				 //play.sort(playerArray);						
 				 play.playMode = true;
 				 						
 				 System.out.println(play.playMode);
@@ -286,6 +288,11 @@ public class GameFrame extends JFrame {
 				
 				 
 				 
+
+				play.playMode = true;
+				System.out.println(play.playMode);
+				
+
 
 			}
 		});

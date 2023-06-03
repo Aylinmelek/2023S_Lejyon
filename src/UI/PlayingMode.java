@@ -16,7 +16,9 @@ import javax.swing.JTextArea;
 
 
 import domain.Die;
+
 import domain.Player;
+
 import domain.controller.ConKUerorHandler;
 
 
@@ -41,11 +43,14 @@ public class PlayingMode extends JLayeredPane {
 
     private boolean indFlag = true;
     
+    
     JLabel dieLabel = new JLabel();
     public boolean playMode = false;
     public ConKUerorHandler handler = new ConKUerorHandler();
+
     
     Die die = new Die();
+   
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
     int dieDisplayed,finalDieDisplayed;
@@ -179,7 +184,8 @@ public class PlayingMode extends JLayeredPane {
 	     add(btnAttack);
 	     btnFortify.setBounds(600, 430, 137, 36);
 	     add(btnFortify);
-	     			     
+
+	     
 	    
 	     GameFrame.play.btnAttack.addActionListener(new ActionListener() {
 		     	public void actionPerformed(ActionEvent e) {
@@ -212,6 +218,9 @@ public class PlayingMode extends JLayeredPane {
 				     }
 		     	}
 		     });
+	     
+
+
 	     
 	     btnChance.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
@@ -302,9 +311,11 @@ public class PlayingMode extends JLayeredPane {
 
 	     btnTACard.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	txtCard.setText("a/t.. card picked");
+
 	            	handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	            	System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
+	            	
+
 	            }
 	        });
 	     
@@ -312,6 +323,7 @@ public class PlayingMode extends JLayeredPane {
 	     //if die diger playerdan büyükse conquer ettin/kaybettin JText
 	     
 	}
+
 	
 	 public static void sort(ArrayList<Player> list) {
 
@@ -321,3 +333,5 @@ public class PlayingMode extends JLayeredPane {
 
 
 }
+
+

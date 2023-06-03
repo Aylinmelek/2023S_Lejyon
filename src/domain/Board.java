@@ -25,7 +25,7 @@ public class Board {
 
 		infCreator = new InfantryCreator();//yeni
 		System.out.println("geliyo mu board'a");
-
+		
 		System.out.println("-----------------");
 	}
 	
@@ -80,7 +80,10 @@ public class Board {
 		gameActions.attack(player, territoryFrom, territoryTo, die);
 
 	}
-	public void giveArmyCard(Player player){
+
+	public void giveArmyCard(Player player)
+	{
+
 		deck.giveArmyCard(player);
 	}
 

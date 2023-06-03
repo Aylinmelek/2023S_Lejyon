@@ -92,7 +92,7 @@ public class Player {
 			System.out.println("Cavalry is added.");
 		}
 		if (i == 1 && deck.infantryCardList.size() >= 2 && deck.cavalryCardList.size() >= 1) {
-		
+
 			for (int j = 0; j <= 1; j++) {
 				int index = deck.infantryCardList.size() - 1;
 				deck.infantryCardList.remove(index);

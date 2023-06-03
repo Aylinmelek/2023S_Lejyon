@@ -76,9 +76,12 @@ public ConKUerorHandler() {
 	public void createMainDeck(int count, int armyCard, Deck deck) {
 		board.createMainDeck(count, armyCard, deck);
 	}
-	public void giveArmyCard(Player player){
+
+	public void giveArmyCard(Player player)
+	{
 		board.giveArmyCard(player);
-	}			
+	}
+
 	
 	public void setPlayerName(String name) {
 		board.setPlayerName(name);

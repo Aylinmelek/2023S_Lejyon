@@ -62,7 +62,6 @@ public class ArmyCardFrame extends JFrame {
 	 addButtonActListener();
 	 /*addCardstoArray();
 	 * addButtonActListener()
-	  addCardNumstoArray();		  
 	  addCardNumstoArray();
 	  initialize();		 
 	  addElements();		  
@@ -130,7 +129,11 @@ public class ArmyCardFrame extends JFrame {
          	
          }
      });
+
+ 
+ 
  }
+ 
 
  
     public ArrayList <String> addCardstoArray() {

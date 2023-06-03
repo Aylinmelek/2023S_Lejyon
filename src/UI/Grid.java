@@ -24,6 +24,7 @@ public class Grid extends JPanel implements MouseListener {
 	int index = 0;
 	private boolean indFlag = true;
 	private boolean infFlag;
+
     JTextArea txtPlayerTurn = new JTextArea();
     //public PlayingMode playMode = new PlayingMode();
 	public boolean isAttack = false;
@@ -31,6 +32,9 @@ public class Grid extends JPanel implements MouseListener {
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
     
+
+	
+	
 	public boolean isIndFlag() {
 		return indFlag;
 	}
@@ -182,15 +186,24 @@ public class Grid extends JPanel implements MouseListener {
 				
 				if(!GameFrame.sharing.getButton().isEnabled()) {
 					if(isIndFlag()) {
+
 						//playerIndex=GameFrame.sharing.getInd();
+
 						playerIndex=0;
 						setIndFlag(false);
 					}
+
 					ArrayList<Player> players = GameFrame.playerArray;
 
 				//ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
 					/*System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
 					ArrayList<Player> players = GameFrame.playerArray;*/
+
+
+					
+				//ArrayList<Player> players = GameFrame.playerArray;
+					
+                
 
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
@@ -203,6 +216,8 @@ public class Grid extends JPanel implements MouseListener {
            	        
            	     	//GameFrame.play.add(txtPlayerTurn);
            	     
+
+                	System.out.println(players.get(playerIndex));
                 	
                     System.out.println(selectedTer);
                 	//players.get(i).chooseATerritory(null)
@@ -326,6 +341,12 @@ public class Grid extends JPanel implements MouseListener {
 				GameFrame.play.numFortify.setEnabled(true);
 				
 			}
+			
+			
+				
+				
+				
+			
 		}
 		
 	}
