@@ -17,7 +17,14 @@ public class GameActions {
 		}
 	}
     public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
-
+    	//Specification:
+    	//@Requires: Attacker should owns territoryFrom and shouldn't owns territoryTo
+    	//territoryFrom and territoryTo should be linked, and the territoryFrom should be equal or more powerful than territoryTo
+    	//@Modifies: territoryFrom's armyList, territoryTo's armyList, and territoryTo's owner
+    	//@Effects: If player won the attack, territoryTo's armyList would be decreased by 1.
+    	//If player lose the attack, territoryFrom's armyList would be decreased by 2
+    	//If territoryTo's armyList is equal to 0 after the attack, player conquer the territoryTo
+    	
 		if (player.getTerritoryList().contains(territoryFrom) && !player.getTerritoryList().contains(territoryTo)) {
 			if (player.canAttackTerritory(territoryFrom, territoryTo)
 					&& territoryTo.adjacentTerritories.contains(territoryFrom)) {
