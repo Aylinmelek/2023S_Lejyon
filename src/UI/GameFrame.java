@@ -47,7 +47,7 @@ public class GameFrame extends JFrame {
 	public static ArrayList<String> playerName = new ArrayList<String>();
 
 	public static void main(String[] args) {
-
+		
 		GameFrame frame = new GameFrame();
 	
 		
@@ -79,7 +79,7 @@ public class GameFrame extends JFrame {
 					System.out.println(playerArray.get(i));
 					conKUerorHandler.getBoard().createInfantry(login.addPlayers(totalPeople),playerArray.get(i));
 				}
-				
+				play.handler.createMainDeck(10, 10, play.handler.getBoard().deck);
 				for (int i =0;i<totalPeople;i++) {				
 		            playerName.set(i, tempPlayer.get(i));
 				}

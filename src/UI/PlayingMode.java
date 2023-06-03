@@ -41,6 +41,7 @@ public class PlayingMode extends JLayeredPane {
    
     
     Die die = new Die();
+   
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
     int dieDisplayed,finalDieDisplayed;
@@ -76,7 +77,7 @@ public class PlayingMode extends JLayeredPane {
 	public void initialize() {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
-		
+		handler.createMainDeck(10,10,handler.getBoard().deck);
 		setLayout(null);
 	}
 	public void displayDie() {
@@ -269,7 +270,8 @@ public class PlayingMode extends JLayeredPane {
 
 	     btnTACard.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	txtCard.setText("a/t.. card picked");
+	            	handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
+	            	System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	            	
 	            }
 	        });
