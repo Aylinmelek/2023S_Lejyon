@@ -8,7 +8,7 @@ import domain.serviceFactory.CardServiceFactory;
 public class ClientSingleton {
 		private ICardServiceAdapter storageService;
 		
-		public ClientSingleton(String serviceUsed) {
+		private ClientSingleton(String serviceUsed) {
 			storageService = CardServiceFactory.getInstance().getCardServiceAdapter(serviceUsed);
 			
 			//name of the factory + getInstance() + getService

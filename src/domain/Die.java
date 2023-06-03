@@ -22,7 +22,9 @@ public class Die {
 	public Die() {
 		rand = new Random();
 	}
-	
+	public void setFaceValue() {
+		
+	}
 	///////////////
 	
 	/*public int generateNum() {

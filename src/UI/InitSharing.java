@@ -39,7 +39,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     int index=0;  
     int temp;
     public boolean init = false;
-    
+	public static int counter=0;
     Die die = new Die();
     int dieDisplayed,finalDieDisplayed;
     static int dieNumber;
@@ -225,15 +225,21 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         
         dieLabel.setBounds(221, 450, 80, 80);
         
+        
+        
         btnRoll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
+            	
                 //observer için ekledim
 
                 GameFrame.conKUerorHandler.rollDice();
                 dieNumber = GameFrame.conKUerorHandler.getDieValue();
 
                 displayDie(dieNumber);
+                
+                GameFrame.playerArray.get(counter).setfirstRoll(dieNumber);
+                counter++;
                 die.dice.add(dieNumber); //die values arraylist
                 board.publishBoardEvent(dieNumber);
                 //System.out.println("(UI.InitSharing)You rolled2: "+dieNumber);
@@ -254,7 +260,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     
                     //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
                     
-                    
+                    System.out.println("ilk başlayan: "+GameFrame.playerName.get(ind));
                     txtFirstPlayer.setText("Highest die rolled by: "+GameFrame.playerName.get(ind) +"\n It's your turn!!");
                     
                     

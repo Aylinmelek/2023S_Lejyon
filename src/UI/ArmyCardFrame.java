@@ -33,6 +33,13 @@ public class ArmyCardFrame extends JFrame {
  
  ArrayList<String> armyCards = new ArrayList<String>();
  ArrayList<Integer> armyCardsNum = new ArrayList<Integer>();
+ 
+ JButton btnFirst = new JButton("Trade");
+ JButton btnSecond = new JButton("Trade");
+ JButton btnThird = new JButton("Trade");
+ JButton btnFourth = new JButton("Trade");
+ JButton btnFifth = new JButton("Trade");
+ JButton btnSixth = new JButton("Trade");
 
  int tradeCvlry, tradeInfntry, tradeArtlry; 
  
@@ -50,14 +57,79 @@ public class ArmyCardFrame extends JFrame {
   
  
  public ArmyCardFrame() {
+	 addButtons();
+	 initialize();
+	 addButtonActListener();
+	 /*addCardstoArray();
+	 * addButtonActListener()
+	  addCardNumstoArray();		  
+	  addCardNumstoArray();
+	  initialize();		 
+	  addElements();		  
+	  addTradePanel();		  
+	  addArmyButons();*/		  
   
-  addCardstoArray();
-  addCardNumstoArray();
-  initialize();
-  addElements();
-  addTradePanel();
-  addArmyButons();
-  
+ }
+ public void addButtons() {
+	 btnFirst.setBounds(120, 230, 137, 36);
+	 add(btnFirst);
+	 btnSecond.setBounds(260, 230, 137, 36);
+	 add(btnSecond);
+	 btnThird.setBounds(120, 270, 137, 36);
+	 add(btnThird);
+	 btnFourth.setBounds(260, 270, 137, 36);
+	 add(btnFourth);
+	 btnFifth.setBounds(120, 310, 137, 36);
+	 add(btnFifth);
+	 btnSixth.setBounds(260, 310, 137, 36);
+	 add(btnSixth);
+	 
+ }
+ 
+ public void addButtonActListener() {
+	 btnFirst.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(0);
+             System.out.println("Buraya Basýldý");
+         	
+         }
+     });
+	 btnSecond.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(1);
+             System.out.println("Buraya Basýldý");
+         	
+         }
+     });
+	 btnThird.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(2);
+             System.out.println("Buraya Basýldý");
+         	
+         }
+     });
+	 btnFourth.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(3);
+             System.out.println("Buraya Basýldý");
+         	
+         }
+     });
+	 btnFifth.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(4);
+             System.out.println("Buraya Basýldý");
+             
+         	
+         }
+     });
+	 btnSixth.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(5);
+             System.out.println("Buraya Basýldý");
+         	
+         }
+     });
  }
 
  

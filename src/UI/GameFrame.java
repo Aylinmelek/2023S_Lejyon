@@ -9,6 +9,7 @@ import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import domain.Army;
@@ -42,10 +43,12 @@ public class GameFrame extends JFrame {
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
 	public static ArrayList<String> tempPlayer = new ArrayList<String>();
+	public static ArrayList<String> nameSorted = new ArrayList<String>();
 	
 	public static ArrayList<Player> playerArray = new ArrayList<Player>();
 	public static ArrayList<String> playerName = new ArrayList<String>();
-
+	static int counter=0;
+	static int counter2=0;
 	public static void main(String[] args) {
 
 		GameFrame frame = new GameFrame();
@@ -70,18 +73,49 @@ public class GameFrame extends JFrame {
 				playerArray = conKUerorHandler.createPlayer(login.getRealPlayer(), login.getCompPlayer());
 				
 				playerName = conKUerorHandler.createPlayerName(login.getPlayerNum());
+				
+				
+				
 				System.out.println("playerArraysize: "+playerArray.size());
 				int totalPeople = login.getPlayerNum();
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
+				JPanel playerNames = new JPanel();
+				//JTextArea txtPlayerNames = new JTextArea();
+				//txtPlayerNames.setBounds(212, 6, 453, 43);
+				//StringBuilder playerNamesBuilder = new StringBuilder();
+				for(int i =0;i<totalPeople; i++) {
+					System.out.println(playerName.get(i));
+				}
 				
+				for (int i =0;i<totalPeople;i++) {
+					playerName.set(i, tempPlayer.get(i));
+					//playerNamesBuilder.append(tempPlayer.get(i)).append("      ");
+					
+				}
+				for (Player i:playerArray) {
+					i.setPlayerName(playerName.get(counter));
+					System.out.println("counter: "+playerName.get(counter));
+					counter++;
+					
+				}
+				
+				
+				/*txtPlayerNames.setText(playerNamesBuilder.toString());
+				txtPlayerNames.setForeground(Color.LIGHT_GRAY);
+				txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+				txtPlayerNames.setEditable(false);
+				txtPlayerNames.setBackground(Color.DARK_GRAY);
+				txtPlayerNames.setBounds(70, 6, 780, 43);
+				play.add(txtPlayerNames);*/
+
 				for(int i =0;i<totalPeople; i++) {
 					System.out.println(playerArray.get(i));
 					conKUerorHandler.getBoard().createInfantry(login.addPlayers(totalPeople),playerArray.get(i));
 				}
-				
+				play.handler.createMainDeck(10, 10, play.handler.getBoard().deck);
 				for (int i =0;i<totalPeople;i++) {				
-		            playerName.set(i, tempPlayer.get(i));
+					playerName.set(i, tempPlayer.get(i));
 				}
 				for(int i =0;i<totalPeople; i++) {			
 					System.out.println("player names" + playerName.get(i));
@@ -109,7 +143,9 @@ public class GameFrame extends JFrame {
 			     bmode.add(txtdisable);
 			        
 				
-
+			     // Players turn number is sorted
+			       
+			        
 			}
 		});
 
@@ -200,6 +236,7 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				String action = e.getActionCommand();
+				play.numFortify.setEnabled(false);
 				play.btnTer.addActionListener(new ActionListener() {
 			     	public void actionPerformed(ActionEvent e) {
 			     		bmode.grid.terCard.setVisible(true);
@@ -217,8 +254,38 @@ public class GameFrame extends JFrame {
 				// grid.setVisible(true);
 				//grid.setBounds(19, 69, 850, 350);
 				play.add(bmode.grid);
+				sharing.init = false;
+				 play.sort(playerArray);						
+				 play.playMode = true;
+				 						
+				 System.out.println(play.playMode);
+				 play.sort(playerArray);
+				 
+				 for (Player i: playerArray) {
+					 System.out.println("i: "+i);
+					 nameSorted.add(i.getName());
+					 System.out.println("nameSorted: "+nameSorted.get(counter2));
+					 counter2++;
+					 
+				 }
+				 JTextArea txtPlayerNames = new JTextArea();
+				 StringBuilder playerNamesBuilder = new StringBuilder();
+				 for (int i =0;i<login.getPlayerNum();i++) {
+						
+						playerNamesBuilder.append(nameSorted.get(i)).append("      ");
+						
+					}
+				 
+				 txtPlayerNames.setText(playerNamesBuilder.toString());
+					txtPlayerNames.setForeground(Color.LIGHT_GRAY);
+					txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+					txtPlayerNames.setEditable(false);
+					txtPlayerNames.setBackground(Color.DARK_GRAY);
+					txtPlayerNames.setBounds(70, 6, 780, 43);
+					play.add(txtPlayerNames);
 				
-				
+				 
+				 
 
 			}
 		});

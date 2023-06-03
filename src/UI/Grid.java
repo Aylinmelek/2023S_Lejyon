@@ -10,6 +10,7 @@ import domain.Infantry;
 import domain.Map;
 import domain.Player;
 import domain.Territory;
+import domain.controller.ConKUerorHandler;
 
 public class Grid extends JPanel implements MouseListener {
 
@@ -24,6 +25,11 @@ public class Grid extends JPanel implements MouseListener {
 	private boolean indFlag = true;
 	private boolean infFlag;
     JTextArea txtPlayerTurn = new JTextArea();
+    //public PlayingMode playMode = new PlayingMode();
+	public boolean isAttack = false;
+	public Territory territoryTo, territorySource;
+	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
+	public ConKUerorHandler handler = new ConKUerorHandler();
     
 	public boolean isIndFlag() {
 		return indFlag;
@@ -40,11 +46,15 @@ public class Grid extends JPanel implements MouseListener {
 	public Territory selectedTer;
 	//Player player = new Player();
 	
+	
+	
 	Territory territoryFrom;
 	ArrayList<Territory> terrsSelected = new ArrayList<Territory>();
 	public int col, row;
 
 	// Territory territoryIs = Territory.isTerritory(row, col);
+	Color firstChosen = new Color(171,200,116);
+	Color secondChosen = new Color(111,130,80);
 	Color blue = new Color(0, 0, 155);
 
 	public Grid() {
@@ -172,14 +182,15 @@ public class Grid extends JPanel implements MouseListener {
 				
 				if(!GameFrame.sharing.getButton().isEnabled()) {
 					if(isIndFlag()) {
-						playerIndex=GameFrame.sharing.getInd();
+						//playerIndex=GameFrame.sharing.getInd();
+						playerIndex=0;
 						setIndFlag(false);
 					}
-					
+					ArrayList<Player> players = GameFrame.playerArray;
 
 				//ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
-					System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
-					ArrayList<Player> players = GameFrame.playerArray;
+					/*System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
+					ArrayList<Player> players = GameFrame.playerArray;*/
 
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
@@ -187,8 +198,8 @@ public class Grid extends JPanel implements MouseListener {
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
                 	
                 	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
-                	System.out.println(players.get(playerIndex).getName());
-                	
+                	//System.out.println(players.get(playerIndex).getName());
+                	System.out.println(players.get(playerIndex));
            	        
            	     	//GameFrame.play.add(txtPlayerTurn);
            	     
@@ -267,6 +278,7 @@ public class Grid extends JPanel implements MouseListener {
 		
 
 		else if (GameFrame.play.playMode) {
+			System.out.println("PLAYMODE");
 			//playerları create edip turn turn ayırmak lazım
 			//sectigin terr e değiştir isterritory
 			//territorydeki asker sayısını goster
@@ -294,6 +306,26 @@ public class Grid extends JPanel implements MouseListener {
 					}
 				}		
 			//rengini değiştirme*/
+			if(territorySource == null)
+			{
+				gridColors[row][col] = firstChosen;
+				firstChosenRow = row;
+				firstChosenColumn = col;
+				repaint();
+				territorySource = Territory.isTerritory(row, col);
+				System.out.println("territorySource :"+territorySource);
+			}
+			else {
+				gridColors[row][col] = secondChosen;
+				secondChosenRow = row;
+				secondChosenColumn = col;
+				repaint();
+				territoryTo = Territory.isTerritory(row, col);
+				System.out.println("territoryTo :"+territoryTo);
+				territorySource.setLink(territoryTo);
+				GameFrame.play.numFortify.setEnabled(true);
+				
+			}
 		}
 		
 	}

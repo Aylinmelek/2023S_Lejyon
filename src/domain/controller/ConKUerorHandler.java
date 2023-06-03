@@ -24,10 +24,14 @@ public class ConKUerorHandler {
 //private Board board;
 private static ConKUerorHandler instance;
 
-public static Board board = new Board();
+public static Board board;// = new Board(); //not initialize in here if it is null
 private static Board mainBoard;
-
+//public static Board board = new Board();
 public ConKUerorHandler() {
+	if (board == null) {
+		this.board=new Board();
+	}
+	
 	this.mainBoard=board;
 }
 	
@@ -72,6 +76,9 @@ public ConKUerorHandler() {
 	public void createMainDeck(int count, int armyCard, Deck deck) {
 		board.createMainDeck(count, armyCard, deck);
 	}
+	public void giveArmyCard(Player player){
+		board.giveArmyCard(player);
+	}			
 	
 	public void setPlayerName(String name) {
 		board.setPlayerName(name);
