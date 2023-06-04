@@ -23,8 +23,6 @@ public class PlaceArmyTesting {
 	Infantry infantry = new Infantry();
   
 	
-	//blackbox tests 
-	
 	@Test
 	public void invalidTerritory() {
 		player.placeArmy(territory, "Infantry"); // player places army in that territory
@@ -48,12 +46,13 @@ public class PlaceArmyTesting {
 	}
 
 	
-	//glassbox tests
+	
 	
 	@Test
 	public void invalidArmyType() {
+		
 		player.getTerritoryList().add(territory); // territory added to players territorylist
-		player.placeArmy(territory, "Cavalry"); // player places army in that territory
+		player.placeArmy(territory, "Cavalry"); // player places army in that territory but should be Infantry
 
 		assertTrue(territory.getArmyList().isEmpty()); // returns true if the territory's army list is empty
 	}
