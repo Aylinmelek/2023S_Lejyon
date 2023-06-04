@@ -39,12 +39,11 @@ public class GameFrame extends JFrame {
 	//////////
 
 	public static PlayingMode play = new PlayingMode();
-	public static HelpScreen help = new HelpScreen();
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
+	public static MenuScreen menu = new MenuScreen();
 	public static ArrayList<String> tempPlayer = new ArrayList<String>();
 	public static ArrayList<String> nameSorted = new ArrayList<String>();
-	
 	public static ArrayList<Player> playerArray = new ArrayList<Player>();
 	public static ArrayList<String> playerName = new ArrayList<String>();
 	static int counter=0;
@@ -149,21 +148,22 @@ public class GameFrame extends JFrame {
 			}
 		});
 
-		login.btnHelp.addActionListener(new ActionListener() {
+		login.btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (start == false) {
-					help.initialize();
-					help.addElements();
-					frame.setLayeredPane(help);
-					help.setVisible(true);
+					menu.setVisible(true);
+					login.setVisible(false);
+					frame.setLayeredPane(menu);
+					
 					frame.revalidate();
 					login.loginMode = false;
 					start = true;
 					
 				
 				}
-				
+				menu.setVisible(true);
+				login.setVisible(false);
 				
 
 			}
@@ -201,18 +201,18 @@ public class GameFrame extends JFrame {
 			}
 		});
 
-		help.btnBack = new JButton("Back to Game");
-		help.btnBack.setBounds(729, 517, 128, 29);
+		menu.btnBack = new JButton("Back to Game");
+		menu.btnBack.setBounds(729, 517, 128, 29);
 
-		help.btnBack.setBackground(Color.DARK_GRAY);
-		help.btnBack.addActionListener(new ActionListener() {
+		menu.btnBack.setBackground(Color.DARK_GRAY);
+		menu.btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (start == true) {
-					help.setVisible(false);
+					menu.setVisible(false);
 					frame.setLayeredPane(login);
 					frame.revalidate();
-					help.btnBack.setVisible(false);
+					menu.btnBack.setVisible(false);
 					start = false;
 
 				} else {
@@ -221,12 +221,12 @@ public class GameFrame extends JFrame {
 					bmode.setVisible(true);
 					login.btnLogin.setVisible(false);
 					// btnResume.setVisible(false);
-					help.btnBack.setVisible(false);
+					menu.btnBack.setVisible(false);
 				}
 
-				help.setVisible(false);
-				help.btnBack.setVisible(false);
-				login.btnHelp.setVisible(true);
+				menu.setVisible(false);
+				menu.btnBack.setVisible(false);
+				login.btnMenu.setVisible(true);
 				// btnResume.setVisible(true);
 				start = true;
 			}
