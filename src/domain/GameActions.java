@@ -61,7 +61,11 @@ public class GameActions {
 
 	}
     public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
-
+    	//Specification:
+    	//@Requires: The territories' owners should be the same and territories should be adjacent or linked. The territoryFrom should have the army count as much as the parameter. 
+    	//@Modifies: territoryFrom's armyList, territoryTo's armyList
+    	//@Effects: If player choose to fortify, territoryFrom's armyList would decrease by the parameter and territoryTo's armyList would increase by the parameter.
+    	
 		if (player.getTerritoryList().contains(territoryTo) && player.getTerritoryList().contains(territoryFrom)
 				&& territoryFrom.getAdjacentTerritories().contains(territoryTo)) {
 			if (territoryFrom.getArmyList().size() >= count) {
