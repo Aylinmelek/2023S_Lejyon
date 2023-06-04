@@ -1,3 +1,4 @@
+ 
 package UI;
 
 import java.awt.Color;
@@ -21,202 +22,211 @@ import domain.Cavalry;
 import domain.Infantry;
 import domain.Player;
 
-
 public class ArmyCardFrame extends JFrame {
- 
- private static final int NUM_CARDS = 3;
- 
- Player player = new Player();
- ArrayList<Cavalry> cavalryCards = player.getCavalryList();
- ArrayList<Infantry> infantryCards = player.getInfantryList();
- ArrayList<Artillery> artilleryCards = player.getArtilleryList(); 
- 
- ArrayList<String> armyCards = new ArrayList<String>();
- ArrayList<Integer> armyCardsNum = new ArrayList<Integer>();
- 
- JButton btnFirst = new JButton("Trade");
- JButton btnSecond = new JButton("Trade");
- JButton btnThird = new JButton("Trade");
- JButton btnFourth = new JButton("Trade");
- JButton btnFifth = new JButton("Trade");
- JButton btnSixth = new JButton("Trade");
 
- int tradeCvlry, tradeInfntry, tradeArtlry; 
- 
- private JLabel[] labels = new JLabel[NUM_CARDS];
- private JTextArea[] numbers = new JTextArea[NUM_CARDS];
- 
-    /*JComboBox<Integer> cavalryNum = new JComboBox<Integer>();
-    JComboBox<Integer> infantryNum = new JComboBox<Integer>();
-    JComboBox<Integer> artilleryNum = new JComboBox<Integer>();*/
-    
-    JPanel tradePanel = new JPanel();
-    ArrayList<JButton> txtArmies = new ArrayList<JButton>();
- 
- JButton btnTrade = new JButton("TRADE");
-  
- 
- public ArmyCardFrame() {
-	 addButtons();
-	 initialize();
-	 addButtonActListener();
-	 /*addCardstoArray();
-	 * addButtonActListener()
-	  addCardNumstoArray();
-	  initialize();		 
-	  addElements();		  
-	  addTradePanel();		  
-	  addArmyButons();*/		  
-  
- }
- public void addButtons() {
-	 btnFirst.setBounds(120, 230, 137, 36);
-	 add(btnFirst);
-	 btnSecond.setBounds(260, 230, 137, 36);
-	 add(btnSecond);
-	 btnThird.setBounds(120, 270, 137, 36);
-	 add(btnThird);
-	 btnFourth.setBounds(260, 270, 137, 36);
-	 add(btnFourth);
-	 btnFifth.setBounds(120, 310, 137, 36);
-	 add(btnFifth);
-	 btnSixth.setBounds(260, 310, 137, 36);
-	 add(btnSixth);
-	 
- }
- 
- public void addButtonActListener() {
-	 btnFirst.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(0);
-             System.out.println("Buraya Basýldý");
-         	
-         }
-     });
-	 btnSecond.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(1);
-             System.out.println("Buraya Basýldý");
-         	
-         }
-     });
-	 btnThird.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(2);
-             System.out.println("Buraya Basýldý");
-         	
-         }
-     });
-	 btnFourth.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(3);
-             System.out.println("Buraya Basýldý");
-         	
-         }
-     });
-	 btnFifth.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(4);
-             System.out.println("Buraya Basýldý");
-             
-         	
-         }
-     });
-	 btnSixth.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-             GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(5);
-             System.out.println("Buraya Basýldý");
-         	
-         }
-     });
+	private static final int NUM_CARDS = 3;
 
- 
- 
- }
- 
+	Player player = new Player();
+	ArrayList<Cavalry> cavalryCards = player.getCavalryList();
+	ArrayList<Infantry> infantryCards = player.getInfantryList();
+	ArrayList<Artillery> artilleryCards = player.getArtilleryList();
 
- 
-    public ArrayList <String> addCardstoArray() {
-     armyCards.add("cavalry");
-     armyCards.add("infantry");
-     armyCards.add("artillery");
-     return armyCards; 
-    }
-    public ArrayList <Integer> addCardNumstoArray() {
-        armyCardsNum.add(player.getCavalryList().size());
-        armyCardsNum.add( player.getInfantryList().size());
-        armyCardsNum.add(player.getArtilleryList().size());
-        return armyCardsNum; 
-       }
-    
-       public void addArmyButons() {
-        JButton btnInfantry = new JButton("Infantry Cards");
-        JButton btnArtillery = new JButton("Artillery Cards");
-        JButton btnCavalry = new JButton("Cavalry Cards");
+	ArrayList<String> armyCards = new ArrayList<String>();
+	ArrayList<Integer> armyCardsNum = new ArrayList<Integer>();
+
+	JButton btnFirst = new JButton("Trade 1");
+	JButton btnSecond = new JButton("Trade  2");
+	JButton btnThird = new JButton("Trade 3");
+	JButton btnFourth = new JButton("Trade 4");
+	JButton btnFifth = new JButton("Trade 5");
+	JButton btnSixth = new JButton("Trade 6");
+
+	int tradeCvlry, tradeInfntry, tradeArtlry;
+
+	private JLabel[] labels = new JLabel[NUM_CARDS];
+	private JTextArea[] numbers = new JTextArea[NUM_CARDS];
+
+	/*
+	 * JComboBox<Integer> cavalryNum = new JComboBox<Integer>(); JComboBox<Integer>
+	 * infantryNum = new JComboBox<Integer>(); JComboBox<Integer> artilleryNum = new
+	 * JComboBox<Integer>();
+	 */
+
+	JPanel tradePanel = new JPanel();
+	ArrayList<JButton> txtArmies = new ArrayList<JButton>();
+
+	JButton btnTrade = new JButton("TRADE");
+
+	public ArmyCardFrame() {
+		addButtons();
+		addArmyButtons();
+		initialize();
+		addButtonActListener();
+		addTradeOps();
+		//addCardCounts();
+
+	}
+	private void initialize() {
+
+		getContentPane().setBackground(Color.DARK_GRAY);
+		getContentPane().setLayout(null);
+
+		JTextArea txtArmyCards = new JTextArea();
+		txtArmyCards.setForeground(Color.LIGHT_GRAY);
+		txtArmyCards.setBackground(Color.DARK_GRAY);
+		txtArmyCards.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 34));
+		txtArmyCards.setEditable(false);
+		txtArmyCards.setText("Army Cards");
+		txtArmyCards.setBounds(192, 20, 419, 71);
+		getContentPane().add(txtArmyCards);
+		setBounds(0, 100, 837, 481);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+	}
+
+
+	public void addButtons() {
+		btnFirst.setBounds(120, 290, 137, 36);
+		add(btnFirst);
+		btnSecond.setBounds(260, 290, 137, 36);
+		add(btnSecond);
+		btnThird.setBounds(120, 340, 137, 36);
+		add(btnThird);
+		btnFourth.setBounds(260, 340, 137, 36);
+		add(btnFourth);
+		btnFifth.setBounds(120, 390, 137, 36);
+		add(btnFifth);
+		btnSixth.setBounds(260, 390, 137, 36);
+		add(btnSixth);
+
+	}
+	
+	public void addTradeOps() {
+		/*3 Infantry cards => 1 Cavalry
+				2 Infantry cards + 1 Cavalry card => 2 Cavalry
+				2 Infantry cards + 1 Artillery card => 2 Artillery
+				1 Infantry card + 2 Cavalry cards => 1 Cavalry + 1 Artillery
+				1 Artillery + 2 Cavalry cards => 3 Artillery*/
+		//button tepelerine isimler ekle
+		
+		JTextArea cavalry1 = new JTextArea("Trade option 1: Infantry cards => 1 Cavalry");
+		JTextArea cavalry2 = new JTextArea("Trade option 2: 2 Infantry cards + 1 Artillery card => 2 Artillery");
+		JTextArea artlry2 = new JTextArea("Trade option 3: 2 Infantry cards + 1 Artillery card => 2 Artillery");
+		JTextArea inf1cav2 = new JTextArea("Trade option 4: 1 Infantry card + 2 Cavalry cards => 1 Cavalry + 1 Artillery");
+		JTextArea art1cav2 = new JTextArea("Trade option 5: 1 Artillery + 2 Cavalry cards => 3 Artillery");
+		
+		cavalry1.setBounds(250, 100, 400, 25);
+		cavalry1.setForeground(Color.LIGHT_GRAY);
+        cavalry1.setFont(new Font("Kokonor", Font.ITALIC, 17));
+        cavalry1.setEditable(false);
+        cavalry1.setBackground(Color.DARK_GRAY);
+        add(cavalry1);
         
-        btnInfantry.setBounds(52, 120, 114, 37);
-        btnArtillery.setBounds(52, 170, 114, 37);
-        btnCavalry.setBounds(52, 220, 114, 37);
+        cavalry2.setBounds(250, 130, 500, 25);
+		cavalry2.setForeground(Color.LIGHT_GRAY);
+        cavalry2.setFont(new Font("Kokonor", Font.ITALIC, 17));
+        cavalry2.setEditable(false);
+        cavalry2.setBackground(Color.DARK_GRAY);
+        add(cavalry2);
         
-        add(btnInfantry);
-        add(btnArtillery);
-        add(btnCavalry);
-       }
+        artlry2.setBounds(250, 160, 500, 25);
+        artlry2.setForeground(Color.LIGHT_GRAY);
+        artlry2.setFont(new Font("Kokonor", Font.ITALIC, 17));
+        artlry2.setEditable(false);
+        artlry2.setBackground(Color.DARK_GRAY);
+        add(artlry2);
         
-    
-    private void initialize() {
-     
-     getContentPane().setBackground(Color.DARK_GRAY);
-     getContentPane().setLayout(null);
-     
-     JTextArea txtArmyCards = new JTextArea();
-     txtArmyCards.setForeground(Color.LIGHT_GRAY);
-     txtArmyCards.setBackground(Color.DARK_GRAY);
-     txtArmyCards.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 34));
-     txtArmyCards.setEditable(false);
-     txtArmyCards.setText("Army Cards");
-     txtArmyCards.setBounds(192, 20, 419, 71);
-     getContentPane().add(txtArmyCards);
-     setBounds(100, 100, 657, 481);
-     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      
-    }
-    
-    public void addElements() {
-     
-     int y= 131;
-           for (int i = 0; i < NUM_CARDS; i++) {
-            numbers[i] = new JTextArea();
-            numbers[i].setBounds(172, y, 24, 27);
-            numbers[i].setText(armyCardsNum.get(i).toString());
-            numbers[i].setEditable(false);
-            numbers[i].setBackground(Color.DARK_GRAY);
-            add(numbers[i]);
-            //labels[i].setVisible(true);
-             y += 50;
-      }     
-           
-           
-           btnTrade.setBackground(Color.WHITE);
-        btnTrade.setBounds(521, 350, 92, 50);
-        getContentPane().add(btnTrade); 
+        inf1cav2.setBounds(250, 190, 570, 25);
+        inf1cav2.setForeground(Color.LIGHT_GRAY);
+        inf1cav2.setFont(new Font("Kokonor", Font.ITALIC, 17));
+        inf1cav2.setEditable(false);
+        inf1cav2.setBackground(Color.DARK_GRAY);
+        add(inf1cav2);
         
-        btnTrade.addActionListener(new ActionListener() {
-               public void actionPerformed(ActionEvent e) {
-             //System.out.println(tradeInfntry2); 
+        art1cav2.setBounds(250, 220, 500, 25);
+        art1cav2.setForeground(Color.LIGHT_GRAY);
+        art1cav2.setFont(new Font("Kokonor", Font.ITALIC, 17));
+        art1cav2.setEditable(false);
+        art1cav2.setBackground(Color.DARK_GRAY);
+        add(art1cav2);
+	}
 
-               }
-           });
-           }
-    
-    public void addTradePanel() {
-     
-     tradePanel.setBackground(Color.LIGHT_GRAY);
-     tradePanel.setBounds(342, 311, 164, 98);
-        tradePanel.setLayout(new FlowLayout());
-     tradePanel.setVisible(true);
-     add(tradePanel); 
-    }
-    
+	public void addButtonActListener() {
+		btnFirst.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(0);
+				System.out.println("Buraya Basıldı");
 
-   }
+			}
+		});
+		btnSecond.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(1);
+				System.out.println("Buraya Basıldı");
+
+			}
+		});
+		btnThird.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(2);
+				System.out.println("Buraya Basıldı");
+
+			}
+		});
+		btnFourth.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(3);
+				System.out.println("Buraya Basıldı");
+
+			}
+		});
+		btnFifth.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(4);
+				System.out.println("Buraya Basıldı");
+
+			}
+		});
+		btnSixth.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(5);
+				System.out.println("Buraya Basıldı");
+
+			}
+		});
+
+	}
+
+	public void addArmyButtons() {
+		JButton btnInfantry = new JButton("Infantry Cards");
+		JButton btnArtillery = new JButton("Artillery Cards");
+		JButton btnCavalry = new JButton("Cavalry Cards");
+
+		btnInfantry.setBounds(52, 100, 114, 37);
+		btnArtillery.setBounds(52, 150, 114, 37);
+		btnCavalry.setBounds(52, 200, 114, 37);
+
+		add(btnInfantry);
+		add(btnArtillery);
+		add(btnCavalry);
+	}
+	
+	/*public void addCardCounts() {
+	     
+	     int y= 131;
+	           for (int i = 0; i < NUM_CARDS; i++) {
+	            numbers[i] = new JTextArea();
+	            numbers[i].setBounds(172, y, 24, 27);
+	            numbers[i].setText(armyCardsNum.get(i).toString());
+	            numbers[i].setEditable(false);
+	            numbers[i].setBackground(Color.DARK_GRAY);
+	            add(numbers[i]);
+	            //labels[i].setVisible(true);
+	             y += 50;
+	      }     
+
+
+	 }*/
+}
+
+
