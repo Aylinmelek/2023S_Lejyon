@@ -11,13 +11,13 @@ import domain.controller.ConKUerorHandler;
 
 public class DieTestingBlackBox {
 
-    /**
-     * Method: rollDice()
-     * 
-     * Requires: None
-     * Modifies: ConKUerorHandler's internal state
-     * Effects: Rolls a die and updates the internal state of ConKUerorHandler
-     */
+	/**
+	 * Specification:
+	 * @Requires: Player wants to roll a die, to do that clicks the 'ROLL' button
+	 * @Modifies: displayDie() method in UI. rollDie() method in domain. ConKUerorHandler's internal state.
+	 * @Effects: When player rolls a die, the icon that displayed in the UI will change according
+	 * to the result of the rollDie() function.  Updates the internal state of ConKUerorHandler.
+	 */
 
     @Test
     public void RollDiceWithinRange() {
