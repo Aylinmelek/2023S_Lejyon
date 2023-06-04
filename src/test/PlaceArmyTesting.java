@@ -21,7 +21,10 @@ public class PlaceArmyTesting {
 	Player player2 = new Player();
 	Territory territory = new Territory();
 	Infantry infantry = new Infantry();
-
+  
+	
+	//blackbox tests 
+	
 	@Test
 	public void invalidTerritory() {
 		player.placeArmy(territory, "Infantry"); // player places army in that territory
@@ -44,6 +47,9 @@ public class PlaceArmyTesting {
 		assertTrue(territory.getArmyList().isEmpty()); // if the territory is empty, it returns true
 	}
 
+	
+	//glassbox tests
+	
 	@Test
 	public void invalidArmyType() {
 		player.getTerritoryList().add(territory); // territory added to players territorylist
