@@ -33,6 +33,7 @@ public class PlayingMode extends JLayeredPane {
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
     JButton btnAttack = new JButton("Attack");
     JButton btnFortify = new JButton("Fortify");
+    JButton btnMenu = new JButton("Menu");
     JTextArea txtCard = new JTextArea();
     
     JComboBox<Integer> numFortify = new JComboBox<Integer> ();
@@ -321,6 +322,10 @@ public class PlayingMode extends JLayeredPane {
 	     
 	     
 	     //if die diger playerdan büyükse conquer ettin/kaybettin JText
+	     
+	     btnMenu.setBounds(27, 527, 118, 29);
+	     btnMenu.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+	     add(btnMenu);
 	     
 	}
 

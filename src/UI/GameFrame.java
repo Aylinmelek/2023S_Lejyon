@@ -28,7 +28,7 @@ import java.util.Hashtable;
 
 public class GameFrame extends JFrame {
 
-	static boolean start;
+	//static boolean start;
 	private static final long serialVersionUID = 1L;
 	//public static Board board = new Board();
 	//public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
@@ -144,36 +144,126 @@ public class GameFrame extends JFrame {
 				
 			     // Players turn number is sorted
 			       
-			        
 			}
 		});
 
 		login.btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (start == false) {
+				if (login.loginMode == false) {
 					menu.setVisible(true);
 					login.setVisible(false);
 					frame.setLayeredPane(menu);
-					
 					frame.revalidate();
-					login.loginMode = false;
-					start = true;
+					login.loginMode = true;
+					menu.menuMode=true;
 					
 				
 				}
+				
+				else {
+					menu.setVisible(true);
+					login.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
 				menu.setVisible(true);
-				login.setVisible(false);
+				//login.setVisible(false);
 				
 
 			}
 		});
-		/*bmode.btnNext.setEnabled(false);
-		if (bmode.addPlayers(bmode.getPlayerNum()) >= 20 && bmode.addPlayers(bmode.getPlayerNum()) <= 40) {
-			bmode.btnNext.setEnabled(true);
-			bmode.addPlayers(bmode.getPlayerNum());
-			
-		}*/
+		bmode.btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (bmode.build == false) {
+					menu.setVisible(true);
+					bmode.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					bmode.build = true;
+					menu.menuMode=true;
+					
+				
+				}
+				
+				else {
+					menu.setVisible(true);
+					bmode.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
+				menu.setVisible(true);
+				//login.setVisible(false);
+				
+
+			}
+		});
+		sharing.btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (sharing.init == false) {
+					menu.setVisible(true);
+					sharing.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					sharing.init = true;
+					menu.menuMode=true;
+					
+				
+				}
+				
+				else {
+					menu.setVisible(true);
+					sharing.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
+				menu.setVisible(true);
+				//login.setVisible(false);
+				
+
+			}
+		});
+		play.btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (play.playMode == false) {
+					menu.setVisible(true);
+					play.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					play.playMode = true;
+					menu.menuMode=true;
+					
+				
+				}
+				
+				else {
+					menu.setVisible(true);
+					play.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
+				menu.setVisible(true);
+				//login.setVisible(false);
+				
+
+			}
+		});
+		
+		
+		
+		
+	
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String action = e.getActionCommand();
@@ -200,37 +290,117 @@ public class GameFrame extends JFrame {
 
 			}
 		});
+		
+		 menu.btnBack.setBackground(Color.DARK_GRAY);
+		 menu.btnBack.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        	
+	        		if (login.loginMode==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(login);
+	 					frame.revalidate();
+	 					login.loginMode=false;
+	         		    
+	        		}
+	        		else if (bmode.build==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(bmode);
+	 					frame.revalidate();
+	 					bmode.build=false;
+	        		}
+	        		else if (sharing.init==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(sharing);
+	 					frame.revalidate();
+	 					sharing.init=false;
+	        		}
+	        		else if (play.playMode==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(play);
+	 					frame.revalidate();
+	 					play.playMode=false;
+	        		}
+	        		else {
 
-		menu.btnBack = new JButton("Back to Game");
-		menu.btnBack.setBounds(729, 517, 128, 29);
-
-		menu.btnBack.setBackground(Color.DARK_GRAY);
-		menu.btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (start == true) {
-					menu.setVisible(false);
-					frame.setLayeredPane(login);
-					frame.revalidate();
-					menu.btnBack.setVisible(false);
-					start = false;
-
-				} else {
-					// layeredPane.add(buildingMode);
-					login.setVisible(false);
-					bmode.setVisible(true);
-					login.btnLogin.setVisible(false);
-					// btnResume.setVisible(false);
-					menu.btnBack.setVisible(false);
-				}
-
-				menu.setVisible(false);
-				menu.btnBack.setVisible(false);
-				login.btnMenu.setVisible(true);
-				// btnResume.setVisible(true);
-				start = true;
-			}
-		});
+	         			login.setVisible(false);
+	         		    bmode.setVisible(true);
+	         		    sharing.setVisible(true);
+	         		    play.setVisible(true);
+	         		    login.btnLogin.setVisible(false);
+	         		    menu.btnBack.setVisible(false);
+	        		}
+         	
+	         		login.btnMenu.setVisible(true);
+	         		login.setVisible(true);
+	         		login.btnMenu.setVisible(true);
+	         		
+	         		bmode.btnMenu.setVisible(true);
+	         		bmode.setVisible(true);
+	         		
+	         		sharing.btnMenu.setVisible(true);
+	         		sharing.setVisible(true);
+	         		
+	         		play.btnMenu.setVisible(true);
+	         		play.setVisible(true);
+       	
+	        	}	
+	        });
+		 
+		 menu.btnHelp.setBackground(Color.DARK_GRAY);
+		 menu.btnHelp.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        	
+	        		if (menu.menuMode==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(menu.help);
+	 					frame.revalidate();
+	 					menu.help.helpMode=true;
+	         		    
+	        		}
+	        		else {
+   
+	         			login.setVisible(false);
+	         		    bmode.setVisible(true);
+	         		    login.btnLogin.setVisible(false);
+	         		    menu.btnHelp.setVisible(false);
+	        		}
+         	
+	         		login.btnMenu.setVisible(true);
+	         		login.setVisible(true);
+	         		login.btnMenu.setVisible(true);
+       	
+	        	}	
+	        });
+		 
+		 menu.help.btnBack.setBackground(Color.DARK_GRAY);
+		 menu.help.btnBack.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        	
+	        		if (menu.help.helpMode==true) {
+	        			menu.help.setVisible(false);
+	 					frame.setLayeredPane(menu);
+	 					frame.revalidate();
+	 					
+	         		    
+	        		}
+	        		else if (login.loginMode==true || bmode.build==true){
+   
+	         			login.setVisible(false);
+	         		    bmode.setVisible(true);
+	         		    login.btnLogin.setVisible(false);
+	         		    menu.help.btnBack.setVisible(false);
+	        		}
+         	
+	         		//login.btnMenu.setVisible(true);
+	        		menu.btnBack.setVisible(true);
+	        		menu.btnHelp.setVisible(true);
+	        		menu.btnSave.setVisible(true);
+	         		menu.setVisible(true);
+	         		//login.btnMenu.setVisible(true);
+       	
+	        	}	
+	        });
+	        
 
 		sharing.btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

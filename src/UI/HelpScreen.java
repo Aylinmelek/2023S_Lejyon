@@ -12,7 +12,8 @@ import javax.swing.JTextArea;
 
 public class HelpScreen extends JLayeredPane {
 	JTextArea txtHelp = new JTextArea();
-	JButton btnBack = new JButton("Back to Game");
+	JButton btnBack = new JButton("Back to Menu");
+	public boolean helpMode=false;
 	
 	
 	
