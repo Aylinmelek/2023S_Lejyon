@@ -2,6 +2,8 @@ package UI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -31,7 +33,8 @@ public class Grid extends JPanel implements MouseListener {
 	public Territory territoryTo, territorySource;
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
-    
+	private ImageIcon worldMap;
+
 
 	
 	
@@ -65,12 +68,13 @@ public class Grid extends JPanel implements MouseListener {
 		
 		this.gridColors = new Color[ROWS][COLUMNS];
 		this.gridText = new String[ROWS][COLUMNS];
-
+		
+		worldMap = new ImageIcon(this.getClass().getResource("/map2.jpg"));
 		initializeGridAndText();
 		setupUI();
 		addMouseListener(this);
 	}
-
+	
 	private void setupUI() {
 		int width = COLUMNS * CELL_SIZE + GRID_LINE_WIDTH;
 		int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
@@ -133,7 +137,7 @@ public class Grid extends JPanel implements MouseListener {
 	}
 
 	private void drawCells(Graphics g) {
-		for (int row = 0; row < ROWS; row++) {
+		/*for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLUMNS; col++) {
 				g.setColor(gridColors[row][col]);
 				g.fillRect(col * CELL_SIZE + GRID_LINE_WIDTH, row * CELL_SIZE + GRID_LINE_WIDTH,
@@ -142,22 +146,9 @@ public class Grid extends JPanel implements MouseListener {
 				g.drawString(gridText[row][col], col * CELL_SIZE + GRID_LINE_WIDTH + 20,
 						row * CELL_SIZE + GRID_LINE_WIDTH + 25);
 			}
-		}
+		}*/
+		paintComponent(g);
 	}
-	/*
-	public void callTerr(Territory terr) {
-		if (terr != null) {
-			
-			
-			terCard.setTerritoryCard(getColorName(terr.getColor()), terr.getText(), index, 20, 100);
-			//terCard.setVisible(true);
-			
-		}
-		
-	
-
-		return terr;
-	}*/
 	
 	public Territory getSelectedTer() {
 		return selectedTer;
@@ -166,6 +157,16 @@ public class Grid extends JPanel implements MouseListener {
 	public void setSelectedTer(Territory selectedTer) {
 		this.selectedTer = selectedTer;
 	}
+	@Override
+	protected void paintComponent(Graphics g) {
+	    super.paintComponent(g);
+	    if (worldMap != null) {
+	        g.drawImage(worldMap.getImage(), 0, 0, getWidth(), getHeight(), this);
+	    }
+	    
+	}
+
+
 
 	public void mouseClicked(MouseEvent e) {
 		infFlag = true;
@@ -366,9 +367,6 @@ public class Grid extends JPanel implements MouseListener {
 			}
 			
 			
-				
-				
-				
 			
 		}
 		
