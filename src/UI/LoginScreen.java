@@ -38,6 +38,7 @@ public class LoginScreen extends JLayeredPane{
     JLabel[] nameLabels = new JLabel[6];
     JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
+    MenuScreen menu = new MenuScreen();
     
     JTextArea txtnumPlayers = new JTextArea();
     JTextArea txtnumComp = new JTextArea();
@@ -69,6 +70,7 @@ public class LoginScreen extends JLayeredPane{
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		setVisible(true);
+		
 	    
 	}
 	
@@ -193,6 +195,17 @@ public class LoginScreen extends JLayeredPane{
         btnMenu.setBounds(729, 13, 117, 29);
         btnMenu.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
         add(btnMenu);
+        
+       /* btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				menu.initialize();
+				menu.addElements();
+				menu.setVisible(true);
+				
+				
+			}
+        });*/
         
         
         playersPanel.setBounds(653, 290, 200, 200);

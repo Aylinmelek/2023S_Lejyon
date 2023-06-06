@@ -21,7 +21,6 @@ import domain.Player;
 
 import domain.controller.ConKUerorHandler;
 
-
 public class PlayingMode extends JLayeredPane {
 	
 	JButton btnTer = new JButton("Territory Cards");

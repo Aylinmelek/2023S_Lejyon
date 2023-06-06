@@ -27,7 +27,6 @@ import domain.Territory;
 import domain.controller.ConKUerorHandler;
 
 
-
 public class InitSharing extends JLayeredPane  implements BoardListener{
     JTextArea txtInitSharing = new JTextArea();
     JTextArea txtFirstPlayer = new JTextArea();

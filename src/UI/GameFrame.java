@@ -46,13 +46,14 @@ public class GameFrame extends JFrame {
 	public static ArrayList<String> nameSorted = new ArrayList<String>();
 	public static ArrayList<Player> playerArray = new ArrayList<Player>();
 	public static ArrayList<String> playerName = new ArrayList<String>();
+	
 	static int counter=0;
 	static int counter2=0;
 	public static void main(String[] args) {
 		
 		GameFrame frame = new GameFrame();
 	
-		
+		JButton btnMenu = new JButton();
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
 		frame.setBackground(Color.DARK_GRAY);
@@ -68,7 +69,7 @@ public class GameFrame extends JFrame {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
 				System.out.println("real: "+ login.getRealPlayer()+"comp: " +login.getCompPlayer());
-				
+				frame.add(login.btnMenu);
 				playerArray = conKUerorHandler.createPlayer(login.getRealPlayer(), login.getCompPlayer());
 				
 				playerName = conKUerorHandler.createPlayerName(login.getPlayerNum());
@@ -79,7 +80,7 @@ public class GameFrame extends JFrame {
 				int totalPeople = login.getPlayerNum();
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
-				JPanel playerNames = new JPanel();
+				//JPanel playerNames = new JPanel();
 				//JTextArea txtPlayerNames = new JTextArea();
 				//txtPlayerNames.setBounds(212, 6, 453, 43);
 				//StringBuilder playerNamesBuilder = new StringBuilder();
@@ -146,11 +147,15 @@ public class GameFrame extends JFrame {
 			       
 			}
 		});
+		
+		
 
 		login.btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+
 				if (login.loginMode == false) {
+
 					menu.setVisible(true);
 					login.setVisible(false);
 					frame.setLayeredPane(menu);
@@ -270,7 +275,7 @@ public class GameFrame extends JFrame {
 				sharing.init = true;
 				bmode.build = false;
 
-				
+				frame.add(login.btnMenu);
 				
 				sharing.numPlay = login.getPlayerNum();
 				sharing.addElements();
@@ -321,6 +326,7 @@ public class GameFrame extends JFrame {
 	 					play.playMode=false;
 	        		}
 	        		else {
+
 
 	         			login.setVisible(false);
 	         		    bmode.setVisible(true);
@@ -401,11 +407,43 @@ public class GameFrame extends JFrame {
 	        	}	
 	        });
 	        
+		/*menu.btnBack = new JButton("Back to Game");
+		menu.btnBack.setBounds(729, 517, 128, 29);
+
+		menu.btnBack.setBackground(Color.DARK_GRAY);
+		menu.btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (start == true) {
+					menu.setVisible(false);
+					frame.setLayeredPane(login);
+					frame.revalidate();
+					menu.btnBack.setVisible(false);
+					start = false;
+
+				} else {
+					// layeredPane.add(buildingMode);
+					login.setVisible(false);
+					bmode.setVisible(true);
+					login.btnLogin.setVisible(false);
+					// btnResume.setVisible(false);
+					menu.btnBack.setVisible(false);
+				}
+
+				menu.setVisible(false);
+				menu.btnBack.setVisible(false);
+				//login.btnMenu.setVisible(true);
+				// btnResume.setVisible(true);
+				start = true;
+			}
+		});*/
+
 
 		sharing.btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				String action = e.getActionCommand();
+				frame.add(login.btnMenu);
 				play.numFortify.setEnabled(false);
 				play.btnTer.addActionListener(new ActionListener() {
 			     	public void actionPerformed(ActionEvent e) {
