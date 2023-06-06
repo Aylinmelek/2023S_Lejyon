@@ -14,6 +14,17 @@ public class HelpScreen extends JLayeredPane {
 	JTextArea txtHelp = new JTextArea();
 	JButton btnBack = new JButton("Back to Game");
 	
+	
+	
+	
+	
+	public HelpScreen() {
+		super();
+		initialize();
+		addElements();
+	}
+
+
 	public void initialize()  {
 	    setBackground(Color.DARK_GRAY);
 	    setBounds(0, 54, 873, 451);

@@ -31,7 +31,7 @@ public class LoginScreen extends JLayeredPane{
     JButton btnLogin = new JButton("Login");
     JButton btnStart = new JButton("Start Game");
     JTextArea txtPassword = new JTextArea(); 
-    JButton btnHelp = new JButton("Help");
+    JButton btnMenu = new JButton("Menu");
     JTextField username = new JTextField();
     JTextField password = new JTextField();
     //JTextArea panelUsername = new JTextArea();
@@ -190,9 +190,9 @@ public class LoginScreen extends JLayeredPane{
         
 
         
-        btnHelp.setBounds(729, 13, 117, 29);
-        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
-        add(btnHelp);
+        btnMenu.setBounds(729, 13, 117, 29);
+        btnMenu.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+        add(btnMenu);
         
         
         playersPanel.setBounds(653, 290, 200, 200);
