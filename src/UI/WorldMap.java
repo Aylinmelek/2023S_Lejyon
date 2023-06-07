@@ -10,7 +10,11 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.imageio.ImageIO;
 
-public class WorldMap implements MouseListener {
+/* 
+ Outline code from:
+ https://stackoverflow.com/q/7218309/418556
+ */
+public class WorldMap{
 
     private JComponent ui = null;
     JLabel output = new JLabel();
@@ -18,28 +22,20 @@ public class WorldMap implements MouseListener {
     BufferedImage image;
     Area area;
     ArrayList<Shape> shapeList;
-    Graphics2D g; // Graphics context
-  
 
     public WorldMap() {
-
-  
         try {
             initUI();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
     }
-
-
-
 
     public final void initUI() throws Exception {
         if (ui != null) {
             return;
         }
-        URL url = new URL("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Risk_game_board.svg/1200px-Risk_game_board.svg.png");
+        URL url = new URL("https://i.etsystatic.com/6967886/r/il/fbb1b8/2850662629/il_570xN.2850662629_tahh.jpg");
         image = ImageIO.read(url);
         long then = System.currentTimeMillis();
         System.out.println("" + then);
@@ -50,7 +46,7 @@ public class WorldMap implements MouseListener {
         ui = new JPanel(new BorderLayout(4, 4));
         ui.setBorder(new EmptyBorder(4, 4, 4, 4));
 
-        output.addMouseListener(this);
+        output.addMouseMotionListener(new MousePositionListener());
 
         ui.add(output);
 
@@ -58,13 +54,14 @@ public class WorldMap implements MouseListener {
     }
 
     public Area getOutline(Color target, BufferedImage bi, int tolerance) {
+        // construct the GeneralPath
         GeneralPath gp = new GeneralPath();
 
         boolean cont = false;
         for (int xx = 0; xx < bi.getWidth(); xx++) {
             for (int yy = 0; yy < bi.getHeight(); yy++) {
-                Color pixelColor = new Color(bi.getRGB(xx, yy));
-                if (isIncluded(pixelColor, target, tolerance)) {
+                if (isIncluded(new Color(bi.getRGB(xx, yy)), target, tolerance)) {
+                    //if (bi.getRGB(xx,yy)==targetRGB) {
                     if (cont) {
                         gp.lineTo(xx, yy);
                         gp.lineTo(xx, yy + 1);
@@ -83,9 +80,9 @@ public class WorldMap implements MouseListener {
         }
         gp.closePath();
 
+        // construct the Area from the GP & return it
         return new Area(gp);
     }
-
 
     public static ArrayList<Shape> separateShapeIntoRegions(Shape shape) {
         ArrayList<Shape> regions = new ArrayList<>();
@@ -123,22 +120,29 @@ public class WorldMap implements MouseListener {
         return regions;
     }
 
-    private void handleMouseClick(MouseEvent e) {
-        //Point pointOnImage = e.getPoint();
-    	 Point p = MouseInfo.getPointerInfo().getLocation();
-         Point p1 = output.getLocationOnScreen();
-         int x = p.x - p1.x;
-         int y = p.y - p1.y;
-         Point pointOnImage = new Point(x, y);
-        for (Shape shape : shapeList) {
-            if (shape.contains(pointOnImage)) {
-            	System.out.println("handle da");
-                g.setColor(Color.YELLOW);
-                g.fill(shape);
-                break;
-            }
+    class MousePositionListener implements MouseMotionListener {
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            // do nothing
         }
-        refresh();
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            refresh();
+        }
+    }
+
+    public static boolean isIncluded(Color target, Color pixel, int tolerance) {
+        int rT = target.getRed();
+        int gT = target.getGreen();
+        int bT = target.getBlue();
+        int rP = pixel.getRed();
+        int gP = pixel.getGreen();
+        int bP = pixel.getBlue();
+        return ((rP - tolerance <= rT) && (rT <= rP + tolerance)
+                && (gP - tolerance <= gT) && (gT <= gP + tolerance)
+                && (bP - tolerance <= bT) && (bT <= bP + tolerance));
     }
 
     private void refresh() {
@@ -149,7 +153,7 @@ public class WorldMap implements MouseListener {
         BufferedImage bi = new BufferedImage(
                 2 * SIZE, SIZE, BufferedImage.TYPE_INT_RGB);
 
-        g = bi.createGraphics();
+        Graphics2D g = bi.createGraphics();
         g.drawImage(image, 0, 0, output);
         g.setColor(Color.ORANGE.darker());
         g.fill(area);
@@ -163,8 +167,7 @@ public class WorldMap implements MouseListener {
             Point pointOnImage = new Point(x, y);
             for (Shape shape : shapeList) {
                 if (shape.contains(pointOnImage)) {
-                	System.out.println("getImage da");
-                    g.setColor(Color.yellow.darker());
+                    g.setColor(Color.GREEN.darker());
                     g.fill(shape);
                     break;
                 }
@@ -201,38 +204,5 @@ public class WorldMap implements MouseListener {
             f.setVisible(true);
         };
         SwingUtilities.invokeLater(r);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        handleMouseClick(e);
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
-    public static boolean isIncluded(Color target, Color pixel, int tolerance) {
-        int rT = target.getRed();
-        int gT = target.getGreen();
-        int bT = target.getBlue();
-        int rP = pixel.getRed();
-        int gP = pixel.getGreen();
-        int bP = pixel.getBlue();
-        return ((rP - tolerance <= rT) && (rT <= rP + tolerance)
-                && (gP - tolerance <= gT) && (gT <= gP + tolerance)
-                && (bP - tolerance <= bT) && (bT <= bP + tolerance));
     }
 }
