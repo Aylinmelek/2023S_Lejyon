@@ -86,4 +86,11 @@ public class GameActions {
 		}
 
 	}
+    /*public void ContinentMatch(Continent continent1, Continent continent2, Continent continent3, Continent continent4, Continent continent5, Continent continent6, Territory territory)
+    {
+    	if(territory.getColor().equals(Color.yellow))
+    	{
+    		
+    	}
+    }*/
 }

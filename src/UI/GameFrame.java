@@ -73,7 +73,8 @@ public class GameFrame extends JFrame {
 				
 				playerName = conKUerorHandler.createPlayerName(login.getPlayerNum());
 				
-				
+				play.handler.createTerCard(play.handler.getBoard().continent1, play.handler.getBoard().continent2, play.handler.getBoard().continent3, play.handler.getBoard().continent4, play.handler.getBoard().continent5, play.handler.getBoard().continent6, play.handler.getBoard().deck);
+
 				
 				System.out.println("playerArraysize: "+playerArray.size());
 				int totalPeople = login.getPlayerNum();

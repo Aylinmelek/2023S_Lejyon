@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import UI.LoginScreen;
 import domain.Board;
+import domain.Continent;
 import domain.Deck;
 import domain.Die;
 import domain.GameActions;
@@ -76,10 +77,18 @@ public ConKUerorHandler() {
 	public void createMainDeck(int count, int armyCard, Deck deck) {
 		board.createMainDeck(count, armyCard, deck);
 	}
+	public void createTerCard(Continent continent1, Continent continent2, Continent continent3, Continent continent4, Continent continent5, Continent continent6, Deck deck)
+	{
+		board.createTerCard(continent1, continent2, continent3, continent4, continent5, continent6, deck);
+	}
 
 	public void giveArmyCard(Player player)
 	{
 		board.giveArmyCard(player);
+	}
+	public void giveTerCard(Player player)
+	{
+		board.giveTerCard(player);
 	}
 
 	

@@ -87,6 +87,7 @@ public class PlayingMode extends JLayeredPane {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
 		handler.createMainDeck(10,10,handler.getBoard().deck);
+		//handler.createTerCard(null, null, null, null, null, null, null);
 		setLayout(null);
 	}
 	public void displayDie() {
@@ -311,11 +312,11 @@ public class PlayingMode extends JLayeredPane {
 
 	     btnTACard.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-
+	            	
 	            	handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	            	System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
+	            	handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	            	
-
 	            }
 	        });
 	     

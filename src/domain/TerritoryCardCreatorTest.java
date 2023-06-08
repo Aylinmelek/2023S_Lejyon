@@ -1,9 +1,10 @@
 package domain;
-
+/*
 public class TerritoryCardCreatorTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		Deck deck = new Deck();
 		Player player1 = new Player();
 		MainDeckCreator mdCre = new MainDeckCreator();
@@ -39,6 +40,7 @@ public class TerritoryCardCreatorTest {
 		deck.giveTerritoryCard(player1);
 		player1.tradeTerritoryCards(continent3);
 		player1.tradeTerritoryCards(continent);
-	}
+		
+	//}
 
-}
+}*/
