@@ -36,44 +36,52 @@ public class Deck implements Serializable{
 
 	// public void takeCard() {
 	public void giveChanceCard(Player player) {
+		
 		int givenCard = rand.nextInt(5);
-		if (givenCard == 0 && this.getdipImmunityCardList().size() > 0) {
-			int index = this.getdipImmunityCardList().size() - 1;
-			DiplomaticImmunityCard dipImCard = new DiplomaticImmunityCard();
-			player.getDeck().getdipImmunityCardList().add(dipImCard);
-			this.getdipImmunityCardList().remove(index);
+		if (givenCard == 0 && this.getsabotageCardList().size() > 0) {
+			int index = this.getsabotageCardList().size() -1;
+			sabotageCard sabotageCard = new sabotageCard();
+			player.getDeck().getsabotageCardList().add(sabotageCard);
+			this.getsabotageCardList().remove(index);
+			System.out.println("Sabotage Card verildi : " + sabotageCard);
 		}
 		if (givenCard == 1 && this.getReinforcementCardList().size() > 0) {
 			int index = this.getReinforcementCardList().size() - 1;
 			ReinforcementCard reinforceCard = new ReinforcementCard();
 			player.getDeck().getReinforcementCardList().add(reinforceCard);
 			this.getReinforcementCardList().remove(index);
+			System.out.println("Reinforce Card verildi : " + reinforceCard);
 		}
-		if (givenCard == 2 && this.getsabotageCardList().size() > 0) {
-			int index = this.getsabotageCardList().size() -1;
-			sabotageCard sabotageCard = new sabotageCard();
-			player.getDeck().getsabotageCardList().add(sabotageCard);
-			this.getsabotageCardList().remove(index);
+		if (givenCard == 2 && this.getWorldEventCardList().size() > 0) {
+			int index = this.getWorldEventCardList().size() - 1;
+			WorldEventCard worldEventCard = new WorldEventCard();
+			player.getDeck().getWorldEventCardList().add(worldEventCard);
+			this.getWorldEventCardList().remove(index);
+			System.out.println("WorldEvent Card verildi : " + worldEventCard);
 		}
 		if (givenCard == 3 && this.getSpyCardList().size() > 0) {
 			int index = this.getSpyCardList().size() -1;
 			SpyCard spyCard = new SpyCard();
 			player.getDeck().getSpyCardList().add(spyCard);
 			this.getSpyCardList().remove(index);
-			
+			System.out.println("Spy Card verildi : " + spyCard);
 		}
-		if (givenCard == 4 && this.getWorldEventCardList().size() > 0) {
-			int index = this.getWorldEventCardList().size() - 1;
-			WorldEventCard worldEventCard = new WorldEventCard();
-			player.getDeck().getWorldEventCardList().add(worldEventCard);
-			this.getWorldEventCardList().remove(index);
-		}
-		if (givenCard == 5 && this.getDisasterCardList().size() > 0) {
+		if (givenCard == 4 && this.getDisasterCardList().size() > 0) {
 			int index = this.getDisasterCardList().size() - 1;
 			DisasterCard disasterCard = new DisasterCard();
 			player.getDeck().getDisasterCardList().add(disasterCard);
 			this.getDisasterCardList().remove(index);
+			System.out.println("disasterCard verildi : " + disasterCard);
 		}
+		/*if (givenCard == 2 && this.getsabotageCardList().size() > 0) {
+			int index = this.getsabotageCardList().size() -1;
+			sabotageCard sabotageCard = new sabotageCard();
+			player.getDeck().getsabotageCardList().add(sabotageCard);
+			this.getsabotageCardList().remove(index);
+		}
+		
+		*/
+		
 
 	}
 

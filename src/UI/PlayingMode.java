@@ -304,6 +304,7 @@ public class PlayingMode extends JLayeredPane {
 
 	     btnPickChance.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
+	            	handler.giveChanceCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	                txtCard.setText(".... card picked");
 	                
 	            	

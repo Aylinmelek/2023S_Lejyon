@@ -90,6 +90,30 @@ public ConKUerorHandler() {
 	{
 		board.giveTerCard(player);
 	}
+	public void giveChanceCard(Player player)
+	{
+		board.giveChanceCard(player);
+	}
+	public void reinforce(Die die, Territory territory, Player player) 
+	{
+		board.reinforce(die, territory, player);
+	}
+	public void sabotage(Die die, Territory territory, Player player) 
+	{
+		board.sabotage(die, territory, player);
+	}
+	public void spy(Territory territory, Player player)
+	{
+		board.spy(territory, player);
+	}
+	public void worldEvent(Die die, Territory territorySource, ArrayList<Player> playerArray, Player player)
+	{
+		board.worldEvent(die, territorySource, playerArray, player);
+	}
+	public void disaster(Continent continent, Player player, int number)
+	{
+		board.disaster(continent, player, number);
+	}
 
 	
 	public void setPlayerName(String name) {
@@ -156,6 +180,10 @@ public ConKUerorHandler() {
 			instance = new ConKUerorHandler();
 		return instance;
 	}
+
+
+
+	
 	
 
 
