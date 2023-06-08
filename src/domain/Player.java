@@ -186,6 +186,7 @@ public class Player {
 				for (int j = 0; j < continent.territoryCardList.size(); j++) {
 					if (territoryCardList.get(i).equals(continent.territoryCardList.get(j))) {
 						territoryCardList.remove(i);
+						break;
 					}
 				}
 			}
@@ -195,9 +196,13 @@ public class Player {
 						break;
 					}
 				}
+				System.out.println(continent);
+				System.out.println("Trade etti");
 				territoryList.add(continent.territoryList.get(j));
 			}
 		}
+		System.out.println(continent);
+		System.out.println("Trade edemedi");
 	}
 
 	public void chooseATerritory(Territory territory) {

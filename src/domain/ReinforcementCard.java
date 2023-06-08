@@ -10,7 +10,7 @@ public class ReinforcementCard implements Rollable, Serializable {// implements 
 	
 
 	Die die;
-	Territory territory;
+	public Territory territory;
 	ArrayList<Player> playerList;
 
 	
