@@ -32,5 +32,54 @@ public class MainDeckCreator {
 		}
 		
 		
+		
 	}
+    
+    public void MainDeckTerCardCreator(Continent continent1, Continent continent2, Continent continent3, Continent continent4, Continent continent5, Continent continent6, Deck deck)
+    {
+    	for(int a = 0; a < continent1.getTerritoryList().size(); a++)
+    	{
+    		TerritoryCard terCard = new TerritoryCard(); 
+    		continent1.getTerritoryCardList().add(terCard);
+    		deck.getTerritoryCardList().add(terCard);
+    		System.out.println(terCard);
+    	}
+    	for(int b = 0; b < continent2.getTerritoryList().size(); b++)
+    	{
+    		TerritoryCard terCard = new TerritoryCard(); 
+    		continent2.getTerritoryCardList().add(terCard);
+    		deck.getTerritoryCardList().add(terCard);
+    		System.out.println(terCard);
+    	}
+    	for(int c = 0; c < continent3.getTerritoryList().size(); c++)
+    	{
+    		TerritoryCard terCard = new TerritoryCard(); 
+    		continent3.getTerritoryCardList().add(terCard);
+    		deck.getTerritoryCardList().add(terCard);
+    		System.out.println(terCard);
+    	}
+    	for(int d = 0; d < continent4.getTerritoryList().size(); d++)
+    	{
+    		TerritoryCard terCard = new TerritoryCard(); 
+    		continent4.getTerritoryCardList().add(terCard);
+    		deck.getTerritoryCardList().add(terCard);
+    		System.out.println(terCard);
+    	}
+    	for(int e = 0; e < continent5.getTerritoryList().size(); e++)
+    	{
+    		TerritoryCard terCard = new TerritoryCard(); 
+    		continent5.getTerritoryCardList().add(terCard);
+    		deck.getTerritoryCardList().add(terCard);
+    		System.out.println(terCard);
+    	}
+    	for(int f = 0; f < continent6.getTerritoryList().size(); f++)
+    	{
+    		TerritoryCard terCard = new TerritoryCard(); 
+    		continent6.getTerritoryCardList().add(terCard);
+    		deck.getTerritoryCardList().add(terCard);
+    		System.out.println(terCard);
+    	}
+    }
+    
+    
 }

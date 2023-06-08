@@ -122,7 +122,11 @@ public class Deck implements Serializable{
 	}
 
 	public void giveTerritoryCard(Player player) {
-		int givenCard = rand.nextInt(2);
+		int index = this.getTerritoryCardList().size() - 1;
+		TerritoryCard terCard = this.getTerritoryCardList().get(index);
+		System.out.println(terCard);
+		player.getTerritoryCardList().add(terCard);
+		this.getTerritoryCardList().remove(index);
 
 	}
 
