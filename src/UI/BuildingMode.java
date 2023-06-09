@@ -131,6 +131,14 @@ public class BuildingMode extends JLayeredPane{
         add(btnHelp);
         
         
+        btnLink.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+            }
+        });
+                
+            	
+        
 	}
 	/*
 
