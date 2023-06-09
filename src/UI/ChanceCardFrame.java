@@ -48,18 +48,18 @@ public class ChanceCardFrame extends JFrame{
   this.labelIndex = labelIndex;
  }
  public void addButtons() {
-		btnFirst.setBounds(120, 290, 137, 36);
+		btnFirst.setBounds(100, 90, 137, 36);
 		add(btnFirst);
-		btnSecond.setBounds(260, 290, 137, 36);
+		btnSecond.setBounds(280, 90, 137, 36);
 		add(btnSecond);
 		
-		btnThird.setBounds(120, 340, 137, 36);
+		btnThird.setBounds(100, 140, 137, 36);
 		add(btnThird);
 		
-		btnFourth.setBounds(260, 340, 137, 36);
+		btnFourth.setBounds(280, 140, 137, 36);
 		add(btnFourth);
 		
-		btnFifth.setBounds(120, 390, 137, 36);
+		btnFifth.setBounds(100, 190, 137, 36);
 		add(btnFifth);
 		/*
 		btnSixth.setBounds(260, 390, 137, 36);
@@ -158,14 +158,7 @@ public class ChanceCardFrame extends JFrame{
        
     }
  
- public void addLabels() {
-  cardLabels[labelIndex].setBackground(Color.DARK_GRAY);
-  cardLabels[labelIndex].setForeground(Color.WHITE);
-  cardLabels[labelIndex].setText("Chance Card      ");
-  cardLabels[labelIndex].setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 25));
-   getCardsPanel().add(cardLabels[labelIndex]);
-   labelIndex++; //artsın
- }
+ 
         
         
  

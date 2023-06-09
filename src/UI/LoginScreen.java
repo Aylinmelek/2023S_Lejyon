@@ -184,7 +184,7 @@ public class LoginScreen extends JLayeredPane{
             }
         });
         
-        btnStart.setBounds(663, 508, 130, 50);
+        btnStart.setBounds(724, 490, 130, 50);
         btnStart.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnStart);
         

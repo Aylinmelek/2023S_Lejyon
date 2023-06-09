@@ -227,7 +227,7 @@ public class PlayingMode extends JLayeredPane {
 	     	public void actionPerformed(ActionEvent e) {
 	     		ChanceCardFrame chanceCard = new ChanceCardFrame();
 	     		chanceCard.setVisible(true);
-	     		chanceCard.addLabels();
+	     		
 	     		
 	     		
 	     	}
@@ -293,7 +293,7 @@ public class PlayingMode extends JLayeredPane {
 	     txtCard.setEditable(false);
 	     add(txtCard);
 	     
-	     txtPlayerTurn.setBounds(600, 450, 200, 36);
+	     txtPlayerTurn.setBounds(600, 490, 200, 36);
 	     txtPlayerTurn.setBackground(Color.DARK_GRAY);
 	     txtPlayerTurn.setForeground(Color.WHITE);
 	     txtPlayerTurn.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
