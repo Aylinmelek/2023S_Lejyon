@@ -93,9 +93,9 @@ public class Board {
 		gameActions.createTerritory(terCount);
 	}
 
-	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
+	public void attack(Player player, Territory territoryFrom, Territory territoryTo, int roll1, int roll2) {
 
-		gameActions.attack(player, territoryFrom, territoryTo, die);
+		gameActions.attack(player, territoryFrom, territoryTo, roll1, roll2);
 
 	}
 	public void giveChanceCard(Player player)

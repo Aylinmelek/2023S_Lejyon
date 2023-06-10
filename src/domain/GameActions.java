@@ -16,7 +16,7 @@ public class GameActions {
 			terList.add(terr);
 		}
 	}
-    public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
+    public void attack(Player player, Territory territoryFrom, Territory territoryTo, int roll1, int roll2) {
     	//Specification:
     	//@Requires: Attacker should owns territoryFrom and shouldn't owns territoryTo
     	//territoryFrom and territoryTo should be linked, and the territoryFrom should be equal or more powerful than territoryTo
@@ -32,11 +32,11 @@ public class GameActions {
 
 				// if (die.generateNum() > die.generateNum()) {
 				// observer için değiştirdim
-				die.roll();
+				/*die.roll();
 				int firstRoll = die.getDiceValue();
 				die.roll();
-				int secondRoll = die.getDiceValue();
-				if (firstRoll > secondRoll) {
+				int secondRoll = die.getDiceValue();*/
+				if (roll1 > roll2) {
 					/////////
 
 					territoryTo.owner.loseTheDefend(territoryTo);
