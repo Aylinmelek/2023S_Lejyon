@@ -12,7 +12,7 @@ import domain.Player;
 import domain.Territory;
 import domain.controller.ConKUerorHandler;
 
-public class Grid extends JPanel implements MouseListener {
+public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 
 	public static final int ROWS = 17;
@@ -31,7 +31,9 @@ public class Grid extends JPanel implements MouseListener {
 	public Territory territoryTo, territorySource;
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
-    
+	
+	private Point startPoint;
+    private Point endPoint;
 
 	
 	
@@ -69,6 +71,7 @@ public class Grid extends JPanel implements MouseListener {
 		initializeGridAndText();
 		setupUI();
 		addMouseListener(this);
+		addMouseMotionListener(this);
 	}
 
 	private void setupUI() {
@@ -119,6 +122,23 @@ public class Grid extends JPanel implements MouseListener {
 	public void paint(Graphics g) {
 		drawGridLines(g);
 		drawCells(g);
+		if (startPoint != null && endPoint != null) {
+			if (GameFrame.play.playMode == true) {
+				
+				Graphics2D g2d = (Graphics2D) g;
+	            g2d.setStroke(new BasicStroke(3));
+
+	            int arrowHeadSize = 12;
+
+	            g2d.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+
+	            Polygon arrowHead = new Polygon();
+	            arrowHead.addPoint(endPoint.x, endPoint.y);
+	            arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y - arrowHeadSize);
+	            arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y + arrowHeadSize);
+	            g2d.fillPolygon(arrowHead);
+			}
+        }
 	}
 
 
@@ -169,12 +189,31 @@ public class Grid extends JPanel implements MouseListener {
 		this.selectedTer = selectedTer;
 	}
 
+
+
+  
+    public void mouseMoved(MouseEvent e) {
+        if (startPoint != null) {
+            endPoint = e.getPoint();
+            repaint();
+        }
+    }
+	
 	public void mouseClicked(MouseEvent e) {
 		infFlag = true;
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
 		//System.out.println(row + col);
 		selectedTer = Territory.isTerritory(row, col);
+		
+		 if (startPoint == null) {
+	            startPoint = e.getPoint();
+	        } else {
+	            endPoint = e.getPoint();
+	            repaint();
+	            startPoint = null;
+	            endPoint = null;
+	        }
 		
 		 if (GameFrame.bmode.build) {
 			if (gridColors[row][col] != blue) {
@@ -375,6 +414,8 @@ public class Grid extends JPanel implements MouseListener {
 		}
 		
 	}
+	
+	
 
 	public String getColorName(Color color) {
 		if (color.equals(Color.BLACK)) {
@@ -421,6 +462,12 @@ public class Grid extends JPanel implements MouseListener {
 	@Override 
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
