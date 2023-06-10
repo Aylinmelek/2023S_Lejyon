@@ -242,7 +242,20 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 				for(int i = 0; i< play.handler.getBoard().map.getTerritories().size(); i++)
-				{
+				{	
+					play.handler.getBoard().map.checkReachability(play.handler.getBoard().map.getTerritories().get(i));
+					if(!play.handler.getBoard().map.getTerritories().get(i).isEnabled())
+					{
+						play.handler.getBoard().map.getTerritories().get(i).setColor(Color.CYAN);
+					}
+				}
+				for(int i = 0; i< play.handler.getBoard().map.getTerritories().size(); i++)
+				{	
+					/*play.handler.getBoard().map.checkReachability(play.handler.getBoard().map.getTerritories().get(i));
+					if(!play.handler.getBoard().map.getTerritories().get(i).isEnabled())
+					{
+						play.handler.getBoard().map.getTerritories().get(i).setColor(Color.CYAN);
+					}*/
 					if(play.handler.getBoard().map.getTerritories().get(i).getOwner() == null && play.handler.getBoard().map.getTerritories().get(i).isEnabled())
 					{
 						taken = false;

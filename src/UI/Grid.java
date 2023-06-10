@@ -94,23 +94,23 @@ public class Grid extends JPanel implements MouseListener {
 				if(row > 1 && Territory.isTerritory(row-1, col) != null  && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row-1, col));
-					Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
 				}
 				if(col > 1 && Territory.isTerritory(row, col-1) != null  && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col-1));
-					Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
 				}
 				
 				if(Territory.isTerritory(row+1, col) != null && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row+1, col));
-					Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
 				}
 				if(Territory.isTerritory(row, col+1) != null  && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col+1));
-					Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
 				}
 				
 			}
@@ -265,6 +265,7 @@ public class Grid extends JPanel implements MouseListener {
 
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
+					System.out.println("Territory enable mý?" + selectedTer.isEnabled());
                 	players.get(playerIndex).chooseATerritory(selectedTer);
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
                 	
@@ -387,6 +388,7 @@ public class Grid extends JPanel implements MouseListener {
 				repaint();
 				territorySource = Territory.isTerritory(row, col);
 				System.out.println("territorySource :"+territorySource);
+				System.out.println("Territory enable mý?" + territorySource.isEnabled());
 			}
 			else {
 				gridColors[row][col] = secondChosen;
