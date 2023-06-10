@@ -85,7 +85,8 @@ public class Grid extends JPanel implements MouseListener {
 				Territory territory = Territory.isTerritory(row, col);
 				if (territory != null) {
 					this.gridColors[row][col] = territory.getColor();
-					this.gridText[row][col] = territory.getText();
+					String armyNumStr = Integer.toString(territory.getArmyList().size());
+					this.gridText[row][col] = armyNumStr;
 					territory.matchContinent(GameFrame.play.handler.getBoard());
 				}
 				
