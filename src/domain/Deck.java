@@ -37,7 +37,7 @@ public class Deck implements Serializable{
 	// public void takeCard() {
 	public void giveChanceCard(Player player) {
 		
-		int givenCard = rand.nextInt(5);
+		int givenCard = rand.nextInt(6);
 		if (givenCard == 0 && this.getsabotageCardList().size() > 0) {
 			int index = this.getsabotageCardList().size() -1;
 			sabotageCard sabotageCard = new sabotageCard();
@@ -73,14 +73,15 @@ public class Deck implements Serializable{
 			this.getDisasterCardList().remove(index);
 			System.out.println("disasterCard verildi : " + disasterCard);
 		}
-		/*if (givenCard == 2 && this.getsabotageCardList().size() > 0) {
-			int index = this.getsabotageCardList().size() -1;
-			sabotageCard sabotageCard = new sabotageCard();
-			player.getDeck().getsabotageCardList().add(sabotageCard);
-			this.getsabotageCardList().remove(index);
+		if (givenCard == 5 && this.getdipImmunityCardList().size() > 0) {
+			int index = this.getdipImmunityCardList().size() -1;
+			DiplomaticImmunityCard dipImCard = new DiplomaticImmunityCard();
+			player.getDeck().getdipImmunityCardList().add(dipImCard);
+			this.getdipImmunityCardList().remove(index);
+			System.out.println("Immunize Card verildi : " + dipImCard);
 		}
+	
 		
-		*/
 		
 
 	}

@@ -114,6 +114,10 @@ public ConKUerorHandler() {
 	{
 		board.disaster(continent, player, number);
 	}
+	public void immunize(Territory territory)
+	{
+		board.immunize(territory);
+	}
 
 	
 	public void setPlayerName(String name) {

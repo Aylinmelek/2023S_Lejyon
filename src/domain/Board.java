@@ -131,6 +131,10 @@ public class Board {
 	{
 		gameActions.disaster(continent, player, number);
 	}
+	public void immunize(Territory territory)
+    {
+    	gameActions.immunize(territory);
+    }
 
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 

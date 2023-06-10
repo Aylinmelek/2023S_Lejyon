@@ -24,7 +24,7 @@ public class GameActions {
     	//@Effects: If player won the attack, territoryTo's armyList would be decreased by 1.
     	//If player lose the attack, territoryFrom's armyList would be decreased by 2
     	//If territoryTo's armyList is equal to 0 after the attack, player conquer the territoryTo
-    	
+    	if(!territoryTo.getImmune()) {
 		if (player.getTerritoryList().contains(territoryFrom) && !player.getTerritoryList().contains(territoryTo)) {
 			if (player.canAttackTerritory(territoryFrom, territoryTo)
 					&& territoryTo.adjacentTerritories.contains(territoryFrom)) {
@@ -58,6 +58,10 @@ public class GameActions {
 			System.out.println("Player doesn't own TerritoryFrom or owns TerritoryTo.");
 	
 		}
+    }else
+    {
+    	System.out.println("TerritoryTo is immune");
+    }
 
 	}
     public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
@@ -214,4 +218,8 @@ public class GameActions {
 		
 	}
 	}
+    public void immunize(Territory territory)
+    {
+    	territory.immunize();
+    }
 }

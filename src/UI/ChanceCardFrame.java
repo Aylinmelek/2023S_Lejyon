@@ -23,11 +23,13 @@ public class ChanceCardFrame extends JFrame {
 	JButton btnThird = new JButton("World Event!");
 	JButton btnFourth = new JButton("Spy!");
 	JButton btnFifth = new JButton("Disaster!!!");
+	JButton btnSixth = new JButton("Immunize!!!");
 	JTextArea txtFirst = new JTextArea();
 	JTextArea txtSecond = new JTextArea();
 	JTextArea txtThird = new JTextArea();
 	JTextArea txtFourth = new JTextArea();
 	JTextArea txtFifth = new JTextArea();
+	JTextArea txtSixth = new JTextArea();
 
 	public ChanceCardFrame() {
 		addButtons();
@@ -81,9 +83,13 @@ public class ChanceCardFrame extends JFrame {
 		txtFifth.setBackground(Color.DARK_GRAY);
 
 		add(txtFifth);
-		/*
-		 * btnSixth.setBounds(260, 390, 137, 36); add(btnSixth);
-		 */
+		
+		btnSixth.setBounds(280, 190, 137, 36); 
+		add(btnSixth);
+		txtSixth.setBounds(420,197,20,36);
+		txtSixth.setBackground(Color.DARK_GRAY);
+
+		add(txtSixth);
 
 	}
 
@@ -169,6 +175,15 @@ public class ChanceCardFrame extends JFrame {
 					}
 					GameFrame.bmode.grid.territorySource = null;
 
+				}
+			}
+			
+		});
+		btnSixth.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (GameFrame.bmode.grid.territorySource != null) {
+					GameFrame.play.handler.immunize(GameFrame.bmode.grid.territorySource);
+					GameFrame.bmode.grid.territorySource = null;
 				}
 			}
 		});

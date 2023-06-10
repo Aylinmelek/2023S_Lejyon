@@ -52,7 +52,10 @@ public class Territory implements Serializable{
  public void setColor(Color color) {
 	this.color = color;
 }
-
+public boolean getImmune()
+{
+	return this.isImmune;
+}
 public Territory() {
 
  }
