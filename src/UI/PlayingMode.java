@@ -87,7 +87,7 @@ public class PlayingMode extends JLayeredPane {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
 		handler.createMainDeck(10,10,handler.getBoard().deck);
-		
+		btnRoll.setEnabled(false);
 		//handler.createTerCard(null, null, null, null, null, null, null);
 		setLayout(null);
 		
@@ -215,6 +215,16 @@ public class PlayingMode extends JLayeredPane {
 						GameFrame.bmode.grid.territorySource = null;
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
+						btnTer.setEnabled(true);
+		            	btnArmy.setEnabled(true);
+		            	btnChance.setEnabled(true);
+		               
+		                
+		                btnPickChance.setEnabled(true);
+		                btnTACard.setEnabled(true);
+		                btnSkip.setEnabled(true);
+		                btnFortify.setEnabled(true);
+		                btnRoll.setEnabled(false);
 						
 						
 				     }
@@ -260,6 +270,15 @@ public class PlayingMode extends JLayeredPane {
 	            public void actionPerformed(ActionEvent e) {
 	            	//kimin turnü oldugu yazsın atarken
 	                displayDie();
+	                btnTer.setEnabled(false);
+	            	btnArmy.setEnabled(false);
+	            	btnChance.setEnabled(false);
+	               
+	                
+	                btnPickChance.setEnabled(false);
+	                btnTACard.setEnabled(false);
+	                btnSkip.setEnabled(false);
+	                btnFortify.setEnabled(false);
 	                
 	            }
 	        });
