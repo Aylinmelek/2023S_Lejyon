@@ -28,7 +28,7 @@ public class Grid extends JPanel implements MouseListener {
     JTextArea txtPlayerTurn = new JTextArea();
     //public PlayingMode playMode = new PlayingMode();
 	public boolean isAttack = false;
-	public Territory territoryTo, territorySource;
+	public Territory territoryTo, territorySource, territoryTo2, territorySource2;
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
     
@@ -182,9 +182,41 @@ public class Grid extends JPanel implements MouseListener {
 				repaint();
 				//index = territoryIs.getIndex();
 				//System.out.println("index" + index);
-				if (selectedTer != null) {
+				if (selectedTer != null && !GameFrame.bmode.setLink) {
 					selectedTer.setEnabled(false);
 				}
+				if(GameFrame.bmode.setLink)
+				{
+					if(territorySource2 == null)
+					{
+						gridColors[row][col] = firstChosen;
+						firstChosenRow = row;
+						firstChosenColumn = col;
+						repaint();
+						territorySource2 = Territory.isTerritory(row, col);
+						System.out.println("territorySource :"+territorySource);
+					}
+					else {
+						gridColors[row][col] = secondChosen;
+						secondChosenRow = row;
+						secondChosenColumn = col;
+						repaint();
+						territoryTo2 = Territory.isTerritory(row, col);
+						System.out.println("territoryTo :"+territoryTo);
+						//territorySource.setLink(territoryTo);
+						if(!territoryTo2.getAdjacentTerritories().contains(territorySource2))
+						{
+							territoryTo2.setLink(territorySource2);
+							System.out.println(territoryTo2.getAdjacentTerritories().size());
+							System.out.println("Linklendiiii");
+							territoryTo2 = null;
+							territorySource2 = null;
+							GameFrame.bmode.setLink = false;
+						}
+						
+					}
+				}
+				
 			}
 		}
 

@@ -27,6 +27,7 @@ public class BuildingMode extends JLayeredPane{
     JTextArea txtnumComp = new JTextArea();*/
     JButton btnNext = new JButton("Next");
     public boolean build = false;
+    public boolean setLink = false;
     Grid grid = new Grid(); 
     int row = grid.row;
 	int col = grid.col;
@@ -133,7 +134,7 @@ public class BuildingMode extends JLayeredPane{
         
         btnLink.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
+            	GameFrame.bmode.setLink = true;
             }
         });
                 
