@@ -30,7 +30,7 @@ public class ChanceCardFrame extends JFrame {
 	JTextArea txtFifth = new JTextArea();
 
 	public ChanceCardFrame() {
-		addButtons();
+		addElements();
 		addButtonActListener();
 		initialize();
 		addPanel();
@@ -45,7 +45,7 @@ public class ChanceCardFrame extends JFrame {
 		this.labelIndex = labelIndex;
 	}
 
-	public void addButtons() {
+	public void addElements() {
 		btnFirst.setBounds(100, 90, 137, 36);
 		add(btnFirst);
 		txtFirst.setBounds(240,97,20,36);

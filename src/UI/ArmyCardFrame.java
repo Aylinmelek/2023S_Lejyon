@@ -40,17 +40,15 @@ public class ArmyCardFrame extends JFrame {
 	JButton btnFourth = new JButton("Trade 4");
 	JButton btnFifth = new JButton("Trade 5");
 	JButton btnSixth = new JButton("Trade 6");
+	
+	JTextArea txtInfantry = new JTextArea(Integer.toString(player.infantryList.size()));
+	JTextArea txtArtillery = new JTextArea(Integer.toString(player.artilleryList.size()));
+	JTextArea txtCavalry = new JTextArea(Integer.toString(player.cavalryList.size()));
 
+
+	
 	int tradeCvlry, tradeInfntry, tradeArtlry;
 
-	private JLabel[] labels = new JLabel[NUM_CARDS];
-	private JTextArea[] numbers = new JTextArea[NUM_CARDS];
-
-	/*
-	 * JComboBox<Integer> cavalryNum = new JComboBox<Integer>(); JComboBox<Integer>
-	 * infantryNum = new JComboBox<Integer>(); JComboBox<Integer> artilleryNum = new
-	 * JComboBox<Integer>();
-	 */
 
 	JPanel tradePanel = new JPanel();
 	ArrayList<JButton> txtArmies = new ArrayList<JButton>();
@@ -59,11 +57,13 @@ public class ArmyCardFrame extends JFrame {
 
 	public ArmyCardFrame() {
 		addButtons();
+		
+		
 		addArmyButtons();
 		initialize();
 		addButtonActListener();
 		addTradeOps();
-		//addCardCounts();
+
 
 	}
 	private void initialize() {
@@ -88,18 +88,22 @@ public class ArmyCardFrame extends JFrame {
 	public void addButtons() {
 		btnFirst.setBounds(120, 290, 137, 36);
 		add(btnFirst);
-		btnSecond.setBounds(260, 290, 137, 36);
+		btnSecond.setBounds(300, 290, 137, 36);
 		add(btnSecond);
 		btnThird.setBounds(120, 340, 137, 36);
 		add(btnThird);
-		btnFourth.setBounds(260, 340, 137, 36);
+		btnFourth.setBounds(300, 340, 137, 36);
 		add(btnFourth);
 		btnFifth.setBounds(120, 390, 137, 36);
 		add(btnFifth);
-		btnSixth.setBounds(260, 390, 137, 36);
+		btnSixth.setBounds(300, 390, 137, 36);
 		add(btnSixth);
+		
+		
 
 	}
+	
+
 	
 	public void addTradeOps() {
 		/*3 Infantry cards => 1 Cavalry
@@ -155,6 +159,8 @@ public class ArmyCardFrame extends JFrame {
 		btnFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(0);
+				txtInfantry.setText(Integer.toString(player.infantryList.size()));
+				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
 				System.out.println("Buraya Basıldı");
 
 			}
@@ -163,6 +169,8 @@ public class ArmyCardFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(1);
 				System.out.println("Buraya Basıldı");
+				txtInfantry.setText(Integer.toString(player.infantryList.size()));
+				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
 
 			}
 		});
@@ -170,13 +178,17 @@ public class ArmyCardFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(2);
 				System.out.println("Buraya Basıldı");
-
+				txtInfantry.setText(Integer.toString(player.infantryList.size()));
+				txtArtillery.setText(Integer.toString(player.artilleryList.size()));
 			}
 		});
 		btnFourth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(3);
 				System.out.println("Buraya Basıldı");
+				txtInfantry.setText(Integer.toString(player.infantryList.size()));
+				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
+				txtArtillery.setText(Integer.toString(player.artilleryList.size()));
 
 			}
 		});
@@ -184,6 +196,9 @@ public class ArmyCardFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(4);
 				System.out.println("Buraya Basıldı");
+				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
+				txtArtillery.setText(Integer.toString(player.artilleryList.size()));
+
 
 			}
 		});
@@ -205,28 +220,28 @@ public class ArmyCardFrame extends JFrame {
 		btnInfantry.setBounds(52, 100, 114, 37);
 		btnArtillery.setBounds(52, 150, 114, 37);
 		btnCavalry.setBounds(52, 200, 114, 37);
+		
+		txtInfantry.setBounds(172, 107, 20, 37);
+		txtInfantry.setBackground(Color.DARK_GRAY);
+		txtArtillery.setBounds(172, 157, 20, 37);
+		txtArtillery.setBackground(Color.DARK_GRAY);
+		txtCavalry.setBounds(172, 207, 20, 37);
+		txtCavalry.setBackground(Color.DARK_GRAY);
+
 
 		add(btnInfantry);
 		add(btnArtillery);
 		add(btnCavalry);
+		add(txtInfantry);
+		add(txtArtillery);
+		add(txtCavalry);
+		
+		
+		
 	}
 	
-	/*public void addCardCounts() {
-	     
-	     int y= 131;
-	           for (int i = 0; i < NUM_CARDS; i++) {
-	            numbers[i] = new JTextArea();
-	            numbers[i].setBounds(172, y, 24, 27);
-	            numbers[i].setText(armyCardsNum.get(i).toString());
-	            numbers[i].setEditable(false);
-	            numbers[i].setBackground(Color.DARK_GRAY);
-	            add(numbers[i]);
-	            //labels[i].setVisible(true);
-	             y += 50;
-	      }     
-
-
-	 }*/
+	
+	
 }
 
 

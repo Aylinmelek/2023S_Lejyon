@@ -288,7 +288,6 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         add(btnRoll);
         add(dieLabel);
         add(btnStartGame); 
-        
         btnHelp.setBounds(729, 13, 117, 29);
         btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
         add(btnHelp);
