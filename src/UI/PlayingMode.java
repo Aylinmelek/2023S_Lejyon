@@ -237,7 +237,7 @@ public class PlayingMode extends JLayeredPane {
 		                roll1 = 0;
 						roll2 = 0;
 				     }
-		     		
+		     		GameFrame.bmode.grid.updateGridText();
 					
 		     	}
 		     });
@@ -254,6 +254,7 @@ public class PlayingMode extends JLayeredPane {
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
 				     }
+					GameFrame.bmode.grid.updateGridText();
 		     	}
 		     });
 	     
@@ -304,6 +305,7 @@ public class PlayingMode extends JLayeredPane {
 		                roll1 = 0;
 						roll2 = 0;
 				     }
+	                GameFrame.bmode.grid.updateGridText();
 					
 	                
 	            }

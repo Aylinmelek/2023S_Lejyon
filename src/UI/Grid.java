@@ -76,6 +76,19 @@ public class Grid extends JPanel implements MouseListener {
 		int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
 		setSize(width, height);
 	}
+	public void updateGridText()
+	{
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLUMNS; col++) {
+				Territory territory = Territory.isTerritory(row, col);
+				if (territory != null) {
+					this.gridColors[row][col] = territory.getColor();
+					String armyNumStr = Integer.toString(territory.getArmyList().size());
+					this.gridText[row][col] = armyNumStr;
+				}
+			}
+		}
+	}
 
 	private void initializeGridAndText() {
 		for (int row = 0; row < ROWS; row++) {
@@ -269,6 +282,7 @@ public class Grid extends JPanel implements MouseListener {
 					System.out.println("Territory enable mý?" + selectedTer.isEnabled());
                 	players.get(playerIndex).chooseATerritory(selectedTer);
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
+                	updateGridText();
                 	
                 	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
                 	//System.out.println(players.get(playerIndex).getName());
