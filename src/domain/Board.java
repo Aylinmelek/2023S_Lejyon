@@ -25,6 +25,7 @@ public class Board {
 	public GameActions gameActions = new GameActions();
 	public Player player = new Player();
 	public ArrayList<Player> playerList = new ArrayList<Player>();
+	public Map map = new Map();
 	
 	public Board() {
 		die = new Die();
@@ -45,7 +46,10 @@ public class Board {
 		return die;
 	}
 	
-
+	public void addMap(Territory territory)
+	{
+		this.map.getTerritories().add(territory);
+	}
 	
 	public int getDiceValue() {
 		return die.getDiceValue();

@@ -87,6 +87,7 @@ public class Grid extends JPanel implements MouseListener {
 					this.gridColors[row][col] = territory.getColor();
 					this.gridText[row][col] = territory.getText();
 					territory.matchContinent(GameFrame.play.handler.getBoard());
+					territory.matchMap(GameFrame.play.handler.getBoard());
 				}
 				
 				//Set Link Implementation to Map

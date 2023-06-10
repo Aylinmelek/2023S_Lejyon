@@ -37,7 +37,7 @@ public class GameFrame extends JFrame {
 
 	public static InitSharing sharing = new InitSharing();
 	//////////
-
+	static boolean taken, takenHelper;
 	public static PlayingMode play = new PlayingMode();
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
@@ -177,18 +177,23 @@ public class GameFrame extends JFrame {
 		}*/
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String action = e.getActionCommand();
-				sharing.init = true;
-				bmode.build = false;
-
 				
 				
-				sharing.numPlay = login.getPlayerNum();
-				sharing.addElements();
-				frame.setLayeredPane(sharing);
-				frame.revalidate();
+				
+					String action = e.getActionCommand();
+					sharing.init = true;
+					bmode.build = false;
 
-				sharing.add(bmode.grid);
+					
+					
+					sharing.numPlay = login.getPlayerNum();
+					sharing.addElements();
+					frame.setLayeredPane(sharing);
+					frame.revalidate();
+
+					sharing.add(bmode.grid);
+				
+				
 		
 				
 				/*for (int i=0; i<sharing.conKUeror.playerList.size(); i++ ) {
@@ -236,62 +241,82 @@ public class GameFrame extends JFrame {
 		sharing.btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
-				String action = e.getActionCommand();
-				play.numFortify.setEnabled(false);
-				play.btnTer.addActionListener(new ActionListener() {
-			     	public void actionPerformed(ActionEvent e) {
-			     		bmode.grid.terCard.setVisible(true);
-			     		
-			
-			     	}
-			     	
-			     }
-			
-			     );
-				play.btnTer.setBounds(27, 437, 118, 30);
-			    play.add(play.btnTer);
-				play.addElements();
-				frame.setLayeredPane(play);
-				frame.revalidate();
-				// grid.setVisible(true);
-				//grid.setBounds(19, 69, 850, 350);
-				play.add(bmode.grid);
-				sharing.init = false;
-
-				 //play.sort(playerArray);						
-				 play.playMode = true;
-				 						
-				 System.out.println(play.playMode);
-				 play.sort(playerArray);
-				 
-				 for (Player i: playerArray) {
-					 System.out.println("i: "+i);
-					 nameSorted.add(i.getName());
-					 System.out.println("nameSorted: "+nameSorted.get(counter2));
-					 counter2++;
-					 
-				 }
-				 JTextArea txtPlayerNames = new JTextArea();
-				 StringBuilder playerNamesBuilder = new StringBuilder();
-				 for (int i =0;i<login.getPlayerNum();i++) {
-						
-						playerNamesBuilder.append(nameSorted.get(i)).append("      ");
+				for(int i = 0; i< play.handler.getBoard().map.getTerritories().size(); i++)
+				{
+					if(play.handler.getBoard().map.getTerritories().get(i).getOwner() == null && play.handler.getBoard().map.getTerritories().get(i).isEnabled())
+					{
+						taken = false;
+						System.out.println("taken false");
+						break;
 						
 					}
-				 
-				 txtPlayerNames.setText(playerNamesBuilder.toString());
-					txtPlayerNames.setForeground(Color.LIGHT_GRAY);
-					txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-					txtPlayerNames.setEditable(false);
-					txtPlayerNames.setBackground(Color.DARK_GRAY);
-					txtPlayerNames.setBounds(70, 6, 780, 43);
-					play.add(txtPlayerNames);
+					else
+					{
+						taken = true;
+						System.out.println("taken true");
+					}
+					
+				}
+				if(taken)
+				{
+					String action = e.getActionCommand();
+					play.numFortify.setEnabled(false);
+					play.btnTer.addActionListener(new ActionListener() {
+				     	public void actionPerformed(ActionEvent e) {
+				     		bmode.grid.terCard.setVisible(true);
+				     		
 				
-				 
-				 
+				     	}
+				     	
+				     }
+				
+				     );
+					play.btnTer.setBounds(27, 437, 118, 30);
+				    play.add(play.btnTer);
+					play.addElements();
+					frame.setLayeredPane(play);
+					frame.revalidate();
+					// grid.setVisible(true);
+					//grid.setBounds(19, 69, 850, 350);
+					play.add(bmode.grid);
+					sharing.init = false;
 
-				play.playMode = true;
-				System.out.println(play.playMode);
+					 //play.sort(playerArray);						
+					 play.playMode = true;
+					 						
+					 System.out.println(play.playMode);
+					 play.sort(playerArray);
+					 
+					 for (Player i: playerArray) {
+						 System.out.println("i: "+i);
+						 nameSorted.add(i.getName());
+						 System.out.println("nameSorted: "+nameSorted.get(counter2));
+						 counter2++;
+						 
+					 }
+					 JTextArea txtPlayerNames = new JTextArea();
+					 StringBuilder playerNamesBuilder = new StringBuilder();
+					 for (int i =0;i<login.getPlayerNum();i++) {
+							
+							playerNamesBuilder.append(nameSorted.get(i)).append("      ");
+							
+						}
+					 
+					 txtPlayerNames.setText(playerNamesBuilder.toString());
+						txtPlayerNames.setForeground(Color.LIGHT_GRAY);
+						txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+						txtPlayerNames.setEditable(false);
+						txtPlayerNames.setBackground(Color.DARK_GRAY);
+						txtPlayerNames.setBounds(70, 6, 780, 43);
+						play.add(txtPlayerNames);
+					
+					 
+					 
+
+					play.playMode = true;
+					System.out.println(play.playMode);
+				}
+				
 				
 
 

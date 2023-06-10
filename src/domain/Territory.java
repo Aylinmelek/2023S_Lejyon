@@ -94,6 +94,10 @@ public void matchContinent(Board board)
 	}
 
 }
+public void matchMap(Board board)
+{
+	board.map.getTerritories().add(this);
+}
 
 
 
