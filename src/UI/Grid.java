@@ -298,8 +298,9 @@ public class Grid extends JPanel implements MouseListener {
                     System.out.println(players.get(playerIndex).getInfantryList().size());
                     System.out.println(selectedTer.getArmyList().size());//aynı territory çağrıldığında size değişmiyor, ancak 4 player yani totalde 4 army eklendiğinde size 1 artıyor
                     
-                    
-                    if (playerIndex==(players.size()-1)) {
+                    if(selectedTer.getOwner().equals(players.get(playerIndex)))
+                    {
+                    	if (playerIndex==(players.size()-1)) {
                     		//GameFrame.sharing.getTemp()) {
                     	System.out.println("playersList finished");
                     	playerIndex=0;
@@ -320,6 +321,8 @@ public class Grid extends JPanel implements MouseListener {
                     if(infFlag) {
                     	//burada shuffle çağrılacak
                     }
+                    }
+                    
 
                     
                     
