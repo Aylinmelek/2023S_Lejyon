@@ -12,7 +12,8 @@ import javax.swing.JTextArea;
 
 public class HelpScreen extends JLayeredPane {
 	JTextArea txtHelp = new JTextArea();
-	JButton btnBack = new JButton("Back to Game");
+	JButton btnBack = new JButton("Back to Menu");
+	public boolean helpMode=false;
 	
 	
 	
@@ -34,7 +35,7 @@ public class HelpScreen extends JLayeredPane {
 	
 	
 	public void addElements() {
-		System.out.println("add elements");
+		
 		txtHelp.setText("The game is played on a political map of the world, divided into territories, which are grouped into continents. Turns rotate among players who control armies of playing pieces with which they attempt to capture \n"
 	        		+ "territories from other players, with results determined by dice rolls. Players may form and dissolve alliances during the course of the game. On a player’s turn, he/she tries to capture territories by defeating his/her \n"
 	        		+ "opponents’ armies. The goal of the game is to occupy every territory on the board and, in doing so, eliminate the other players. \n"

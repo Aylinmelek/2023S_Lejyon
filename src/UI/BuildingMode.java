@@ -21,6 +21,7 @@ import domain.controller.ConKUerorHandler;
 public class BuildingMode extends JLayeredPane{
 	JTextArea txtrGameOptions = new JTextArea();
 	//JTextArea txtdisable = new JTextArea();
+	MenuScreen menu = new MenuScreen();
     /*JComboBox<Integer> numPlayers = new JComboBox<Integer> ();
     JComboBox<Integer> numComp = new JComboBox<Integer>();
     JTextArea txtnumPlayers = new JTextArea();
@@ -31,8 +32,14 @@ public class BuildingMode extends JLayeredPane{
     Grid grid = new Grid(); 
     int row = grid.row;
 	int col = grid.col;
-	JButton btnHelp = new JButton("Help");
+
+
+	JButton btnMenu = new JButton("Menu"); 
+
+	//JButton btnHelp = new JButton("Help");
+
 	JButton btnLink = new JButton("Set Link");
+
     
     //observer için ekledim
    // Board board = new Board();
@@ -73,6 +80,7 @@ public class BuildingMode extends JLayeredPane{
 	    grid.setBounds(19, 69, 850, 350);
 	    add(grid);
 		grid.setVisible(true);
+		
 	}
 	
 	
@@ -124,12 +132,20 @@ public class BuildingMode extends JLayeredPane{
         btnNext.setBounds(724, 490, 130, 50);
         add(btnNext);
         
+
+
+        btnMenu.setBounds(729, 13, 117, 29);
+        btnMenu.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+        add(btnMenu);
+
+        //btnHelp.setBounds(729, 13, 117, 29);
+        //btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+        //add(btnHelp);
+
         btnLink.setBounds(724, 430, 130, 50);
         add(btnLink);
         
-        btnHelp.setBounds(729, 13, 117, 29);
-        btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
-        add(btnHelp);
+
         
         
         btnLink.addActionListener(new ActionListener() {

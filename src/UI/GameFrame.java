@@ -28,7 +28,7 @@ import java.util.Hashtable;
 
 public class GameFrame extends JFrame {
 
-	static boolean start;
+	//static boolean start;
 	private static final long serialVersionUID = 1L;
 	//public static Board board = new Board();
 	//public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
@@ -46,13 +46,14 @@ public class GameFrame extends JFrame {
 	public static ArrayList<String> nameSorted = new ArrayList<String>();
 	public static ArrayList<Player> playerArray = new ArrayList<Player>();
 	public static ArrayList<String> playerName = new ArrayList<String>();
+	
 	static int counter=0;
 	static int counter2=0;
 	public static void main(String[] args) {
 		
 		GameFrame frame = new GameFrame();
 	
-		
+		JButton btnMenu = new JButton();
 		frame.setSize(873, 600);
 		frame.setBounds(0, 54, 873, 600);
 		frame.setBackground(Color.DARK_GRAY);
@@ -68,7 +69,7 @@ public class GameFrame extends JFrame {
 				frame.setLayeredPane(bmode);
 				frame.revalidate();
 				System.out.println("real: "+ login.getRealPlayer()+"comp: " +login.getCompPlayer());
-				
+				frame.add(login.btnMenu);
 				playerArray = conKUerorHandler.createPlayer(login.getRealPlayer(), login.getCompPlayer());
 				
 				playerName = conKUerorHandler.createPlayerName(login.getPlayerNum());
@@ -80,7 +81,7 @@ public class GameFrame extends JFrame {
 				int totalPeople = login.getPlayerNum();
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
-				JPanel playerNames = new JPanel();
+				//JPanel playerNames = new JPanel();
 				//JTextArea txtPlayerNames = new JTextArea();
 				//txtPlayerNames.setBounds(212, 6, 453, 43);
 				//StringBuilder playerNamesBuilder = new StringBuilder();
@@ -145,51 +146,147 @@ public class GameFrame extends JFrame {
 				
 			     // Players turn number is sorted
 			       
-			        
 			}
 		});
+		
+		
 
 		login.btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (start == false) {
+
+				if (login.loginMode == false) {
+
 					menu.setVisible(true);
 					login.setVisible(false);
 					frame.setLayeredPane(menu);
-					
 					frame.revalidate();
-					login.loginMode = false;
-					start = true;
+					login.loginMode = true;
+					menu.menuMode=true;
 					
 				
 				}
+				
+				else {
+					menu.setVisible(true);
+					login.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
 				menu.setVisible(true);
-				login.setVisible(false);
+				//login.setVisible(false);
 				
 
 			}
 		});
-		/*bmode.btnNext.setEnabled(false);
-		if (bmode.addPlayers(bmode.getPlayerNum()) >= 20 && bmode.addPlayers(bmode.getPlayerNum()) <= 40) {
-			bmode.btnNext.setEnabled(true);
-			bmode.addPlayers(bmode.getPlayerNum());
-			
-		}*/
+		bmode.btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (bmode.build == false) {
+					menu.setVisible(true);
+					bmode.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					bmode.build = true;
+					menu.menuMode=true;
+					
+				
+				}
+				
+				else {
+					menu.setVisible(true);
+					bmode.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
+				menu.setVisible(true);
+				//login.setVisible(false);
+				
+
+			}
+		});
+		sharing.btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (sharing.init == false) {
+					menu.setVisible(true);
+					sharing.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					sharing.init = true;
+					menu.menuMode=true;
+					
+				
+				}
+				
+				else {
+					menu.setVisible(true);
+					sharing.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
+				menu.setVisible(true);
+				//login.setVisible(false);
+				
+
+			}
+		});
+		play.btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (play.playMode == false) {
+					menu.setVisible(true);
+					play.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					play.playMode = true;
+					menu.menuMode=true;
+					
+				
+				}
+				
+				else {
+					menu.setVisible(true);
+					play.setVisible(false);
+					frame.setLayeredPane(menu);
+					frame.revalidate();
+					//login.loginMode = false;
+					
+				}
+				menu.setVisible(true);
+				//login.setVisible(false);
+				
+
+			}
+		});
+		
+		
+		
+	
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
+			
+				frame.add(login.btnMenu);
+
 				
 				
 					String action = e.getActionCommand();
 					sharing.init = true;
 					bmode.build = false;
 
-					
-					
 					sharing.numPlay = login.getPlayerNum();
-					sharing.addElements();
-					frame.setLayeredPane(sharing);
-					frame.revalidate();
+ 					sharing.addElements();
+ 					frame.setLayeredPane(sharing);
+ 					frame.revalidate();
+					
+					
 
 					sharing.add(bmode.grid);
 				
@@ -206,8 +303,119 @@ public class GameFrame extends JFrame {
 
 			}
 		});
+		
+		 menu.btnBack.setBackground(Color.DARK_GRAY);
+		 menu.btnBack.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        	
+	        		if (login.loginMode==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(login);
+	 					frame.revalidate();
+	 					login.loginMode=false;
+	         		    
+	        		}
+	        		else if (bmode.build==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(bmode);
+	 					frame.revalidate();
+	 					bmode.build=false;
+	        		}
+	        		else if (sharing.init==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(sharing);
+	 					frame.revalidate();
+	 					sharing.init=false;
+	        		}
+	        		else if (play.playMode==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(play);
+	 					frame.revalidate();
+	 					play.playMode=false;
+	        		}
+	        		else {
 
-		menu.btnBack = new JButton("Back to Game");
+
+	         			login.setVisible(false);
+	         		    bmode.setVisible(true);
+	         		    sharing.setVisible(true);
+	         		    play.setVisible(true);
+	         		    login.btnLogin.setVisible(false);
+	         		    menu.btnBack.setVisible(false);
+	        		}
+         	
+	         		login.btnMenu.setVisible(true);
+	         		login.setVisible(true);
+	         		login.btnMenu.setVisible(true);
+	         		
+	         		bmode.btnMenu.setVisible(true);
+	         		bmode.setVisible(true);
+	         		
+	         		sharing.btnMenu.setVisible(true);
+	         		sharing.setVisible(true);
+	         		
+	         		play.btnMenu.setVisible(true);
+	         		play.setVisible(true);
+       	
+	        	}	
+	        });
+		 
+		 menu.btnHelp.setBackground(Color.DARK_GRAY);
+		 menu.btnHelp.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        	
+	        		if (menu.menuMode==true) {
+	        			menu.setVisible(false);
+	 					frame.setLayeredPane(menu.help);
+	 					frame.revalidate();
+	 					menu.help.helpMode=true;
+	         		    
+	        		}
+	        		else {
+   
+	         			login.setVisible(false);
+	         		    bmode.setVisible(true);
+	         		    login.btnLogin.setVisible(false);
+	         		    menu.btnHelp.setVisible(false);
+	        		}
+         	
+	         		login.btnMenu.setVisible(true);
+	         		login.setVisible(true);
+	         		login.btnMenu.setVisible(true);
+       	
+	        	}	
+	        });
+		 
+		 menu.help.btnBack.setBackground(Color.DARK_GRAY);
+		 menu.help.btnBack.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        	
+	        		if (menu.help.helpMode==true) {
+	        			menu.help.setVisible(false);
+	 					frame.setLayeredPane(menu);
+	 					frame.revalidate();
+	 					
+	         		    
+	        		}
+	        		else if (login.loginMode==true || bmode.build==true){
+   
+	         			login.setVisible(false);
+	         		    bmode.setVisible(true);
+	         		    login.btnLogin.setVisible(false);
+	         		    menu.help.btnBack.setVisible(false);
+	        		}
+         	
+	         		//login.btnMenu.setVisible(true);
+	        		menu.btnBack.setVisible(true);
+	        		menu.btnHelp.setVisible(true);
+	        		menu.btnSave.setVisible(true);
+	         		menu.setVisible(true);
+	         		//login.btnMenu.setVisible(true);
+       	
+	        	}	
+	        });
+	        
+		/*menu.btnBack = new JButton("Back to Game");
 		menu.btnBack.setBounds(729, 517, 128, 29);
 
 		menu.btnBack.setBackground(Color.DARK_GRAY);
@@ -232,15 +440,17 @@ public class GameFrame extends JFrame {
 
 				menu.setVisible(false);
 				menu.btnBack.setVisible(false);
-				login.btnMenu.setVisible(true);
+				//login.btnMenu.setVisible(true);
 				// btnResume.setVisible(true);
 				start = true;
 			}
-		});
+		});*/
+
 
 		sharing.btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
+
 				for(int k = 0; k< play.handler.getBoard().map.getTerritories().size(); k++)
 				{	
 					play.handler.getBoard().map.checkReachability(play.handler.getBoard().map.getTerritories().get(k));
@@ -274,70 +484,69 @@ public class GameFrame extends JFrame {
 						taken = false;
 						System.out.println("taken false");
 						break;
+
 						
 					}
 					else
-					{
-						taken = true;
-						System.out.println("taken true");
-					}
-					
-				}
-				//if(taken)
-				//{
-					String action = e.getActionCommand();
-					play.numFortify.setEnabled(false);
-					play.btnTer.addActionListener(new ActionListener() {
-				     	public void actionPerformed(ActionEvent e) {
-				     		bmode.grid.terCard.setVisible(true);
-				     		
-				
-				     	}
-				     	
-				     }
-				
-				     );
-					play.btnTer.setBounds(27, 437, 118, 30);
-				    play.add(play.btnTer);
-					play.addElements();
-					frame.setLayeredPane(play);
-					frame.revalidate();
-					// grid.setVisible(true);
-					//grid.setBounds(19, 69, 850, 350);
-					play.add(bmode.grid);
-					sharing.init = false;
+ 					{
+ 						taken = true;
+ 						System.out.println("taken true");
+ 					}
 
-					 //play.sort(playerArray);						
-					 play.playMode = true;
-					 						
-					 System.out.println(play.playMode);
-					 play.sort(playerArray);
-					 
-					 for (Player i: playerArray) {
-						 System.out.println("i: "+i);
-						 nameSorted.add(i.getName());
-						 System.out.println("nameSorted: "+nameSorted.get(counter2));
-						 counter2++;
-						 
-					 }
-					 JTextArea txtPlayerNames = new JTextArea();
-					 StringBuilder playerNamesBuilder = new StringBuilder();
-					 for (int i =0;i<login.getPlayerNum();i++) {
-							
-							playerNamesBuilder.append(nameSorted.get(i)).append("      ");
-							
-						}
-					 
-					 txtPlayerNames.setText(playerNamesBuilder.toString());
-						txtPlayerNames.setForeground(Color.LIGHT_GRAY);
-						txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-						txtPlayerNames.setEditable(false);
-						txtPlayerNames.setBackground(Color.DARK_GRAY);
-						txtPlayerNames.setBounds(70, 6, 780, 43);
-						play.add(txtPlayerNames);
+ 				}
+ 				//if(taken)
+ 				//{
+ 					String action = e.getActionCommand();
+ 					play.numFortify.setEnabled(false);
+ 					play.btnTer.addActionListener(new ActionListener() {
+ 				     	public void actionPerformed(ActionEvent e) {
+ 				     		bmode.grid.terCard.setVisible(true);
+
+
+ 				     	}
+
+ 				     });
+ 					play.btnTer.setBounds(27, 437, 118, 30);
+ 				    play.add(play.btnTer);
+ 					play.addElements();
+ 					frame.setLayeredPane(play);
+ 					frame.revalidate();
+ 					// grid.setVisible(true);
+ 					//grid.setBounds(19, 69, 850, 350);
+ 					play.add(bmode.grid);
+ 					sharing.init = false;
+
+ 					 //play.sort(playerArray);						
+ 					 play.playMode = true;
+
+ 					 System.out.println(play.playMode);
+ 					 play.sort(playerArray);
+
+ 					 for (Player i: playerArray) {
+ 						 System.out.println("i: "+i);
+ 						 nameSorted.add(i.getName());
+ 						 System.out.println("nameSorted: "+nameSorted.get(counter2));
+ 						 counter2++;
+
+ 					 }
+ 					 JTextArea txtPlayerNames = new JTextArea();
+ 					 StringBuilder playerNamesBuilder = new StringBuilder();
+ 					 for (int i =0;i<login.getPlayerNum();i++) {
+
+ 							playerNamesBuilder.append(nameSorted.get(i)).append("      ");
+
+ 						}
+
+ 					 txtPlayerNames.setText(playerNamesBuilder.toString());
+ 						txtPlayerNames.setForeground(Color.LIGHT_GRAY);
+ 						txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
+ 						txtPlayerNames.setEditable(false);
+ 						txtPlayerNames.setBackground(Color.DARK_GRAY);
+ 						txtPlayerNames.setBounds(70, 6, 780, 43);
+ 						play.add(txtPlayerNames);
+				
 					
-					 
-					 
+				 
 
 					play.playMode = true;
 					System.out.println(play.playMode);
