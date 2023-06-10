@@ -137,9 +137,9 @@ public ConKUerorHandler() {
 		board.createTerritory(terCount);
 	}
 
-	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
+	public void attack(Player player, Territory territoryFrom, Territory territoryTo, int roll1, int roll2) {
 
-		board.attack(player, territoryFrom, territoryTo, die);
+		board.attack(player, territoryFrom, territoryTo, roll1, roll2);
 
 	}
 

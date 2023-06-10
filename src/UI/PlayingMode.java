@@ -50,7 +50,7 @@ public class PlayingMode extends JLayeredPane {
 
     
     Die die = new Die();
-   
+    int roll1, roll2;
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
     int dieDisplayed,finalDieDisplayed;
@@ -87,8 +87,10 @@ public class PlayingMode extends JLayeredPane {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
 		handler.createMainDeck(10,10,handler.getBoard().deck);
+		
 		//handler.createTerCard(null, null, null, null, null, null, null);
 		setLayout(null);
+		
 	}
 	public void displayDie() {
         Thread rollThread = new Thread(() -> {
@@ -96,6 +98,7 @@ public class PlayingMode extends JLayeredPane {
             	//observer için ekledim
             	die.roll();
                 dieDisplayed = die.getDiceValue();
+                
                 //////
                 		//die.generateNum();
                 switch (dieDisplayed) {
@@ -114,7 +117,7 @@ public class PlayingMode extends JLayeredPane {
                     case 5:
                         dieLabel.setIcon(die5);
                         break;
-                    default:
+                    case 6:
                         dieLabel.setIcon(die6);
                         break;
                 }
@@ -126,9 +129,19 @@ public class PlayingMode extends JLayeredPane {
             }
             //observer için ekledim
             finalDieDisplayed = dieNumber;
+            if(roll1 == 0)
+            {
+            	roll1 = die.getDiceValue();
+            	System.out.println("Rolllllll1 : " + roll1);
+            }
+            else
+            {
+            	roll2 = die.getDiceValue();
+            	System.out.println("Rolllllll2 : " + roll2);
+            }
             ///
             		//die.generateNum();
-            switch (finalDieDisplayed) {
+            /*switch (finalDieDisplayed) {
                 case 1:
                     dieLabel.setIcon(die1);
                     break;
@@ -144,10 +157,10 @@ public class PlayingMode extends JLayeredPane {
                 case 5:
                     dieLabel.setIcon(die5);
                     break;
-                default:
+                case 6:
                     dieLabel.setIcon(die6);
                     break;
-            }
+            }*/
         });
         rollThread.start();
     }
@@ -193,7 +206,9 @@ public class PlayingMode extends JLayeredPane {
 		     		
 					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
 				     {
-						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, GameFrame.play.die);
+						
+						System.out.println("roll1 : "+ roll1 + "roll2 : " + roll2);
+						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
 						repaint();
@@ -201,7 +216,10 @@ public class PlayingMode extends JLayeredPane {
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
 						
+						
 				     }
+					roll1 = 0;
+					roll2 = 0;
 		     	}
 		     });
 	     GameFrame.play.btnFortify.addActionListener(new ActionListener() {
