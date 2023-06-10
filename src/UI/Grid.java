@@ -399,6 +399,7 @@ public class Grid extends JPanel implements MouseListener {
 				System.out.println("territoryTo :"+territoryTo);
 				//territorySource.setLink(territoryTo);
 				GameFrame.play.numFortify.setEnabled(true);
+				GameFrame.play.btnRoll.setEnabled(true);
 				
 			}
 			
