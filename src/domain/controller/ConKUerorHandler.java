@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import UI.LoginScreen;
 import domain.Board;
+import domain.Continent;
 import domain.Deck;
 import domain.Die;
 import domain.GameActions;
@@ -76,10 +77,42 @@ public ConKUerorHandler() {
 	public void createMainDeck(int count, int armyCard, Deck deck) {
 		board.createMainDeck(count, armyCard, deck);
 	}
+	public void createTerCard(Continent continent1, Continent continent2, Continent continent3, Continent continent4, Continent continent5, Continent continent6, Deck deck)
+	{
+		board.createTerCard(continent1, continent2, continent3, continent4, continent5, continent6, deck);
+	}
 
 	public void giveArmyCard(Player player)
 	{
 		board.giveArmyCard(player);
+	}
+	public void giveTerCard(Player player)
+	{
+		board.giveTerCard(player);
+	}
+	public void giveChanceCard(Player player)
+	{
+		board.giveChanceCard(player);
+	}
+	public void reinforce(Die die, Territory territory, Player player) 
+	{
+		board.reinforce(die, territory, player);
+	}
+	public void sabotage(Die die, Territory territory, Player player) 
+	{
+		board.sabotage(die, territory, player);
+	}
+	public void spy(Territory territory, Player player)
+	{
+		board.spy(territory, player);
+	}
+	public void worldEvent(Die die, Territory territorySource, ArrayList<Player> playerArray, Player player)
+	{
+		board.worldEvent(die, territorySource, playerArray, player);
+	}
+	public void disaster(Continent continent, Player player, int number)
+	{
+		board.disaster(continent, player, number);
 	}
 
 	
@@ -104,9 +137,9 @@ public ConKUerorHandler() {
 		board.createTerritory(terCount);
 	}
 
-	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
+	public void attack(Player player, Territory territoryFrom, Territory territoryTo, int roll1, int roll2) {
 
-		board.attack(player, territoryFrom, territoryTo, die);
+		board.attack(player, territoryFrom, territoryTo, roll1, roll2);
 
 	}
 
@@ -147,6 +180,10 @@ public ConKUerorHandler() {
 			instance = new ConKUerorHandler();
 		return instance;
 	}
+
+
+
+	
 	
 
 

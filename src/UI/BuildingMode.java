@@ -28,13 +28,17 @@ public class BuildingMode extends JLayeredPane{
     JTextArea txtnumComp = new JTextArea();*/
     JButton btnNext = new JButton("Next");
     public boolean build = false;
+    public boolean setLink = false;
     Grid grid = new Grid(); 
     int row = grid.row;
 	int col = grid.col;
 
+
 	JButton btnMenu = new JButton("Menu"); 
 
 	//JButton btnHelp = new JButton("Help");
+
+	JButton btnLink = new JButton("Set Link");
 
     
     //observer için ekledim
@@ -125,9 +129,10 @@ public class BuildingMode extends JLayeredPane{
         
         
 
-        btnNext.setBounds(724, 490, 117, 29);
+        btnNext.setBounds(724, 490, 130, 50);
         add(btnNext);
         
+
 
         btnMenu.setBounds(729, 13, 117, 29);
         btnMenu.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
@@ -137,7 +142,19 @@ public class BuildingMode extends JLayeredPane{
         //btnHelp.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
         //add(btnHelp);
 
+        btnLink.setBounds(724, 430, 130, 50);
+        add(btnLink);
         
+
+        
+        
+        btnLink.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	GameFrame.bmode.setLink = true;
+            }
+        });
+                
+            	
         
 	}
 	/*

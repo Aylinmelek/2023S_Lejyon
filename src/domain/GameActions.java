@@ -16,7 +16,7 @@ public class GameActions {
 			terList.add(terr);
 		}
 	}
-    public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
+    public void attack(Player player, Territory territoryFrom, Territory territoryTo, int roll1, int roll2) {
     	//Specification:
     	//@Requires: Attacker should owns territoryFrom and shouldn't owns territoryTo
     	//territoryFrom and territoryTo should be linked, and the territoryFrom should be equal or more powerful than territoryTo
@@ -32,11 +32,11 @@ public class GameActions {
 
 				// if (die.generateNum() > die.generateNum()) {
 				// observer iÃ§in deÄŸiÅŸtirdim
-				die.roll();
+				/*die.roll();
 				int firstRoll = die.getDiceValue();
 				die.roll();
-				int secondRoll = die.getDiceValue();
-				if (firstRoll > secondRoll) {
+				int secondRoll = die.getDiceValue();*/
+				if (roll1 > roll2) {
 					/////////
 
 					territoryTo.owner.loseTheDefend(territoryTo);
@@ -85,5 +85,133 @@ public class GameActions {
 			System.out.println("The territory has not this much army");
 		}
 
+	}
+    /*public void ContinentMatch(Continent continent1, Continent continent2, Continent continent3, Continent continent4, Continent continent5, Continent continent6, Territory territory)
+    {
+    	if(territory.getColor().equals(Color.yellow))
+    	{
+    		
+    	}
+    }*/
+    public void reinforce(Die die, Territory territory, Player player) {
+		if(player.getDeck().getReinforcementCardList().size()>0)
+		{
+			die.roll();
+			int faceVal = die.getDiceValue();
+			for(int i = 0; i < faceVal; i++) {
+				Infantry infantry = new Infantry();
+				territory.getArmyList().add(infantry);
+				System.out.println("Infantry is added.");
+			}
+			int index = player.getDeck().getReinforcementCardList().size() - 1;
+			player.getDeck().getReinforcementCardList().remove(index);
+			
+		}
+		
+	}
+    public void sabotage(Die die, Territory territory, Player player) {
+    	if(player.getDeck().getsabotageCardList().size()>0)
+		{
+    	die.roll();
+		int faceVal = die.getDiceValue();
+		for(int i = 0; i < faceVal; i++) {
+			if(territory.getArmyList().size()>0)
+			{
+				int index = territory.getArmyList().size() - 1;
+				territory.getArmyList().remove(index);
+				System.out.println("Infantry is removed!");
+			}
+			else
+			{
+				System.out.println("There is no more");
+			}
+			
+		}
+		int index = player.getDeck().getsabotageCardList().size() - 1;
+		player.getDeck().getsabotageCardList().remove(index);
+		
+	}
+	}
+    public void spy(Territory territory, Player player)
+    {
+    	if(player.getDeck().getSpyCardList().size()>0)
+		{
+    	for(int i = 0; i < territory.getArmyList().size(); i++)
+    	{
+    		System.out.println(territory.getArmyList().get(i));
+    	}
+    	int index = player.getDeck().getSpyCardList().size() - 1;
+		player.getDeck().getSpyCardList().remove(index);
+		
+	}
+    }
+    public void worldEvent(Die die, Territory territory, ArrayList<Player> playerList, Player player) {
+    	if(player.getDeck().getWorldEventCardList().size()>0)
+		{
+    	die.roll();
+    	int faceValue = die.getDiceValue();
+		if (faceValue <= 2 || faceValue == 5) {
+			for(int i = 0; i < playerList.size(); i++) {
+				System.out.println("Army Eklenecek Heyy :)");
+				Infantry infantry = new Infantry();
+				playerList.get(i).getTerritoryList().get(0).getArmyList().add(infantry);
+				playerList.get(i).getTerritoryList().get(0).getArmyList().add(infantry);
+				playerList.get(i).getTerritoryList().get(0).getArmyList().add(infantry);
+			}
+		}
+		
+		if ((faceValue <= 4) && (faceValue > 2)|| faceValue == 6) {
+			for(int i = 0; i < playerList.size(); i++) {
+				System.out.println("Army Çýkarýlacak :((((");
+				int index = playerList.get(i).getTerritoryList().get(0).getArmyList().size() - 1;
+				if(index >= 0)
+				{
+					playerList.get(i).getTerritoryList().get(0).getArmyList().remove(index);
+				}
+				if(index >= 1)
+				{
+					playerList.get(i).getTerritoryList().get(0).getArmyList().remove(index - 1);
+				}
+				if(index >= 2)
+				{
+					playerList.get(i).getTerritoryList().get(0).getArmyList().remove(index - 2);
+				}
+				
+				
+			}
+		}
+		int index = player.getDeck().getWorldEventCardList().size() - 1;
+		player.getDeck().getWorldEventCardList().remove(index);
+		
+	}
+	}
+    public void disaster(Continent continent, Player player, int number) {
+    	if(player.getDeck().getWorldEventCardList().size()>0)
+		{
+		int min = 100;
+		Territory weakestTerritory = new Territory();
+		
+		for(int i = 0; i < continent.getTerritoryList().size(); i++) {
+			if(continent.getTerritoryList().get(i).armyList.size() >= number) {
+				for(int j = 0; j < number; j++) {
+					int index = continent.getTerritoryList().get(i).armyList.size() -1;
+					continent.getTerritoryList().get(i).armyList.remove(index);
+				}
+			}
+		}
+		for (Territory territory : continent.getTerritoryList()) {
+            int count = territory.getArmyList().size();
+            if (count < min) {
+                min = count;
+                weakestTerritory = territory;
+            }
+        }
+		weakestTerritory.getOwner().getTerritoryList().remove(weakestTerritory);
+		player.getTerritoryList().add(weakestTerritory);
+		weakestTerritory.setOwner(player);
+		int index = player.getDeck().getWorldEventCardList().size() - 1;
+		player.getDeck().getWorldEventCardList().remove(index);
+		
+	}
 	}
 }

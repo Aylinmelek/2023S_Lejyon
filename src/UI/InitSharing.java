@@ -282,7 +282,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         
         
         btnStartGame.setBackground(Color.WHITE);
-        btnStartGame.setBounds(733, 495, 117, 29);
+        btnStartGame.setBounds(724, 490, 130, 50);
         btnRoll.setBounds(30, 450, 117, 76);
         add(btnRoll);
         add(dieLabel);

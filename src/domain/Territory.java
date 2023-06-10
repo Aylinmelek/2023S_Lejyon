@@ -56,6 +56,48 @@ public class Territory implements Serializable{
 public Territory() {
 
  }
+public void matchContinent(Board board)
+{
+	if(this.getColor().equals(Color.yellow))
+	{
+		board.continent1.getTerritoryList().add(this);
+		System.out.println("1'e yerlesti");
+	}
+	if(this.getColor().equals(Color.green))
+	{
+		board.continent2.getTerritoryList().add(this);
+		System.out.println("2'e yerlesti");
+	}
+
+	if(this.getColor().equals(Color.red))
+	{
+		board.continent3.getTerritoryList().add(this);
+		System.out.println("3'e yerlesti");
+	}
+
+	if(this.getColor().equals(Color.pink))
+	{
+		board.continent4.getTerritoryList().add(this);
+		System.out.println("4'e yerlesti");
+	}
+
+	if(this.getColor().equals(Color.orange))
+	{
+		board.continent5.getTerritoryList().add(this);
+		System.out.println("5'e yerlesti");
+	}
+
+	if(this.getColor().equals(Color.blue))
+	{
+		board.continent6.getTerritoryList().add(this);
+		System.out.println("6'a yerlesti");
+	}
+
+}
+public void matchMap(Board board)
+{
+	board.map.getTerritories().add(this);
+}
 
 
 
