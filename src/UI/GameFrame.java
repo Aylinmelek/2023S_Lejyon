@@ -268,7 +268,6 @@ public class GameFrame extends JFrame {
 		
 		
 		
-		
 	
 		bmode.btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
