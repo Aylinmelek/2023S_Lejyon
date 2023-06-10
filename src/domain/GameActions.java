@@ -143,7 +143,7 @@ public class GameActions {
     	int index = player.getDeck().getSpyCardList().size() - 1;
 		player.getDeck().getSpyCardList().remove(index);
 		
-	}
+		}
     }
     public void worldEvent(Die die, Territory territory, ArrayList<Player> playerList, Player player) {
     	if(player.getDeck().getWorldEventCardList().size()>0)
@@ -162,7 +162,7 @@ public class GameActions {
 		
 		if ((faceValue <= 4) && (faceValue > 2)|| faceValue == 6) {
 			for(int i = 0; i < playerList.size(); i++) {
-				System.out.println("Army Çýkarýlacak :((((");
+				System.out.println("Army ï¿½ï¿½karï¿½lacak :((((");
 				int index = playerList.get(i).getTerritoryList().get(0).getArmyList().size() - 1;
 				if(index >= 0)
 				{

@@ -35,6 +35,8 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 	private Point startPoint;
     private Point endPoint;
 
+    ImageIcon bombIcon = new ImageIcon("/die1.png");
+    JLabel bombLabel;
 	
 	
 	public boolean isIndFlag() {
@@ -77,7 +79,12 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 	private void setupUI() {
 		int width = COLUMNS * CELL_SIZE + GRID_LINE_WIDTH;
 		int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
+		setLayout(null);
 		setSize(width, height);
+		
+		bombLabel = new JLabel(bombIcon);
+		add(bombLabel);
+         
 	}
 
 	private void initializeGridAndText() {
@@ -385,8 +392,24 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					}
 				}		
 			//rengini değiştirme*/
+			/*if (isAttack = true) {
+				bombLabel.setBounds(col, row, 50, 50);
+                bombLabel.setVisible(true);
+                add(bombLabel);
+                
+                System.out.println("attack true");
+			}*/
 			if(territorySource == null)
 			{
+				if (isAttack = true) {
+					bombLabel.setBounds(col, row, 50, 50);
+	                bombLabel.setVisible(true);
+	                
+	                System.out.println("attack true");
+				}
+				bombLabel.setBounds(col, row, bombIcon.getIconWidth(), bombIcon.getIconHeight());
+                bombLabel.setVisible(true);
+                
 				gridColors[row][col] = firstChosen;
 				firstChosenRow = row;
 				firstChosenColumn = col;
@@ -446,27 +469,22 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+			}
 
 	@Override 
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

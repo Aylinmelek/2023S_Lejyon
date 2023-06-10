@@ -38,6 +38,9 @@ public class PlayingMode extends JLayeredPane {
     JComboBox<Integer> numFortify = new JComboBox<Integer> ();
     public boolean isAttack;
     
+    ImageIcon bombIcon = new ImageIcon("/die1.png");
+    JLabel bombLabel;
+    
     JTextArea txtPlayerTurn = new JTextArea();
     int indexOfPlayer=0;
 
@@ -153,6 +156,9 @@ public class PlayingMode extends JLayeredPane {
     }
     
 	public void addElements() {
+		
+		bombLabel = new JLabel(bombIcon);
+        bombLabel.setVisible(false); 
 		/*
 	     btnTer.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
@@ -193,9 +199,28 @@ public class PlayingMode extends JLayeredPane {
 		     		
 					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
 				     {
+						
 						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, GameFrame.play.die);
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+						// 1 saniyelik ateş gifi
+						
+						/*GameFrame.bmode.grid.addMouseListener(new MouseAdapter() {
+				            @Override
+				            public void mouseClicked(MouseEvent e) {
+				                int x = e.getX();
+				                int y = e.getY();
+
+				                // Check if the click is within the specific area
+				                if (isWithinArea(x, y)) {
+				                    // Display the GIF label at the clicked position
+				                    bombLabel.setBounds(x, y, bombIcon.getIconWidth(), bombIcon.getIconHeight());
+				                    bombLabel.setVisible(true);
+				                }
+				            }
+				        });*/
+
+						
 						repaint();
 						GameFrame.bmode.grid.territorySource = null;
 						GameFrame.bmode.grid.territoryTo = null;

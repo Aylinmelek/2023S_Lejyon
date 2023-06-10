@@ -69,6 +69,7 @@ public class LoginScreen extends JLayeredPane{
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		setVisible(true);
+		btnStart.setEnabled(false);
 	    
 	}
 	
@@ -163,6 +164,7 @@ public class LoginScreen extends JLayeredPane{
             public void actionPerformed(ActionEvent e) {
             	
             	if (!username.getText().equals("")) {
+            		
             		if (counter < getPlayerNum()) {
             		getNameLabels()[index].setText(username.getText());
             		nameLabels[index].setBackground(Color.DARK_GRAY);
@@ -175,6 +177,9 @@ public class LoginScreen extends JLayeredPane{
 	            	password.setText("");
 	            	counter += 1;
 	            	
+	            	if (counter == getPlayerNum()) {
+	            		btnStart.setEnabled(true);
+	            	}
 	            	
 	            	
             		}
