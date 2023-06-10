@@ -203,8 +203,16 @@ public class PlayingMode extends JLayeredPane {
 	    
 	     GameFrame.play.btnAttack.addActionListener(new ActionListener() {
 		     	public void actionPerformed(ActionEvent e) {
-		     		
-					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
+		     		btnTer.setEnabled(false);
+	            	btnArmy.setEnabled(false);
+	            	btnChance.setEnabled(false);
+	            	btnRoll.setEnabled(true);
+	                
+	                btnPickChance.setEnabled(false);
+	                btnTACard.setEnabled(false);
+	                btnSkip.setEnabled(false);
+	                btnFortify.setEnabled(false);
+		     		if(roll1 != 0 && roll2 !=0 && GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
 				     {
 						
 						System.out.println("roll1 : "+ roll1 + "roll2 : " + roll2);
@@ -226,10 +234,11 @@ public class PlayingMode extends JLayeredPane {
 		                btnFortify.setEnabled(true);
 		                btnRoll.setEnabled(false);
 						
-						
+		                roll1 = 0;
+						roll2 = 0;
 				     }
-					roll1 = 0;
-					roll2 = 0;
+		     		
+					
 		     	}
 		     });
 	     GameFrame.play.btnFortify.addActionListener(new ActionListener() {
@@ -270,15 +279,32 @@ public class PlayingMode extends JLayeredPane {
 	            public void actionPerformed(ActionEvent e) {
 	            	//kimin turnü oldugu yazsın atarken
 	                displayDie();
-	                btnTer.setEnabled(false);
-	            	btnArmy.setEnabled(false);
-	            	btnChance.setEnabled(false);
-	               
-	                
-	                btnPickChance.setEnabled(false);
-	                btnTACard.setEnabled(false);
-	                btnSkip.setEnabled(false);
-	                btnFortify.setEnabled(false);
+	                if(roll1 != 0 && roll2 !=0 && GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
+				     {
+						
+						System.out.println("roll1 : "+ roll1 + "roll2 : " + roll2);
+						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+						repaint();
+						GameFrame.bmode.grid.territorySource = null;
+						GameFrame.bmode.grid.territoryTo = null;
+						numFortify.setEnabled(false);
+						btnTer.setEnabled(true);
+		            	btnArmy.setEnabled(true);
+		            	btnChance.setEnabled(true);
+		               
+		                
+		                btnPickChance.setEnabled(true);
+		                btnTACard.setEnabled(true);
+		                btnSkip.setEnabled(true);
+		                btnFortify.setEnabled(true);
+		                btnRoll.setEnabled(false);
+						
+		                roll1 = 0;
+						roll2 = 0;
+				     }
+					
 	                
 	            }
 	        });
