@@ -2,15 +2,15 @@ package domain;
 
 public class MainDeckCreator {
     
-
+	CardCreatorFactory cardFactory = new CardCreatorFactory(); 
     public void createMainDeck(int count, int armyCard, Deck deck) {
 		for (int i = 0; i < count; i++) {
-			DisasterCard disasterCard= new DisasterCard();
-			DiplomaticImmunityCard diplomaticImmunity = new DiplomaticImmunityCard();
-			sabotageCard sabotage = new sabotageCard();
-			SpyCard spyCard = new SpyCard();
-			WorldEventCard worldEventCard = new WorldEventCard();
-			ReinforcementCard reinforcementCard = new ReinforcementCard();
+			DisasterCard disasterCard= (DisasterCard) cardFactory.CardCreate(6);
+			DiplomaticImmunityCard diplomaticImmunity = (DiplomaticImmunityCard) cardFactory.CardCreate(0);
+			sabotageCard sabotage = (sabotageCard) cardFactory.CardCreate(1);
+			SpyCard spyCard = (SpyCard) cardFactory.CardCreate(2);
+			WorldEventCard worldEventCard = (WorldEventCard) cardFactory.CardCreate(4);
+			ReinforcementCard reinforcementCard = (ReinforcementCard) cardFactory.CardCreate(3);
 			
 			deck.getdipImmunityCardList().add(diplomaticImmunity);
 			deck.getDisasterCardList().add(disasterCard);
