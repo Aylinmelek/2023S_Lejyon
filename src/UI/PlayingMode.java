@@ -32,6 +32,7 @@ public class PlayingMode extends JLayeredPane {
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
     JButton btnAttack = new JButton("Attack");
     JButton btnFortify = new JButton("Fortify");
+    JButton btnPlace = new JButton("Place Army");
     JButton btnMenu = new JButton("Menu");
     JTextArea txtCard = new JTextArea();
     
@@ -198,6 +199,8 @@ public class PlayingMode extends JLayeredPane {
 	     add(btnAttack);
 	     btnFortify.setBounds(600, 430, 137, 36);
 	     add(btnFortify);
+	     btnPlace.setBounds(740, 430, 137, 36);
+	     add(btnPlace);
 
 	     
 	    
@@ -253,6 +256,18 @@ public class PlayingMode extends JLayeredPane {
 						GameFrame.bmode.grid.territorySource = null;
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
+				     }
+					GameFrame.bmode.grid.updateGridText();
+		     	}
+		     });
+	     GameFrame.play.btnPlace.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		
+					if(GameFrame.bmode.grid.territorySource != null)
+				     {
+						GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).placeArmy(GameFrame.bmode.grid.territorySource, "Infantry");
+						GameFrame.bmode.grid.updateGridText();
+						GameFrame.bmode.grid.territorySource = null;
 				     }
 					GameFrame.bmode.grid.updateGridText();
 		     	}

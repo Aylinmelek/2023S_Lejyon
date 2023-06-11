@@ -27,7 +27,7 @@ import java.util.Hashtable;
 
 
 public class GameFrame extends JFrame {
-
+	
 	//static boolean start;
 	private static final long serialVersionUID = 1L;
 	//public static Board board = new Board();
