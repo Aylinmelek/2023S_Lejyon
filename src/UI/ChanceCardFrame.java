@@ -17,12 +17,12 @@ public class ChanceCardFrame extends JFrame {
 
 	JPanel cardsPanel = new JPanel();
 
-	int labelIndex;
 	JButton btnFirst = new JButton("Reinforce!");
 	JButton btnSecond = new JButton("Sabotage!");
 	JButton btnThird = new JButton("World Event!");
 	JButton btnFourth = new JButton("Spy!");
 	JButton btnFifth = new JButton("Disaster!!!");
+	
 	JTextArea txtFirst = new JTextArea();
 	JTextArea txtSecond = new JTextArea();
 	JTextArea txtThird = new JTextArea();
@@ -37,49 +37,45 @@ public class ChanceCardFrame extends JFrame {
 
 	}
 
-	public int getLabelIndex() {
-		return labelIndex;
-	}
-
-	public void setLabelIndex(int labelIndex) {
-		this.labelIndex = labelIndex;
-	}
-
 	public void addElements() {
 		btnFirst.setBounds(100, 90, 137, 36);
 		add(btnFirst);
+		
 		txtFirst.setBounds(240,97,20,36);
 		txtFirst.setText("0");
 		txtFirst.setBackground(Color.DARK_GRAY);
 		add(txtFirst);
 		
-		
 		btnSecond.setBounds(280, 90, 137, 36);
 		add(btnSecond);
+		
 		txtSecond.setBounds(420,97,20,36);
+		txtSecond.setText("0");
 		txtSecond.setBackground(Color.DARK_GRAY);
-
 		add(txtSecond);
 
 		btnThird.setBounds(100, 140, 137, 36);
 		add(btnThird);
+		
 		txtThird.setBounds(240,147,20,36);
+		txtThird.setText("0");
 		txtThird.setBackground(Color.DARK_GRAY);
-
 		add(txtThird);
 
 		btnFourth.setBounds(280, 140, 137, 36);
 		add(btnFourth);
+		
 		txtFourth.setBounds(420,147,20,36);
+		txtFourth.setText("0");
 		txtFourth.setBackground(Color.DARK_GRAY);
-
 		add(txtFourth);
 
 		btnFifth.setBounds(100, 190, 137, 36);
 		add(btnFifth);
+		
 		txtFifth.setBounds(240,197,20,36);
+		txtFifth.setText("0");
 		txtFifth.setBackground(Color.DARK_GRAY);
-
 		add(txtFifth);
 		/*
 		 * btnSixth.setBounds(260, 390, 137, 36); add(btnSixth);

@@ -21,7 +21,6 @@ import domain.Player;
 
 import domain.controller.ConKUerorHandler;
 
-
 public class PlayingMode extends JLayeredPane {
 	
 	JButton btnTer = new JButton("Territory Cards");
@@ -33,13 +32,11 @@ public class PlayingMode extends JLayeredPane {
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
     JButton btnAttack = new JButton("Attack");
     JButton btnFortify = new JButton("Fortify");
+    JButton btnMenu = new JButton("Menu");
     JTextArea txtCard = new JTextArea();
     
     JComboBox<Integer> numFortify = new JComboBox<Integer> ();
     public boolean isAttack;
-    
-    ImageIcon bombIcon = new ImageIcon("/die1.png");
-    JLabel bombLabel;
     
     JTextArea txtPlayerTurn = new JTextArea();
     int indexOfPlayer=0;
@@ -65,7 +62,8 @@ public class PlayingMode extends JLayeredPane {
     
     //InitSharing initSharing = new InitSharing(conKUerorHandler);
     ////////////
-    
+    ImageIcon bombIcon = new ImageIcon(this.getClass().getResource("/die1.png"));
+    JLabel bombLabel;
     
 
 	//TerrCardFrame territoryCard = 
@@ -90,7 +88,6 @@ public class PlayingMode extends JLayeredPane {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
 		handler.createMainDeck(10,10,handler.getBoard().deck);
-		//handler.createTerCard(null, null, null, null, null, null, null);
 		setLayout(null);
 	}
 	public void displayDie() {
@@ -156,9 +153,9 @@ public class PlayingMode extends JLayeredPane {
     }
     
 	public void addElements() {
-		
 		bombLabel = new JLabel(bombIcon);
-        bombLabel.setVisible(false); 
+		GameFrame.bmode.grid.add(bombLabel);
+		//add(bombLabel);
 		/*
 	     btnTer.addActionListener(new ActionListener() {
 	     	public void actionPerformed(ActionEvent e) {
@@ -199,33 +196,28 @@ public class PlayingMode extends JLayeredPane {
 		     		
 					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
 				     {
-						
+						//get army count int army1 = territory.getArmyList().size()
+						int armyCountBefore = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, GameFrame.play.die);
+						int armyCountAfter = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
-						// 1 saniyelik ateş gifi
-						
-						/*GameFrame.bmode.grid.addMouseListener(new MouseAdapter() {
-				            @Override
-				            public void mouseClicked(MouseEvent e) {
-				                int x = e.getX();
-				                int y = e.getY();
-
-				                // Check if the click is within the specific area
-				                if (isWithinArea(x, y)) {
-				                    // Display the GIF label at the clicked position
-				                    bombLabel.setBounds(x, y, bombIcon.getIconWidth(), bombIcon.getIconHeight());
-				                    bombLabel.setVisible(true);
-				                }
-				            }
-				        });*/
-
-						
 						repaint();
 						GameFrame.bmode.grid.territorySource = null;
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
+						// if 1. army 2.den farklıysa territoryto üstüne animation
 						
+						if (armyCountBefore > armyCountAfter) {
+							System.out.println("değişuk");
+							bombLabel.setBounds(GameFrame.bmode.grid.secondChosenRow, GameFrame.bmode.grid.secondChosenColumn, 50, 50);
+			                bombLabel.setVisible(true);
+						}
+						else if (armyCountBefore < armyCountAfter) {
+							System.out.println("değişuk");
+							bombLabel.setBounds(GameFrame.bmode.grid.firstChosenRow, GameFrame.bmode.grid.firstChosenColumn, 50, 50);
+			                bombLabel.setVisible(true);
+						}
 				     }
 		     	}
 		     });
@@ -252,8 +244,7 @@ public class PlayingMode extends JLayeredPane {
 	     	public void actionPerformed(ActionEvent e) {
 	     		ChanceCardFrame chanceCard = new ChanceCardFrame();
 	     		chanceCard.setVisible(true);
-	     		
-	     		
+
 	     		
 	     	}
 	     });
@@ -318,7 +309,7 @@ public class PlayingMode extends JLayeredPane {
 	     txtCard.setEditable(false);
 	     add(txtCard);
 	     
-	     txtPlayerTurn.setBounds(600, 490, 200, 36);
+	     txtPlayerTurn.setBounds(600, 450, 200, 36);
 	     txtPlayerTurn.setBackground(Color.DARK_GRAY);
 	     txtPlayerTurn.setForeground(Color.WHITE);
 	     txtPlayerTurn.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
@@ -329,7 +320,6 @@ public class PlayingMode extends JLayeredPane {
 
 	     btnPickChance.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	handler.giveChanceCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	                txtCard.setText(".... card picked");
 	                
 	            	
@@ -338,16 +328,20 @@ public class PlayingMode extends JLayeredPane {
 
 	     btnTACard.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	
+
 	            	handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	            	System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
-	            	handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 	            	
+
 	            }
 	        });
 	     
 	     
 	     //if die diger playerdan büyükse conquer ettin/kaybettin JText
+	     
+	     btnMenu.setBounds(27, 527, 118, 29);
+	     btnMenu.setFont(new Font("Lucida Grande", Font.BOLD, 14));       
+	     add(btnMenu);
 	     
 	}
 
