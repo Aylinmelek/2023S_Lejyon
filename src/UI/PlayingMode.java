@@ -312,6 +312,8 @@ public class PlayingMode extends JLayeredPane {
 		btnChance.setBounds(27, 497, 118, 29);
 		add(btnChance);
 
+	
+		
 		dieLabel.setBounds(471, 470, 80, 80);
 		add(dieLabel);
 		btnRoll.addActionListener(new ActionListener() {
@@ -383,24 +385,24 @@ public class PlayingMode extends JLayeredPane {
 		add(btnPickChance);
 		add(btnTACard);
 
-		txtCard.setBounds(170, 510, 137, 36);
+		txtCard.setBounds(170, 510, 167, 36);
 		txtCard.setBackground(Color.DARK_GRAY);
 		txtCard.setForeground(Color.WHITE);
 		txtCard.setEditable(false);
 		add(txtCard);
 
-		txtPlayerTurn.setBounds(600, 490, 200, 36);
+		txtPlayerTurn.setBounds(600, 465, 200, 36);
 		txtPlayerTurn.setBackground(Color.DARK_GRAY);
 		txtPlayerTurn.setForeground(Color.WHITE);
 		txtPlayerTurn.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
 		txtPlayerTurn.setEditable(false);
-		txtPlayerTurn.setText("It is " + GameFrame.nameSorted + "turn!!");
+		txtPlayerTurn.setText("It is " + GameFrame.playerArray.get(indexOfPlayer).getName() + "'s turn!!");
 		add(txtPlayerTurn);
 
 		btnPickChance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handler.giveChanceCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
-				txtCard.setText(".... card picked");
+				
 
 			}
 		});
@@ -411,7 +413,7 @@ public class PlayingMode extends JLayeredPane {
 				handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
-
+				txtCard.setText("??????????????????" + "card picked");
 			}
 		});
 

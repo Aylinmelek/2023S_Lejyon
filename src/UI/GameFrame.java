@@ -101,15 +101,7 @@ public class GameFrame extends JFrame {
 					
 				}
 				
-				
-				/*txtPlayerNames.setText(playerNamesBuilder.toString());
-				txtPlayerNames.setForeground(Color.LIGHT_GRAY);
-				txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-				txtPlayerNames.setEditable(false);
-				txtPlayerNames.setBackground(Color.DARK_GRAY);
-				txtPlayerNames.setBounds(70, 6, 780, 43);
-				play.add(txtPlayerNames);*/
-
+			
 				for(int i =0;i<totalPeople; i++) {
 					System.out.println(playerArray.get(i));
 					conKUerorHandler.getBoard().createInfantry(login.addPlayers(totalPeople),playerArray.get(i));
