@@ -213,7 +213,7 @@ public class PlayingMode extends JLayeredPane {
 	            	btnArmy.setEnabled(false);
 	            	btnChance.setEnabled(false);
 	            	btnRoll.setEnabled(true);
-	                
+	                btnFinish.setEnabled(false);
 	                btnPickChance.setEnabled(false);
 	                btnTACard.setEnabled(false);
 	                btnSkip.setEnabled(false);
@@ -233,7 +233,7 @@ public class PlayingMode extends JLayeredPane {
 		            	btnArmy.setEnabled(true);
 		            	btnChance.setEnabled(true);
 		               
-		                
+		            	btnFinish.setEnabled(true);
 		                btnPickChance.setEnabled(true);
 		                btnTACard.setEnabled(true);
 		                btnSkip.setEnabled(true);
