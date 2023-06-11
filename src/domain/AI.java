@@ -26,7 +26,7 @@ public class AI {
         }
     }
 
-    public void attackAI() {
+    public void attackAI(int first, int second) {
         if (turn && !initialShare) {
             int fromIndex = generateNum(playerAI.getTerritoryList().size());
             int destIndex = generateNum(playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().size());
@@ -36,7 +36,7 @@ public class AI {
                 destIndex = generateNum(playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().size());
             }
             conKUerorHandler.attack(playerAI, playerAI.getTerritoryList().get(fromIndex),
-                    playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().get(destIndex), die); // Burası
+                    playerAI.getTerritoryList().get(fromIndex).getAdjacentTerritories().get(destIndex), first, second); // Burası
                                                                                                               // da
                                                                                                               // bağlanacak
         }

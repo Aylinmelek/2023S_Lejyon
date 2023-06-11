@@ -32,11 +32,16 @@ public void checkReachability(Territory territory) {
 		for (int i = 0; i < territory.adjacentTerritories.size(); i++) {
 			if (territory.adjacentTerritories.get(i).isEnabled) {
 				territory.reachability = true;
+				break;
+			}
+			else
+			{
+				territory.reachability = false;
 			}
 		}
 		if (territory.reachability) {
 			System.out.println(territory + " is reachable.");
-			territory.isEnabled = true;
+			//territory.isEnabled = true;
 		}
 		else {
 			System.out.println(territory + " is not reachable.");

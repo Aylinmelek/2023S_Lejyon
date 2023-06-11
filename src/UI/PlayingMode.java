@@ -32,6 +32,10 @@ public class PlayingMode extends JLayeredPane {
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
     JButton btnAttack = new JButton("Attack");
     JButton btnFortify = new JButton("Fortify");
+
+    JButton btnPlace = new JButton("Place Army");
+    JButton btnFinish = new JButton("Finish The Game");
+
     JButton btnMenu = new JButton("Menu");
     JTextArea txtCard = new JTextArea();
     
@@ -50,7 +54,7 @@ public class PlayingMode extends JLayeredPane {
 
     
     Die die = new Die();
-   
+    int roll1, roll2;
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
     ArrayList<Integer> compPlayerArray = new ArrayList<Integer>(); 
     int dieDisplayed,finalDieDisplayed;
@@ -81,7 +85,12 @@ public class PlayingMode extends JLayeredPane {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
 		handler.createMainDeck(10,10,handler.getBoard().deck);
+
+		btnRoll.setEnabled(false);
+		//handler.createTerCard(null, null, null, null, null, null, null);
+
 		setLayout(null);
+		
 	}
 	public void displayDie() {
         Thread rollThread = new Thread(() -> {
@@ -89,6 +98,7 @@ public class PlayingMode extends JLayeredPane {
             	//observer için ekledim
             	die.roll();
                 dieDisplayed = die.getDiceValue();
+                
                 //////
                 		//die.generateNum();
                 switch (dieDisplayed) {
@@ -107,7 +117,7 @@ public class PlayingMode extends JLayeredPane {
                     case 5:
                         dieLabel.setIcon(die5);
                         break;
-                    default:
+                    case 6:
                         dieLabel.setIcon(die6);
                         break;
                 }
@@ -119,9 +129,19 @@ public class PlayingMode extends JLayeredPane {
             }
             //observer için ekledim
             finalDieDisplayed = dieNumber;
+            if(roll1 == 0)
+            {
+            	roll1 = die.getDiceValue();
+            	System.out.println("Rolllllll1 : " + roll1);
+            }
+            else
+            {
+            	roll2 = die.getDiceValue();
+            	System.out.println("Rolllllll2 : " + roll2);
+            }
             ///
             		//die.generateNum();
-            switch (finalDieDisplayed) {
+            /*switch (finalDieDisplayed) {
                 case 1:
                     dieLabel.setIcon(die1);
                     break;
@@ -137,10 +157,10 @@ public class PlayingMode extends JLayeredPane {
                 case 5:
                     dieLabel.setIcon(die5);
                     break;
-                default:
+                case 6:
                     dieLabel.setIcon(die6);
                     break;
-            }
+            }*/
         });
         rollThread.start();
     }
@@ -181,24 +201,40 @@ public class PlayingMode extends JLayeredPane {
 	     add(btnAttack);
 	     btnFortify.setBounds(600, 430, 137, 36);
 	     add(btnFortify);
+	     btnPlace.setBounds(740, 430, 137, 36);
+	     add(btnPlace);
+	     btnFinish.setBounds(460, 497, 137, 36);
+	     add(btnFinish);
 
 	     
 	    
 	     GameFrame.play.btnAttack.addActionListener(new ActionListener() {
 		     	public void actionPerformed(ActionEvent e) {
-		     		
-					if(GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
+		     		btnTer.setEnabled(false);
+	            	btnArmy.setEnabled(false);
+	            	btnChance.setEnabled(false);
+	            	btnRoll.setEnabled(true);
+	                
+	                btnPickChance.setEnabled(false);
+	                btnTACard.setEnabled(false);
+	                btnSkip.setEnabled(false);
+	                btnFortify.setEnabled(false);
+		     		if(roll1 != 0 && roll2 !=0 && GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
 				     {
 						//get army count int army1 = territory.getArmyList().size()
 						int armyCountBefore = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, GameFrame.play.die);
 						int armyCountAfter = GameFrame.bmode.grid.territoryTo.getArmyList().size();
+						
+						System.out.println("roll1 : "+ roll1 + "roll2 : " + roll2);
+
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
 						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
 						repaint();
 						GameFrame.bmode.grid.territorySource = null;
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
+
 						// if 1. army 2.den farklıysa territoryto üstüne animation
 						
 						if (armyCountBefore > armyCountAfter) {
@@ -212,7 +248,24 @@ public class PlayingMode extends JLayeredPane {
 							bombLabel.setBounds(GameFrame.bmode.grid.firstChosenRow, GameFrame.bmode.grid.firstChosenColumn, 50, 50);
 			                bombLabel.setVisible(true);
 						}
+
+						btnTer.setEnabled(true);
+		            	btnArmy.setEnabled(true);
+		            	btnChance.setEnabled(true);
+		               
+		                
+		                btnPickChance.setEnabled(true);
+		                btnTACard.setEnabled(true);
+		                btnSkip.setEnabled(true);
+		                btnFortify.setEnabled(true);
+		                btnRoll.setEnabled(false);
+						
+		                roll1 = 0;
+						roll2 = 0;
+
 				     }
+		     		GameFrame.bmode.grid.updateGridText();
+					
 		     	}
 		     });
 	     GameFrame.play.btnFortify.addActionListener(new ActionListener() {
@@ -228,6 +281,42 @@ public class PlayingMode extends JLayeredPane {
 						GameFrame.bmode.grid.territoryTo = null;
 						numFortify.setEnabled(false);
 				     }
+					GameFrame.bmode.grid.updateGridText();
+		     	}
+		     });
+	     GameFrame.play.btnPlace.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		
+					if(GameFrame.bmode.grid.territorySource != null)
+				     {
+						handler.placeArmy(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, "Infantry");
+						GameFrame.bmode.grid.updateGridText();
+						GameFrame.bmode.grid.territorySource = null;
+				     }
+					GameFrame.bmode.grid.updateGridText();
+		     	}
+		     });
+	     GameFrame.play.btnFinish.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		int active;
+		     		int max = 0;
+		     		for(int i = 0; i< GameFrame.playerArray.size(); i++)
+		     		{
+		     			active = GameFrame.playerArray.get(i).territoryList.size();
+		     			if(active > max)
+		     			{
+		     				max = active;
+		     			}
+		     		}
+		     		for(int a = 0; a< GameFrame.playerArray.size(); a++)
+		     		{
+		     			if(max == GameFrame.playerArray.get(a).territoryList.size())
+		     			{
+		     				System.out.println("Winner = " + GameFrame.playerArray.get(a));
+		     			}
+		     		}
+		     		//Grid Enable olacak
+					
 		     	}
 		     });
 	     
@@ -252,6 +341,33 @@ public class PlayingMode extends JLayeredPane {
 	            public void actionPerformed(ActionEvent e) {
 	            	//kimin turnü oldugu yazsın atarken
 	                displayDie();
+	                if(roll1 != 0 && roll2 !=0 && GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null)
+				     {
+						
+						System.out.println("roll1 : "+ roll1 + "roll2 : " + roll2);
+						handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+						repaint();
+						GameFrame.bmode.grid.territorySource = null;
+						GameFrame.bmode.grid.territoryTo = null;
+						numFortify.setEnabled(false);
+						btnTer.setEnabled(true);
+		            	btnArmy.setEnabled(true);
+		            	btnChance.setEnabled(true);
+		               
+		                
+		                btnPickChance.setEnabled(true);
+		                btnTACard.setEnabled(true);
+		                btnSkip.setEnabled(true);
+		                btnFortify.setEnabled(true);
+		                btnRoll.setEnabled(false);
+						
+		                roll1 = 0;
+						roll2 = 0;
+				     }
+	                GameFrame.bmode.grid.updateGridText();
+					
 	                
 	            }
 	        });

@@ -52,7 +52,10 @@ public class Territory implements Serializable{
  public void setColor(Color color) {
 	this.color = color;
 }
-
+public boolean getImmune()
+{
+	return this.isImmune;
+}
 public Territory() {
 
  }
@@ -93,6 +96,10 @@ public void matchContinent(Board board)
 		System.out.println("6'a yerlesti");
 	}
 
+}
+public void matchMap(Board board)
+{
+	board.map.getTerritories().add(this);
 }
 
 

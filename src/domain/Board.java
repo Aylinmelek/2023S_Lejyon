@@ -25,6 +25,7 @@ public class Board {
 	public GameActions gameActions = new GameActions();
 	public Player player = new Player();
 	public ArrayList<Player> playerList = new ArrayList<Player>();
+	public Map map = new Map();
 	
 	public Board() {
 		die = new Die();
@@ -45,7 +46,10 @@ public class Board {
 		return die;
 	}
 	
-
+	public void addMap(Territory territory)
+	{
+		this.map.getTerritories().add(territory);
+	}
 	
 	public int getDiceValue() {
 		return die.getDiceValue();
@@ -68,7 +72,10 @@ public class Board {
 	public void createInfantry(int number, Player player) {
 		infCreator.createInfantry(number,player);
 	}
-
+	public void placeArmy(Player player, Territory territory, String type)
+	{
+		player.placeArmy(territory, type);
+	}
 	public ArrayList<Player> createPlayer(int playerCount, int AICount) {
 		return playerCreator.createPlayer(playerCount,AICount);
 	}
@@ -89,9 +96,9 @@ public class Board {
 		gameActions.createTerritory(terCount);
 	}
 
-	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
+	public void attack(Player player, Territory territoryFrom, Territory territoryTo, int roll1, int roll2) {
 
-		gameActions.attack(player, territoryFrom, territoryTo, die);
+		gameActions.attack(player, territoryFrom, territoryTo, roll1, roll2);
 
 	}
 	public void giveChanceCard(Player player)
@@ -127,6 +134,10 @@ public class Board {
 	{
 		gameActions.disaster(continent, player, number);
 	}
+	public void immunize(Territory territory)
+    {
+    	gameActions.immunize(territory);
+    }
 
 	public void fortify(Player player, Territory territoryFrom, Territory territoryTo, Integer count) {
 

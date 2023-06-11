@@ -29,7 +29,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
     JTextArea txtPlayerTurn = new JTextArea();
     //public PlayingMode playMode = new PlayingMode();
 	public boolean isAttack = false;
-	public Territory territoryTo, territorySource;
+	public Territory territoryTo, territorySource, territoryTo2, territorySource2;
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
 	
@@ -81,6 +81,19 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 			
 		
 	}
+	public void updateGridText()
+	{
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLUMNS; col++) {
+				Territory territory = Territory.isTerritory(row, col);
+				if (territory != null) {
+					this.gridColors[row][col] = territory.getColor();
+					String armyNumStr = Integer.toString(territory.getArmyList().size());
+					this.gridText[row][col] = armyNumStr;
+				}
+			}
+		}
+	}
 
 	private void initializeGridAndText() {
 		for (int row = 0; row < ROWS; row++) {
@@ -90,31 +103,33 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				Territory territory = Territory.isTerritory(row, col);
 				if (territory != null) {
 					this.gridColors[row][col] = territory.getColor();
-					this.gridText[row][col] = territory.getText();
+					String armyNumStr = Integer.toString(territory.getArmyList().size());
+					this.gridText[row][col] = armyNumStr;
 					territory.matchContinent(GameFrame.play.handler.getBoard());
+					territory.matchMap(GameFrame.play.handler.getBoard());
 				}
 				
 				//Set Link Implementation to Map
 				if(row > 1 && Territory.isTerritory(row-1, col) != null  && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row-1, col));
-					Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
 				}
 				if(col > 1 && Territory.isTerritory(row, col-1) != null  && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col-1));
-					Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
 				}
 				
 				if(Territory.isTerritory(row+1, col) != null && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row+1, col));
-					Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
 				}
 				if(Territory.isTerritory(row, col+1) != null  && Territory.isTerritory(row, col) != null)
 				{
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col+1));
-					Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
+					//Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
 				}
 				
 			}
@@ -237,9 +252,41 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				repaint();
 				//index = territoryIs.getIndex();
 				//System.out.println("index" + index);
-				if (selectedTer != null) {
+				if (selectedTer != null && !GameFrame.bmode.setLink) {
 					selectedTer.setEnabled(false);
 				}
+				if(GameFrame.bmode.setLink)
+				{
+					if(territorySource2 == null)
+					{
+						gridColors[row][col] = firstChosen;
+						firstChosenRow = row;
+						firstChosenColumn = col;
+						repaint();
+						territorySource2 = Territory.isTerritory(row, col);
+						System.out.println("territorySource :"+territorySource);
+					}
+					else {
+						gridColors[row][col] = secondChosen;
+						secondChosenRow = row;
+						secondChosenColumn = col;
+						repaint();
+						territoryTo2 = Territory.isTerritory(row, col);
+						System.out.println("territoryTo :"+territoryTo);
+						//territorySource.setLink(territoryTo);
+						if(!territoryTo2.getAdjacentTerritories().contains(territorySource2))
+						{
+							territoryTo2.setLink(territorySource2);
+							System.out.println(territoryTo2.getAdjacentTerritories().size());
+							System.out.println("Linklendiiii");
+							territoryTo2 = null;
+							territorySource2 = null;
+							GameFrame.bmode.setLink = false;
+						}
+						
+					}
+				}
+				
 			}
 		}
 		 
@@ -270,17 +317,44 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 					ArrayList<Player> players = GameFrame.playerArray;
 
-		          	players.get(playerIndex).chooseATerritory(selectedTer);
+
+				//ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
+					/*System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
+					ArrayList<Player> players = GameFrame.playerArray;*/
+
+
+					
+				//ArrayList<Player> players = GameFrame.playerArray;
+					
+                
+
+                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                	//Infantry inf = new Infantry();
+					System.out.println("Territory enable mý?" + selectedTer.isEnabled());
+                	players.get(playerIndex).chooseATerritory(selectedTer);
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
-                  	System.out.println(players.get(playerIndex));
-           	      	System.out.println(players.get(playerIndex));
+                	updateGridText();
+                	
+                	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
+                	//System.out.println(players.get(playerIndex).getName());
+                	System.out.println(players.get(playerIndex));
+           	        
+           	     	//GameFrame.play.add(txtPlayerTurn);
+           	     
+
+                	System.out.println(players.get(playerIndex));
+
                 	
                     System.out.println(selectedTer);
                     System.out.println(players.get(playerIndex).getInfantryList().size());
-                    System.out.println(selectedTer.getArmyList().size());//aynı territory çağrıldığında size değişmiyor, ancak 4 player yani totalde 4 army eklendiğinde size 1 artıyor
+                    System.out.println(selectedTer.getArmyList().size());//aynÄ± territory Ã§aÄrÄ±ldÄ±ÄÄ±nda size deÄiÅmiyor, ancak 4 player yani totalde 4 army eklendiÄinde size 1 artÄ±yor
                     
-                    
-                    if (playerIndex==(players.size()-1)) {
+
+                    if(selectedTer.getOwner().equals(players.get(playerIndex)))
+                    {
+                    	if (playerIndex==(players.size()-1)) {
+                    		//GameFrame.sharing.getTemp()) {
+
                     	System.out.println("playersList finished");
                     	playerIndex=0;
                     }
@@ -297,9 +371,37 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                     	}
                     }
                     if(infFlag) {
-                    	//burada shuffle çağrılacak
-                    }                    
-      			}
+                    	//burada shuffle Ã§aÄrÄ±lacak
+
+                    }
+                    }
+                    
+
+                    
+                    
+                    //System.out.println("player: "+ players.get(playerIndex));
+                    
+                
+                
+                /*
+                for (int i = 0; i<ind; i++) {
+                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                	Infantry inf2 = new Infantry();
+                	players.get(i).chooseATerritory(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()));
+                	
+                	players.get(i).placeArmy(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()), inf2);
+                    
+                    System.out.println(players.get(i).getTerritoryList().get(0));
+                    System.out.println("-------");
+                    System.out.println(GameFrame.bmode.grid.getSelectedTer());
+                }*/
+                
+                
+				}
+			
+			
+			
+
 			
 			}
 				else {
@@ -319,6 +421,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				repaint();
 				territorySource = Territory.isTerritory(row, col);
 				System.out.println("territorySource :"+territorySource);
+				System.out.println("Territory enable mý?" + territorySource.isEnabled());
 			}
 			else {
 				gridColors[row][col] = secondChosen;
@@ -329,6 +432,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				System.out.println("territoryTo :"+territoryTo);
 				//territorySource.setLink(territoryTo);
 				GameFrame.play.numFortify.setEnabled(true);
+				GameFrame.play.btnRoll.setEnabled(true);
 				
 			}
 				

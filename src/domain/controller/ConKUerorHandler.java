@@ -94,6 +94,10 @@ public ConKUerorHandler() {
 	{
 		board.giveChanceCard(player);
 	}
+	public void placeArmy(Player player, Territory territory, String type)
+	{
+		board.placeArmy(player,territory,type);
+	}
 	public void reinforce(Die die, Territory territory, Player player) 
 	{
 		board.reinforce(die, territory, player);
@@ -113,6 +117,10 @@ public ConKUerorHandler() {
 	public void disaster(Continent continent, Player player, int number)
 	{
 		board.disaster(continent, player, number);
+	}
+	public void immunize(Territory territory)
+	{
+		board.immunize(territory);
 	}
 
 	
@@ -137,9 +145,9 @@ public ConKUerorHandler() {
 		board.createTerritory(terCount);
 	}
 
-	public void attack(Player player, Territory territoryFrom, Territory territoryTo, Die die) {
+	public void attack(Player player, Territory territoryFrom, Territory territoryTo, int roll1, int roll2) {
 
-		board.attack(player, territoryFrom, territoryTo, die);
+		board.attack(player, territoryFrom, territoryTo, roll1, roll2);
 
 	}
 
