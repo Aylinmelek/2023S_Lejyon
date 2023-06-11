@@ -21,12 +21,12 @@ import domain.Player;
 import domain.controller.ConKUerorHandler;
 
 public class PlayingMode extends JLayeredPane {
-
 	JButton btnTer = new JButton("Territory Cards");
 	JButton btnArmy = new JButton("Army Cards");
 	JButton btnChance = new JButton("Chance Cards");
 	JButton btnRoll = new JButton("ROLL DIE");
 	JButton btnSkip = new JButton("SKIP/END TURN");
+	JButton btnInstr = new JButton("How to Play");
 	JButton btnPickChance = new JButton("Pick a Chance Card");
 	JButton btnTACard = new JButton("Pick a Territory/Army Card");
 	JButton btnAttack = new JButton("Attack");
@@ -74,9 +74,11 @@ public class PlayingMode extends JLayeredPane {
 	public PlayingMode() {
 		super();
 		initialize();
+		
 		// addElements();
 	}
 
+	
 	public void initialize() {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
@@ -176,11 +178,23 @@ public class PlayingMode extends JLayeredPane {
 		add(btnAttack);
 		btnFortify.setBounds(600, 430, 137, 36);
 		add(btnFortify);
-		btnPlace.setBounds(740, 430, 137, 36);
+		btnPlace.setBounds(737, 430, 137, 36);
 		add(btnPlace);
-		btnFinish.setBounds(460, 497, 137, 36);
+		btnFinish.setBounds(737, 497, 137, 46);
 		add(btnFinish);
 
+		
+		btnInstr.setBounds(587, 497, 137, 46);
+		add(btnInstr);
+		btnInstr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlayingInstructions instr = new PlayingInstructions();
+				instr.setVisible(true);
+
+			}
+		});
+
+		
 		GameFrame.play.btnAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnTer.setEnabled(false);
@@ -298,7 +312,7 @@ public class PlayingMode extends JLayeredPane {
 		btnChance.setBounds(27, 497, 118, 29);
 		add(btnChance);
 
-		dieLabel.setBounds(471, 450, 80, 80);
+		dieLabel.setBounds(471, 470, 80, 80);
 		add(dieLabel);
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
