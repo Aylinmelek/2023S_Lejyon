@@ -32,6 +32,8 @@ public class PlayingMode extends JLayeredPane {
     JButton btnTACard = new JButton("Pick a Territory/Army Card");
     JButton btnAttack = new JButton("Attack");
     JButton btnFortify = new JButton("Fortify");
+    JButton btnPlace = new JButton("Place Army");
+    JButton btnFinish = new JButton("Finish The Game");
     JButton btnMenu = new JButton("Menu");
     JTextArea txtCard = new JTextArea();
     
@@ -198,6 +200,10 @@ public class PlayingMode extends JLayeredPane {
 	     add(btnAttack);
 	     btnFortify.setBounds(600, 430, 137, 36);
 	     add(btnFortify);
+	     btnPlace.setBounds(740, 430, 137, 36);
+	     add(btnPlace);
+	     btnFinish.setBounds(460, 497, 137, 36);
+	     add(btnFinish);
 
 	     
 	    
@@ -255,6 +261,41 @@ public class PlayingMode extends JLayeredPane {
 						numFortify.setEnabled(false);
 				     }
 					GameFrame.bmode.grid.updateGridText();
+		     	}
+		     });
+	     GameFrame.play.btnPlace.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		
+					if(GameFrame.bmode.grid.territorySource != null)
+				     {
+						handler.placeArmy(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, "Infantry");
+						GameFrame.bmode.grid.updateGridText();
+						GameFrame.bmode.grid.territorySource = null;
+				     }
+					GameFrame.bmode.grid.updateGridText();
+		     	}
+		     });
+	     GameFrame.play.btnFinish.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		int active;
+		     		int max = 0;
+		     		for(int i = 0; i< GameFrame.playerArray.size(); i++)
+		     		{
+		     			active = GameFrame.playerArray.get(i).territoryList.size();
+		     			if(active > max)
+		     			{
+		     				max = active;
+		     			}
+		     		}
+		     		for(int a = 0; a< GameFrame.playerArray.size(); a++)
+		     		{
+		     			if(max == GameFrame.playerArray.get(a).territoryList.size())
+		     			{
+		     				System.out.println("Winner = " + GameFrame.playerArray.get(a));
+		     			}
+		     		}
+		     		//Grid Enable olacak
+					
 		     	}
 		     });
 	     
