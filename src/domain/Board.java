@@ -72,7 +72,10 @@ public class Board {
 	public void createInfantry(int number, Player player) {
 		infCreator.createInfantry(number,player);
 	}
-
+	public void placeArmy(Player player, Territory territory, String type)
+	{
+		player.placeArmy(territory, type);
+	}
 	public ArrayList<Player> createPlayer(int playerCount, int AICount) {
 		return playerCreator.createPlayer(playerCount,AICount);
 	}

@@ -94,6 +94,10 @@ public ConKUerorHandler() {
 	{
 		board.giveChanceCard(player);
 	}
+	public void placeArmy(Player player, Territory territory, String type)
+	{
+		board.placeArmy(player,territory,type);
+	}
 	public void reinforce(Die die, Territory territory, Player player) 
 	{
 		board.reinforce(die, territory, player);

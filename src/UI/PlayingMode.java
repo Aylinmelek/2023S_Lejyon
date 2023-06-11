@@ -265,7 +265,7 @@ public class PlayingMode extends JLayeredPane {
 		     		
 					if(GameFrame.bmode.grid.territorySource != null)
 				     {
-						GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).placeArmy(GameFrame.bmode.grid.territorySource, "Infantry");
+						handler.placeArmy(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex), GameFrame.bmode.grid.territorySource, "Infantry");
 						GameFrame.bmode.grid.updateGridText();
 						GameFrame.bmode.grid.territorySource = null;
 				     }
