@@ -3,6 +3,7 @@ package UI;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.TimerTask;
 
 import javax.swing.*;
 
@@ -12,7 +13,7 @@ import domain.Player;
 import domain.Territory;
 import domain.controller.ConKUerorHandler;
 
-public class Grid extends JPanel implements MouseListener {
+public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 
 	public static final int ROWS = 17;
@@ -31,8 +32,9 @@ public class Grid extends JPanel implements MouseListener {
 	public Territory territoryTo, territorySource, territoryTo2, territorySource2;
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
-    
-
+	
+	private Point startPoint;
+    private Point endPoint;
 	
 	
 	public boolean isIndFlag() {
@@ -65,16 +67,17 @@ public class Grid extends JPanel implements MouseListener {
 		
 		this.gridColors = new Color[ROWS][COLUMNS];
 		this.gridText = new String[ROWS][COLUMNS];
-
 		initializeGridAndText();
 		setupUI();
 		addMouseListener(this);
+		addMouseMotionListener(this);
 	}
 
 	private void setupUI() {
 		int width = COLUMNS * CELL_SIZE + GRID_LINE_WIDTH;
 		int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
-		setSize(width, height);
+		setLayout(null);
+		setSize(width, height);		
 	}
 	public void updateGridText()
 	{
@@ -134,6 +137,23 @@ public class Grid extends JPanel implements MouseListener {
 	public void paint(Graphics g) {
 		drawGridLines(g);
 		drawCells(g);
+		if (startPoint != null && endPoint != null) {
+			if (GameFrame.play.playMode == true) {
+				
+				Graphics2D g2d = (Graphics2D) g;
+	            g2d.setStroke(new BasicStroke(3));
+
+	            int arrowHeadSize = 12;
+
+	            g2d.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+
+	            Polygon arrowHead = new Polygon();
+	            arrowHead.addPoint(endPoint.x, endPoint.y);
+	            arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y - arrowHeadSize);
+	            arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y + arrowHeadSize);
+	            g2d.fillPolygon(arrowHead);
+			}
+        }
 	}
 
 
@@ -152,30 +172,44 @@ public class Grid extends JPanel implements MouseListener {
 	private void drawCells(Graphics g) {
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLUMNS; col++) {
+			
 				g.setColor(gridColors[row][col]);
 				g.fillRect(col * CELL_SIZE + GRID_LINE_WIDTH, row * CELL_SIZE + GRID_LINE_WIDTH,
 						CELL_SIZE - GRID_LINE_WIDTH, CELL_SIZE - GRID_LINE_WIDTH);
 				g.setColor(Color.black);
 				g.drawString(gridText[row][col], col * CELL_SIZE + GRID_LINE_WIDTH + 20,
 						row * CELL_SIZE + GRID_LINE_WIDTH + 25);
+				
 			}
 		}
 	}
-	/*
-	public void callTerr(Territory terr) {
-		if (terr != null) {
-			
-			
-			terCard.setTerritoryCard(getColorName(terr.getColor()), terr.getText(), index, 20, 100);
-			//terCard.setVisible(true);
-			
-		}
-		
-	
+		int timer_count = 0;
+	Timer timer;
+	public void startColorChangeTimer() {
+		timer = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (timer_count < 30) { // Change colors for 3 seconds (30 * 0.1 seconds)
+                    if (timer_count % 2 == 0) {
+                        changeGridColors(Color.BLACK);
+                    } else {
+                        changeGridColors(Color.WHITE);
+                    }
+                    timer_count++;
+                    
+                    repaint();
+                } else {
+                    timer.stop(); // Stop the timer after 3 seconds
+                }
+            }
+        });
 
-		return terr;
-	}*/
+        timer.start();
+    }
 	
+	public void changeGridColors(Color color) {
+		gridColors[row][col] = color;
+	}	
 	public Territory getSelectedTer() {
 		return selectedTer;
 	}
@@ -184,12 +218,31 @@ public class Grid extends JPanel implements MouseListener {
 		this.selectedTer = selectedTer;
 	}
 
+
+
+  
+    public void mouseMoved(MouseEvent e) {
+        if (startPoint != null) {
+            endPoint = e.getPoint();
+            repaint();
+        }
+    }
+	
 	public void mouseClicked(MouseEvent e) {
 		infFlag = true;
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
 		//System.out.println(row + col);
 		selectedTer = Territory.isTerritory(row, col);
+		
+		 if (startPoint == null) {
+	            startPoint = e.getPoint();
+	        } else {
+	            endPoint = e.getPoint();
+	            repaint();
+	            startPoint = null;
+	            endPoint = null;
+	        }
 		
 		 if (GameFrame.bmode.build) {
 			if (gridColors[row][col] != blue) {
@@ -234,6 +287,7 @@ public class Grid extends JPanel implements MouseListener {
 				
 			}
 		}
+		 
 
 		  if (GameFrame.sharing.init) {
 			 
@@ -247,25 +301,20 @@ public class Grid extends JPanel implements MouseListener {
 				if (selectedTer != null) {
 					
 					
-					terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index, 20, 100);
+					//terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index, 20, 100);
+					terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index);
 					//terCard.setVisible(true);
 					
 				}
 				index = selectedTer.getIndex();
-				
-				
-                //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
-				
 				if(!GameFrame.sharing.getButton().isEnabled()) {
 					if(isIndFlag()) {
-
-						//playerIndex=GameFrame.sharing.getInd();
-
 						playerIndex=0;
 						setIndFlag(false);
 					}
 
 					ArrayList<Player> players = GameFrame.playerArray;
+
 
 				//ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
 					/*System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
@@ -279,7 +328,7 @@ public class Grid extends JPanel implements MouseListener {
 
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
-					System.out.println("Territory enable m�?" + selectedTer.isEnabled());
+					System.out.println("Territory enable mý?" + selectedTer.isEnabled());
                 	players.get(playerIndex).chooseATerritory(selectedTer);
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
                 	updateGridText();
@@ -292,16 +341,18 @@ public class Grid extends JPanel implements MouseListener {
            	     
 
                 	System.out.println(players.get(playerIndex));
+
                 	
                     System.out.println(selectedTer);
-                	//players.get(i).chooseATerritory(null)
                     System.out.println(players.get(playerIndex).getInfantryList().size());
-                    System.out.println(selectedTer.getArmyList().size());//aynı territory çağrıldığında size değişmiyor, ancak 4 player yani totalde 4 army eklendiğinde size 1 artıyor
+                    System.out.println(selectedTer.getArmyList().size());//aynÄ± territory Ã§aÄrÄ±ldÄ±ÄÄ±nda size deÄiÅmiyor, ancak 4 player yani totalde 4 army eklendiÄinde size 1 artÄ±yor
                     
+
                     if(selectedTer.getOwner().equals(players.get(playerIndex)))
                     {
                     	if (playerIndex==(players.size()-1)) {
                     		//GameFrame.sharing.getTemp()) {
+
                     	System.out.println("playersList finished");
                     	playerIndex=0;
                     }
@@ -312,14 +363,14 @@ public class Grid extends JPanel implements MouseListener {
                     	
                     }
                     System.out.println("-------");
-                    //System.out.println("playerIndex: "+ playerIndex);
                     for(int i=0; i<players.size(); i++) {
                     	if(players.get(i).getInfantryList().size()!=0) {
                     		infFlag = false;
                     	}
                     }
                     if(infFlag) {
-                    	//burada shuffle çağrılacak
+                    	//burada shuffle Ã§aÄrÄ±lacak
+
                     }
                     }
                     
@@ -348,21 +399,10 @@ public class Grid extends JPanel implements MouseListener {
 			
 			
 			
-			
+
 			
 			}
-				
-				/*if (terr != null) {
-					
-					
-					terCard.setTerritoryCard(getColorName(terr.getColor()), terr.getText(), index, 20, 100);
-					//terCard.setVisible(true);
-					
-				}
-				index = terr.getIndex();
-			} */
-		  
-			else {
+				else {
 				System.out.println("choose again.");
 			}
 		}
@@ -371,34 +411,7 @@ public class Grid extends JPanel implements MouseListener {
 
 		else if (GameFrame.play.playMode) {
 			System.out.println("PLAYMODE");
-			//playerları create edip turn turn ayırmak lazım
-			//sectigin terr e değiştir isterritory
-			//territorydeki asker sayısını goster
-			
-			/*
-			Territory selectedTerr = Territory.territories[row][col];
-			terrsSelected.add(Territory.territories[row][col]);
-			System.out.println(player.canAttackTerritory(terrsSelected.get(0), selectedTerr));
-			// once kendi territorymi secip untill baska kendi territorye basana kadar attack territorysi secebiliyorum. 
-			if (player.getTerritoryList().contains(selectedTerr) && player.canAttackTerritory(terrsSelected.get(0), selectedTerr)) {
-				gridColors[row][col] = Color.GRAY;
-				//asker 
-				repaint();
-				System.out.println("size" + terrsSelected.get(0).getAdjacentTerritories().size());
-					for (int i = 0; i<terrsSelected.get(0).getAdjacentTerritories().size(); i++) {
-						if (selectedTerr == terrsSelected.get(0).getAdjacentTerritories().get(i)) {
-							gridColors[row][col] = Color.BLACK;
-							repaint();
-							//asker koy kac asker koydugunu display et
-							
-							//if kazanırsan 
-							//else terr rengi + asker sayısı vs vs 
-								
-						}
-					}
-				}		
-			//rengini değiştirme*/
-			if(territorySource == null)
+				if(territorySource == null)
 			{
 				gridColors[row][col] = firstChosen;
 				firstChosenRow = row;
@@ -406,7 +419,7 @@ public class Grid extends JPanel implements MouseListener {
 				repaint();
 				territorySource = Territory.isTerritory(row, col);
 				System.out.println("territorySource :"+territorySource);
-				System.out.println("Territory enable m�?" + territorySource.isEnabled());
+				System.out.println("Territory enable mý?" + territorySource.isEnabled());
 			}
 			else {
 				gridColors[row][col] = secondChosen;
@@ -420,15 +433,13 @@ public class Grid extends JPanel implements MouseListener {
 				GameFrame.play.btnRoll.setEnabled(true);
 				
 			}
-			
-			
 				
 				
-				
-			
 		}
 		
 	}
+	
+	
 
 	public String getColorName(Color color) {
 		if (color.equals(Color.BLACK)) {
@@ -459,22 +470,23 @@ public class Grid extends JPanel implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+			}
 
 	@Override 
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		
 	}
 
 }
