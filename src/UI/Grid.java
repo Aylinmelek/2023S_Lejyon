@@ -3,6 +3,7 @@ package UI;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.TimerTask;
 
 import javax.swing.*;
 
@@ -61,18 +62,11 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 	Color firstChosen = new Color(171,200,116);
 	Color secondChosen = new Color(111,130,80);
 	Color blue = new Color(0, 0, 155);
-	ImageIcon deneme = new ImageIcon(this.getClass().getResource("/die1.png"));
 
 	public Grid() {
 		
 		this.gridColors = new Color[ROWS][COLUMNS];
 		this.gridText = new String[ROWS][COLUMNS];
-		
-		/*JLabel label = new JLabel("Your Label Text");
-        label.setBounds(100, 100, 40, 40);
-        setComponentZOrder(label, 0);
-        add(label);*/
-
 		initializeGridAndText();
 		setupUI();
 		addMouseListener(this);
@@ -84,22 +78,8 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
 		setLayout(null);
 		setSize(width, height);
-		/*ImageIcon deneme = new ImageIcon(this.getClass().getResource("/die1.png"));
-		JLabel labeldeneme = new JLabel(deneme);
-		//labeldeneme.setBounds(100,100,40,40);
-		setComponentZOrder(labeldeneme, 0);
-		add(labeldeneme);
+			
 		
-		JLabel labeldeneme2 = new JLabel("Label");
-	    labeldeneme2.setBounds(100, 100, 40, 40);
-	    setComponentZOrder(labeldeneme2, 0);
-	    // Add the label to the panel
-	    add(labeldeneme2);*/
-	    
-		repaint();
-		
-		
-         
 	}
 
 	private void initializeGridAndText() {
@@ -179,6 +159,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 	private void drawCells(Graphics g) {
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLUMNS; col++) {
+			
 				g.setColor(gridColors[row][col]);
 				g.fillRect(col * CELL_SIZE + GRID_LINE_WIDTH, row * CELL_SIZE + GRID_LINE_WIDTH,
 						CELL_SIZE - GRID_LINE_WIDTH, CELL_SIZE - GRID_LINE_WIDTH);
@@ -186,16 +167,36 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				g.drawString(gridText[row][col], col * CELL_SIZE + GRID_LINE_WIDTH + 20,
 						row * CELL_SIZE + GRID_LINE_WIDTH + 25);
 				
-				if (row == 2 && col == 3) { // Customize the row and column as needed
-	                JLabel label = new JLabel(deneme);
-	                label.setBounds(col * CELL_SIZE + GRID_LINE_WIDTH, row * CELL_SIZE + GRID_LINE_WIDTH,
-	                        CELL_SIZE - GRID_LINE_WIDTH, CELL_SIZE - GRID_LINE_WIDTH);
-	                add(label);
-	            }
 			}
 		}
 	}
+		int timer_count = 0;
+	Timer timer;
+	public void startColorChangeTimer() {
+		timer = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (timer_count < 30) { // Change colors for 3 seconds (30 * 0.1 seconds)
+                    if (timer_count % 2 == 0) {
+                        changeGridColors(Color.BLACK);
+                    } else {
+                        changeGridColors(Color.WHITE);
+                    }
+                    timer_count++;
+                    
+                    repaint();
+                } else {
+                    timer.stop(); // Stop the timer after 3 seconds
+                }
+            }
+        });
+
+        timer.start();
+    }
 	
+	public void changeGridColors(Color color) {
+		gridColors[row][col] = color;
+	}	
 	public Territory getSelectedTer() {
 		return selectedTer;
 	}
@@ -241,6 +242,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				}
 			}
 		}
+		 
 
 		  if (GameFrame.sharing.init) {
 			 
@@ -329,6 +331,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				GameFrame.play.numFortify.setEnabled(true);
 				
 			}
+				
 				
 		}
 		

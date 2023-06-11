@@ -138,47 +138,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                
             }
-            //burası yukarıda yapılanın aynısı değil mi? Burası silinince de çalışıyor.
-            //observer için ekledim
-           /* finalDieDisplayed = dieNumber;
-            //
-            switch (finalDieDisplayed) {
-            
-                case 1:
-                	currentIcon = die1;
-                    dieLabel.setIcon(die1);
-                    break;
-                case 2:
-                	currentIcon = die2;
-                    dieLabel.setIcon(die2);
-                    break;
-                case 3:
-                	currentIcon = die3;
-                    dieLabel.setIcon(die3);
-                    break;
-                case 4:
-                	currentIcon = die4;
-                    dieLabel.setIcon(die4);
-                    break;
-                case 5:
-                	currentIcon = die5;
-                    dieLabel.setIcon(die5);
-                    break;
-                default:
-                	currentIcon = die6;
-                    dieLabel.setIcon(die6);
-                    break;
-            }
-            try { //üstteki try catch'in aynısı, buraya eklemeyince 2. switch lere gelmediğini fark ettim
-            	//sorun olursa silinebilir.
-                Thread.sleep(100); // Adjust the delay as needed
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
-            
-
         });
        
         rollThread.start();

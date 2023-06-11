@@ -81,8 +81,8 @@ public class TerrCardFrame extends JFrame {
 		add(btnFifth);
 		btnSixth.setBounds(260, 390, 137, 36);
 		add(btnSixth);
-
-	}
+    }
+    
     public void addButtonActListener() {
 		btnFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

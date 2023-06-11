@@ -56,17 +56,10 @@ public class PlayingMode extends JLayeredPane {
     int dieDisplayed,finalDieDisplayed;
     int dieNumber;
  
-    //observer için ekledim
-    //Board board_play = new Board();
-    //ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-    
-    //InitSharing initSharing = new InitSharing(conKUerorHandler);
-    ////////////
-    ImageIcon bombIcon = new ImageIcon(this.getClass().getResource("/die1.png"));
+       ImageIcon bombIcon = new ImageIcon(this.getClass().getResource("/die1.png"));
     JLabel bombLabel;
     
 
-	//TerrCardFrame territoryCard = 
 	
 	 ImageIcon die1 = new ImageIcon(this.getClass().getResource("/die1.png"));
 	 ImageIcon die2 = new ImageIcon(this.getClass().getResource("/die2.png"));
@@ -210,6 +203,7 @@ public class PlayingMode extends JLayeredPane {
 						
 						if (armyCountBefore > armyCountAfter) {
 							System.out.println("değişuk");
+							GameFrame.bmode.grid.startColorChangeTimer();
 							bombLabel.setBounds(GameFrame.bmode.grid.secondChosenRow, GameFrame.bmode.grid.secondChosenColumn, 50, 50);
 			                bombLabel.setVisible(true);
 						}
