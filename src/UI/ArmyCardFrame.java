@@ -50,12 +50,6 @@ public class ArmyCardFrame extends JFrame {
 	private JLabel[] labels = new JLabel[NUM_CARDS];
 	private JTextArea[] numbers = new JTextArea[NUM_CARDS];
 
-	/*
-	 * JComboBox<Integer> cavalryNum = new JComboBox<Integer>(); JComboBox<Integer>
-	 * infantryNum = new JComboBox<Integer>(); JComboBox<Integer> artilleryNum = new
-	 * JComboBox<Integer>();
-	 */
-
 	JPanel tradePanel = new JPanel();
 	ArrayList<JButton> txtArmies = new ArrayList<JButton>();
 

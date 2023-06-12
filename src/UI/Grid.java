@@ -26,7 +26,6 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 	private boolean infFlag;
 
 	JTextArea txtPlayerTurn = new JTextArea();
-	// public PlayingMode playMode = new PlayingMode();
 	public boolean isAttack = false;
 	public Territory territoryTo, territorySource, territoryTo2, territorySource2;
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
@@ -47,13 +46,11 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 	TerrCardFrame terCard = new TerrCardFrame();
 	public Territory selectedTer;
-	// Player player = new Player();
 
 	Territory territoryFrom;
 	ArrayList<Territory> terrsSelected = new ArrayList<Territory>();
 	public int col, row;
 
-	// Territory territoryIs = Territory.isTerritory(row, col);
 	Color firstChosen = new Color(171, 200, 116);
 	Color secondChosen = new Color(111, 130, 80);
 	Color blue = new Color(0, 0, 155);
@@ -81,11 +78,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				Territory territory = Territory.isTerritory(row, col);
 				if (territory != null) {
 					if (territory.isEnabled()) {
-						/*
-						 * if(this.gridColors[row][col] != Color.CYAN) { this.gridColors[row][col] =
-						 * territory.getColor(); }
-						 */
-
+						
 						String armyNumStr = Integer.toString(territory.getArmyList().size());
 						this.gridText[row][col] = armyNumStr;
 					}
@@ -112,20 +105,16 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				// Set Link Implementation to Map
 				if (row > 1 && Territory.isTerritory(row - 1, col) != null && Territory.isTerritory(row, col) != null) {
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row - 1, col));
-					// Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
 				}
 				if (col > 1 && Territory.isTerritory(row, col - 1) != null && Territory.isTerritory(row, col) != null) {
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col - 1));
-					// Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
 				}
 
 				if (Territory.isTerritory(row + 1, col) != null && Territory.isTerritory(row, col) != null) {
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row + 1, col));
-					// Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
 				}
 				if (Territory.isTerritory(row, col + 1) != null && Territory.isTerritory(row, col) != null) {
 					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col + 1));
-					// Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
 				}
 
 			}
@@ -294,7 +283,6 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 					ArrayList<Player> players = GameFrame.playerArray;
 					gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
-					System.out.println("player index" + playerIndex);
 					repaint();
 
 					if (selectedTer.isEnabled()) {
@@ -311,12 +299,10 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 								playerIndex = 0;
 							} else {
-
-								System.out.println("playerIndex: " + playerIndex);
 								playerIndex++;
 
 							}
-							System.out.println("-------");
+							
 							for (int i = 0; i < players.size(); i++) {
 								if (players.get(i).getInfantryList().size() != 0) {
 									infFlag = false;
@@ -397,8 +383,6 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					firstChosenColumn = col;
 					repaint();
 
-					System.out.println("territorySource :" + territorySource);
-					System.out.println("Territory enable mý?" + territorySource.isEnabled());
 				}
 				territoryTo = null;
 			} else {
@@ -408,8 +392,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					secondChosenColumn = col;
 					repaint();
 					territoryTo = Territory.isTerritory(row, col);
-					System.out.println("territoryTo :" + territoryTo);
-					// territorySource.setLink(territoryTo);
+					
 					GameFrame.play.numFortify.setEnabled(true);
 					GameFrame.play.btnRoll.setEnabled(true);
 				}

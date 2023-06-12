@@ -76,14 +76,9 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 		initialize();
 		displayDie(0);
 		
-		//addElements();
-		
-		//observer için ekledim
-    	//this.conKUerorHandler = conKUerorHandler;
-	    board = GameFrame.conKUerorHandler.getBoard();
+		 board = GameFrame.conKUerorHandler.getBoard();
 	    board.addBoardListener(this);
 	    ShowDie showDie = new ShowDie(board);
-	    //////////
 		
 	
 		
@@ -93,7 +88,6 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 	public void initialize() {
         setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);
-        //add(grid);
         setLayout(null);
     }
     
@@ -115,7 +109,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
             	dieDisplayed=dieNumber;
             	 switch (dieDisplayed) {
                     case 1:
-                    	currentIcon = die1; //DieTesting de hangi Icon print edildiğini görmek için ekledim
+                    	currentIcon = die1; 
                         dieLabel.setIcon(die1);
                         break;
                     case 2:
@@ -140,7 +134,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                         break;
                 }
                 try {
-                    Thread.sleep(100); // Adjust the delay as needed
+                    Thread.sleep(100); 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -151,7 +145,6 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         });
        
         rollThread.start();
-        //DieTesting için ekledim
         String dieNum=Integer.toString(dieNumber);
         return currentIcon;
     }
@@ -194,11 +187,10 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 
                 GameFrame.playerArray.get(counter).setfirstRoll(dieNumber);
                 counter++;
-                die.dice.add(dieNumber); //die values arraylist
+                die.dice.add(dieNumber); 
                 board.publishBoardEvent(dieNumber);
-                clickCount++;  // Increment the count
+                clickCount++;  
                 if (clickCount >= numPlay) {
-                    // Disable the button
                     max_die = die.calculateHighest(die.dice);
                     setInd(die.calcHighIndex(die.dice));
                     temp = ind;
@@ -207,7 +199,6 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     System.out.println("player_list high index: " + ind);
                     System.out.println("highest die rolling player: " + max_player);
                     
-                    //max_player.setNumOfInfantry(max_player.getNumOfInfantry()-1);
                     
                     System.out.println("ilk başlayan: "+GameFrame.playerName.get(ind));
                     txtFirstPlayer.setText("Highest die rolled by: "+GameFrame.playerName.get(ind) +"\n It's your turn!!");
@@ -245,7 +236,6 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 	@Override
 	public void onBoardEvent(String msg) {
 		// TODO Auto-generated method stub
-		//JOptionPane.showMessageDialog(InitSharing.this, msg);
 		
 	}
 	

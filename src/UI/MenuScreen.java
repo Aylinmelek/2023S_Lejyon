@@ -69,39 +69,6 @@ public class MenuScreen extends JLayeredPane {
 		
 		btnBack.setBounds(355,200,150,50);
 		add(btnBack);
-		/*btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-        		if (GameFrame.login.loginMode==true) {
-        			
-        			setVisible(false);
-        			
-					//frame.setLayeredPane(login);
-					//frame.revalidate();
-					btnBack.setVisible(false);
-					GameFrame.login.loginMode=false;
-     		    
-    
-        		}
-        		else {
-			//layeredPane.add(buildingMode);
-        			GameFrame.login.setVisible(false);
-     		    GameFrame.bmode.setVisible(true);
-     		   GameFrame.login.btnLogin.setVisible(false);
-     		    //btnResume.setVisible(false);
-     		   GameFrame.menu.btnBack.setVisible(false);
-        		}
-     	
-     		
-        		GameFrame.menu.setVisible(false);
-        		GameFrame.menu.btnBack.setVisible(false);
-        		GameFrame.login.btnMenu.setVisible(true);
-     		//btnResume.setVisible(true);
-        		GameFrame.login.loginMode=true;
-     		
-
-			}
-		});*/
 		
 		btnExit.setBounds(355,410,150,50);
 		add(btnExit);

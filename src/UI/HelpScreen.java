@@ -62,7 +62,6 @@ public class HelpScreen extends JLayeredPane {
               btnBack.setForeground(Color.BLACK);
         btnBack.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnBack);
-        //btnBack.setVisible(false);
 	}
 	
 	

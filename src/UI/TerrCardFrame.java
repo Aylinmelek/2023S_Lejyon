@@ -42,7 +42,7 @@ public class TerrCardFrame extends JFrame {
 				y += 40;
 			}
 
-			// labels[i].setVisible(true);
+			
 		}
 	}
 
@@ -81,7 +81,7 @@ public class TerrCardFrame extends JFrame {
 	{
 		for(int i = 0; i < GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).getTerritoryCardList().size(); i++)
 		{
-			//Burada territoryCardList'in her elemanýna bagli olan png'i'yi territoryCardFrame'e ekliceksin Commenti ac.
+			//Burada territoryCardList'in her elemanï¿½na bagli olan png'i'yi territoryCardFrame'e ekliceksin Commenti ac.
 			//GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).getTerritoryCardList().get(i);
 		}
 		
@@ -151,6 +151,3 @@ public class TerrCardFrame extends JFrame {
 
 	}
 }
-
-//You can then call setTerritoryCard() method from outside this class to set individual cards.
-//Remember to ensure that the index and x and y values are correct for each territory card.

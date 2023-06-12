@@ -36,28 +36,15 @@ public class EndGame extends JLayeredPane {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setOpaque(false); // to make panel background transparent
+        panel.setOpaque(false); 
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(Box.createVerticalGlue()); // Add space above the labels
+        panel.add(Box.createVerticalGlue()); 
         panel.add(lblEnd);
         panel.add(lblWin);
-        panel.add(Box.createVerticalGlue()); // Add space below the labels
+        panel.add(Box.createVerticalGlue());
 
         add(panel, BorderLayout.CENTER);
     }
 
 
-/*
-    public static void main(String[] args) {
-        GameFrame frame = new GameFrame();
-        EndGame end = new EndGame();
-        
-        frame.setBounds(0, 54, 873, 600);
-        frame.setBackground(Color.DARK_GRAY);
-        
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayeredPane(end);
-        frame.setSize(873, 600);
-        frame.setVisible(true);
-    }*/
 }

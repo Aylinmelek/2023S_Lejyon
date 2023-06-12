@@ -28,15 +28,10 @@ import java.util.Hashtable;
 
 public class GameFrame extends JFrame {
 	
-	//static boolean start;
 	private static final long serialVersionUID = 1L;
-	//public static Board board = new Board();
-	//public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler(board);
-	//static boolean init, build, playMode, loginMode = false;
 	public static ConKUerorHandler conKUerorHandler = new ConKUerorHandler();
 
 	public static InitSharing sharing = new InitSharing();
-	//////////
 	static boolean taken, takenHelper;
 	public static PlayingMode play = new PlayingMode();
 	public static BuildingMode bmode = new BuildingMode();
@@ -83,17 +78,12 @@ public class GameFrame extends JFrame {
 				int totalPeople = login.getPlayerNum();
 				tempPlayer = login.addNamesToArrayList();
 				System.out.println("total people" + totalPeople);
-				//JPanel playerNames = new JPanel();
-				//JTextArea txtPlayerNames = new JTextArea();
-				//txtPlayerNames.setBounds(212, 6, 453, 43);
-				//StringBuilder playerNamesBuilder = new StringBuilder();
 				for(int i =0;i<totalPeople; i++) {
 					System.out.println(playerName.get(i));
 				}
 				
 				for (int i =0;i<totalPeople;i++) {
 					playerName.set(i, tempPlayer.get(i));
-					//playerNamesBuilder.append(tempPlayer.get(i)).append("      ");
 					
 				}
 				for (Player i:playerArray) {
@@ -166,11 +156,9 @@ public class GameFrame extends JFrame {
 					login.setVisible(false);
 					frame.setLayeredPane(menu);
 					frame.revalidate();
-					//login.loginMode = false;
 					
 				}
 				menu.setVisible(true);
-				//login.setVisible(false);
 				
 
 			}
@@ -194,11 +182,9 @@ public class GameFrame extends JFrame {
 					bmode.setVisible(false);
 					frame.setLayeredPane(menu);
 					frame.revalidate();
-					//login.loginMode = false;
 					
 				}
 				menu.setVisible(true);
-				//login.setVisible(false);
 				
 
 			}
@@ -222,11 +208,9 @@ public class GameFrame extends JFrame {
 					sharing.setVisible(false);
 					frame.setLayeredPane(menu);
 					frame.revalidate();
-					//login.loginMode = false;
 					
 				}
 				menu.setVisible(true);
-				//login.setVisible(false);
 				
 
 			}
@@ -250,11 +234,9 @@ public class GameFrame extends JFrame {
 					play.setVisible(false);
 					frame.setLayeredPane(menu);
 					frame.revalidate();
-					//login.loginMode = false;
 					
 				}
 				menu.setVisible(true);
-				//login.setVisible(false);
 				
 
 			}
@@ -460,50 +442,14 @@ public class GameFrame extends JFrame {
 	        	}	
 	        });
 	        
-		/*menu.btnBack = new JButton("Back to Game");
-		menu.btnBack.setBounds(729, 517, 128, 29);
-
-		menu.btnBack.setBackground(Color.DARK_GRAY);
-		menu.btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (start == true) {
-					menu.setVisible(false);
-					frame.setLayeredPane(login);
-					frame.revalidate();
-					menu.btnBack.setVisible(false);
-					start = false;
-
-				} else {
-					// layeredPane.add(buildingMode);
-					login.setVisible(false);
-					bmode.setVisible(true);
-					login.btnLogin.setVisible(false);
-					// btnResume.setVisible(false);
-					menu.btnBack.setVisible(false);
-				}
-
-				menu.setVisible(false);
-				menu.btnBack.setVisible(false);
-				//login.btnMenu.setVisible(true);
-				// btnResume.setVisible(true);
-				start = true;
-			}
-		});*/
+	
 
 
 		sharing.btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Toggle the visibility of the panels
-
-				
 				for(int i = 0; i< play.handler.getBoard().map.getTerritories().size(); i++)
 				{	
-					/*play.handler.getBoard().map.checkReachability(play.handler.getBoard().map.getTerritories().get(i));
-					if(!play.handler.getBoard().map.getTerritories().get(i).isEnabled())
-					{
-						play.handler.getBoard().map.getTerritories().get(i).setColor(Color.CYAN);
-					}*/
+					
 					if(play.handler.getBoard().map.getTerritories().get(i).getOwner() == null && play.handler.getBoard().map.getTerritories().get(i).isEnabled())
 					{
 						taken = false;
@@ -519,16 +465,11 @@ public class GameFrame extends JFrame {
  					}
 
  				}
- 				//if(taken)
- 				//{
  					String action = e.getActionCommand();
  					play.numFortify.setEnabled(false);
  					play.btnTer.addActionListener(new ActionListener() {
  				     	public void actionPerformed(ActionEvent e) {
  				     		bmode.grid.terCard.setVisible(true);
-
- 				     		//Burada update frame'i cagiracaksin
-
 
  				     	}
 
@@ -538,13 +479,10 @@ public class GameFrame extends JFrame {
  					play.addElements();
  					frame.setLayeredPane(play);
  					frame.revalidate();
- 					// grid.setVisible(true);
- 					//grid.setBounds(19, 69, 850, 350);
  					play.add(bmode.grid);
  					sharing.init = false;
 
- 					 //play.sort(playerArray);						
- 					 play.playMode = true;
+ 					play.playMode = true;
 
  					 System.out.println(play.playMode);
  					 play.sort(playerArray);
