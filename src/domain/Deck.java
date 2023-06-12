@@ -93,6 +93,7 @@ public class Deck implements Serializable{
 			InfantryCard infantryCard = new InfantryCard();
 			player.getDeck().getInfantryCardList().add(infantryCard);
 			this.getInfantryCardList().remove(index);
+			
 		}
 		if (givenCard == 1 && this.getCavalryCardList().size() > 0) {
 			int index = this.getCavalryCardList().size() -1;
@@ -106,34 +107,12 @@ public class Deck implements Serializable{
 			player.getDeck().getArtilleryCardList().add(artilleryCard);
 			this.getArtilleryCardList().remove(index);
 		}
-		/*if (givenCard == 0) {
-		//int index = this.getInfantryCardList().size() - 1;
-		InfantryCard infantryCard = new InfantryCard();
-		player.getDeck().getInfantryCardList().add(infantryCard);
-		System.out.println("infanty verildi");
-		//this.getInfantryCardList().remove(index);
 	}
-	if (givenCard == 1) {
-		//int index = this.getCavalryCardList().size() -1;
-		CavalryCard cavalryCard = new CavalryCard();
-		player.getDeck().getCavalryCardList().add(cavalryCard);
-		System.out.println("cavalry verildi");
-		//this.getCavalryCardList().remove(index);
-	}
-	if (givenCard == 2) {
-		//int index = this.getArtilleryCardList().size() - 1;
-		ArtilleryCard artilleryCard = new ArtilleryCard();
-		player.getDeck().getArtilleryCardList().add(artilleryCard);
-		System.out.println("artilery verildi");
-		
-		//this.getArtilleryCardList().remove(index);
-	}*/
-	}
-
+	
 	public void giveTerritoryCard(Player player) {
 		int index = this.getTerritoryCardList().size() - 1;
 		TerritoryCard terCard = this.getTerritoryCardList().get(index);
-		System.out.println("Territory cardý verdi haaaa" + terCard);
+		System.out.println("Territory cardï¿½ verdi haaaa" + terCard);
 		player.getTerritoryCardList().add(terCard);
 		this.getTerritoryCardList().remove(index);
 

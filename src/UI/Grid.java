@@ -87,10 +87,10 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				if (territory != null) {
 					if(territory.isEnabled())
 					{
-						if(this.gridColors[row][col] != Color.CYAN)
+						/*if(this.gridColors[row][col] != Color.CYAN)
 						{
 							this.gridColors[row][col] = territory.getColor();
-						}
+						}*/
 						
 						String armyNumStr = Integer.toString(territory.getArmyList().size());
 						this.gridText[row][col] = armyNumStr;
@@ -296,7 +296,9 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		 
 
 		  if (GameFrame.sharing.init) {
-			if (gridColors[row][col] != Color.DARK_GRAY && gridColors[row][col] != blue) {
+			if (gridColors[row][col] != Color.DARK_GRAY && gridColors[row][col] != blue && gridColors[row][col] != Color.WHITE && gridColors[row][col] != Color.CYAN 
+					 && gridColors[row][col] != Color.MAGENTA && gridColors[row][col] != Color.LIGHT_GRAY && gridColors[row][col] != Color.BLACK) {
+				
 				
 				index = selectedTer.getIndex();
 				if(!GameFrame.sharing.getButton().isEnabled()) {
@@ -307,18 +309,17 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 					ArrayList<Player> players = GameFrame.playerArray;
 					gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
+					System.out.println("player index" + playerIndex);
 					repaint();
 					
-    
-
-                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                	//Infantry inf = new Infantry();
 					if(selectedTer.isEnabled())
 					{
 						System.out.println("Territory enable mý?" + selectedTer.isEnabled());
 	                	players.get(playerIndex).chooseATerritory(selectedTer);
 	                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
-	                	updateGridText();
+	                	//updateGridText();
+	                	String armyNumStr = Integer.toString(selectedTer.getArmyList().size());
+						this.gridText[row][col] = armyNumStr;
 					}
 					
                 	
@@ -359,26 +360,84 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                     }
                     }
 				}
-                 /*
-
-                for (int i = 0; i<ind; i++) {
-                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                	Infantry inf2 = new Infantry();
-                	players.get(i).chooseATerritory(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()));
-                	
-                	players.get(i).placeArmy(GameFrame.bmode.grid.callTerr(GameFrame.bmode.grid.getSelectedTer()), inf2);
-                    
-                    System.out.println(players.get(i).getTerritoryList().get(0));
-                    System.out.println("-------");
-                    System.out.println(GameFrame.bmode.grid.getSelectedTer());
-                }*/
-                
-                
+                     
 				}
 			
 			}
+			
+			else if (GameFrame.sharing.addColors().contains(gridColors[row][col])){
+				if (gridColors[row][col] == GameFrame.sharing.addColors().get(playerIndex)) {
+					index = selectedTer.getIndex();
+					if(!GameFrame.sharing.getButton().isEnabled()) {
+						if(isIndFlag()) {
+							playerIndex=0;
+							setIndFlag(false);
+						}
+
+						ArrayList<Player> players = GameFrame.playerArray;
+						gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
+						System.out.println("player index" + playerIndex);
+						repaint();
+						
+						if(selectedTer.isEnabled())
+						{
+							System.out.println("Territory enable mý?" + selectedTer.isEnabled());
+		                	players.get(playerIndex).chooseATerritory(selectedTer);
+		                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
+		                	//updateGridText();
+		                	String armyNumStr = Integer.toString(selectedTer.getArmyList().size());
+							this.gridText[row][col] = armyNumStr;
+						}
+						
+	                	
+	                	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
+	                	//System.out.println(players.get(playerIndex).getName());
+
+	                	System.out.println(players.get(playerIndex));
+	                	System.out.println(players.get(playerIndex));
+
+	                	
+	                    System.out.println(selectedTer);
+	                    System.out.println(players.get(playerIndex).getInfantryList().size());
+
+	                    System.out.println(selectedTer.getArmyList().size());
+	                    if(selectedTer.isEnabled())
+						{
+	                    if(selectedTer.getOwner().equals(players.get(playerIndex)))
+	                    {
+	                    	if (playerIndex==(players.size()-1)) {
+	                    	
+	                    	playerIndex=0;
+	                    }
+	                    else {
+	                    	
+	                    	System.out.println("playerIndex: "+ playerIndex);
+	                    	playerIndex++;
+	                    	
+	                    }
+	                    System.out.println("-------");
+	                    for(int i=0; i<players.size(); i++) {
+	                    	if(players.get(i).getInfantryList().size()!=0) {
+	                    		infFlag = false;
+	                    	}
+	                    }
+	                    if(infFlag) {
+	                    	//burada shuffle Ã§aÄrÄ±lacak
+
+	                    }
+	                    }
+					}
+	                     
+					}
+					else {
+						System.out.println("choose again.");
+					}
+				}
+				
+			}
 				else {
 				System.out.println("choose again.");
+				
 			}
 		}
 

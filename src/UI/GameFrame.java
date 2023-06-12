@@ -65,6 +65,7 @@ public class GameFrame extends JFrame {
 		
 		
 		
+		
 		login.btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setLayeredPane(bmode);

@@ -43,9 +43,13 @@ public class PlayingInstructions extends JFrame {
 		txtInstructions.setBackground(Color.DARK_GRAY);
 		txtInstructions.setBounds(20, 60, 607, 481);
 		txtInstructions.setText("Click Pick Territory/Army button in the beggining of each turn.\n"
+				+ "To check which card you picked, click on the card button you want to see"
 				+ "Select your own Territory and the territory you want to attak.\n"
 				+ "Press the ATTACK button and roll the die twice: The first for.... and the second for ......\n"
 				+ "Press ATTACK button again to start the action. \n"
+				+ "Pick two territories to fortify, with the combo box select infantry number and press FORTIFY button to fortify.\n"
+				+ "For placing army click on the territory which you want to place army then click on the PLACE ARMY button.\n"
+				+ ""
 				+ "");
 		add(txtInstructions);
 	}
