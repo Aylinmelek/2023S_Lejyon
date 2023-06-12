@@ -34,7 +34,6 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     JButton btnStartGame = new JButton("Start Game");
     JButton btnRoll = new JButton("ROLL");
     JButton btnSkip = new JButton("SKIP ATTACK");
-    //TerrCardFrame terCard = new TerrCardFrame();
     int index=0;  
     int temp;
     public boolean init = false;
@@ -47,13 +46,14 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     int max_die;
     int ind;
     public boolean isButton;
-    //ConKUeror conKUeror = new ConKUeror();
     public Player max_player;
 
     static Icon currentIcon;
     JButton btnMenu = new JButton("Menu");
     
     public boolean dieRoll = true;
+    
+    ArrayList<Color> colorArray = new ArrayList<Color>(); 
     
     
     ArrayList<Integer> playerArray = new ArrayList<Integer>(); 
@@ -89,6 +89,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
 		
 	}
 
+    
 	public void initialize() {
         setBackground(Color.DARK_GRAY);
         setBounds(0, 54, 873, 451);
@@ -96,17 +97,23 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         setLayout(null);
     }
     
+	public ArrayList<Color> addColors() {
+		for (int i = 0; i<6;i++) {
+			colorArray.add(Color.CYAN);
+			colorArray.add(Color.LIGHT_GRAY);
+			colorArray.add(Color.MAGENTA);
+			colorArray.add(Color.WHITE);
+			colorArray.add(Color.BLACK);
+		}
+		return colorArray;
+	}
 	
     public Icon displayDie(int dieNumber) {
     	System.out.println("dieNumber: "+ dieNumber);
         Thread rollThread = new Thread(() -> {
             for (int i = 0; i < 13; i++) {
-            	//observer için ekledim
             	dieDisplayed=dieNumber;
-            	//die.getDiceValue();
-                ///		
-                		//die.generateNum();
-                switch (dieDisplayed) {
+            	 switch (dieDisplayed) {
                     case 1:
                     	currentIcon = die1; //DieTesting de hangi Icon print edildiğini görmek için ekledim
                         dieLabel.setIcon(die1);
@@ -139,44 +146,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 }
                 
             }
-            //burası yukarıda yapılanın aynısı değil mi? Burası silinince de çalışıyor.
-            //observer için ekledim
-           /* finalDieDisplayed = dieNumber;
-            //
-            switch (finalDieDisplayed) {
-            
-                case 1:
-                	currentIcon = die1;
-                    dieLabel.setIcon(die1);
-                    break;
-                case 2:
-                	currentIcon = die2;
-                    dieLabel.setIcon(die2);
-                    break;
-                case 3:
-                	currentIcon = die3;
-                    dieLabel.setIcon(die3);
-                    break;
-                case 4:
-                	currentIcon = die4;
-                    dieLabel.setIcon(die4);
-                    break;
-                case 5:
-                	currentIcon = die5;
-                    dieLabel.setIcon(die5);
-                    break;
-                default:
-                	currentIcon = die6;
-                    dieLabel.setIcon(die6);
-                    break;
-            }
-            try { //üstteki try catch'in aynısı, buraya eklemeyince 2. switch lere gelmediğini fark ettim
-            	//sorun olursa silinebilir.
-                Thread.sleep(100); // Adjust the delay as needed
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
-            
+           
 
         });
        
@@ -185,15 +155,7 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         String dieNum=Integer.toString(dieNumber);
         return currentIcon;
     }
-    /*
-    public int getInd(int max_die, int temp) {
-    	
-        max_player = conKUeror.playerList.get(ind);
-        
-        
-        return ind;
-    }*/
-    
+     
     public int getTemp() {
     	return temp;
     }
@@ -223,15 +185,8 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
         add(txtFirstPlayer);
         
         dieLabel.setBounds(221, 450, 80, 80);
-        
-        
-        
         btnRoll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-            	
-                //observer için ekledim
-
                 GameFrame.conKUerorHandler.rollDice();
                 dieNumber = GameFrame.conKUerorHandler.getDieValue();
 
@@ -241,17 +196,12 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                 counter++;
                 die.dice.add(dieNumber); //die values arraylist
                 board.publishBoardEvent(dieNumber);
-                //System.out.println("(UI.InitSharing)You rolled2: "+dieNumber);
-                //roll die için yeni ekledim
                 clickCount++;  // Increment the count
                 if (clickCount >= numPlay) {
                     // Disable the button
                     max_die = die.calculateHighest(die.dice);
                     setInd(die.calcHighIndex(die.dice));
                     temp = ind;
-                    
-                    //max_player = conKUeror.playerList.get(ind);
-                    
                     max_player = GameFrame.playerArray.get(ind);
                     System.out.println("highest die val: " + max_die);
                     System.out.println("player_list high index: " + ind);
@@ -261,22 +211,9 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
                     
                     System.out.println("ilk başlayan: "+GameFrame.playerName.get(ind));
                     txtFirstPlayer.setText("Highest die rolled by: "+GameFrame.playerName.get(ind) +"\n It's your turn!!");
-                    
-                    
-                    
-                    
-                	
                     btnRoll.setEnabled(false);
-                    
-                   
-                    
-              
-                    
-                    
                 }
                 
-                /////////////
-               
             }
         });
         

@@ -230,7 +230,7 @@ public class PlayingMode extends JLayeredPane {
 						
 					} else if (armyCountBefore < armyCountAfter) {
 						GameFrame.bmode.grid.startColorChangeTimer();
-						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= Color.GREEN;
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= GameFrame.sharing.addColors().get(GameFrame.bmode.grid.playerIndex);
 						
 					}
 
@@ -402,6 +402,7 @@ public class PlayingMode extends JLayeredPane {
 		btnPickChance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handler.giveChanceCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
+				txtCard.setText("??????????????????" + "card picked");
 				
 
 			}
@@ -413,6 +414,8 @@ public class PlayingMode extends JLayeredPane {
 				handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
+				//GameFrame.bmode.grid.terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index);
+
 				txtCard.setText("??????????????????" + "card picked");
 			}
 		});

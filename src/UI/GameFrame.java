@@ -493,6 +493,7 @@ public class GameFrame extends JFrame {
  					play.btnTer.addActionListener(new ActionListener() {
  				     	public void actionPerformed(ActionEvent e) {
  				     		bmode.grid.terCard.setVisible(true);
+ 				     		
 
 
  				     	}

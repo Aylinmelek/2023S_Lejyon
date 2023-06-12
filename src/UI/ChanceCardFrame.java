@@ -1,7 +1,7 @@
 package UI;
 
 import java.awt.Color;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,9 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
+import domain.controller.ConKUerorHandler;
 
 public class ChanceCardFrame extends JFrame {
 
@@ -30,6 +31,7 @@ public class ChanceCardFrame extends JFrame {
 	JTextArea txtFourth = new JTextArea();
 	JTextArea txtFifth = new JTextArea();
 	JTextArea txtSixth = new JTextArea();
+	ConKUerorHandler handler = new ConKUerorHandler();
 
 	public ChanceCardFrame() {
 		addElements();
@@ -52,7 +54,7 @@ public class ChanceCardFrame extends JFrame {
 		add(btnFirst);
 		
 		txtFirst.setBounds(240,97,20,36);
-		txtFirst.setText("0");
+		txtFirst.setText(Integer.toString(ConKUerorHandler.board.deck.getReinforcementCardList().size()));
 		txtFirst.setBackground(Color.DARK_GRAY);
 		add(txtFirst);
 		
@@ -60,7 +62,7 @@ public class ChanceCardFrame extends JFrame {
 		add(btnSecond);
 		
 		txtSecond.setBounds(420,97,20,36);
-		txtSecond.setText("0");
+		txtSecond.setText(Integer.toString(ConKUerorHandler.board.deck.getsabotageCardList().size()));
 		txtSecond.setBackground(Color.DARK_GRAY);
 		add(txtSecond);
 
@@ -68,7 +70,7 @@ public class ChanceCardFrame extends JFrame {
 		add(btnThird);
 		
 		txtThird.setBounds(240,147,20,36);
-		txtThird.setText("0");
+		txtThird.setText(Integer.toString(ConKUerorHandler.board.deck.getWorldEventCardList().size()));
 		txtThird.setBackground(Color.DARK_GRAY);
 		add(txtThird);
 
@@ -76,7 +78,7 @@ public class ChanceCardFrame extends JFrame {
 		add(btnFourth);
 		
 		txtFourth.setBounds(420,147,20,36);
-		txtFourth.setText("0");
+		txtFourth.setText(Integer.toString(ConKUerorHandler.board.deck.getSpyCardList().size()));
 		txtFourth.setBackground(Color.DARK_GRAY);
 		add(txtFourth);
 
@@ -84,13 +86,14 @@ public class ChanceCardFrame extends JFrame {
 		add(btnFifth);
 		
 		txtFifth.setBounds(240,197,20,36);
-		txtFifth.setText("0");
+		txtFifth.setText(Integer.toString(ConKUerorHandler.board.deck.getDisasterCardList().size()));
 		txtFifth.setBackground(Color.DARK_GRAY);
 		add(txtFifth);
 		
 		btnSixth.setBounds(280, 190, 137, 36); 
 		add(btnSixth);
 		txtSixth.setBounds(420,197,20,36);
+		txtSixth.setText(Integer.toString(ConKUerorHandler.board.deck.getdipImmunityCardList().size()));
 		txtSixth.setBackground(Color.DARK_GRAY);
 
 		add(txtSixth);

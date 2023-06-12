@@ -49,7 +49,7 @@ public class TerrCardFrame extends JFrame {
 	private void initializeFrame() {
 
 		getContentPane().setBackground(Color.DARK_GRAY);
-		getContentPane().setLayout(new FlowLayout());
+		getContentPane().setLayout(null);
 		JTextArea txtrTerritoryCards = new JTextArea();
 		txtrTerritoryCards.setBounds(192, 20, 419, 71);
 		txtrTerritoryCards.setForeground(Color.LIGHT_GRAY);

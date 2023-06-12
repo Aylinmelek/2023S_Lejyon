@@ -248,8 +248,6 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 			if (gridColors[row][col] != blue) {
 				gridColors[row][col] = Color.GRAY;
 				repaint();
-				//index = territoryIs.getIndex();
-				//System.out.println("index" + index);
 				if (selectedTer != null && !GameFrame.bmode.setLink) {
 					selectedTer.setEnabled(false);
 				}
@@ -290,22 +288,16 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		 
 
 		  if (GameFrame.sharing.init) {
+			  System.out.println("reeeeeeenk "+gridColors[row][col]);
+			
 			 
-			 
-			 
-			if (gridColors[row][col] != Color.GRAY && gridColors[row][col] != blue) {
-				gridColors[row][col] = Color.CYAN;
-				
+			if (gridColors[row][col] != Color.DARK_GRAY || gridColors[row][col] != blue) {
+				System.out.println("if renk "+getColorName(gridColors[row][col]));
+				gridColors[row][col] = Color.BLACK;
+				System.out.println("if renk 2 "+getColorName(gridColors[row][col]));
 				repaint();
-				//callTerr(selectedTer);
-				if (selectedTer != null) {
-					
-					
-					//terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index, 20, 100);
-					terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index);
-					//terCard.setVisible(true);
-					
-				}
+
+				
 				index = selectedTer.getIndex();
 				if(!GameFrame.sharing.getButton().isEnabled()) {
 					if(isIndFlag()) {
@@ -314,27 +306,10 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					}
 
 					ArrayList<Player> players = GameFrame.playerArray;
-
-
-				//ArrayList<Player> players = GameFrame.sharing.conKUeror.playerList;
-					/*System.out.println("playerArray size in grid: "+ GameFrame.playerArray.size());
-					ArrayList<Player> players = GameFrame.playerArray;*/
-
-
-					
-				//ArrayList<Player> players = GameFrame.playerArray;
-					
-                
-
-                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                	//Infantry inf = new Infantry();
-					System.out.println("Territory enable mý?" + selectedTer.isEnabled());
+					System.out.println("Territory enable mi?" + selectedTer.isEnabled());
                 	players.get(playerIndex).chooseATerritory(selectedTer);
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
                 	updateGridText();
-                	
-                	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
-                	//System.out.println(players.get(playerIndex).getName());
                 	System.out.println(players.get(playerIndex));
            	        
            	     	//GameFrame.play.add(txtPlayerTurn);
@@ -345,9 +320,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                 	
                     System.out.println(selectedTer);
                     System.out.println(players.get(playerIndex).getInfantryList().size());
-                    System.out.println(selectedTer.getArmyList().size());//aynÄ± territory Ã§aÄrÄ±ldÄ±ÄÄ±nda size deÄiÅmiyor, ancak 4 player yani totalde 4 army eklendiÄinde size 1 artÄ±yor
-                    
-
+                    System.out.println(selectedTer.getArmyList().size());
                     if(selectedTer.getOwner().equals(players.get(playerIndex)))
                     {
                     	if (playerIndex==(players.size()-1)) {
@@ -373,15 +346,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
                     }
                     }
-                    
-
-                    
-                    
-                    //System.out.println("player: "+ players.get(playerIndex));
-                    
-                
-                
-                /*
+                 /*
                 for (int i = 0; i<ind; i++) {
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	Infantry inf2 = new Infantry();
@@ -396,10 +361,6 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                 
                 
 				}
-			
-			
-			
-
 			
 			}
 				else {
