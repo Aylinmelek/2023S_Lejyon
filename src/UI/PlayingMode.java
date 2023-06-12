@@ -35,7 +35,8 @@ public class PlayingMode extends JLayeredPane {
 	JButton btnFinish = new JButton("Finish The Game");
 	JButton btnMenu = new JButton("Menu");
 	JTextArea txtCard = new JTextArea();
-
+	public int roll3 = 0;
+	public boolean chance = false;
 	JComboBox<Integer> numFortify = new JComboBox<Integer>();
 	public boolean isAttack;
 
@@ -126,6 +127,11 @@ public class PlayingMode extends JLayeredPane {
 			}
 			// observer için ekledim
 			finalDieDisplayed = dieNumber;
+			if(roll3 == 0)
+			{
+				roll3 = die.getDiceValue();
+				System.out.println(roll3);
+			}
 			if (roll1 == 0) {
 				roll1 = die.getDiceValue();
 				System.out.println("Rolllllll1 : " + roll1);
@@ -158,6 +164,7 @@ public class PlayingMode extends JLayeredPane {
 				roll1 = 0;
 				roll2 = 0;
 			}
+			
 			GameFrame.bmode.grid.updateGridText();
 			///
 			// die.generateNum();
@@ -313,6 +320,7 @@ public class PlayingMode extends JLayeredPane {
 			public void actionPerformed(ActionEvent e) {
 				ChanceCardFrame chanceCard = new ChanceCardFrame();
 				chanceCard.setVisible(true);
+				btnRoll.setEnabled(true);
 
 			}
 		});

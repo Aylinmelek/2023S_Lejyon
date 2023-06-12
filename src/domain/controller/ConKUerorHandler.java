@@ -98,21 +98,21 @@ public ConKUerorHandler() {
 	{
 		board.placeArmy(player,territory,type);
 	}
-	public void reinforce(Die die, Territory territory, Player player) 
+	public void reinforce(int face, Territory territory, Player player) 
 	{
-		board.reinforce(die, territory, player);
+		board.reinforce(face, territory, player);
 	}
-	public void sabotage(Die die, Territory territory, Player player) 
+	public void sabotage(int face, Territory territory, Player player) 
 	{
-		board.sabotage(die, territory, player);
+		board.sabotage(face, territory, player);
 	}
 	public void spy(Territory territory, Player player)
 	{
 		board.spy(territory, player);
 	}
-	public void worldEvent(Die die, Territory territorySource, ArrayList<Player> playerArray, Player player)
+	public void worldEvent(int face, Territory territorySource, ArrayList<Player> playerArray, Player player)
 	{
-		board.worldEvent(die, territorySource, playerArray, player);
+		board.worldEvent(face, territorySource, playerArray, player);
 	}
 	public void disaster(Continent continent, Player player, int number)
 	{

@@ -97,11 +97,11 @@ public class GameActions {
     		
     	}
     }*/
-    public void reinforce(Die die, Territory territory, Player player) {
+    public void reinforce(int face, Territory territory, Player player) {
 		if(player.getDeck().getReinforcementCardList().size()>0)
 		{
-			die.roll();
-			int faceVal = die.getDiceValue();
+			
+			int faceVal = face;
 			for(int i = 0; i < faceVal; i++) {
 				Infantry infantry = new Infantry();
 				territory.getArmyList().add(infantry);
@@ -113,11 +113,11 @@ public class GameActions {
 		}
 		
 	}
-    public void sabotage(Die die, Territory territory, Player player) {
+    public void sabotage(int face, Territory territory, Player player) {
     	if(player.getDeck().getsabotageCardList().size()>0)
 		{
-    	die.roll();
-		int faceVal = die.getDiceValue();
+    	
+		int faceVal = face;
 		for(int i = 0; i < faceVal; i++) {
 			if(territory.getArmyList().size()>0)
 			{
@@ -149,11 +149,11 @@ public class GameActions {
 		
 	}
     }
-    public void worldEvent(Die die, Territory territory, ArrayList<Player> playerList, Player player) {
+    public void worldEvent(int face, Territory territory, ArrayList<Player> playerList, Player player) {
     	if(player.getDeck().getWorldEventCardList().size()>0)
 		{
-    	die.roll();
-    	int faceValue = die.getDiceValue();
+    	
+    	int faceValue = face;
 		if (faceValue <= 2 || faceValue == 5) {
 			for(int i = 0; i < playerList.size(); i++) {
 				System.out.println("Army Eklenecek Heyy :)");
