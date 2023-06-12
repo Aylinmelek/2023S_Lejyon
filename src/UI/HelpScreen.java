@@ -59,40 +59,7 @@ public class HelpScreen extends JLayeredPane {
 	    
         btnBack.setBounds(729, 517, 128, 29); 
         btnBack.setBackground(Color.DARK_GRAY);
-       /* btnBack.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	  	String action=e.getActionCommand();
-            	
-            	if ("Back to Game".equals(action)) {
-            		System.out.print("start: ");
-            		if (start==false) {
-            			//layeredPane.add(startScreen);
-            		    startScreen.setVisible(true);
-            		    btnStart.setVisible(true);
-            		    btnBack.setVisible(false);
-            		    
-           
-            		}
-            		else  {
-            			System.out.println("else de");
-            			//layeredPane.add(buildingMode);
-            			startScreen.setVisible(false);
-            		    buildingMode.setVisible(true);
-            		    btnStart.setVisible(false);
-            		    btnBack.setVisible(false);
-            		}
-            	
-            		
-            		helpScreen.setVisible(false);
-            		btnBack.setVisible(false);
-            		btnHelp.setVisible(true);
-            		
-            	
-            		
-            	}
-        	}
-        });*/
-        btnBack.setForeground(Color.BLACK);
+              btnBack.setForeground(Color.BLACK);
         btnBack.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         add(btnBack);
         //btnBack.setVisible(false);
