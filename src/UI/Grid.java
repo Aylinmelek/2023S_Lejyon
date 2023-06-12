@@ -333,6 +333,8 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                     System.out.println(players.get(playerIndex).getInfantryList().size());
 
                     System.out.println(selectedTer.getArmyList().size());
+                    if(selectedTer.isEnabled())
+					{
                     if(selectedTer.getOwner().equals(players.get(playerIndex)))
                     {
                     	if (playerIndex==(players.size()-1)) {
@@ -356,6 +358,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
                     }
                     }
+				}
                  /*
 
                 for (int i = 0; i<ind; i++) {
