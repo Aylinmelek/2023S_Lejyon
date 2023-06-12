@@ -99,9 +99,9 @@ public class InitSharing extends JLayeredPane  implements BoardListener{
     
 	public ArrayList<Color> addColors() {
 		for (int i = 0; i<6;i++) {
-			colorArray.add(Color.CYAN);
-			colorArray.add(Color.LIGHT_GRAY);
 			colorArray.add(Color.MAGENTA);
+			colorArray.add(Color.LIGHT_GRAY);
+			colorArray.add(Color.CYAN);
 			colorArray.add(Color.WHITE);
 			colorArray.add(Color.BLACK);
 		}

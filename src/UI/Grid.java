@@ -87,10 +87,10 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 				if (territory != null) {
 					if(territory.isEnabled())
 					{
-						if(this.gridColors[row][col] != Color.CYAN)
+						/*if(this.gridColors[row][col] != Color.CYAN)
 						{
 							this.gridColors[row][col] = territory.getColor();
-						}
+						}*/
 						
 						String armyNumStr = Integer.toString(territory.getArmyList().size());
 						this.gridText[row][col] = armyNumStr;
@@ -307,18 +307,17 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 					ArrayList<Player> players = GameFrame.playerArray;
 					gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
+					System.out.println("player index" + playerIndex);
 					repaint();
 					
-    
-
-                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
-                	//Infantry inf = new Infantry();
 					if(selectedTer.isEnabled())
 					{
 						System.out.println("Territory enable mý?" + selectedTer.isEnabled());
 	                	players.get(playerIndex).chooseATerritory(selectedTer);
 	                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
-	                	updateGridText();
+	                	//updateGridText();
+	                	String armyNumStr = Integer.toString(selectedTer.getArmyList().size());
+						this.gridText[row][col] = armyNumStr;
 					}
 					
                 	

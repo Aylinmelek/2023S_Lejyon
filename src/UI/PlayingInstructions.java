@@ -43,6 +43,7 @@ public class PlayingInstructions extends JFrame {
 		txtInstructions.setBackground(Color.DARK_GRAY);
 		txtInstructions.setBounds(20, 60, 607, 481);
 		txtInstructions.setText("Click Pick Territory/Army button in the beggining of each turn.\n"
+				+ "To check which card you picked, click on the card button you want to see"
 				+ "Select your own Territory and the territory you want to attak.\n"
 				+ "Press the ATTACK button and roll the die twice: The first for.... and the second for ......\n"
 				+ "Press ATTACK button again to start the action. \n"

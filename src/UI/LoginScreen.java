@@ -156,6 +156,7 @@ public class LoginScreen extends JLayeredPane{
         btnLogin.setBounds(673, 250, 100, 30);
         //btnLogin.setEnabled(false);
         btnLogin.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+        
         add(btnLogin);
         
         
@@ -188,6 +189,7 @@ public class LoginScreen extends JLayeredPane{
         
         btnStart.setBounds(724, 490, 130, 50);
         btnStart.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+        btnStart.setEnabled(false);
         add(btnStart);
         
 
