@@ -193,6 +193,7 @@ public class PlayingMode extends JLayeredPane {
 		add(numFortify);
 		btnArmy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCard.setText("");
 				ArmyCardFrame armyCard = new ArmyCardFrame();
 				armyCard.setVisible(true);
 
@@ -215,6 +216,7 @@ public class PlayingMode extends JLayeredPane {
 		add(btnInstr);
 		btnInstr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCard.setText("");
 				PlayingInstructions instr = new PlayingInstructions();
 				instr.setVisible(true);
 
@@ -224,6 +226,7 @@ public class PlayingMode extends JLayeredPane {
 		
 		btnAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCard.setText("");
 				btnTer.setEnabled(false);
 				btnArmy.setEnabled(false);
 				btnChance.setEnabled(false);
@@ -267,6 +270,7 @@ public class PlayingMode extends JLayeredPane {
 		});
 		btnFortify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCard.setText("");
 
 				if (GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null) {
 
@@ -285,6 +289,7 @@ public class PlayingMode extends JLayeredPane {
 		});
 		btnPlace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCard.setText("");
 
 				if (GameFrame.bmode.grid.territorySource != null) {
 					handler.placeArmy(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex),
@@ -314,6 +319,7 @@ public class PlayingMode extends JLayeredPane {
 		add(dieLabel);
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCard.setText("");
 				displayDie();
 				int armyCountBefore = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 				//System.out.println("roll1 : " + roll1 + "roll2 : " + roll2);
@@ -370,6 +376,7 @@ public class PlayingMode extends JLayeredPane {
 
 		btnSkip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtCard.setText("");
 				// turn bitiren bisey çağrılmalı
 
 				ArrayList<Player> players = GameFrame.playerArray;
