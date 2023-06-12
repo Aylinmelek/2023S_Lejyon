@@ -42,7 +42,7 @@ public class GameFrame extends JFrame {
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
 	public static MenuScreen menu = new MenuScreen();
-	public static EndGame end = new EndGame();
+	
 	public static ArrayList<String> tempPlayer = new ArrayList<String>();
 	public static ArrayList<String> nameSorted = new ArrayList<String>();
 	public static ArrayList<Player> playerArray = new ArrayList<Player>();
@@ -263,6 +263,7 @@ public class GameFrame extends JFrame {
 		
 		play.btnFinish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String winner;
 				int active;
 				int max = 0;
 				for (int i = 0; i < playerArray.size(); i++) {
@@ -274,11 +275,18 @@ public class GameFrame extends JFrame {
 				for (int a = 0; a < playerArray.size(); a++) {
 					if (max == GameFrame.playerArray.get(a).territoryList.size()) {
 						System.out.println("Winner = " + GameFrame.playerArray.get(a));
+						winner = GameFrame.playerArray.get(a).getName();
+						EndGame end = new EndGame(winner);
+						play.playMode=false;
+						play.setVisible(false);
+						end.endMode=true;
+						end.setVisible(true);
+						frame.setLayeredPane(end);
+						frame.revalidate();
 					}
 				}
-				frame.add(end);
-				play.setVisible(false);
-				end.setVisible(true);
+				
+				
 				
 			}
 			
@@ -568,6 +576,7 @@ public class GameFrame extends JFrame {
 
 					play.playMode = true;
 					System.out.println(play.playMode);
+					
 				//}
 				
 				
