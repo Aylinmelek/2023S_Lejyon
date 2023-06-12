@@ -85,9 +85,17 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 			for (int col = 0; col < COLUMNS; col++) {
 				Territory territory = Territory.isTerritory(row, col);
 				if (territory != null) {
-					this.gridColors[row][col] = territory.getColor();
-					String armyNumStr = Integer.toString(territory.getArmyList().size());
-					this.gridText[row][col] = armyNumStr;
+					if(territory.isEnabled())
+					{
+						if(this.gridColors[row][col] != Color.CYAN)
+						{
+							this.gridColors[row][col] = territory.getColor();
+						}
+						
+						String armyNumStr = Integer.toString(territory.getArmyList().size());
+						this.gridText[row][col] = armyNumStr;
+					}
+					
 				}
 			}
 		}
@@ -301,15 +309,29 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
 					repaint();
 					
-                	players.get(playerIndex).chooseATerritory(selectedTer);
-                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
-                	updateGridText();
+    
+
+                	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
+                	//Infantry inf = new Infantry();
+					if(selectedTer.isEnabled())
+					{
+						System.out.println("Territory enable mý?" + selectedTer.isEnabled());
+	                	players.get(playerIndex).chooseATerritory(selectedTer);
+	                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
+	                	updateGridText();
+					}
+					
+                	
+                	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
+                	//System.out.println(players.get(playerIndex).getName());
+
                 	System.out.println(players.get(playerIndex));
                 	System.out.println(players.get(playerIndex));
 
                 	
                     System.out.println(selectedTer);
                     System.out.println(players.get(playerIndex).getInfantryList().size());
+
                     System.out.println(selectedTer.getArmyList().size());
                     if(selectedTer.getOwner().equals(players.get(playerIndex)))
                     {
@@ -335,6 +357,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                     }
                     }
                  /*
+
                 for (int i = 0; i<ind; i++) {
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	Infantry inf2 = new Infantry();
@@ -360,26 +383,35 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 		else if (GameFrame.play.playMode) {
 			System.out.println("PLAYMODE");
-				if(territorySource == null)
+				if(territorySource == null || territoryTo != null)
 			{
-				gridColors[row][col] = firstChosen;
-				firstChosenRow = row;
-				firstChosenColumn = col;
-				repaint();
-				territorySource = Territory.isTerritory(row, col);
-				System.out.println("territorySource :"+territorySource);
-				System.out.println("Territory enable mý?" + territorySource.isEnabled());
+					if(Territory.isTerritory(row, col).isEnabled())
+					{
+						territorySource = Territory.isTerritory(row, col);
+						gridColors[row][col] = firstChosen;
+						firstChosenRow = row;
+						firstChosenColumn = col;
+						repaint();
+						
+						System.out.println("territorySource :"+territorySource);
+						System.out.println("Territory enable mý?" + territorySource.isEnabled());
+					}
+					territoryTo = null;
 			}
 			else {
-				gridColors[row][col] = secondChosen;
-				secondChosenRow = row;
-				secondChosenColumn = col;
-				repaint();
-				territoryTo = Territory.isTerritory(row, col);
-				System.out.println("territoryTo :"+territoryTo);
-				//territorySource.setLink(territoryTo);
-				GameFrame.play.numFortify.setEnabled(true);
-				GameFrame.play.btnRoll.setEnabled(true);
+				if(Territory.isTerritory(row, col).isEnabled())
+				{
+					gridColors[row][col] = secondChosen;
+					secondChosenRow = row;
+					secondChosenColumn = col;
+					repaint();
+					territoryTo = Territory.isTerritory(row, col);
+					System.out.println("territoryTo :"+territoryTo);
+					//territorySource.setLink(territoryTo);
+					GameFrame.play.numFortify.setEnabled(true);
+					GameFrame.play.btnRoll.setEnabled(true);
+				}
+				
 				
 			}
 				

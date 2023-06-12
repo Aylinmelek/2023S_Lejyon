@@ -290,7 +290,27 @@ public class GameFrame extends JFrame {
 
 			
 				frame.add(login.btnMenu);
-
+				for(int k = 0; k< play.handler.getBoard().map.getTerritories().size(); k++)
+				{	
+					play.handler.getBoard().map.checkReachability(play.handler.getBoard().map.getTerritories().get(k));
+					if(!play.handler.getBoard().map.getTerritories().get(k).isEnabled())
+					{
+						for(int a = 0; a < bmode.grid.ROWS; a++)
+						{
+							for(int b = 0; b < bmode.grid.COLUMNS; b++)
+							{
+								
+								if(play.handler.getBoard().map.getTerritories().get(k).isTerritory(a,b) != null && play.handler.getBoard().map.getTerritories().get(k).isTerritory(a,b).equals(play.handler.getBoard().map.getTerritories().get(k)))
+								{
+									if (bmode.grid.gridColors[a][b] != bmode.grid.blue) {
+										bmode.grid.gridColors[a][b] = Color.GRAY;
+										bmode.grid.repaint();
+								}
+								}
+								
+						}
+					}
+				}}
 				
 				
 					String action = e.getActionCommand();
@@ -467,27 +487,7 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Toggle the visibility of the panels
 
-				for(int k = 0; k< play.handler.getBoard().map.getTerritories().size(); k++)
-				{	
-					play.handler.getBoard().map.checkReachability(play.handler.getBoard().map.getTerritories().get(k));
-					if(!play.handler.getBoard().map.getTerritories().get(k).isEnabled())
-					{
-						for(int a = 0; a < bmode.grid.ROWS; a++)
-						{
-							for(int b = 0; b < bmode.grid.COLUMNS; b++)
-							{
-								
-								if(play.handler.getBoard().map.getTerritories().get(k).isTerritory(a,b) != null && play.handler.getBoard().map.getTerritories().get(k).isTerritory(a,b).equals(play.handler.getBoard().map.getTerritories().get(k)))
-								{
-									if (bmode.grid.gridColors[a][b] != bmode.grid.blue) {
-										bmode.grid.gridColors[a][b] = Color.GRAY;
-										bmode.grid.repaint();
-								}
-								}
-								
-						}
-					}
-				}}
+				
 				for(int i = 0; i< play.handler.getBoard().map.getTerritories().size(); i++)
 				{	
 					/*play.handler.getBoard().map.checkReachability(play.handler.getBoard().map.getTerritories().get(i));
@@ -517,7 +517,8 @@ public class GameFrame extends JFrame {
  					play.btnTer.addActionListener(new ActionListener() {
  				     	public void actionPerformed(ActionEvent e) {
  				     		bmode.grid.terCard.setVisible(true);
- 				     		
+
+ 				     		//Burada update frame'i cagiracaksin
 
 
  				     	}
