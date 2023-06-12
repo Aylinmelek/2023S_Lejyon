@@ -3,15 +3,18 @@ import java.awt.*;
 import javax.swing.*;
 
 public class EndGame extends JLayeredPane {
+	public 
     JLabel lblEnd = new JLabel("GAME OVER!", SwingConstants.CENTER);
-    JLabel lblWin = new JLabel("... Won!", SwingConstants.CENTER);
+    JLabel lblWin;// = new JLabel("... Won!", SwingConstants.CENTER);
 
     public boolean endMode = false;
 
-    public EndGame() {
+    public EndGame(String winnerName) {
         super();
+        lblWin = new JLabel(winnerName + " Won!", SwingConstants.CENTER); 
         initialize();
         addElements();
+        
     }
 
     public void initialize() {
