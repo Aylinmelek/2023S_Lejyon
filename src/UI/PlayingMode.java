@@ -131,6 +131,32 @@ public class PlayingMode extends JLayeredPane {
 				roll2 = die.getDiceValue();
 				System.out.println("Rolllllll2 : " + roll2);
 			}
+			if (roll1 != 0 && roll2 != 0 && GameFrame.bmode.grid.territorySource != null
+					&& GameFrame.bmode.grid.territoryTo != null) {
+
+				System.out.println("roll1 : " + roll1 + "roll2 : " + roll2);
+				handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex),
+						GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
+				GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
+				GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+				repaint();
+				GameFrame.bmode.grid.territorySource = null;
+				GameFrame.bmode.grid.territoryTo = null;
+				numFortify.setEnabled(false);
+				btnTer.setEnabled(true);
+				btnArmy.setEnabled(true);
+				btnChance.setEnabled(true);
+
+				btnPickChance.setEnabled(true);
+				btnTACard.setEnabled(true);
+				btnSkip.setEnabled(true);
+				btnFortify.setEnabled(true);
+				btnRoll.setEnabled(false);
+
+				roll1 = 0;
+				roll2 = 0;
+			}
+			GameFrame.bmode.grid.updateGridText();
 			///
 			// die.generateNum();
 			/*
