@@ -85,9 +85,17 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 			for (int col = 0; col < COLUMNS; col++) {
 				Territory territory = Territory.isTerritory(row, col);
 				if (territory != null) {
-					this.gridColors[row][col] = territory.getColor();
-					String armyNumStr = Integer.toString(territory.getArmyList().size());
-					this.gridText[row][col] = armyNumStr;
+					if(territory.isEnabled())
+					{
+						if(this.gridColors[row][col] != Color.CYAN)
+						{
+							this.gridColors[row][col] = territory.getColor();
+						}
+						
+						String armyNumStr = Integer.toString(territory.getArmyList().size());
+						this.gridText[row][col] = armyNumStr;
+					}
+					
 				}
 			}
 		}
@@ -328,10 +336,14 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
                 	//players.get(i).setNumOfInfantry(players.get(i).getNumOfInfantry()-1);
                 	//Infantry inf = new Infantry();
-					System.out.println("Territory enable mý?" + selectedTer.isEnabled());
-                	players.get(playerIndex).chooseATerritory(selectedTer);
-                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
-                	updateGridText();
+					if(selectedTer.isEnabled())
+					{
+						System.out.println("Territory enable mý?" + selectedTer.isEnabled());
+	                	players.get(playerIndex).chooseATerritory(selectedTer);
+	                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
+	                	updateGridText();
+					}
+					
                 	
                 	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
                 	//System.out.println(players.get(playerIndex).getName());
@@ -346,33 +358,36 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                     System.out.println(selectedTer);
                     System.out.println(players.get(playerIndex).getInfantryList().size());
                     System.out.println(selectedTer.getArmyList().size());//aynÄ± territory Ã§aÄrÄ±ldÄ±ÄÄ±nda size deÄiÅmiyor, ancak 4 player yani totalde 4 army eklendiÄinde size 1 artÄ±yor
+                    if(selectedTer.isEnabled())
+					{
+                    	if(selectedTer.getOwner().equals(players.get(playerIndex)))
+                        {
+                        	if (playerIndex==(players.size()-1)) {
+                        		//GameFrame.sharing.getTemp()) {
+
+                        	System.out.println("playersList finished");
+                        	playerIndex=0;
+                        }
+                        else {
+                        	
+                        	System.out.println("playerIndex: "+ playerIndex);
+                        	playerIndex++;
+                        	
+                        }
+                        System.out.println("-------");
+                        for(int i=0; i<players.size(); i++) {
+                        	if(players.get(i).getInfantryList().size()!=0) {
+                        		infFlag = false;
+                        	}
+                        }
+                        if(infFlag) {
+                        	//burada shuffle Ã§aÄrÄ±lacak
+
+                        }
+                        }
+					}
+
                     
-
-                    if(selectedTer.getOwner().equals(players.get(playerIndex)))
-                    {
-                    	if (playerIndex==(players.size()-1)) {
-                    		//GameFrame.sharing.getTemp()) {
-
-                    	System.out.println("playersList finished");
-                    	playerIndex=0;
-                    }
-                    else {
-                    	
-                    	System.out.println("playerIndex: "+ playerIndex);
-                    	playerIndex++;
-                    	
-                    }
-                    System.out.println("-------");
-                    for(int i=0; i<players.size(); i++) {
-                    	if(players.get(i).getInfantryList().size()!=0) {
-                    		infFlag = false;
-                    	}
-                    }
-                    if(infFlag) {
-                    	//burada shuffle Ã§aÄrÄ±lacak
-
-                    }
-                    }
                     
 
                     
@@ -411,26 +426,35 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 		else if (GameFrame.play.playMode) {
 			System.out.println("PLAYMODE");
-				if(territorySource == null)
+				if(territorySource == null || territoryTo != null)
 			{
-				gridColors[row][col] = firstChosen;
-				firstChosenRow = row;
-				firstChosenColumn = col;
-				repaint();
-				territorySource = Territory.isTerritory(row, col);
-				System.out.println("territorySource :"+territorySource);
-				System.out.println("Territory enable mý?" + territorySource.isEnabled());
+					if(Territory.isTerritory(row, col).isEnabled())
+					{
+						territorySource = Territory.isTerritory(row, col);
+						gridColors[row][col] = firstChosen;
+						firstChosenRow = row;
+						firstChosenColumn = col;
+						repaint();
+						
+						System.out.println("territorySource :"+territorySource);
+						System.out.println("Territory enable mý?" + territorySource.isEnabled());
+					}
+					territoryTo = null;
 			}
 			else {
-				gridColors[row][col] = secondChosen;
-				secondChosenRow = row;
-				secondChosenColumn = col;
-				repaint();
-				territoryTo = Territory.isTerritory(row, col);
-				System.out.println("territoryTo :"+territoryTo);
-				//territorySource.setLink(territoryTo);
-				GameFrame.play.numFortify.setEnabled(true);
-				GameFrame.play.btnRoll.setEnabled(true);
+				if(Territory.isTerritory(row, col).isEnabled())
+				{
+					gridColors[row][col] = secondChosen;
+					secondChosenRow = row;
+					secondChosenColumn = col;
+					repaint();
+					territoryTo = Territory.isTerritory(row, col);
+					System.out.println("territoryTo :"+territoryTo);
+					//territorySource.setLink(territoryTo);
+					GameFrame.play.numFortify.setEnabled(true);
+					GameFrame.play.btnRoll.setEnabled(true);
+				}
+				
 				
 			}
 				
