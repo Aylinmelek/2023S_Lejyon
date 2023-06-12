@@ -42,6 +42,7 @@ public class GameFrame extends JFrame {
 	public static BuildingMode bmode = new BuildingMode();
 	public static LoginScreen login = new LoginScreen();
 	public static MenuScreen menu = new MenuScreen();
+	public static EndGame end = new EndGame();
 	public static ArrayList<String> tempPlayer = new ArrayList<String>();
 	public static ArrayList<String> nameSorted = new ArrayList<String>();
 	public static ArrayList<Player> playerArray = new ArrayList<Player>();
@@ -101,15 +102,7 @@ public class GameFrame extends JFrame {
 					
 				}
 				
-				
-				/*txtPlayerNames.setText(playerNamesBuilder.toString());
-				txtPlayerNames.setForeground(Color.LIGHT_GRAY);
-				txtPlayerNames.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 31));
-				txtPlayerNames.setEditable(false);
-				txtPlayerNames.setBackground(Color.DARK_GRAY);
-				txtPlayerNames.setBounds(70, 6, 780, 43);
-				play.add(txtPlayerNames);*/
-
+			
 				for(int i =0;i<totalPeople; i++) {
 					System.out.println(playerArray.get(i));
 					conKUerorHandler.getBoard().createInfantry(login.addPlayers(totalPeople),playerArray.get(i));
@@ -267,6 +260,29 @@ public class GameFrame extends JFrame {
 		});
 		
 		
+		
+		play.btnFinish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int active;
+				int max = 0;
+				for (int i = 0; i < playerArray.size(); i++) {
+					active = GameFrame.playerArray.get(i).territoryList.size();
+					if (active > max) {
+						max = active;
+					}
+				}
+				for (int a = 0; a < playerArray.size(); a++) {
+					if (max == GameFrame.playerArray.get(a).territoryList.size()) {
+						System.out.println("Winner = " + GameFrame.playerArray.get(a));
+					}
+				}
+				frame.add(end);
+				play.setVisible(false);
+				end.setVisible(true);
+				
+			}
+			
+		});
 		
 	
 		bmode.btnNext.addActionListener(new ActionListener() {
@@ -501,7 +517,9 @@ public class GameFrame extends JFrame {
  					play.btnTer.addActionListener(new ActionListener() {
  				     	public void actionPerformed(ActionEvent e) {
  				     		bmode.grid.terCard.setVisible(true);
+
  				     		//Burada update frame'i cagiracaksin
+
 
  				     	}
 

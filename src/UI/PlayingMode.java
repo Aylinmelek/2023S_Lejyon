@@ -21,12 +21,12 @@ import domain.Player;
 import domain.controller.ConKUerorHandler;
 
 public class PlayingMode extends JLayeredPane {
-
 	JButton btnTer = new JButton("Territory Cards");
 	JButton btnArmy = new JButton("Army Cards");
 	JButton btnChance = new JButton("Chance Cards");
 	JButton btnRoll = new JButton("ROLL DIE");
 	JButton btnSkip = new JButton("SKIP/END TURN");
+	JButton btnInstr = new JButton("How to Play");
 	JButton btnPickChance = new JButton("Pick a Chance Card");
 	JButton btnTACard = new JButton("Pick a Territory/Army Card");
 	JButton btnAttack = new JButton("Attack");
@@ -74,9 +74,11 @@ public class PlayingMode extends JLayeredPane {
 	public PlayingMode() {
 		super();
 		initialize();
+		
 		// addElements();
 	}
 
+	
 	public void initialize() {
 		setBackground(Color.DARK_GRAY);
 		setBounds(0, 54, 873, 451);
@@ -202,12 +204,24 @@ public class PlayingMode extends JLayeredPane {
 		add(btnAttack);
 		btnFortify.setBounds(600, 430, 137, 36);
 		add(btnFortify);
-		btnPlace.setBounds(740, 430, 137, 36);
+		btnPlace.setBounds(737, 430, 137, 36);
 		add(btnPlace);
-		btnFinish.setBounds(460, 497, 137, 36);
+		btnFinish.setBounds(737, 497, 137, 46);
 		add(btnFinish);
 
-		GameFrame.play.btnAttack.addActionListener(new ActionListener() {
+		
+		btnInstr.setBounds(587, 497, 137, 46);
+		add(btnInstr);
+		btnInstr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlayingInstructions instr = new PlayingInstructions();
+				instr.setVisible(true);
+
+			}
+		});
+
+		
+		btnAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnTer.setEnabled(false);
 				btnArmy.setEnabled(false);
@@ -225,11 +239,11 @@ public class PlayingMode extends JLayeredPane {
 					int armyCountBefore = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 
 					handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex),
-							GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
+					GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
 					int armyCountAfter = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 
-					GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
-					GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+					//GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
+					//GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
 					repaint();
 					GameFrame.bmode.grid.territorySource = null;
 					GameFrame.bmode.grid.territoryTo = null;
@@ -238,11 +252,11 @@ public class PlayingMode extends JLayeredPane {
 					if (armyCountBefore > armyCountAfter) {
 
 						GameFrame.bmode.grid.startColorChangeTimer();
-						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= Color.GREEN;
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= GameFrame.sharing.addColors().get(GameFrame.bmode.grid.playerIndex);
 						
 					} else if (armyCountBefore < armyCountAfter) {
 						GameFrame.bmode.grid.startColorChangeTimer();
-						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= Color.GREEN;
+						//GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= GameFrame.sharing.addColors().get(GameFrame.bmode.grid.playerIndex);
 						
 					}
 
@@ -263,7 +277,7 @@ public class PlayingMode extends JLayeredPane {
 
 			}
 		});
-		GameFrame.play.btnFortify.addActionListener(new ActionListener() {
+		btnFortify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null) {
@@ -281,7 +295,7 @@ public class PlayingMode extends JLayeredPane {
 				GameFrame.bmode.grid.updateGridText();
 			}
 		});
-		GameFrame.play.btnPlace.addActionListener(new ActionListener() {
+		btnPlace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (GameFrame.bmode.grid.territorySource != null) {
@@ -293,25 +307,7 @@ public class PlayingMode extends JLayeredPane {
 				GameFrame.bmode.grid.updateGridText();
 			}
 		});
-		GameFrame.play.btnFinish.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int active;
-				int max = 0;
-				for (int i = 0; i < GameFrame.playerArray.size(); i++) {
-					active = GameFrame.playerArray.get(i).territoryList.size();
-					if (active > max) {
-						max = active;
-					}
-				}
-				for (int a = 0; a < GameFrame.playerArray.size(); a++) {
-					if (max == GameFrame.playerArray.get(a).territoryList.size()) {
-						System.out.println("Winner = " + GameFrame.playerArray.get(a));
-					}
-				}
-				// Grid Enable olacak
-
-			}
-		});
+		
 
 		btnChance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -324,7 +320,9 @@ public class PlayingMode extends JLayeredPane {
 		btnChance.setBounds(27, 497, 118, 29);
 		add(btnChance);
 
-		dieLabel.setBounds(471, 450, 80, 80);
+	
+		
+		dieLabel.setBounds(471, 470, 80, 80);
 		add(dieLabel);
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -395,35 +393,36 @@ public class PlayingMode extends JLayeredPane {
 		add(btnPickChance);
 		add(btnTACard);
 
-		txtCard.setBounds(170, 510, 137, 36);
+		txtCard.setBounds(170, 510, 167, 36);
 		txtCard.setBackground(Color.DARK_GRAY);
 		txtCard.setForeground(Color.WHITE);
 		txtCard.setEditable(false);
 		add(txtCard);
 
-		txtPlayerTurn.setBounds(600, 490, 200, 36);
+		txtPlayerTurn.setBounds(600, 465, 200, 36);
 		txtPlayerTurn.setBackground(Color.DARK_GRAY);
 		txtPlayerTurn.setForeground(Color.WHITE);
 		txtPlayerTurn.setFont(new Font("Kokonor", Font.BOLD | Font.ITALIC, 20));
 		txtPlayerTurn.setEditable(false);
-		txtPlayerTurn.setText("It is " + GameFrame.nameSorted + "turn!!");
+		txtPlayerTurn.setText("It is " + GameFrame.playerArray.get(indexOfPlayer).getName() + "'s turn!!");
 		add(txtPlayerTurn);
 
 		btnPickChance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				handler.giveChanceCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
-				txtCard.setText(".... card picked");
+				txtCard.setText("??????????????????" + "card picked");
+				
 
 			}
 		});
 
 		btnTACard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
-
+				//GameFrame.bmode.grid.terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index);
+				txtCard.setText("??????????????????" + "card picked");
 			}
 		});
 

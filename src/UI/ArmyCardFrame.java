@@ -63,7 +63,7 @@ public class ArmyCardFrame extends JFrame {
 
 	public ArmyCardFrame() {
 		addButtons();
-		addArmyButtons();
+		addArmyCards();
 		initialize();
 		addButtonActListener();
 		addTradeOps();
@@ -106,12 +106,6 @@ public class ArmyCardFrame extends JFrame {
 	}
 	
 	public void addTradeOps() {
-		/*3 Infantry cards => 1 Cavalry
-				2 Infantry cards + 1 Cavalry card => 2 Cavalry
-				2 Infantry cards + 1 Artillery card => 2 Artillery
-				1 Infantry card + 2 Cavalry cards => 1 Cavalry + 1 Artillery
-				1 Artillery + 2 Cavalry cards => 3 Artillery*/
-		//button tepelerine isimler ekle
 		
 		JTextArea cavalry1 = new JTextArea("Trade option 1: Infantry cards => 1 Cavalry");
 		JTextArea cavalry2 = new JTextArea("Trade option 2: 2 Infantry cards + 1 Artillery card => 2 Artillery");
@@ -213,14 +207,18 @@ public class ArmyCardFrame extends JFrame {
 	}
 
 	
-	public void addArmyButtons() {
-		JButton btnInfantry = new JButton("Infantry Cards");
-		JButton btnArtillery = new JButton("Artillery Cards");
-		JButton btnCavalry = new JButton("Cavalry Cards");
+	public void addArmyCards() {
+		ImageIcon infantry = new ImageIcon(this.getClass().getResource("/infantry.png"));
+		ImageIcon artillery = new ImageIcon(this.getClass().getResource("/artillery.png"));
+		ImageIcon cavalry = new ImageIcon(this.getClass().getResource("/cavalry.png"));
+		
+		JLabel labelInfantry = new JLabel(infantry);
+		JLabel labelArtillery = new JLabel(artillery);
+		JLabel labelCavalry = new JLabel(cavalry);
 
-		btnInfantry.setBounds(52, 100, 114, 37);
-		btnArtillery.setBounds(52, 150, 114, 37);
-		btnCavalry.setBounds(52, 200, 114, 37);
+		labelInfantry.setBounds(52, 100, 114, 37);
+		labelArtillery.setBounds(52, 150, 114, 37);
+		labelCavalry.setBounds(52, 200, 114, 37);
 		
 		txtInfantry.setBounds(172, 107, 20, 37);
 		txtInfantry.setBackground(Color.DARK_GRAY);
@@ -230,9 +228,9 @@ public class ArmyCardFrame extends JFrame {
 		txtCavalry.setBackground(Color.DARK_GRAY);
 
 
-		add(btnInfantry);
-		add(btnArtillery);
-		add(btnCavalry);
+		add(labelInfantry);
+		add(labelArtillery);
+		add(labelCavalry);
 		add(txtInfantry);
 		add(txtArtillery);
 		add(txtCavalry);
