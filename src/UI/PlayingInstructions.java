@@ -47,6 +47,10 @@ public class PlayingInstructions extends JFrame {
 				+ "Select your own Territory and the territory you want to attak.\n"
 				+ "Press the ATTACK button and roll the die twice: The first for.... and the second for ......\n"
 				+ "Press ATTACK button again to start the action. \n"
+				+ "Press FORTIFYING button : "
+				
+				+ "For placing army: "
+				+ ""
 				+ "");
 		add(txtInstructions);
 	}

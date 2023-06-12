@@ -85,6 +85,7 @@ public ConKUerorHandler() {
 	public void giveArmyCard(Player player)
 	{
 		board.giveArmyCard(player);
+	
 	}
 	public void giveTerCard(Player player)
 	{
