@@ -109,11 +109,16 @@ public class Deck implements Serializable{
 	}
 	
 	public void giveTerritoryCard(Player player) {
-		int index = this.getTerritoryCardList().size() - 1;
-		TerritoryCard terCard = this.getTerritoryCardList().get(index);
 		
-		player.getTerritoryCardList().add(terCard);
-		this.getTerritoryCardList().remove(index);
+		int index = this.getTerritoryCardList().size() - 1;
+		if(index > 0) {
+			TerritoryCard terCard = this.getTerritoryCardList().get(index);
+			player.getTerritoryCardList().add(terCard);
+			this.getTerritoryCardList().remove(index);
+		}
+		
+		
+		
 
 	}
 

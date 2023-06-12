@@ -10,12 +10,21 @@ import domain.controller.ConKUerorHandler;
 public class Player {
 
 	String name;
+	String color;
 	public Deck deck = new Deck();
 
 	
 	
 	
 	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	public Die getDie() {
 		return die;
 	}
@@ -197,8 +206,9 @@ public class Player {
 					}
 				}
 				
-				
+				continent.territoryList.get(j).setOwner(this);
 				territoryList.add(continent.territoryList.get(j));
+				
 			}
 		}
 

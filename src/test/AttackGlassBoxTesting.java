@@ -55,7 +55,7 @@ class AttackGlassBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player1, territory1, territory1, die);
+        conkueror.attack(player1, territory1, territory1,  3 , 2);
         int output = territory1.getArmyList().size();
         // System.out.println(output);
         assertEquals(1, output);
@@ -91,11 +91,11 @@ class AttackGlassBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player1, territory1, territory1, die);
+        conkueror.attack(player1, territory1, territory1, 3 , 2);
         int output = territory1.getArmyList().size();
         // System.out.println(output);
 
-        conkueror.attack(player1, territory2, territory1, die);
+        conkueror.attack(player1, territory2, territory1, 3 , 2);
         int output2 = territory2.getArmyList().size();
         // System.out.println(output2);
         assertEquals(2, output2);
@@ -129,15 +129,15 @@ class AttackGlassBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player1, territory1, territory1, die);
+        conkueror.attack(player1, territory1, territory1,  3 , 2);
         int output = territory1.getArmyList().size();
         // System.out.println(output);
 
-        conkueror.attack(player1, territory2, territory1, die);
+        conkueror.attack(player1, territory2, territory1,  3 , 2);
         int output2 = territory2.getArmyList().size();
         // System.out.println(output2);
 
-        conkueror.attack(player1, territory1, territory5, die);
+        conkueror.attack(player1, territory1, territory5,  3 , 2);
         int output3 = territory5.getArmyList().size();
         // System.out.println(output3);
         assertEquals(3, output3);
@@ -171,19 +171,19 @@ class AttackGlassBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player1, territory1, territory1, die);
+        conkueror.attack(player1, territory1, territory1,  3 , 2);
         int output = territory1.getArmyList().size();
         // System.out.println(output);
 
-        conkueror.attack(player1, territory2, territory1, die);
+        conkueror.attack(player1, territory2, territory1,  3 , 2);
         int output2 = territory2.getArmyList().size();
         // System.out.println(output2);
 
-        conkueror.attack(player1, territory1, territory5, die);
+        conkueror.attack(player1, territory1, territory5,  3 , 2);
         int output3 = territory5.getArmyList().size();
         // System.out.println(output3);
 
-        conkueror.attack(player1, territory2, territory5, die);
+        conkueror.attack(player1, territory2, territory5,  3 , 2);
         int output4 = territory2.getArmyList().size();
         // System.out.println(output4);
         assertEquals(2, output4);
@@ -218,23 +218,23 @@ class AttackGlassBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player1, territory1, territory1, die);
+        conkueror.attack(player1, territory1, territory1,  3 , 2);
         int output = territory1.getArmyList().size();
         // System.out.println(output);
 
-        conkueror.attack(player1, territory2, territory1, die);
+        conkueror.attack(player1, territory2, territory1,  3 , 2);
         int output2 = territory2.getArmyList().size();
         // System.out.println(output2);
 
-        conkueror.attack(player1, territory1, territory5, die);
+        conkueror.attack(player1, territory1, territory5,  3 , 2);
         int output3 = territory5.getArmyList().size();
         // System.out.println(output3);
 
-        conkueror.attack(player1, territory2, territory5, die);
+        conkueror.attack(player1, territory2, territory5,  3 , 2);
         int output4 = territory2.getArmyList().size();
         // System.out.println(output4);
 
-        conkueror.attack(player2, territory2, territory1, die);
+        conkueror.attack(player2, territory2, territory1,  3 , 2);
         int output5 = territory1.getArmyList().size();
         System.out.println(output5);
         if (territory1.getOwner().equals(player2)) {
