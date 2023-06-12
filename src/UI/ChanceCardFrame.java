@@ -105,47 +105,65 @@ public class ChanceCardFrame extends JFrame {
 	public void addButtonActListener() {
 		btnFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (GameFrame.bmode.grid.territorySource != null) {
-					GameFrame.play.handler.reinforce(GameFrame.play.handler.getBoard().getDie(),
+				if (GameFrame.bmode.grid.territorySource != null && GameFrame.play.roll3 != 0) {
+					
+					GameFrame.play.handler.reinforce(GameFrame.play.roll3,
 							GameFrame.bmode.grid.territorySource,
 							GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 					GameFrame.bmode.grid.territorySource = null;
+					GameFrame.bmode.grid.updateGridText();
+					
+					GameFrame.play.roll3 = 0;
+					GameFrame.play.btnRoll.setEnabled(false);
 				}
 			}
 		});
 		btnSecond.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (GameFrame.bmode.grid.territorySource != null) {
-					GameFrame.play.handler.sabotage(GameFrame.play.handler.getBoard().getDie(),
+				if (GameFrame.bmode.grid.territorySource != null && GameFrame.play.roll3 != 0) {
+					
+					GameFrame.play.handler.sabotage(GameFrame.play.roll3,
 							GameFrame.bmode.grid.territorySource,
 							GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 					GameFrame.bmode.grid.territorySource = null;
+					GameFrame.bmode.grid.updateGridText();
+					
+					GameFrame.play.roll3 = 0;
+					GameFrame.play.btnRoll.setEnabled(false);
 				}
 			}
 		});
 		btnThird.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (GameFrame.bmode.grid.territorySource != null) {
-					GameFrame.play.handler.worldEvent(GameFrame.play.handler.getBoard().getDie(),
+			public void actionPerformed(ActionEvent e){
+				if (GameFrame.bmode.grid.territorySource != null && GameFrame.play.roll3 != 0) {
+					
+					GameFrame.play.handler.worldEvent(GameFrame.play.roll3,
 							GameFrame.bmode.grid.territorySource, GameFrame.playerArray,
 							GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 					GameFrame.bmode.grid.territorySource = null;
+					GameFrame.bmode.grid.updateGridText();
+					
+					GameFrame.play.roll3 = 0;
+					GameFrame.play.btnRoll.setEnabled(false);
 				}
 			}
 		});
 		btnFourth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (GameFrame.bmode.grid.territorySource != null) {
+					
 					GameFrame.play.handler.spy(GameFrame.bmode.grid.territorySource,
 							GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 					GameFrame.bmode.grid.territorySource = null;
+					GameFrame.bmode.grid.updateGridText();
 				}
 			}
 		});
 		btnFifth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (GameFrame.bmode.grid.territorySource != null) {
-
+					
+					
 					if (GameFrame.play.handler.getBoard().continent1.getTerritoryList()
 							.contains(GameFrame.bmode.grid.territorySource)) {
 						GameFrame.play.handler.disaster(GameFrame.play.handler.getBoard().continent1,
@@ -183,6 +201,7 @@ public class ChanceCardFrame extends JFrame {
 						System.out.println(GameFrame.play.handler.getBoard().continent6);
 					}
 					GameFrame.bmode.grid.territorySource = null;
+					GameFrame.bmode.grid.updateGridText();
 
 				}
 			}
@@ -193,6 +212,7 @@ public class ChanceCardFrame extends JFrame {
 				if (GameFrame.bmode.grid.territorySource != null) {
 					GameFrame.play.handler.immunize(GameFrame.bmode.grid.territorySource);
 					GameFrame.bmode.grid.territorySource = null;
+					GameFrame.bmode.grid.updateGridText();
 				}
 			}
 		});

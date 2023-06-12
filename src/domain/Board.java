@@ -114,21 +114,21 @@ public class Board {
 	{
 		deck.giveTerritoryCard(player);
 	}
-	public void reinforce(Die die, Territory territory, Player player)
+	public void reinforce(int face, Territory territory, Player player)
 	{
-		gameActions.reinforce(die, territory, player);
+		gameActions.reinforce(face, territory, player);
 	}
-	public void sabotage(Die die, Territory territory, Player player)
+	public void sabotage(int face, Territory territory, Player player)
 	{
-		gameActions.sabotage(die, territory, player);
+		gameActions.sabotage(face, territory, player);
 	}
 	public void spy(Territory territory, Player player)
 	{
 		gameActions.spy(territory, player);
 	}
-	public void worldEvent(Die die,Territory territory, ArrayList<Player> playerList, Player player)
+	public void worldEvent(int face,Territory territory, ArrayList<Player> playerList, Player player)
 	{
-		gameActions.worldEvent(die, territory, playerList, player);
+		gameActions.worldEvent(face, territory, playerList, player);
 	}
 	public void disaster(Continent continent, Player player, int number)
 	{
