@@ -379,6 +379,7 @@ public class PlayingMode extends JLayeredPane {
 		
 			
 			public void actionPerformed(ActionEvent e) {
+				handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				Random rand = new Random();
 				int randomValue = rand.nextInt() % 2;
 				if (randomValue == 0) {
@@ -387,7 +388,7 @@ public class PlayingMode extends JLayeredPane {
 				}
 				
 				else {
-				handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
+				//handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				}
 				txtCard.setText("CARD PICKED");
 			}

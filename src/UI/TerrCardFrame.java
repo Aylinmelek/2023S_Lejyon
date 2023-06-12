@@ -93,6 +93,7 @@ public class TerrCardFrame extends JFrame {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex)
 						.tradeTerritoryCards(GameFrame.play.handler.getBoard().continent1);
 				System.out.println("Buraya Basıldı");
+				GameFrame.bmode.grid.updatePlayerColorToGrid();
 
 			}
 		});
@@ -101,6 +102,7 @@ public class TerrCardFrame extends JFrame {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex)
 						.tradeTerritoryCards(GameFrame.play.handler.getBoard().continent2);
 				System.out.println("Buraya Basıldı");
+				GameFrame.bmode.grid.updatePlayerColorToGrid();
 
 			}
 		});
@@ -109,7 +111,7 @@ public class TerrCardFrame extends JFrame {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex)
 						.tradeTerritoryCards(GameFrame.play.handler.getBoard().continent3);
 				System.out.println("Buraya Basıldı");
-
+				GameFrame.bmode.grid.updatePlayerColorToGrid();
 			}
 		});
 		btnFourth.addActionListener(new ActionListener() {
@@ -117,7 +119,7 @@ public class TerrCardFrame extends JFrame {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex)
 						.tradeTerritoryCards(GameFrame.play.handler.getBoard().continent4);
 				System.out.println("Buraya Basıldı");
-
+				GameFrame.bmode.grid.updatePlayerColorToGrid();
 			}
 		});
 		btnFifth.addActionListener(new ActionListener() {
@@ -125,7 +127,7 @@ public class TerrCardFrame extends JFrame {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex)
 						.tradeTerritoryCards(GameFrame.play.handler.getBoard().continent5);
 				System.out.println("Buraya Basıldı");
-
+				GameFrame.bmode.grid.updatePlayerColorToGrid();
 			}
 		});
 		btnSixth.addActionListener(new ActionListener() {
@@ -133,7 +135,7 @@ public class TerrCardFrame extends JFrame {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex)
 						.tradeTerritoryCards(GameFrame.play.handler.getBoard().continent6);
 				System.out.println("Buraya Basıldı");
-
+				GameFrame.bmode.grid.updatePlayerColorToGrid();
 			}
 		});
 

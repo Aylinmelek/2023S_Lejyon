@@ -72,7 +72,35 @@ public class GameFrame extends JFrame {
 				playerName = conKUerorHandler.createPlayerName(login.getPlayerNum());
 				
 				play.handler.createTerCard(play.handler.getBoard().continent1, play.handler.getBoard().continent2, play.handler.getBoard().continent3, play.handler.getBoard().continent4, play.handler.getBoard().continent5, play.handler.getBoard().continent6, play.handler.getBoard().deck);
-
+				for(int i = 0; i < playerArray.size(); i++)
+				{
+					if(i == 0)
+					{
+						System.out.println("BURAYA GELMÝYOR MUU");
+						play.handler.setPlayerColor(playerArray.get(i), "Red");
+					}
+					if(i == 1)
+					{
+						play.handler.setPlayerColor(playerArray.get(i), "Blue");
+					}
+					if(i == 2)
+					{
+						play.handler.setPlayerColor(playerArray.get(i), "Yellow");
+					}
+					if(i == 3)
+					{
+						play.handler.setPlayerColor(playerArray.get(i), "Green");
+					}
+					if(i == 4)
+					{
+						play.handler.setPlayerColor(playerArray.get(i), "Pink");
+					}
+					if(i == 5)
+					{
+						play.handler.setPlayerColor(playerArray.get(i), "Orange");
+					}
+					
+				}
 				
 				System.out.println("playerArraysize: "+playerArray.size());
 				int totalPeople = login.getPlayerNum();
@@ -465,6 +493,8 @@ public class GameFrame extends JFrame {
  					}
 
  				}
+				if(taken)
+ 				{
  					String action = e.getActionCommand();
  					play.numFortify.setEnabled(false);
  					play.btnTer.addActionListener(new ActionListener() {
@@ -483,7 +513,7 @@ public class GameFrame extends JFrame {
  					sharing.init = false;
 
  					play.playMode = true;
-
+ 					bmode.grid.updatePlayerColorToGrid();
  					 System.out.println(play.playMode);
  					 play.sort(playerArray);
 
@@ -516,7 +546,7 @@ public class GameFrame extends JFrame {
 					play.playMode = true;
 					System.out.println(play.playMode);
 					
-				//}
+				}
 				
 				
 

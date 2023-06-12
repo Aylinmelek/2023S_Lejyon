@@ -71,6 +71,45 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		setLayout(null);
 		setSize(width, height);
 	}
+	public void updatePlayerColorToGrid()
+	{
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLUMNS; col++) {
+				Territory territory = Territory.isTerritory(row, col);
+				if (territory != null) {
+					if (territory.isEnabled()) {
+						
+						if(territory.getOwner() != null && territory.getOwner().getColor().equals("Red"))
+						{
+							this.gridColors[row][col] = Color.RED;
+						}
+						if(territory.getOwner() != null && territory.getOwner().getColor().equals("Blue"))
+						{
+							this.gridColors[row][col] = Color.BLUE;
+						}
+						if(territory.getOwner() != null && territory.getOwner().getColor().equals("Yellow"))
+						{
+							this.gridColors[row][col] = Color.YELLOW;
+						}
+						if(territory.getOwner() != null && territory.getOwner().getColor().equals("Pink"))
+						{
+							this.gridColors[row][col] = Color.PINK;
+						}
+						if(territory.getOwner() != null && territory.getOwner().getColor().equals("Orange"))
+						{
+							this.gridColors[row][col] = Color.ORANGE;
+						}
+						if(territory.getOwner() != null && territory.getOwner().getColor().equals("Green"))
+						{
+							this.gridColors[row][col] = Color.GREEN;
+						}
+						
+					}
+
+				}
+			}
+		}
+	}
 
 	public void updateGridText() {
 		for (int row = 0; row < ROWS; row++) {

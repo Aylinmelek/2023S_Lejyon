@@ -110,6 +110,7 @@ public class Board {
 	public void giveTerCard(Player player)
 	{
 		deck.giveTerritoryCard(player);
+		System.out.println("Ter Card verdi");
 	}
 	public void reinforce(int face, Territory territory, Player player)
 	{

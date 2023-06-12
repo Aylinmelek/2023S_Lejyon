@@ -52,6 +52,10 @@ public ConKUerorHandler() {
 		return String.format("You rolled %d:  %s",
 				             board.getDiceValue());//, (board.getDiceValue() > 7)?"You Win":"I Win");
 	}
+	public void setPlayerColor(Player player, String color)
+	{
+		player.setColor(color);
+	}
 	
 	public int getDieValue() {
 		return board.getDiceValue();
@@ -90,6 +94,7 @@ public ConKUerorHandler() {
 	public void giveTerCard(Player player)
 	{
 		board.giveTerCard(player);
+		System.out.println("Ter Card verdi");
 	}
 	public void giveChanceCard(Player player)
 	{
