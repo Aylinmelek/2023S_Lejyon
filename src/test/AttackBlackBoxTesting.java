@@ -55,7 +55,7 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player2, territory2, territory1, die);
+        conkueror.attack(player2, territory2, territory1, 3 , 2);
 
         int range2 = territory1.getArmyList().size() + territory2.getArmyList().size();
         assertEquals(5, range2);
@@ -90,7 +90,7 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player2, territory2, territory1, die);
+        conkueror.attack(player2, territory2, territory1, 3 , 2);
 
         int range2 = territory1.getArmyList().size() + territory2.getArmyList().size();
 
@@ -127,7 +127,7 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
         
 
-        conkueror.attack(player1, territory1, territory2, die);
+        conkueror.attack(player1, territory1, territory2, 3 , 2);
 
         boolean and_output = territory2.getOwner().equals(player1) && territory2.getOwner().equals(player2);
         assertEquals(false, and_output);
@@ -163,11 +163,11 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player2, territory2, territory1, die);
+        conkueror.attack(player2, territory2, territory1, 3 , 2);
 
         int range2 = territory1.getArmyList().size() + territory2.getArmyList().size();
 
-        conkueror.attack(player1, territory1, territory2, die);
+        conkueror.attack(player1, territory1, territory2, 3 , 2);
 
         boolean and_output = territory2.getOwner().equals(player1) && territory2.getOwner().equals(player2);
 
@@ -205,11 +205,11 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player2, territory2, territory1, die);
+        conkueror.attack(player2, territory2, territory1, 3 , 2);
 
         int range2 = territory1.getArmyList().size() + territory2.getArmyList().size();
 
-        conkueror.attack(player1, territory1, territory2, die);
+        conkueror.attack(player1, territory1, territory2,  3 , 2);
 
         boolean and_output = territory2.getOwner().equals(player1) && territory2.getOwner().equals(player2);
 
@@ -251,8 +251,8 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player1, territory1, territory2, die);
-        conkueror.attack(player1, territory1, territory2, die);
+        conkueror.attack(player1, territory1, territory2,  3 , 2);
+        conkueror.attack(player1, territory1, territory2,  3 , 2);
 
        
         
@@ -294,7 +294,7 @@ class AttackBlackBoxTesting {
         territory2.getArmyList().add(infantry);
         territory2.getArmyList().add(infantry);
 
-        conkueror.attack(player1, territory1, territory2, die);
+        conkueror.attack(player1, territory1, territory2,  3 , 2);
 
        
 
