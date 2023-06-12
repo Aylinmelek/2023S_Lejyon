@@ -141,7 +141,7 @@ public class PlayingMode extends JLayeredPane {
 			}
 			if (roll1 != 0 && roll2 != 0 && GameFrame.bmode.grid.territorySource != null
 					&& GameFrame.bmode.grid.territoryTo != null) {
-
+				System.out.println("Yeni yeri");
 				System.out.println("roll1 : " + roll1 + "roll2 : " + roll2);
 				handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex),
 						GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
@@ -241,7 +241,7 @@ public class PlayingMode extends JLayeredPane {
 				btnFortify.setEnabled(false);
 				if (roll1 != 0 && roll2 != 0 && GameFrame.bmode.grid.territorySource != null
 						&& GameFrame.bmode.grid.territoryTo != null) {
-
+					System.out.println("Rollandýý");
 					System.out.println("roll1 : " + roll1 + "roll2 : " + roll2);
 					int armyCountBefore = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 
@@ -338,7 +338,7 @@ public class PlayingMode extends JLayeredPane {
 				displayDie();
 				if (roll1 != 0 && roll2 != 0 && GameFrame.bmode.grid.territorySource != null
 						&& GameFrame.bmode.grid.territoryTo != null) {
-
+					System.out.println("Rollandýý");
 					System.out.println("roll1 : " + roll1 + "roll2 : " + roll2);
 					handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex),
 							GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);

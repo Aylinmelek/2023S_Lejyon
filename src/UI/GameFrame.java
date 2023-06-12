@@ -518,8 +518,8 @@ public class GameFrame extends JFrame {
  					}
 
  				}
- 				//if(taken)
- 				//{
+ 				if(taken)
+ 				{
  					String action = e.getActionCommand();
  					play.numFortify.setEnabled(false);
  					play.btnTer.addActionListener(new ActionListener() {
@@ -577,7 +577,7 @@ public class GameFrame extends JFrame {
 					play.playMode = true;
 					System.out.println(play.playMode);
 					
-				//}
+				}
 				
 				
 
