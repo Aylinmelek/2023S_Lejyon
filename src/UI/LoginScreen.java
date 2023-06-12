@@ -155,7 +155,7 @@ public class LoginScreen extends JLayeredPane {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (!username.getText().equals("")) {
+				if (!username.getText().equals("") && !password.getText().equals("")) {
 					if (counter < getPlayerNum()) {
 						getNameLabels()[index].setText(username.getText());
 						nameLabels[index].setBackground(Color.DARK_GRAY);
