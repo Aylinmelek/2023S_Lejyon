@@ -288,15 +288,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		 
 
 		  if (GameFrame.sharing.init) {
-			  System.out.println("reeeeeeenk "+gridColors[row][col]);
-			
-			 
-			if (gridColors[row][col] != Color.DARK_GRAY || gridColors[row][col] != blue) {
-				System.out.println("if renk "+getColorName(gridColors[row][col]));
-				gridColors[row][col] = Color.BLACK;
-				System.out.println("if renk 2 "+getColorName(gridColors[row][col]));
-				repaint();
-
+			if (gridColors[row][col] != Color.DARK_GRAY && gridColors[row][col] != blue) {
 				
 				index = selectedTer.getIndex();
 				if(!GameFrame.sharing.getButton().isEnabled()) {
@@ -306,15 +298,13 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					}
 
 					ArrayList<Player> players = GameFrame.playerArray;
-					System.out.println("Territory enable mi?" + selectedTer.isEnabled());
+					gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
+					repaint();
+					
                 	players.get(playerIndex).chooseATerritory(selectedTer);
                 	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
                 	updateGridText();
                 	System.out.println(players.get(playerIndex));
-           	        
-           	     	//GameFrame.play.add(txtPlayerTurn);
-           	     
-
                 	System.out.println(players.get(playerIndex));
 
                 	
@@ -324,9 +314,7 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
                     if(selectedTer.getOwner().equals(players.get(playerIndex)))
                     {
                     	if (playerIndex==(players.size()-1)) {
-                    		//GameFrame.sharing.getTemp()) {
-
-                    	System.out.println("playersList finished");
+                    	
                     	playerIndex=0;
                     }
                     else {

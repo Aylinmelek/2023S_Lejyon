@@ -195,7 +195,7 @@ public class PlayingMode extends JLayeredPane {
 		});
 
 		
-		GameFrame.play.btnAttack.addActionListener(new ActionListener() {
+		btnAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnTer.setEnabled(false);
 				btnArmy.setEnabled(false);
@@ -251,7 +251,7 @@ public class PlayingMode extends JLayeredPane {
 
 			}
 		});
-		GameFrame.play.btnFortify.addActionListener(new ActionListener() {
+		btnFortify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (GameFrame.bmode.grid.territorySource != null && GameFrame.bmode.grid.territoryTo != null) {
@@ -269,7 +269,7 @@ public class PlayingMode extends JLayeredPane {
 				GameFrame.bmode.grid.updateGridText();
 			}
 		});
-		GameFrame.play.btnPlace.addActionListener(new ActionListener() {
+		btnPlace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (GameFrame.bmode.grid.territorySource != null) {
@@ -281,25 +281,7 @@ public class PlayingMode extends JLayeredPane {
 				GameFrame.bmode.grid.updateGridText();
 			}
 		});
-		GameFrame.play.btnFinish.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int active;
-				int max = 0;
-				for (int i = 0; i < GameFrame.playerArray.size(); i++) {
-					active = GameFrame.playerArray.get(i).territoryList.size();
-					if (active > max) {
-						max = active;
-					}
-				}
-				for (int a = 0; a < GameFrame.playerArray.size(); a++) {
-					if (max == GameFrame.playerArray.get(a).territoryList.size()) {
-						System.out.println("Winner = " + GameFrame.playerArray.get(a));
-					}
-				}
-				// Grid Enable olacak
-
-			}
-		});
+		
 
 		btnChance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

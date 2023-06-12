@@ -16,9 +16,6 @@ public class HelpScreen extends JLayeredPane {
 	public boolean helpMode=false;
 	
 	
-	
-	
-	
 	public HelpScreen() {
 		super();
 		initialize();
@@ -36,6 +33,7 @@ public class HelpScreen extends JLayeredPane {
 	
 	public void addElements() {
 		
+		
 		txtHelp.setText("The game is played on a political map of the world, divided into territories, which are grouped into continents. Turns rotate among players who control armies of playing pieces with which they attempt to capture \n"
 	        		+ "territories from other players, with results determined by dice rolls. Players may form and dissolve alliances during the course of the game. On a player’s turn, he/she tries to capture territories by defeating his/her \n"
 	        		+ "opponents’ armies. The goal of the game is to occupy every territory on the board and, in doing so, eliminate the other players. \n"
@@ -49,23 +47,13 @@ public class HelpScreen extends JLayeredPane {
 	        		+ "without a need to attack these territories. \n"
 	        		+ "✪ Army Cards: A player can trade army cards to gain an additional army if she/he has a set of 3 cards. He/she can place new armies in any territories she/he has. The rules of gaining armies is as follows:\n"
 	        		+ "\n"
-	        		+ "Trade: \n"
-	        		+ "3 Infantry cards => 1 Cavalry\n"
-	        		+ "2 Infantry cards + 1 Cavalry card => 2 Cavalry\n"
-	        		+ "2 Infantry cards + 1 Artillery card => 2 Artillery\n"
-	        		+ "1 Infantry card + 2 Cavalry cards => 1 Cavalry + 1 Artillery\n"
-	        		+ "1 Artillery + 2 Cavalry cards => 3 Artillery\n"
-	        		+ "\n"
-	        		+ "Steps of a Player’s Turn:\n"
-	        		+ "Picking a chance card and doing whatever the card says\n"
-	        		+ "Getting and placing new armies\n"
-	        		+ "Attacking, if the player chooses to, by rolling the dice\n"
-	        		+ "Fortifying the position");
+	        		+ "Steps of a Player’s Turn are explained in the HOW TO PLAY button after starting the game, when initial sharing and army placement is done."
+	        		);
 		txtHelp.setForeground(Color.LIGHT_GRAY);
-		txtHelp.setFont(new Font("Kokonor", Font.PLAIN, 9));
+		txtHelp.setFont(new Font("Kokonor", Font.PLAIN, 16));
 		txtHelp.setEditable(false);
 		txtHelp.setBackground(Color.DARK_GRAY);
-		txtHelp.setBounds(19, 9 , 822, 400);
+		txtHelp.setBounds(19, 79 , 822, 400);
 	    add(txtHelp);
 	    
 	    
