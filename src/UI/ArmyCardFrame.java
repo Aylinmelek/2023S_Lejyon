@@ -41,9 +41,9 @@ public class ArmyCardFrame extends JFrame {
 	JButton btnFifth = new JButton("Trade 5");
 	JButton btnSixth = new JButton("Trade 6");
 	
-	JTextArea txtInfantry = new JTextArea(Integer.toString(player.infantryList.size()));
-	JTextArea txtArtillery = new JTextArea(Integer.toString(player.artilleryList.size()));
-	JTextArea txtCavalry = new JTextArea(Integer.toString(player.cavalryList.size()));
+	JTextArea txtInfantry = new JTextArea();
+	JTextArea txtArtillery = new JTextArea();
+	JTextArea txtCavalry = new JTextArea();
 
 	int tradeCvlry, tradeInfntry, tradeArtlry;
 
@@ -155,14 +155,13 @@ public class ArmyCardFrame extends JFrame {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(0);
 				txtInfantry.setText(Integer.toString(player.infantryList.size()));
 				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
-				System.out.println("Buraya Basıldı");
 
 			}
 		});
 		btnSecond.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(1);
-				System.out.println("Buraya Basıldı");
+				
 				txtInfantry.setText(Integer.toString(player.infantryList.size()));
 				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
 
@@ -171,7 +170,7 @@ public class ArmyCardFrame extends JFrame {
 		btnThird.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(2);
-				System.out.println("Buraya Basıldı");
+				
 				txtInfantry.setText(Integer.toString(player.infantryList.size()));
 				txtArtillery.setText(Integer.toString(player.artilleryList.size()));
 			}
@@ -179,7 +178,7 @@ public class ArmyCardFrame extends JFrame {
 		btnFourth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(3);
-				System.out.println("Buraya Basıldı");
+				
 				txtInfantry.setText(Integer.toString(player.infantryList.size()));
 				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
 				txtArtillery.setText(Integer.toString(player.artilleryList.size()));
@@ -189,7 +188,7 @@ public class ArmyCardFrame extends JFrame {
 		btnFifth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(4);
-				System.out.println("Buraya Basıldı");
+				
 				txtCavalry.setText(Integer.toString(player.cavalryList.size()));
 				txtArtillery.setText(Integer.toString(player.artilleryList.size()));
 
@@ -199,7 +198,7 @@ public class ArmyCardFrame extends JFrame {
 		btnSixth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).tradeArmyCards(5);
-				System.out.println("Buraya Basıldı");
+				
 
 			}
 		});
@@ -222,10 +221,13 @@ public class ArmyCardFrame extends JFrame {
 		
 		txtInfantry.setBounds(172, 107, 20, 37);
 		txtInfantry.setBackground(Color.DARK_GRAY);
+		txtInfantry.setText(Integer.toString(infantryCards.size()));
 		txtArtillery.setBounds(172, 157, 20, 37);
 		txtArtillery.setBackground(Color.DARK_GRAY);
+		txtArtillery.setText(Integer.toString(artilleryCards.size()));
 		txtCavalry.setBounds(172, 207, 20, 37);
 		txtCavalry.setBackground(Color.DARK_GRAY);
+		txtCavalry.setText(Integer.toString(cavalryCards.size()));
 
 
 		add(labelInfantry);

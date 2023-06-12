@@ -15,7 +15,6 @@ import domain.controller.ConKUerorHandler;
 
 public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
-
 	public static final int ROWS = 17;
 	public static final int COLUMNS = 17;
 	public static final int CELL_SIZE = 50;
@@ -26,17 +25,16 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 	private boolean indFlag = true;
 	private boolean infFlag;
 
-    JTextArea txtPlayerTurn = new JTextArea();
-    //public PlayingMode playMode = new PlayingMode();
+	JTextArea txtPlayerTurn = new JTextArea();
+	// public PlayingMode playMode = new PlayingMode();
 	public boolean isAttack = false;
 	public Territory territoryTo, territorySource, territoryTo2, territorySource2;
 	public int firstChosenRow, firstChosenColumn, secondChosenRow, secondChosenColumn;
 	public ConKUerorHandler handler = new ConKUerorHandler();
-	
+
 	private Point startPoint;
-    private Point endPoint;
-	
-	
+	private Point endPoint;
+
 	public boolean isIndFlag() {
 		return indFlag;
 	}
@@ -45,26 +43,23 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		this.indFlag = indFlag;
 	}
 
-	int playerIndex=0;
-
+	int playerIndex = 0;
 
 	TerrCardFrame terCard = new TerrCardFrame();
 	public Territory selectedTer;
-	//Player player = new Player();
-	
-	
-	
+	// Player player = new Player();
+
 	Territory territoryFrom;
 	ArrayList<Territory> terrsSelected = new ArrayList<Territory>();
 	public int col, row;
 
 	// Territory territoryIs = Territory.isTerritory(row, col);
-	Color firstChosen = new Color(171,200,116);
-	Color secondChosen = new Color(111,130,80);
+	Color firstChosen = new Color(171, 200, 116);
+	Color secondChosen = new Color(111, 130, 80);
 	Color blue = new Color(0, 0, 155);
 
 	public Grid() {
-		
+
 		this.gridColors = new Color[ROWS][COLUMNS];
 		this.gridText = new String[ROWS][COLUMNS];
 		initializeGridAndText();
@@ -77,25 +72,24 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		int width = COLUMNS * CELL_SIZE + GRID_LINE_WIDTH;
 		int height = ROWS * CELL_SIZE + GRID_LINE_WIDTH;
 		setLayout(null);
-		setSize(width, height);		
+		setSize(width, height);
 	}
-	public void updateGridText()
-	{
+
+	public void updateGridText() {
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLUMNS; col++) {
 				Territory territory = Territory.isTerritory(row, col);
 				if (territory != null) {
-					if(territory.isEnabled())
-					{
-						/*if(this.gridColors[row][col] != Color.CYAN)
-						{
-							this.gridColors[row][col] = territory.getColor();
-						}*/
-						
+					if (territory.isEnabled()) {
+						/*
+						 * if(this.gridColors[row][col] != Color.CYAN) { this.gridColors[row][col] =
+						 * territory.getColor(); }
+						 */
+
 						String armyNumStr = Integer.toString(territory.getArmyList().size());
 						this.gridText[row][col] = armyNumStr;
 					}
-					
+
 				}
 			}
 		}
@@ -114,30 +108,26 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					territory.matchContinent(GameFrame.play.handler.getBoard());
 					territory.matchMap(GameFrame.play.handler.getBoard());
 				}
-				
-				//Set Link Implementation to Map
-				if(row > 1 && Territory.isTerritory(row-1, col) != null  && Territory.isTerritory(row, col) != null)
-				{
-					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row-1, col));
-					//Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
+
+				// Set Link Implementation to Map
+				if (row > 1 && Territory.isTerritory(row - 1, col) != null && Territory.isTerritory(row, col) != null) {
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row - 1, col));
+					// Territory.isTerritory(row-1, col).setLink(Territory.isTerritory(row, col));
 				}
-				if(col > 1 && Territory.isTerritory(row, col-1) != null  && Territory.isTerritory(row, col) != null)
-				{
-					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col-1));
-					//Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
+				if (col > 1 && Territory.isTerritory(row, col - 1) != null && Territory.isTerritory(row, col) != null) {
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col - 1));
+					// Territory.isTerritory(row, col-1).setLink(Territory.isTerritory(row, col));
 				}
-				
-				if(Territory.isTerritory(row+1, col) != null && Territory.isTerritory(row, col) != null)
-				{
-					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row+1, col));
-					//Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
+
+				if (Territory.isTerritory(row + 1, col) != null && Territory.isTerritory(row, col) != null) {
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row + 1, col));
+					// Territory.isTerritory(row+1, col).setLink(Territory.isTerritory(row, col));
 				}
-				if(Territory.isTerritory(row, col+1) != null  && Territory.isTerritory(row, col) != null)
-				{
-					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col+1));
-					//Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
+				if (Territory.isTerritory(row, col + 1) != null && Territory.isTerritory(row, col) != null) {
+					Territory.isTerritory(row, col).setLink(Territory.isTerritory(row, col + 1));
+					// Territory.isTerritory(row, col+1).setLink(Territory.isTerritory(row, col));
 				}
-				
+
 			}
 		}
 	}
@@ -147,23 +137,22 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		drawCells(g);
 		if (startPoint != null && endPoint != null) {
 			if (GameFrame.play.playMode == true) {
-				
+
 				Graphics2D g2d = (Graphics2D) g;
-	            g2d.setStroke(new BasicStroke(3));
+				g2d.setStroke(new BasicStroke(3));
 
-	            int arrowHeadSize = 12;
+				int arrowHeadSize = 12;
 
-	            g2d.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+				g2d.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
 
-	            Polygon arrowHead = new Polygon();
-	            arrowHead.addPoint(endPoint.x, endPoint.y);
-	            arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y - arrowHeadSize);
-	            arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y + arrowHeadSize);
-	            g2d.fillPolygon(arrowHead);
+				Polygon arrowHead = new Polygon();
+				arrowHead.addPoint(endPoint.x, endPoint.y);
+				arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y - arrowHeadSize);
+				arrowHead.addPoint(endPoint.x - arrowHeadSize, endPoint.y + arrowHeadSize);
+				g2d.fillPolygon(arrowHead);
 			}
-        }
+		}
 	}
-
 
 	private void drawGridLines(Graphics g) {
 		g.setColor(Color.BLACK);
@@ -180,44 +169,47 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 	private void drawCells(Graphics g) {
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLUMNS; col++) {
-			
+
 				g.setColor(gridColors[row][col]);
 				g.fillRect(col * CELL_SIZE + GRID_LINE_WIDTH, row * CELL_SIZE + GRID_LINE_WIDTH,
 						CELL_SIZE - GRID_LINE_WIDTH, CELL_SIZE - GRID_LINE_WIDTH);
 				g.setColor(Color.black);
 				g.drawString(gridText[row][col], col * CELL_SIZE + GRID_LINE_WIDTH + 20,
 						row * CELL_SIZE + GRID_LINE_WIDTH + 25);
-				
+
 			}
 		}
 	}
-		int timer_count = 0;
+
+	int timer_count = 0;
 	Timer timer;
+
 	public void startColorChangeTimer() {
 		timer = new Timer(100, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (timer_count < 30) { // Change colors for 3 seconds (30 * 0.1 seconds)
-                    if (timer_count % 2 == 0) {
-                        changeGridColors(Color.BLACK);
-                    } else {
-                        changeGridColors(Color.WHITE);
-                    }
-                    timer_count++;
-                    
-                    repaint();
-                } else {
-                    timer.stop(); // Stop the timer after 3 seconds
-                }
-            }
-        });
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (timer_count < 30) { // Change colors for 3 seconds (30 * 0.1 seconds)
+					if (timer_count % 2 == 0) {
+						changeGridColors(Color.BLACK);
+					} else {
+						changeGridColors(Color.WHITE);
+					}
+					timer_count++;
 
-        timer.start();
-    }
-	
+					repaint();
+				} else {
+					timer.stop(); // Stop the timer after 3 seconds
+				}
+			}
+		});
+
+		timer.start();
+	}
+
 	public void changeGridColors(Color color) {
 		gridColors[row][col] = color;
-	}	
+	}
+
 	public Territory getSelectedTer() {
 		return selectedTer;
 	}
@@ -226,60 +218,53 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 		this.selectedTer = selectedTer;
 	}
 
+	public void mouseMoved(MouseEvent e) {
+		if (startPoint != null) {
+			endPoint = e.getPoint();
+			repaint();
+		}
+	}
 
-
-  
-    public void mouseMoved(MouseEvent e) {
-        if (startPoint != null) {
-            endPoint = e.getPoint();
-            repaint();
-        }
-    }
-	
 	public void mouseClicked(MouseEvent e) {
 		infFlag = true;
 		row = e.getY() / CELL_SIZE;
 		col = e.getX() / CELL_SIZE;
-		//System.out.println(row + col);
+		// System.out.println(row + col);
 		selectedTer = Territory.isTerritory(row, col);
-		
-		 if (startPoint == null) {
-	            startPoint = e.getPoint();
-	        } else {
-	            endPoint = e.getPoint();
-	            repaint();
-	            startPoint = null;
-	            endPoint = null;
-	        }
-		
-		 if (GameFrame.bmode.build) {
+
+		if (startPoint == null) {
+			startPoint = e.getPoint();
+		} else {
+			endPoint = e.getPoint();
+			repaint();
+			startPoint = null;
+			endPoint = null;
+		}
+
+		if (GameFrame.bmode.build) {
 			if (gridColors[row][col] != blue) {
 				gridColors[row][col] = Color.GRAY;
 				repaint();
 				if (selectedTer != null && !GameFrame.bmode.setLink) {
 					selectedTer.setEnabled(false);
 				}
-				if(GameFrame.bmode.setLink)
-				{
-					if(territorySource2 == null)
-					{
+				if (GameFrame.bmode.setLink) {
+					if (territorySource2 == null) {
 						gridColors[row][col] = firstChosen;
 						firstChosenRow = row;
 						firstChosenColumn = col;
 						repaint();
 						territorySource2 = Territory.isTerritory(row, col);
-						System.out.println("territorySource :"+territorySource);
-					}
-					else {
+						System.out.println("territorySource :" + territorySource);
+					} else {
 						gridColors[row][col] = secondChosen;
 						secondChosenRow = row;
 						secondChosenColumn = col;
 						repaint();
 						territoryTo2 = Territory.isTerritory(row, col);
-						System.out.println("territoryTo :"+territoryTo);
-						//territorySource.setLink(territoryTo);
-						if(!territoryTo2.getAdjacentTerritories().contains(territorySource2))
-						{
+						System.out.println("territoryTo :" + territoryTo);
+						// territorySource.setLink(territoryTo);
+						if (!territoryTo2.getAdjacentTerritories().contains(territorySource2)) {
 							territoryTo2.setLink(territorySource2);
 							System.out.println(territoryTo2.getAdjacentTerritories().size());
 							System.out.println("Linklendiiii");
@@ -287,23 +272,23 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 							territorySource2 = null;
 							GameFrame.bmode.setLink = false;
 						}
-						
+
 					}
 				}
-				
+
 			}
 		}
-		 
 
-		  if (GameFrame.sharing.init) {
-			if (gridColors[row][col] != Color.DARK_GRAY && gridColors[row][col] != blue && gridColors[row][col] != Color.WHITE && gridColors[row][col] != Color.CYAN 
-					 && gridColors[row][col] != Color.MAGENTA && gridColors[row][col] != Color.LIGHT_GRAY && gridColors[row][col] != Color.BLACK) {
-				
-				
+		if (GameFrame.sharing.init) {
+			if (gridColors[row][col] != Color.DARK_GRAY && gridColors[row][col] != blue
+					&& gridColors[row][col] != Color.WHITE && gridColors[row][col] != Color.CYAN
+					&& gridColors[row][col] != Color.MAGENTA && gridColors[row][col] != Color.LIGHT_GRAY
+					&& gridColors[row][col] != Color.BLACK) {
+
 				index = selectedTer.getIndex();
-				if(!GameFrame.sharing.getButton().isEnabled()) {
-					if(isIndFlag()) {
-						playerIndex=0;
+				if (!GameFrame.sharing.getButton().isEnabled()) {
+					if (isIndFlag()) {
+						playerIndex = 0;
 						setIndFlag(false);
 					}
 
@@ -311,66 +296,49 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 					gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
 					System.out.println("player index" + playerIndex);
 					repaint();
-					
-					if(selectedTer.isEnabled())
-					{
-						System.out.println("Territory enable mý?" + selectedTer.isEnabled());
-	                	players.get(playerIndex).chooseATerritory(selectedTer);
-	                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
-	                	//updateGridText();
-	                	String armyNumStr = Integer.toString(selectedTer.getArmyList().size());
+
+					if (selectedTer.isEnabled()) {
+						players.get(playerIndex).chooseATerritory(selectedTer);
+						players.get(playerIndex).placeArmy(selectedTer, "Infantry");
+						// updateGridText();
+						String armyNumStr = Integer.toString(selectedTer.getArmyList().size());
 						this.gridText[row][col] = armyNumStr;
 					}
-					
-                	
-                	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
-                	//System.out.println(players.get(playerIndex).getName());
 
-                	System.out.println(players.get(playerIndex));
-                	System.out.println(players.get(playerIndex));
+					if (selectedTer.isEnabled()) {
+						if (selectedTer.getOwner().equals(players.get(playerIndex))) {
+							if (playerIndex == (players.size() - 1)) {
 
-                	
-                    System.out.println(selectedTer);
-                    System.out.println(players.get(playerIndex).getInfantryList().size());
+								playerIndex = 0;
+							} else {
 
-                    System.out.println(selectedTer.getArmyList().size());
-                    if(selectedTer.isEnabled())
-					{
-                    if(selectedTer.getOwner().equals(players.get(playerIndex)))
-                    {
-                    	if (playerIndex==(players.size()-1)) {
-                    	
-                    	playerIndex=0;
-                    }
-                    else {
-                    	
-                    	System.out.println("playerIndex: "+ playerIndex);
-                    	playerIndex++;
-                    	
-                    }
-                    System.out.println("-------");
-                    for(int i=0; i<players.size(); i++) {
-                    	if(players.get(i).getInfantryList().size()!=0) {
-                    		infFlag = false;
-                    	}
-                    }
-                    if(infFlag) {
-                    	//burada shuffle Ã§aÄrÄ±lacak
+								System.out.println("playerIndex: " + playerIndex);
+								playerIndex++;
 
-                    }
-                    }
+							}
+							System.out.println("-------");
+							for (int i = 0; i < players.size(); i++) {
+								if (players.get(i).getInfantryList().size() != 0) {
+									infFlag = false;
+								}
+							}
+							if (infFlag) {
+								// burada shuffle Ã§aÄrÄ±lacak
+
+							}
+						}
+					}
+
 				}
-                     
-				}
-			
+
 			}
-			
-			else if (GameFrame.sharing.addColors().contains(gridColors[row][col])){
+
+			else if (GameFrame.sharing.addColors().contains(gridColors[row][col])) {
 				if (gridColors[row][col] == GameFrame.sharing.addColors().get(playerIndex)) {
 					index = selectedTer.getIndex();
-					if(!GameFrame.sharing.getButton().isEnabled()) {
-						if(isIndFlag()) {
-							playerIndex=0;
+					if (!GameFrame.sharing.getButton().isEnabled()) {
+						if (isIndFlag()) {
+							playerIndex = 0;
 							setIndFlag(false);
 						}
 
@@ -378,111 +346,79 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 						gridColors[row][col] = GameFrame.sharing.addColors().get(playerIndex);
 						System.out.println("player index" + playerIndex);
 						repaint();
-						
-						if(selectedTer.isEnabled())
-						{
+
+						if (selectedTer.isEnabled()) {
 							System.out.println("Territory enable mý?" + selectedTer.isEnabled());
-		                	players.get(playerIndex).chooseATerritory(selectedTer);
-		                	players.get(playerIndex).placeArmy(selectedTer, "Infantry");
-		                	//updateGridText();
-		                	String armyNumStr = Integer.toString(selectedTer.getArmyList().size());
+							players.get(playerIndex).chooseATerritory(selectedTer);
+							players.get(playerIndex).placeArmy(selectedTer, "Infantry");
+							// updateGridText();
+							String armyNumStr = Integer.toString(selectedTer.getArmyList().size());
 							this.gridText[row][col] = armyNumStr;
 						}
-						
-	                	
-	                	//System.out.println(players.get(playerIndex).getTerritoryList().get(0));
-	                	//System.out.println(players.get(playerIndex).getName());
+						if (selectedTer.isEnabled()) {
+							if (selectedTer.getOwner().equals(players.get(playerIndex))) {
+								if (playerIndex == (players.size() - 1)) {
 
-	                	System.out.println(players.get(playerIndex));
-	                	System.out.println(players.get(playerIndex));
+									playerIndex = 0;
+								} else {
 
-	                	
-	                    System.out.println(selectedTer);
-	                    System.out.println(players.get(playerIndex).getInfantryList().size());
+									System.out.println("playerIndex: " + playerIndex);
+									playerIndex++;
 
-	                    System.out.println(selectedTer.getArmyList().size());
-	                    if(selectedTer.isEnabled())
-						{
-	                    if(selectedTer.getOwner().equals(players.get(playerIndex)))
-	                    {
-	                    	if (playerIndex==(players.size()-1)) {
-	                    	
-	                    	playerIndex=0;
-	                    }
-	                    else {
-	                    	
-	                    	System.out.println("playerIndex: "+ playerIndex);
-	                    	playerIndex++;
-	                    	
-	                    }
-	                    System.out.println("-------");
-	                    for(int i=0; i<players.size(); i++) {
-	                    	if(players.get(i).getInfantryList().size()!=0) {
-	                    		infFlag = false;
-	                    	}
-	                    }
-	                    if(infFlag) {
-	                    	//burada shuffle Ã§aÄrÄ±lacak
+								}
+								System.out.println("-------");
+								for (int i = 0; i < players.size(); i++) {
+									if (players.get(i).getInfantryList().size() != 0) {
+										infFlag = false;
+									}
+								}
 
-	                    }
-	                    }
-					}
-	                     
-					}
-					else {
+							}
+						}
+
+					} else {
 						System.out.println("choose again.");
 					}
 				}
-				
-			}
-				else {
+
+			} else {
 				System.out.println("choose again.");
-				
+
 			}
 		}
 
-		
-
 		else if (GameFrame.play.playMode) {
 			System.out.println("PLAYMODE");
-				if(territorySource == null || territoryTo != null)
-			{
-					if(Territory.isTerritory(row, col).isEnabled())
-					{
-						territorySource = Territory.isTerritory(row, col);
-						gridColors[row][col] = firstChosen;
-						firstChosenRow = row;
-						firstChosenColumn = col;
-						repaint();
-						
-						System.out.println("territorySource :"+territorySource);
-						System.out.println("Territory enable mý?" + territorySource.isEnabled());
-					}
-					territoryTo = null;
-			}
-			else {
-				if(Territory.isTerritory(row, col).isEnabled())
-				{
+			if (territorySource == null || territoryTo != null) {
+				if (Territory.isTerritory(row, col).isEnabled()) {
+					territorySource = Territory.isTerritory(row, col);
+					gridColors[row][col] = firstChosen;
+					firstChosenRow = row;
+					firstChosenColumn = col;
+					repaint();
+
+					System.out.println("territorySource :" + territorySource);
+					System.out.println("Territory enable mý?" + territorySource.isEnabled());
+				}
+				territoryTo = null;
+			} else {
+				if (Territory.isTerritory(row, col).isEnabled()) {
 					gridColors[row][col] = secondChosen;
 					secondChosenRow = row;
 					secondChosenColumn = col;
 					repaint();
 					territoryTo = Territory.isTerritory(row, col);
-					System.out.println("territoryTo :"+territoryTo);
-					//territorySource.setLink(territoryTo);
+					System.out.println("territoryTo :" + territoryTo);
+					// territorySource.setLink(territoryTo);
 					GameFrame.play.numFortify.setEnabled(true);
 					GameFrame.play.btnRoll.setEnabled(true);
 				}
-				
-				
+
 			}
-				
-				
+
 		}
-		
+
 	}
-	
-	
 
 	public String getColorName(Color color) {
 		if (color.equals(Color.BLACK)) {
@@ -521,15 +457,15 @@ public class Grid extends JPanel implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-			}
+	}
 
-	@Override 
+	@Override
 	public void mouseExited(MouseEvent e) {
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		
+
 	}
 
 }
