@@ -213,11 +213,11 @@ public class PlayingMode extends JLayeredPane {
 					int armyCountBefore = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 
 					handler.getBoard().attack(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex),
-							GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
+					GameFrame.bmode.grid.territorySource, GameFrame.bmode.grid.territoryTo, roll1, roll2);
 					int armyCountAfter = GameFrame.bmode.grid.territoryTo.getArmyList().size();
 
-					GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
-					GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
+					//GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn] = Color.CYAN;
+					//GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.secondChosenRow][GameFrame.bmode.grid.secondChosenColumn] = Color.CYAN;
 					repaint();
 					GameFrame.bmode.grid.territorySource = null;
 					GameFrame.bmode.grid.territoryTo = null;
@@ -226,11 +226,11 @@ public class PlayingMode extends JLayeredPane {
 					if (armyCountBefore > armyCountAfter) {
 
 						GameFrame.bmode.grid.startColorChangeTimer();
-						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= Color.GREEN;
+						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= GameFrame.sharing.addColors().get(GameFrame.bmode.grid.playerIndex);
 						
 					} else if (armyCountBefore < armyCountAfter) {
 						GameFrame.bmode.grid.startColorChangeTimer();
-						GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= GameFrame.sharing.addColors().get(GameFrame.bmode.grid.playerIndex);
+						//GameFrame.bmode.grid.gridColors[GameFrame.bmode.grid.firstChosenRow][GameFrame.bmode.grid.firstChosenColumn]= GameFrame.sharing.addColors().get(GameFrame.bmode.grid.playerIndex);
 						
 					}
 
@@ -392,12 +392,10 @@ public class PlayingMode extends JLayeredPane {
 
 		btnTACard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				handler.giveArmyCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				System.out.println(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				handler.giveTerCard(GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex));
 				//GameFrame.bmode.grid.terCard.setTerritoryCard(getColorName(selectedTer.getColor()), selectedTer.getText(), index);
-
 				txtCard.setText("??????????????????" + "card picked");
 			}
 		});
