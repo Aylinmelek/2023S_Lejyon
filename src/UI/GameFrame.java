@@ -263,6 +263,12 @@ public class GameFrame extends JFrame {
 		
 		play.btnFinish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				play.playMode=false;
+				play.setVisible(false);
+				end.endMode=true;
+				end.setVisible(true);
+				frame.setLayeredPane(end);
+				frame.revalidate();
 				int active;
 				int max = 0;
 				for (int i = 0; i < playerArray.size(); i++) {
@@ -276,9 +282,6 @@ public class GameFrame extends JFrame {
 						System.out.println("Winner = " + GameFrame.playerArray.get(a));
 					}
 				}
-				frame.add(end);
-				play.setVisible(false);
-				end.setVisible(true);
 				
 			}
 			
@@ -568,6 +571,7 @@ public class GameFrame extends JFrame {
 
 					play.playMode = true;
 					System.out.println(play.playMode);
+					
 				//}
 				
 				

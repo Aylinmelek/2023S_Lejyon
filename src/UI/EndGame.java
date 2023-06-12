@@ -1,48 +1,60 @@
 package UI;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import java.awt.*;    
+import javax.swing.*;
 
 public class EndGame extends JLayeredPane {
-	JTextArea txtEnd = new JTextArea("GAME ENDED");
-	
-	public boolean helpMode=false;
-	
-	
-	public EndGame() {
-		super();
-		initialize();
-		addElements();
-	}
+    JLabel lblEnd = new JLabel("GAME OVER!", SwingConstants.CENTER);
+    JLabel lblWin = new JLabel("... Won!", SwingConstants.CENTER);
+
+    public boolean endMode = false;
+
+    public EndGame() {
+        super();
+        initialize();
+        addElements();
+    }
+
+    public void initialize() {
+        setBackground(Color.DARK_GRAY);
+        setBounds(0, 54, 873, 451);
+        setLayout(new BorderLayout());
+    }
+
+    public void addElements() {
+        lblEnd.setForeground(Color.LIGHT_GRAY);
+        lblEnd.setFont(new Font("Kokonor", Font.PLAIN, 40));
+        lblEnd.setBackground(Color.DARK_GRAY);
+        lblEnd.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        lblWin.setForeground(Color.LIGHT_GRAY);
+        lblWin.setFont(new Font("Kokonor", Font.PLAIN, 40));
+        lblWin.setBackground(Color.DARK_GRAY);
+        lblWin.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setOpaque(false); // to make panel background transparent
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createVerticalGlue()); // Add space above the labels
+        panel.add(lblEnd);
+        panel.add(lblWin);
+        panel.add(Box.createVerticalGlue()); // Add space below the labels
+
+        add(panel, BorderLayout.CENTER);
+    }
 
 
-	public void initialize()  {
-	    setBackground(Color.DARK_GRAY);
-	    setBounds(0, 54, 873, 451);
-	    
-	    setLayout(null);
-	}
-	
-	
-	public void addElements() {
-		txtEnd.setForeground(Color.LIGHT_GRAY);
-		txtEnd.setFont(new Font("Kokonor", Font.PLAIN, 40));
-		txtEnd.setEditable(false);
-		txtEnd.setBackground(Color.DARK_GRAY);
-		txtEnd.setBounds(19, 79 , 822, 400);
-	    add(txtEnd);
-	    
-	    
+/*
+    public static void main(String[] args) {
+        GameFrame frame = new GameFrame();
+        EndGame end = new EndGame();
         
-	}
-	
-	
-    
+        frame.setBounds(0, 54, 873, 600);
+        frame.setBackground(Color.DARK_GRAY);
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayeredPane(end);
+        frame.setSize(873, 600);
+        frame.setVisible(true);
+    }*/
 }
