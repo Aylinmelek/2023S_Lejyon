@@ -77,6 +77,15 @@ public class TerrCardFrame extends JFrame {
 		add(btnSixth);
 
 	}
+	public void updateFrame()
+	{
+		for(int i = 0; i < GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).getTerritoryCardList().size(); i++)
+		{
+			//Burada territoryCardList'in her elemanýna bagli olan png'i'yi territoryCardFrame'e ekliceksin Commenti ac.
+			//GameFrame.playerArray.get(GameFrame.bmode.grid.playerIndex).getTerritoryCardList().get(i);
+		}
+		
+	}
 
 	public void addButtonActListener() {
 		btnFirst.addActionListener(new ActionListener() {
