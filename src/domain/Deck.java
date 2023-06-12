@@ -27,7 +27,6 @@ public class Deck implements Serializable{
 		Collections.shuffle(deskDeck);
 	}
 
-	// TerritoryCardList'lerin dağıtılması ve oluşturulması yapılacak
 
 	public void giveFirst(Player player) {
 		player.deck.deskDeck.add(deskDeck.get(0));
@@ -43,42 +42,42 @@ public class Deck implements Serializable{
 			sabotageCard sabotageCard = new sabotageCard();
 			player.getDeck().getsabotageCardList().add(sabotageCard);
 			this.getsabotageCardList().remove(index);
-			System.out.println("Sabotage Card verildi : " + sabotageCard);
+			System.out.println("Sabotage Card  : " + sabotageCard);
 		}
 		if (givenCard == 1 && this.getReinforcementCardList().size() > 0) {
 			int index = this.getReinforcementCardList().size() - 1;
 			ReinforcementCard reinforceCard = new ReinforcementCard();
 			player.getDeck().getReinforcementCardList().add(reinforceCard);
 			this.getReinforcementCardList().remove(index);
-			System.out.println("Reinforce Card verildi : " + reinforceCard);
+			System.out.println("Reinforce Card  : " + reinforceCard);
 		}
 		if (givenCard == 2 && this.getWorldEventCardList().size() > 0) {
 			int index = this.getWorldEventCardList().size() - 1;
 			WorldEventCard worldEventCard = new WorldEventCard();
 			player.getDeck().getWorldEventCardList().add(worldEventCard);
 			this.getWorldEventCardList().remove(index);
-			System.out.println("WorldEvent Card verildi : " + worldEventCard);
+			System.out.println("WorldEvent Card  : " + worldEventCard);
 		}
 		if (givenCard == 3 && this.getSpyCardList().size() > 0) {
 			int index = this.getSpyCardList().size() -1;
 			SpyCard spyCard = new SpyCard();
 			player.getDeck().getSpyCardList().add(spyCard);
 			this.getSpyCardList().remove(index);
-			System.out.println("Spy Card verildi : " + spyCard);
+			System.out.println("Spy Card  : " + spyCard);
 		}
 		if (givenCard == 4 && this.getDisasterCardList().size() > 0) {
 			int index = this.getDisasterCardList().size() - 1;
 			DisasterCard disasterCard = new DisasterCard();
 			player.getDeck().getDisasterCardList().add(disasterCard);
 			this.getDisasterCardList().remove(index);
-			System.out.println("disasterCard verildi : " + disasterCard);
+			System.out.println("disasterCard  : " + disasterCard);
 		}
 		if (givenCard == 5 && this.getdipImmunityCardList().size() > 0) {
 			int index = this.getdipImmunityCardList().size() -1;
 			DiplomaticImmunityCard dipImCard = new DiplomaticImmunityCard();
 			player.getDeck().getdipImmunityCardList().add(dipImCard);
 			this.getdipImmunityCardList().remove(index);
-			System.out.println("Immunize Card verildi : " + dipImCard);
+			System.out.println("Immunize Card  : " + dipImCard);
 		}
 	
 		
@@ -112,7 +111,7 @@ public class Deck implements Serializable{
 	public void giveTerritoryCard(Player player) {
 		int index = this.getTerritoryCardList().size() - 1;
 		TerritoryCard terCard = this.getTerritoryCardList().get(index);
-		System.out.println("Territory card� verdi haaaa" + terCard);
+		
 		player.getTerritoryCardList().add(terCard);
 		this.getTerritoryCardList().remove(index);
 

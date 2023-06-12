@@ -196,13 +196,12 @@ public class Player {
 						break;
 					}
 				}
-				System.out.println(continent);
-				System.out.println("Trade etti");
+				
+				
 				territoryList.add(continent.territoryList.get(j));
 			}
 		}
-		System.out.println(continent);
-		System.out.println("Trade edemedi");
+
 	}
 
 	public void chooseATerritory(Territory territory) {
@@ -296,22 +295,7 @@ public class Player {
 	public boolean canAttackTerritory(Territory territoryFrom, Territory territoryTo) {
 		int territoryPower = territoryTo.armyList.size();
 		int playerPower = territoryFrom.armyList.size();
-		/*
-		 * for (int i = 0; i < territoryTo.armyList.size(); i++) {
-		 * territoryPower += territoryTo.armyList.get(i).power;
-		 * System.out.println(territoryPower);
-		 * 
-		 * }
-		 * for (int i = 0; i < territoryFrom.armyList.size(); i++) {
-		 * playerPower += territoryFrom.armyList.get(i).power;
-		 * System.out.println(playerPower);
-		 * }
-		 */
-		// playerPower += infantryList.size() * 1;
-		// playerPower += artilleryList.size() * 2;
-		// playerPower += cavalryList.size() * 3;
-
-		if (playerPower >= territoryPower && playerPower > 1) {
+			if (playerPower >= territoryPower && playerPower > 1) {
 			System.out.println(this + " can attack.");
 			return true;
 		} else {
@@ -330,7 +314,7 @@ public class Player {
 		for (int i=0; i<totalPlayerNum; i++) {
 			Player player = new Player();
 			playerList.add(player);
-			System.out.println(player);
+			
 		}
 		return playerList.size();
 	}

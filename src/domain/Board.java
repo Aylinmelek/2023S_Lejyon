@@ -31,9 +31,7 @@ public class Board {
 		die = new Die();
 
 		infCreator = new InfantryCreator();//yeni
-		System.out.println("geliyo mu board'a");
 		
-		System.out.println("-----------------");
 	}
 	
 	public void rollDice() {
@@ -61,7 +59,6 @@ public class Board {
 	
 	
 	public String publishBoardEvent(int dieNum) {
-		 System.out.println("(domain.Board)You rolled: " + dieNum);
 		 String num = Integer.toString(dieNum);
 		 return num;
 		/*for(BoardListener l: listeners)
@@ -153,14 +150,6 @@ public class Board {
 		
 		return player.addToPlayerList(playerList,totalPlayerNum);
 	}	
-		  /*for (int i=0; i<loginScreen.getPlayerNum(); i++) {
-		   Player player = new Player();
-		   playerList.add(player);
-		   System.out.println(player);
-
-		  }
-		  return playerList.size();*/
-		 //}
-	
+		 
 
 }
